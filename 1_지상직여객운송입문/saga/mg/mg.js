@@ -497,7 +497,7 @@ MG.coreDigest = function (C) { var s = MG.canon(MG.coreView(MG.store.pack(C, tru
 MG.stateDigest = function (C) { var s = MG.canon(MG.store.pack(C, true)); return (MG.rand.hash32('a|' + s) >>> 0).toString(16) + (MG.rand.hash32('b|' + s) >>> 0).toString(16) + ':' + s.length; };
 /* ---------- 결정성 확인용 상태 해시 ---------- */
 MG.stateHash = function (C) {
-  var fl = Object.keys(C.fl).sort().map(function (k) { return C.fl[k]; }).map(function (f) { return [f.id, f.state, f.std, f.etd, f.aobt, f.atot, f.aldt, f.aibt, MG.T ? MG.T.ko(f.cause) : f.cause].join(','); });
+  var fl = Object.keys(C.fl).sort().map(function (k) { return C.fl[k]; }).map(function (f) { return [f.id, f.state, f.std, f.etd, f.aobt, f.atot, f.aldt, f.aibt, MG.T ? MG.T.sig(f.cause) : f.cause].join(','); });
   var ts = Object.keys(C.tails).sort().map(function (k) { var x = C.tails[k]; return k + ':' + [x.loc, x.status, x.block, x.fh, x.fc, x.sinceA].join(','); });
   var pend = C.pending.map(function (p) { return p.id; }).join(';');
   var bal = Object.keys(C.bal).sort().map(function (k) { return k + '=' + C.bal[k]; }).join(';');
@@ -509,7 +509,8 @@ MG.stateHash = function (C) {
    문장 값 m = { k: 문장 키, p: { 이름: 원시값 | 중첩 m | m 배열 } } — 저장 정본은 언어 중립(m만), 그리는 순간에만 언어로 푼다.
    - MG.M(k, p)          : m 만들기(p 없으면 생략)
    - MG.T.fmt(m, lang)   : 화면용 — 현재 언어(없으면 ko 사전 → 「⟦키⟧」)
-   - MG.T.ko(m)          : 고정 한국어 투영(서명·호환·시험 — 언어 선택·화면 상태와 무관)
+   - MG.T.ko(m)          : 한국어 투영(시험·호환 — 언어 선택·화면 상태와 무관 · 지금 한국어 사전)
+   - MG.T.sig(m)         : 서명 투영(206차 N206-08) — 하루 확인 지문·처리 키·기록 지문·옛 저장본 이관 전용 · 표시 문장을 고친 키는 고치기 전 문장(text/mg_text_sig.js)
    - MG.T.isM(v)         : m 판정(자기 키가 k 하나 또는 k·p 둘뿐인 객체 · k 문자열)
    - 사전 문장 자리표: {이름} · {이름|형식} · {이름|형식:인수} — 형식 = yen · yenx · num · fix:n · hm · pct:n · join:구분자
    - '_raw'(옛 저장본 이관 문장) = p.s 그대로(3언어 모두 원문 · 화면은 「이전 판 기록」 표시는 UI 층)
@@ -578,6 +579,7 @@ MG.stateHash = function (C) {
   }
   T.fmt = function (m, lang) { return render(m, lang || T.lang); };
   T.ko = function (m) { return render(m, 'ko'); };
+  T.sig = function (m) { return render(m, 'sig'); };   // 덧사전에 없는 키 = 한국어 사전(render의 ko 대체) · 형식(F)은 한국어와 같음
   // 화면 연결용 문자열 변환(p1_uiwrap 넓은 감싸기 · esc): 종전 암묵 변환과 같은 글(null → 'null' · 배열 → 쉼표 연결 · 그 밖 String) — 문장 값 m만 현재 언어로
   T.s = function (v) { if (typeof v === 'string') return v; if (T.isM(v)) return render(v, T.lang); if (Array.isArray(v)) return v.map(function (x) { return x == null ? '' : T.s(x); }).join(','); return String(v); };
   // N193-03: 화면의 배열 잇기 — Array.prototype.join과 같은 글(null·undefined = 빈 칸 · 구분자 기본 ',') · 요소 m만 현재 언어로(종전: join이 m을 먼저 문자열로 바꿔 사이트판에 [object Object])
@@ -589,12 +591,18 @@ MG.stateHash = function (C) {
     if (v && typeof v === 'object') { var o = {}; for (var k in v) o[k] = T.koDeep(v[k]); return o; }
     return v;
   };
+  T.sigDeep = function (v) {   // 깊은 서명 투영(기록 지문 전용 — koDeep과 같은 모양)
+    if (T.isM(v)) return T.sig(v);
+    if (Array.isArray(v)) return v.map(T.sigDeep);
+    if (v && typeof v === 'object') { var o = {}; for (var k in v) o[k] = T.sigDeep(v[k]); return o; }
+    return v;
+  };
   // 184차 표현 투영(2-6-5 · 2-7-3): 신판 C → 문장 칸 = 고정 한국어 문자열 · fmt 6 전용 칸 제거 — 시험(T2)·호환 전용(저장 경로에서 쓰지 않음)
   //   제거·복원 칸(고정 목록): f.cc · pending q.tag·q.cutRef · dayLog 항목 [hm, m] → 「hm 문장」 · 슬롯 시리즈 출처 'spare:#N'·'spare:1B:기체'(mg_slot 훅) · 재안내 실패 사유 [[m, 인원]] → {글: 인원}(mg_market 훅)
   T.legacyHooks = T.legacyHooks || [];
   T.LEGACY_DROP = { fl: ['cc'], pending: ['tag', 'cutRef'] };
   T.legacy = function (C) {
-    var L = T.koDeep(C), k;
+    var L = T.sigDeep(C), k;   // 206차 N206-08: 184차 표현 투영 = 서명 투영(고정 문장 — 표시 문장 교정과 무관)
     if (L.fl) for (k in L.fl) { var f = L.fl[k]; T.LEGACY_DROP.fl.forEach(function (q) { delete f[q]; }); }
     (L.pending || []).forEach(function (q) { T.LEGACY_DROP.pending.forEach(function (x) { delete q[x]; }); });
     if (Array.isArray(L.dayLog)) L.dayLog = L.dayLog.map(function (x) { return Array.isArray(x) ? x[0] + ' ' + x[1] : x; });
@@ -617,8 +625,8 @@ MG.stateHash = function (C) {
   //   객체 키(장부 키 등)는 바꾸지 않음 · 이미 m인 값 = 그대로(두 번 이관 = 한 번)
   var HG = /[ㄱ-ㆎ가-힣]/, REV = null;
   function rev() {
-    if (REV) return REV; REV = {}; var d = T.dict.ko, k;
-    for (k in d) if (typeof d[k] === 'string' && d[k].indexOf('{') < 0 && k.charAt(0) !== '_') (REV[d[k]] = REV[d[k]] || []).push(k);
+    if (REV) return REV; REV = {}; var d = T.dict.ko, g = T.dict.sig || {}, k, v;   // 옛 저장본 글 = 고치기 전 문장 → 서명 덧사전 우선
+    for (k in d) { v = k in g ? g[k] : d[k]; if (typeof v === 'string' && v.indexOf('{') < 0 && k.charAt(0) !== '_') (REV[v] = REV[v] || []).push(k); }
     for (k in REV) REV[k].sort(); return REV;
   }
   function revKey(s, field) {
@@ -641,9 +649,9 @@ MG.stateHash = function (C) {
       return v;
     }
     if (Array.isArray(C.dayLog)) C.dayLog = C.dayLog.map(function (x) { if (typeof x !== 'string') return x; var i = x.indexOf(' '); n++; return i > 0 ? [x.slice(0, i), raw(x.slice(i + 1))] : raw(x); });
-    var sr = C.slot && C.slot.series, tg = /^(.*?)(\d+)$/, k1b = T.ko({ k: 'world.tag1b', p: { tail: '\u0000' } }).split('\u0000');
+    var sr = C.slot && C.slot.series, tg = /^(.*?)(\d+)$/, k1b = T.sig({ k: 'world.tag1b', p: { tail: '\u0000' } }).split('\u0000');
     if (sr) Object.keys(sr).forEach(function (id) { var x = sr[id], s = x.src, t; if (typeof s !== 'string' || s.indexOf('spare:') !== 0 || !HG.test(s)) return; t = s.slice(6);
-      var mm = tg.exec(t); if (mm && mm[1] === T.ko({ k: 'skd.tag', p: { v: '' } })) { x.src = 'spare:#' + mm[2]; n++; return; }
+      var mm = tg.exec(t); if (mm && mm[1] === T.sig({ k: 'skd.tag', p: { v: '' } })) { x.src = 'spare:#' + mm[2]; n++; return; }
       if (k1b.length === 2 && t.indexOf(k1b[0]) === 0 && t.slice(-k1b[1].length || t.length) === k1b[1]) { x.src = 'spare:1B:' + t.slice(k1b[0].length, t.length - k1b[1].length); n++; } });
     // N193-02: 감편 품의 식별 = cutSync와 같은 두 구조 분기(q.liqCut 있음 · 또는 현재 유동성 사건 회차의 R.cutV = q.v) — 품의 제목과 그 기안 제목을 따로 이관(184차 cutSync도 둘을 따로 갱신)
     var LQ = C.fin && C.fin.liq && C.fin.liq.inc, cutVs = {}; if (LQ && LQ.rounds) Object.keys(LQ.rounds).forEach(function (r) { var R = LQ.rounds[r]; if (R && R.cutV != null) cutVs[R.cutV] = 1; });
@@ -1446,6 +1454,7 @@ MG.T.add('ko', {
   "slot.judge.1": "({why})",
   "slot.judge.2": "슬롯 조정자 판정 {g} {v}{v2} — 승인 예외 {nj} · 미사용(자사) {nx}",
   "slot.onCancel.1": "결항",
+  "slot.retime.pc": "규제 당국 시각 변경(정당한 미사용)",
   "slot.missing.1": "레벨 3 운항일 슬롯 없음({out|join: · }) — 보유 시리즈·신청 필요",
   "slot.missing.2": " 도착",
   "slot.missing.3": " 출발",
@@ -2932,6 +2941,488 @@ MG.T.add('ko', {
   "d_airports_core.aptCore.meta.src.airports": "OurAirports airports.csv (공개 도메인) 2026-10-22",
   "d_airports_core.aptCore.meta.filter": "type∈{large,medium}_airport · scheduled_service=yes · IATA 3자 · 수상 활주로 제외",
 });
+/* 경영 2단계 2B 정비(M&E) — 한국어 정본(일·영은 2단계 한국어판 종합 통과 뒤) */
+MG.T.add('ko', {
+  'fin.xMxH.n': '중정비(C 체크·엔진·외주 정비)',
+  'mx2.blk.cal': '{reg} C 체크 기한({d}) 도달 — 정비를 마치기 전에는 운항할 수 없습니다',
+  'mx2.blk.fh': '{reg} C 체크 비행시간 한도 도달(남은 {left}시간) — 정비를 마치기 전에는 운항할 수 없습니다',
+  'mx2.blk.fc': '{reg} C 체크 비행 횟수 한도 도달(남은 {left}회) — 정비를 마치기 전에는 운항할 수 없습니다',
+  'mx2.why.dup': '{reg}에는 이미 예정된 C 체크가 있습니다',
+  'mx2.why.slot': '{at} {s} 정비 슬롯이 모두 찼습니다',
+  'mx2.why.own': '자사 격납고가 그 기간에 다른 기체로 차 있거나 아직 없습니다',
+  'mx2.why.lead': '정비 슬롯은 {n}일 전까지 예약해야 합니다',
+  'mx2.why.late': '정비가 한도일({d}) 전에 끝나지 않습니다',
+  'mx2.at.SKR': 'Sakura Tech(나리타)',
+  'mx2.at.HBA': 'Harbor Aero(인천)',
+  'mx2.at.KLA': 'Kelong Aero Works(싱가포르)',
+  'mx2.at.OWN': '자사 격납고(나리타)',
+  'mx2.log.cover': '{reg} C 체크 예약 — {at} · {d}부터 {n}일 · 예비기 {sp}가 그동안 운항을 맡습니다',
+  'mx2.log.cut': '{reg} C 체크 예약 — {at} · {d}부터 {n}일 · 예비기가 없어 그 기간 편은 판매하지 않습니다(계획 운휴)',
+  'mx2.log.cdone': '{reg} C 체크 완료({at}) — 한도를 새로 셉니다',
+  'mx2.log.miss': '{reg}는 한도일({d}) 전에 잡을 수 있는 정비 창이 없습니다 — 긴급 외주가 필요할 수 있습니다',
+  'mx2.log.skip': '{reg} 정비 창을 예약하지 못했습니다: {why}',
+  'mx2.log.late': '{reg} {d} 창은 예약 기한이 지나 이번 승인에서 빠졌습니다',
+  'mx2.log.cnl': '{reg} {d} C 체크 예약을 취소했습니다',
+  'mx2.log.coverLost': '{reg} 정비 창 — 예비기 {sp}를 {fn}편부터 더 쓸 수 없고(위치·시간·한도) 대신할 예비기도 없어 남은 기간은 계획 운휴로 바꿉니다(판매 중지·환불)',
+  'mx2.log.coverLost0': '{reg} 정비 창 — 예비기 {sp}를 더 쓸 수 없어 남은 기간은 계획 운휴로 바꿉니다(앞으로 만들 편 판매 중지)',
+  'mx2.log.coverNew': '{reg} 정비 창 — 맡긴 남은 편을 다른 예비기 {sp}로 옮겼습니다',   // 이전 판 기록용(old 칸 없음 — 206차 재확인3) · 새 기록 = coverSwap
+  'mx2.log.coverSwap': '{reg} 정비 창 — 예비기 {old}를 더 쓸 수 없어 맡긴 남은 편을 다른 예비기 {sp}로 옮겼습니다(예약·판매 그대로)',
+  'mx2.log.rfFail': '{fn}편(정비 창 {reg}) 계획 운휴 환불을 처리하지 못해 편을 그대로 두었습니다 — 영업일 마감 때 다시 처리합니다',
+  'mx2.log.hangar': '자사 격납고를 열었습니다 — 중정비 인원 {n}명 · 월 인건비 {v}엔',
+  'mx2.cause.pmx': '{reg} 계획 정비(C 체크) 운휴',
+  'mx2.cause.emg': '{reg} 긴급 정비(C 체크 한도 도달)',
+  'mx2.obl.c': '{reg} C 체크({at})',
+  'mx2.obl.hangar': '자사 격납고 중정비 인원',
+  'mx2.emg.title': '{reg} 긴급 외주 정비',
+  'mx2.emg.body': '{reg}가 C 체크 한도에 닿아 운항이 멈췄습니다. 가장 빠른 외주 슬롯({d}부터 {n}일)을 잡았습니다 — 비용 {v}엔(긴급 1.5배). 그때까지 이 기체의 편은 결항합니다.',
+  'mx2.sid.W': '{y}년 겨울 시즌(10월 말~3월)',
+  'mx2.sid.S': '{y}년 여름 시즌(3월 말~10월)',
+  'mx2.plan.title': '정비 계획안 — {s}',
+  'mx2.plan.body': '정비계획 담당이 {s}의 C 체크 창을 비수기 위주로 배치했습니다. 승인하면 외주 정비 슬롯을 예약합니다(예비기가 없으면 그 기간 편은 판매하지 않음).\n{lines}',
+  'mx2.plan.bodyMan': '수동 운영입니다. 아래 기체의 C 체크 창을 정비 화면에서 직접 잡아 주세요.\n{lines}',
+  'mx2.plan.line': '· {reg} — {at} {d}부터 {n}일 · {v}엔 · 한도 {due}({by}){off}',
+  'mx2.plan.miss': '· {reg} — 한도 {d} 전에 잡을 수 있는 창 없음(긴급 외주 필요)',
+  'mx2.plan.off': ' · 비수기',
+  'mx2.plan.approve': '승인(슬롯 예약)',
+  'mx2.plan.reject': '반려(직접 배치)',
+  'mx2.by.mo': '달력',
+  'mx2.by.fh': '비행시간',
+  'mx2.by.fc': '비행 횟수',
+  'mx2.warn.title': '{reg} C 체크 한도까지 {n}일',
+  'mx2.warn.body': '{reg}의 C 체크 한도는 {d}({by})입니다. 아직 정비 창이 없습니다. 그대로 두면 한도일에 운항이 멈추고 긴급 외주(1.5배)가 됩니다. 정비 화면에서 창을 잡거나 지금 긴급 외주를 예약할 수 있습니다.',
+  'mx2.warn.ok': '확인(정비 화면에서 직접)',
+  'mx2.warn.emg': '지금 긴급 외주 예약',
+  'mx2.blk.eng': '{reg} 엔진 정비 한도(비행시간) 도달 — 엔진을 바꾸기 전에는 운항할 수 없습니다',
+  'mx2.at.LINE': '기지(예비 엔진 교환)',
+  'mx2.log.ecover': '{reg} 엔진 교환 창 예약 — {d}부터 {n}일 · 예비기 {sp}가 그동안 운항을 맡습니다',
+  'mx2.log.ecut': '{reg} 엔진 교환 창 예약 — {d}부터 {n}일 · 그 기간 편은 판매하지 않습니다(계획 운휴)',
+  'mx2.log.edone': '{reg} 예비 엔진 교환 완료 — 떼어 낸 엔진은 정비소로({k})',
+  'mx2.log.eA': '{reg} 엔진 정비 — 시간당 요율 계약이라 이번 정비 비용과 예비 엔진은 요율에 포함',
+  'mx2.cause.pmxE': '{reg} 계획 엔진 교환 운휴',
+  'mx2.cause.emgE': '{reg} 긴급 엔진 교환(엔진 한도 도달)',
+  'mx2.ek.A': '시간당 요율 계약',
+  'mx2.ek.B': '실비 정산 계약',
+  'mx2.obl.e': '{reg} 엔진 정비(실비 정산 · 예비 엔진 임차 포함)',
+  'mx2.obl.pbh': '엔진 정비 시간당 요율 {y}년 {mo}월분({n}대)',
+  'mx2.blk.mel': '{reg} MEL 유예 기한 지남({it}) — 수리하기 전에는 운항할 수 없습니다',
+  'mx2.blk.mlim': '{reg} MEL 유예 중({it}) — 이 편은 운항 제한({lim})에 걸립니다',
+  'mx2.lim.gpu': '지상 전원 계약 공항만(상하이·싱가포르 불가 — 게임용 가정)',
+  'mx2.lim.lav': '블록 4시간 넘는 편 불가',
+  'mx2.lim.ice': '겨울철 북쪽 공항 불가',
+  'mx2.lim.null': '없음',
+  'mx2.mel.apu': 'APU(보조 동력 장치) 불작동',
+  'mx2.mel.lav': '화장실 1곳 불작동',
+  'mx2.mel.cablt': '객실 조명 일부 불작동',
+  'mx2.mel.seat': '좌석 1석 등받이 고장',
+  'mx2.mel.ife': '기내 오락 장치 일부 불작동',
+  'mx2.mel.wxr': '기상 레이더 한쪽 불작동',
+  'mx2.mel.ap': '자동 조종 한 채널 불작동',
+  'mx2.mel.fqi': '연료량 표시 하나 불작동',
+  'mx2.mel.btms': '브레이크 온도 표시 불작동',
+  'mx2.mel.pack': '냉방 장치(팩) 하나 불작동',
+  'mx2.mel.hyd': '엔진 구동 유압 펌프 고장(유예 불가)',
+  'mx2.mel.emlt': '비상 조명 고장(유예 불가)',
+  'mx2.log.melOpen': '{reg} MEL 유예 — {it}(등급 {cat} · 기한 {d}) · 정비 확인자와 기장이 판단 · 기지 야간에 수리합니다',
+  'mx2.log.melRep': '{reg} MEL 수리 창 — {it} · {n}분',
+  'mx2.log.melFix': '{reg} MEL 수리 완료 — {it}',
+  'mx2.log.sbcover': '{reg} 서비스 회보 적용 창 — {d} 1일 · 예비기 {sp}가 운항을 맡습니다',
+  'mx2.log.sbcut': '{reg} 서비스 회보 적용 창 — {d} 1일 · 그날 편은 판매하지 않습니다(계획 운휴)',
+  'mx2.log.sbdone': '{reg} 서비스 회보 {id} 적용 완료 — 신뢰성이 다음 달부터 오릅니다',
+  'mx2.cause.pmxS': '{reg} 서비스 회보 적용 운휴',
+  'mx2.obl.sb': '{reg} 서비스 회보 {id} 적용',
+  'mx2.obl.pool': '부품 풀 계약({k})',
+  'mx2.pool.basic': '기본(12~24시간)',
+  'mx2.pool.full': '확대(8~16시간)',
+  'mx2.pool.none': '없음',
+  'mx2.log.inv': '부품 재고 {a}일 → {b}일 · {v}엔(현금 ↔ 재고자산)',
+  'mx2.log.pool': '부품 풀 계약 — {k}(다음 달부터)',
+  'mx2.why.cash': '현금이 모자랍니다',
+  'mx2.why.sbdone': '이미 적용했거나 없는 서비스 회보입니다',
+  'mx2.emgE.title': '{reg} 긴급 엔진 교환',
+  'mx2.emgE.body': '{reg}가 엔진 정비 한도에 닿아 운항이 멈췄습니다. 예비 엔진을 구해 {d}부터 {n}일 동안 교환합니다. 그때까지 이 기체의 편은 결항합니다.'
+});
+MG.T.add('ko', {
+  // 2C 승무원(경계 계약 v3 4-3 · 구현 계획 2C) — 엔진 문장
+  'fin.xCrewX.n': '승무원 추가 비용(초과 근무·레이오버·대기)',
+  'crew2.hold.ck': '운항 승무원 세트 없음({type} · 근무 한도·휴식·위치 — 대기 세트도 없음)',
+  'crew2.hold.cb': '객실 승무원 세트 없음({type} · 최소 인원 {n}명 — 대기 세트도 없음)',
+  'crew2.wait': '{fn}편 승무원 휴식 확보로 출발을 {hm}로 늦춥니다',
+  'crew2.sby': '{fn}편에 대기 세트 {sid}를 넣었습니다({mode})',
+  'crew2.sby.apt': '공항 대기',
+  'crew2.sby.home': '자택 대기 · 90분 뒤 투입',
+  'crew2.why.off': '이 캠페인은 세트 근무표(2C)를 쓰지 않습니다',
+  'crew2.why.bad': '기종·종류·인원(1~20)을 확인해 주세요',
+  'crew2.why.cash': '현금이 모자랍니다',
+  'crew2.why.base': '베이스는 본사 기지 밖 공항 · 세트 2~10개만 열 수 있습니다',
+  'crew2.why.baseDup': '그 도시에는 이미 베이스가 있습니다',
+  'crew2.why.baseSets': '오늘·내일 배정이 없는 세트가 모자라 옮길 수 없습니다',
+  'crew2.obl.base': '승무원 베이스 개설({a})',
+  'crew2.obl.baseM': '승무원 베이스 운영({a})',
+  'crew2.log.base': '{a}에 승무원 베이스를 열었습니다 — {type} 운항·객실 세트 각 {n}개 상주',
+  'crew2.obl.hire': '{type} {k} {n}명 채용·훈련',
+  'crew2.hk.cpt': '경력 기장',
+  'crew2.hk.fo': '신입 부기장',
+  'crew2.hk.intl': '외국인 기장',
+  'crew2.hk.cab': '객실 승무원 조',
+  'crew2.log.hire': '{type} {k} {n}명 채용을 시작했습니다 — 도착(훈련·면허 전환 끝) 예정 {d}',
+  'crew2.log.sbyFail': '{fn}: 대기 세트를 넣지 못했습니다(그 시각 한도 안의 대기 세트 없음) — 그대로 기다립니다',
+  'crew2.log.arrive': '{type} {k} {n}명이 도착했습니다',
+  'crew2.log.promo': '기장 승격 심사 결과 — {r}',
+  'crew2.log.promo1': '{type} 후보 {n}명 중 {pass}명 합격',
+  'crew2.warn.title': '{m} {type} {k} 부족 예상',
+  'crew2.warn.body': '계속 운항 검사에서 {m}에 {type} {k}가 약 {n}개 모자랄 것으로 나왔습니다. 채용·감편·기안 조정 중 하나를 정해 주세요. 그대로 두면 그 달 편은 출발 전 승무원 검사에서 멈춥니다(안전 차단).',
+  'crew2.warn.ok': '확인(직접 조정)',
+  'crew2.warn.hire': '채용 시작({n}조)',
+  'crew2.k.ck': '운항 세트',
+  'crew2.k.cb': '객실 세트',
+  'crew2.k.fy': '연간 비행 한도(1,000시간)',
+  'crew2.eval.cb': '{v} {name} 객실 세트 부족(필요 {v2}시간 · 가용 {v3}시간)',
+  'crew2.eval.fy': '{fy}년도 {name} 운항 세트 연간 한도 초과(필요 {v2}시간 · 가용 {v3}시간)',
+  // ── mg_skd2: 2D 로테이션 편집기(간트 기안 사본 · 조작 · 경고 7종 · 견적) ──
+  'skd2.off': '로테이션 편집기는 2단계 캠페인에서만 쓸 수 있습니다',
+  'skd2.open.from': '효력일은 {td} 이후여야 합니다',
+  'skd2.open.season': '시즌 복사는 다음 시즌 시작일({d}) 이후로만 만들 수 있습니다',
+  'skd2.title.ops': '편집기 운영 조정 {d}',
+  'skd2.title.season': '편집기 시즌 복사 {d}',
+  'skd2.op.nodraft': '편집기 기안 #{v}이 없습니다',
+  'skd2.op.noreg': '{reg}는 이 편집기 기안의 편집 대상 기체가 아닙니다',
+  'skd2.op.idle': '{reg}는 운휴입니다(편이 없음) — 먼저 「운휴 해제」나 묶음 옮기기로 편을 넣으세요',
+  'skd2.op.leg': '{reg}에 그런 편 순번이 없습니다',
+  'skd2.op.min': '옮기는 분은 0이 아닌 정수, 한 번에 {max}분 이하여야 합니다',
+  'skd2.op.first': '첫 편 출발은 회전일 안(00:00~23:59, 기지 현지 시각)이어야 합니다',
+  'skd2.op.early': '앞 편 도착 + 턴어라운드 + 여유보다 앞으로는 옮길 수 없습니다(지금 추가 대기 {n}분) — 여유를 줄이거나 앞 편을 옮기세요',
+  'skd2.op.slack': '턴어라운드 여유는 0~{max}분 정수여야 합니다',
+  'skd2.op.already': '이미 운휴입니다',
+  'skd2.op.notIdle': '운휴가 아닙니다',
+  'skd2.op.noBase': '{reg}는 원본 회전이 없어 되돌릴 수 없습니다 — 묶음 옮기기로 편을 넣으세요',
+  'skd2.op.kind': '알 수 없는 조작({k})',
+  'skd2.mv.to': '옮길 기체({to})가 편집 대상이 아닙니다',
+  'skd2.mv.type': '{to}는 기종이 달라 이 편을 운항할 수 없습니다',
+  'skd2.mv.base': '{to}의 기지({b})가 이 묶음의 기지({b2})와 달라 옮길 수 없습니다(Vela에는 페리 계획이 없음)',
+  'skd2.mv.loop': '{reg}의 이 편은 기지로 돌아오는 묶음이 아니라 옮길 수 없습니다',
+  'skd2.mv.at': '{to} 회전의 묶음 경계(기지 도착 뒤)에만 넣을 수 있습니다',
+  'skd2.mv.dep': '희망 출발 시각이 범위 밖입니다',
+  'skd2.pre.gap': '{reg} {v}행 편의 추가 지상 대기 분이 올바르지 않습니다(편집기에서만 · 1분 이상 정수)',
+  'skd2.w.mx': '{reg} 편 {n}편 — 정비 창({what} · {d}~{d2})과 겹침: 그 기간 이 편들은 예비기 교체나 결항이 필요합니다',
+  'skd2.w.fdp': '{reg} {fn}(블록 {b}분) — 승무원 근무 한도 안에 넣을 수 없습니다(어떤 세트도 배정 불가 · 편 분할·교대 편성 필요)',
+  'skd2.w.cf': '{reg} {x}',
+  'skd2.w.cfb': '{reg} {fn} — 기지 {base} 마지막 도착 {hm}이 한계 {lim}을 넘습니다(턴 여유 개정 때 왕복 한 쌍이 줄어듦)',
+  'skd2.w.spot': '{apt} 주기장 부족 — {d} {hm}에 자사 기체 {n}대가 지상에 있습니다(계약 주기장 {cap})',
+  'skd2.w.slot': '{reg} {fn} — {apt} {dir} {hm}({dw}) 보유 슬롯 시각과 다름(승인 때 슬롯 대조가 다시 판정)',
+  'skd2.w.mct': '{fn} → {fn2} {apt} 연결 {gap}분 < MCT {mct}분 — 판매된 연결 승객 {pax}명',
+  'skd2.w.spare': '{name} 예비기 {n}대 / 기단 {fleet}대({p}%) — 기준 {min}% 미만',
+  'skd2.w.ovl': '{reg} {fn} 도착({hm}) 뒤 턴어라운드가 다음 운항 회전일({d2}) 첫 편 {fn2} 출발과 겹칩니다',
+  'skd2.rep.none': '{reg}에는 효력일이 같은 승인 판이 없습니다(동의할 것 없음)',
+  'skd2.rep.nochg': '{reg}는 원본과 같아 승인 대상이 아닙니다',
+  'skd2.dir.D': '출발',
+  'skd2.dir.A': '도착',
+  'skd2.k.mx': '정비 창',
+  'skd2.k.fdp': '승무원 FDP',
+  'skd2.k.cf': '커퓨',
+  'skd2.k.spot': '주기장',
+  'skd2.k.slot': '슬롯 시각',
+  'skd2.k.mct': 'MCT 은행',
+  'skd2.k.spare': '예비기 비율',
+  'skd2.k.ovl': '회전 겹침',
+  'skd2.card': ' · 편집기 경고: {v}(기존 {pre}건 별도) · 지연 전파 위험 하루 {d}분(지금 {b}분 · {src})',
+  'skd2.card.none': '새 경고 없음',
+  'skd2.src.hist': '최근 운항 기록 기준 추정',
+  'skd2.src.def': 'Vela 기본값 기준 추정'
+});
+
+/* 206차 N206-08 — 서명 투영 덧사전(MG.T.sig · 화면에 쓰지 않음)
+   하루 확인 지문(dayLine)·처리 키·기록 지문·옛 저장본 이관은 「고정 한국어」로 계산합니다. 한국어 표시 문장을 고쳐도 이 값들이 바뀌지 않도록,
+   표시 문장을 고친 키는 고치기 전 문장을 여기 둡니다(없는 키 = 한국어 사전 그대로). 만드는 곳: tools/gen_text_sig.js(손으로 고치지 않음)
+   한국어 사전을 고칠 때마다 다시 만들고, 동결 기준(test/mg/frozen/src_mg_s2pre)은 건드리지 않습니다. 항목 287개 */
+MG.T.add('sig', {
+  "ach.achMonth.2": "FY{fy} A15 {v}% > 동급 표본 최고 {v2}%({tier})",
+  "board.grade.14": "운항 품질 측정 불가(운항 0)",
+  "board.grade.17": "매출 0 — 사업계획(운항 매출) 미수행",
+  "board.grade.18": "재무 측정 불가(매출 0)",
+  "board.grade.4": "비교 제외(사용자 정의·통제·위기 끔·고정 방식)",
+  "board.recCard.13": "효과 {id}({target} x̂ {xh} · {dd}일{v})",
+  "board.recCard.2": " · 환산 기준 시작 계획 기준 추정({mk})",
+  "board.recCard.3": " · 환산 기준 {mk} 실적",
+  "board.recCard.4": "아무것도 안 함",
+  "board.recCard.7": "관문 통과 옵션 0 — 아무것도 안 함",
+  "board.recCard.8": "아무것도 안 함(기준)",
+  "board.switchB.1": "[이사회] 1C-3b 기능 켜기 — {d}부터 이사회 신뢰도·회의 설명 사슬·부서장 추천(연 결산 등급은 다음 FY 말 · 부분 연도)",
+  "board.switchB.3": "1C-3b 기능 켜기(이사회·연 결산)",
+  "board.switchB.4": "통제 검산 모드 — (b) 0",
+  "board.switchB.5": "이미 1C-3b 기능 켜짐",
+  "board.switchB.6": "1C-3 기능(K1)을 먼저 켜야 합니다",
+  "crisis.applyPend.11": "[위기] {ko} — 아무것도 안 함({v} · 지출 0)",
+  "crisis.applyPend.4": "견적이 품의 때와 달라 다시 확인(적용 0)",
+  "crisis.applyPend.6": "적용 불가(변경 0·카드 유지): {why}",
+  "crisis.applyPend.9": "기본 행동",
+  "crisis.card.1": "{C} · 기한 {date} 00:00(미응답 = 아무것도 안 함)",
+  "crisis.card.2": "아무것도 안 함(추가 대응 지출 0 — 손해·책임은 그대로)",
+  "crisis.onGen.1": "공항 운영 제한 감축(생성 시점 · {apt})",
+  "crisis.onGen.2": "공항 운영 제한(생성 시점 폐쇄 · {apt})",
+  "crisis.onset.4": "{ko} — 경쟁사 운임 전가(6-5)",
+  "crisis.optNote.7": "CX 지수",
+  "crisis.planOpt.2": "고정(실습) 방식 — 손잡이가 진입 시점 값에서 동결돼 있습니다",
+  "crisis.planOpt.3": "통제 검산 모드",
+  "crisis.recTxt.1": " · 재연결 의도 없음(빈 목록)",
+  "crisis.recTxt.2": " · 재연결 목록(승인 때 새 세대): {v|join:, }",
+  "crisis.recTxt.3": " · 적용 대상 의도(현재 waiting) {length}건: {v|join:, }",
+  "crisis.recTxt.cx": " · 재연결 의도 없음(취소된 의도 {n}건은 되살리지 않음)",
+  "crisis.recTxt.w": " · 적용 대상 의도(현재 waiting) {n}건: {xs|join:, }",
+  "crisis.resListWhy.1": "예약 사건 {v} — 같은 대체 축 {k} 중복({v2})",
+  "crisis.resListWhy.2": "예약 사건 {v} — instanceId {instanceId} 중복",
+  "crisis.resListWhy.3": "예약 사건 {v} — {w}",
+  "crisis.resWhy.4": "유형 {id} — 1C 외부 유형 아님",
+  "crisis.resWhy.6": "instanceId는 scn:<번호>",
+  "crisis.sign.1": "[상황실] 징후 — {ko}({region}) {onsetD} 예상 · 규모 {mag} — 손잡이로 미리 대비할 수 있습니다",
+  "crisis.switchK1": "[위기] 1C-3 기능 켜기(K1) — {C}부터 세계 일정·카드·지표(과거 사건 0)",
+  "crisis.switchK1.3": "1C-3 기능 켜기(K1 전환)",
+  "crisis.switchK1.4": "통제 검산 모드 — K0 고정",
+  "crisis.switchK1.5": "이미 1C-3 기능(K1)",
+  "crisis.what.1": "「이탈 추정」은 설명값이며 원장 비용이 아님 · 환불 = 선수금 반환",
+  "d_base.fin.leases.2.label": "B789 금융 리스 ×2(기체 440억)",
+  "d_base.scn.deal5.pre.0.2": "운항 승무원 16세트 채용·훈련 급여(비행 전)",
+  "d_base.scn.deal5.pre.1.2": "B737 전환 훈련비 16세트",
+  "d_board.board.liq.opt.grace.0.1": "긴급 차입(1A-4 한도 안)",
+  "d_board.board.liq.opt.grace.2.1": "예비기 매각 안내(E6 딜·반납 화면)",
+  "d_board.board.liq.opt.grace.4.1": "아무것도 안 함",
+  "d_crisis.crisis.types.epi_regional.options.0.appliedCosts.0.label": "운휴 기체 주기·보존 비용",
+  "d_crisis.crisis.types.epi_regional.options.2.label": "운영 자금 차입 1억 엔(36개월 — 수요 급감기 현금 완충 · 1A-4 차입 경로 그대로)",
+  "d_crisis.crisis.types.int_otp.options.2.label": "예비기 검토(기단 화면 딜 카드 열기 — 딜은 별도 결재)",
+  "d_crisis.crisis.types.lab_ground.options.0.label": "사전 결항(파업 구간 감축 편 미리 결항 안내)",
+  "d_crisis.crisis.types.nat_snow.options.0.label": "사전 결항(06:00 이후 폐쇄 구간 편 결항 안내)",
+  "d_crisis.crisis.types.nat_typhoon.options.0.label": "사전 결항(폐쇄 구간 편 미리 결항·전액 환불 안내)",
+  "d_crisis.crisis.types.nat_typhoon.options.1.label": "무료 변경 정책(폐쇄 구간 승객 다른 날짜 무료 변경 안내)",
+  "d_crisis.crisis.types.op_ad.ko": "기체 결함 AD(동형기 점검 지시)",
+  "d_crisis.crisis.types.op_ad.options.1.label": "전기 즉시 일괄 점검(다음 운항 전 — 결항 다수)",
+  "d_crisis.crisis.types.op_farewar.options.2.label": "운임군 한정 대응(세이버 배수 −0.05 — 가격 민감 수요만)",
+  "d_market.market.channels.agency.fees.1.4": "GDS 구간비",
+  "d_market.market.channels.ota.fees.1.4": "GDS 구간비",
+  "d_market.market.stage.0.2": "단거리 <1,000 km",
+  "d_market.market.stage.2.2": "장거리 3,000 km+",
+  "d_org.org.bench.3.1": "구간 LF",
+  "d_org.org.bench.4.1": "출발 정시율 D15",
+  "d_org.org.bench.5.1": "도착 정시율 A15",
+  "d_org.org.depts.0.3": "중기 계획(기단·네트워크·인원 3·5년)·이사회 중점 2",
+  "d_org.org.depts.15.3": "예비기 0~2대·턴어라운드 여유·지연 기본 행동",
+  "d_org.org.depts.16.3": "필요 세트 제안·월 비행시간 상한",
+  "d_org.org.depts.20.3": "편당 탑승 인원·세트·근무표 정책",
+  "d_org.org.depts.24.3": "정비사 인원·교대·야간 정비 창 길이",
+  "d_org.org.depts.25.3": "A/C 체크 자사 vs 외주 MRO·슬롯 예약",
+  "d_org.org.depts.29.3": "카운터 인원·키오스크·자체 vs 위탁",
+  "d_org.org.depts.38.3": "내부 감사 주기·IOSA 등록·AOC 유지(IOSA 상태 1C 데이터)",
+  "d_org.org.depts.45.3": "결산 체계(자동) — 3표·세금",
+  "d_org.org.depts.5.3": "해외 시장별 GSA vs 자체 지점·현지 판촉",
+  "d_org.org.depts.51.3": "과정 카탈로그 30·훈련 센터·교관",
+  "d_org.org.depts.58.3": "소음 등급 기재 배치·기내 폐기물 정책",
+  "d_org.org.groups.occ": "운항통제사",
+  "d_org.org.groups.pilot": "운항승무원(세트)",
+  "d_org.org.presets.1.d": "정비(라인정비)만 수동 · 위기 끔 · 나머지 고정 — 한 부서만 변수로(D16)",
+  "d_org.org.presets.3.d": "6부서 수동 — 모든 손잡이·일상 판단을 직접",
+  "d_org.org.presets.4.d": "설립 0대 · 저비용 모델",
+  "d_org.org.presets.6.d": "예약 사건 eco.fuel(L) — 시작 + 2개월",
+  "d_org.org.presets.8.d": "경쟁사 행동 op.farewar — Sakura Wings 시작 분기",
+  "d_org.org.tierInfo.L": "IR·화물·자회사·얼라이언스 창설 준비 해금 · −4%/−5% · 관리 12%",
+  "d_org.org.tierInfo.M": "ESG 해금 · 신규/갱신 계약 −2%·보험 −3%(3단계 효과) · 관리 10%",
+  "d_world.world.hours.FRA.src": "야간 비행 금지 23~05시 — Vela 정리",
+  "d_world.world.hours.FUK.src": "운용 시간 07~22시 — Vela 정리",
+  "d_world.world.hours.GMP.src": "운용 시간 06~23시 — Vela 정리",
+  "d_world.world.hours.HKG.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.HND.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.ICN.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.ITM.src": "운용 시간 07~21시 — Vela 정리",
+  "d_world.world.hours.KIX.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.NGO.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.NRT.src": "NAA 공개 안내(A 활주로 24시·B 활주로 23시) — Vela 정리",
+  "d_world.world.hours.PVG.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.SIN.src": "24시간 공항 — Vela 정리",
+  "d_world.world.hours.SYD.src": "야간 운항 제한 23~06시 — Vela 정리",
+  "d_world.world.hours.TPE.src": "24시간 공항 — Vela 정리",
+  "fin.changeSeg.4": "같은 노선만(운임 차액 0 — Vela 간이)",
+  "fin.dayCash.4": "현금 조기 경보(F23)",
+  "fin.effect.5": "{type} 운항 승무원 {sets}세트 투입(합계 {sets2}세트)",
+  "fin.effect.9": "월말 경영 회의 안건. 보증금 {deposit|yen}(10월) · 리스료 대당 월 {leasePmt|yen} × {leaseN}개월 · 9월부터 승무원 16세트 채용·훈련 등 자원 선확보 {v|yen}. 추가 기재는 HND–FUK 하루 4구간.",
+  "fin.queueRea.2": "시간표 개정 — {fk} 예약 {n}명 재안내 대기(W, 기본 행동 = 전액 환불 {v})",
+  "fin.reaAuto.1": "재안내 기본 행동 — {fk} {n}명 전액 환불",
+  "fleet.applyDeal.1": "기체 딜 #{n} 승인 — {v} {qty}대({v2|join: · }) · 의무 {length}건 held → 계약일 {sign} committed",
+  "fleet.applyDeal.2": "이미 처리된 딜 #{n}",
+  "fleet.applyDeal.6": "기체 딜 #{n} 반려 — 의무·기체 변화 0",
+  "fleet.applyDeal.7": "처리할 딜 없음 #{n}",
+  "fleet.blocked.1": "통제 검산 방식 — 기체 딜 차단(중립표 고정)",
+  "fleet.blocked.2": "30d 통제 검산 모드 — 기체 딜 차단(deal5 시나리오 중립·A1 대사 유지)",
+  "fleet.card.3": "[통제 입력 — 시험: 기간 {n}개월 · 인도 {lead}개월 뒤{v}{v2}]",
+  "fleet.complete.1": "{reg} 반환 완료({date} {hm} 본사 — max(마지막 편 AIBT, 반납일)) · 상태 returned · 승무원 세트는 그대로",
+  "fleet.deliver.4": "{reg} 인도({v} · {sup}) — 노선 미배정(시간표 설계대에서 배정 · 고정비 발생 중, 편 0){v2}{v3}",
+  "fleet.effect.1": "기체 딜 #{n} 계약 체결 — 의무 {length}건 committed",
+  "fleet.pre.4": "만기 90일 전 노선계획 초안을 시간표 기안 #{v}로 만들었습니다({v2}). 승인은 시간표 화면에서 품의(Q45). 승인하지 않으면 반납일 00:00에 운항 허용이 끝나 그 뒤 편은 시간표 개정(E2) — 재안내·환불.",
+  "fleet.raiseDeal.2": "{x} · 계약일 {sign} · 인도 {v|join:·} · 기지 {base} · 인도 뒤 노선 미배정(시간표 설계대에서 배정) · 승무원 채용은 별도 품의(딜이 자동 채용하지 않음)",
+  "fleet.raiseDeal.3": "기체 딜 #{n} 승인 — {v} {name} × {q}대({sup})",
+  "fleet.raiseEarly.4": "반납일 {D} 00:00 운항 허용 종료 · 그 뒤 출발 편 {flights}편(생성된 것) → 시간표 개정(E2) · 위약금 {pen|yen}{v} · 보증금 − 점검비 {depNet|yen} · 정비 적립금 환급 약 {mxrRf|yen} · 자금 검사: 위약금 ≤ 현금 {cash|yen} + 차입 한도 잔여 {room|yen}(승인 때 다시 확인) · 결제는 회차별(실패 = 미지급·다음 날 재시도 — 반환은 그대로)",
+  "liq.applyPend.14": "조달 필요 없음(30일 날짜별 현금 최저점 ≥ 0 · 체납 ≤ 현금)",
+  "liq.applyPend.15": "긴급 차입 금액 산정 불가(원리금 포함 경로 미수렴) — 차입 불가",
+  "liq.applyPend.5": "예비기 매각 안내 — 기체 화면의 E6 딜·조기 반납 경로(매각 분개 0 · 세일 앤드 리스백 = 2단계 후보)",
+  "liq.closeCard.1": "판단 상자 {id} 닫힘 — {why}(결정 기록 0)",
+  "liq.credCard.6": "미해소 체납 {C}건 {C2|yen} · 금융 차입 잔액 {tgt|yen} → 감면 예상 {v|yen}(효력 = 승인 다음 날 00:00) · 감편 {v2}%({cutDays}일 안 적용) · 임금 동결 {v3}개월 · 회생 중 신규 차입 0 · 리스·상거래·급여·세금 보호{v4} · 기한 {C3}(미응답 = 청산). 회생 신청은 이사회·경영진 결정 사항입니다.",
+  "liq.cure.2": "체납 0 — 유예 종료(정상)",
+  "liq.cutBody.3": "채권단 조건 감편 {v}%(liq:{n} 회생 {r}회차 · 기준 {bd} 하루 {base}편 · 목표 {target}편{v2})",
+  "liq.cutBody.6": "채권단 조건 감편 {v}%(liq:{n} 회생 {r}회차 · 기준 {bd} 주 {bw}편(일평균 {v2}편) · 목표 주 {tw}편(기준의 {v3}% — 20%를 일평균 편/일로 올림){v4})",
+  "liq.cutSpec.6": "적격 후보 부족",
+  "liq.eduLoan.1": "교육 자금 차입 {amt|yen} — {label} 지급용(입문 · 이자 0 · 연 결산 비교 제외)",
+  "liq.fail.2": "{label} {total|yen} 미이행(현금 {v|yen}) — 체납 등록 · 분개 0 · 매일 재시도",
+  "liq.liquidate.3": "end:청산",
+  "liq.normPlan.3": "이전 저장본 — 기준 = 효력 전날({eff}) 타임라인",
+  "liq.recGrace.10": "이자 견적({loanMonths}개월)",
+  "liq.recGrace.5": "조달 0",
+  "liq.recGrace.6": "안내만(매각 분개 0)",
+  "liq.zeroDone.1": "{label} {no}회차 — 회생 감면으로 0엔(현금 지급 아님 · zeroByCut)",
+  "market._apply.6": "호환 곡선(운임군 하나) — {v} 없음",
+  "market.applyPend.2": "보조 방식 결재 — 역량 출력 < 50 3개월 연속, 기본값 복귀",
+  "market.candOk.2": "새 편 생성 보류(SCH 아님)",
+  "market.cask.1": "당사 = 원장(편 변동비 + 판매·유통비 운송 귀속 + 고정비·선확보·감가·이자·기타 판매비(재발권) 블록 시간 비례), 엔/ASK · 기간 {v}(운송 완료월) · 경쟁사 CASK = 공개 자료 수준 가정 범위(C, 판매비 포함 총원가 기준), RASK·LF = 시장 배분 결과 · ASK 0 = —",
+  "market.inv.11": "6 판매 당시 중첩 한도 초과 {length}건({v})",
+  "market.inv.5": "7 판매비 대사 원장 {posted} ≠ 운송 {flown} + 환불·취소 {rf} + 미결 {open}{v}{v2}(차 {diff})",
+  "market.manualBatch.1": "대상 잔여 0 — 품의 종료",
+  "market.manualBatch.2": "수동 대체편 — {fk} → {nf} {moved}명 이동 · 잔여 W {left}명(기존 기한 유지)",
+  "market.manualBatch.5": "이동 {moved}명({length}코호트) · 잔여 {left}명{v}{v2}",
+  "market.manualBatch.8": "옮길 수 있는 코호트 없음",
+  "market.manualErr.move": "수동 이동 실패(원자 커밋 취소): {id} {why}",
+  "market.manualErr.noW": "대상 편에 W 예약 없음(이미 처리됨): {fk}",
+  "market.manualErr.notRea": "REA 품의 아님: {pid}",
+  "market.manualMove.4": "W(self) 구간만",
+  "market.mapOf.4": "새 leg 없음",
+  "market.mapOf.6": "통금 감편(cut) — 대응 편 없음",
+  "market.mapOf.8": "옛 leg 없음",
+  "market.migrateV1": "1C-1 저장본 이전 — 이전 시점 미결 시장 예약을 월 정본 판매 기초로 한 번",
+  "market.revise.4": "대응표로 무료 이동하지 못한 예약 {failedJr}여정 {failed}명({length}편 — {v|join: · }). 기본 행동 = 전액 환불(기한 = 출발 14일 전·72시간 중 빠른 쪽). 환불 예상 {v2|yen}(현금 {rfCash|yen} · BSP 상계 {rfAr|yen}).",
+  "market.revise.7": "({why|join: · }) → 품의·기본 행동",
+  "market.rmDefault.3": "사용자 「기본값으로」",
+  "market.rmDefault.6": "고정(실습) 방식 — 손잡이가 진입 시점 값에서 동결돼 있습니다(기본값 복귀도 불가)",
+  "market.rmDefault.7": "통제 검산 모드 — 중립표 고정(기본값 복귀 없음)",
+  "market.rmGate.4": "고정(실습) 방식 — 손잡이가 진입 시점 값에서 동결돼 있습니다",
+  "market.rmGate.5": "통제 검산 모드 — 중립표 고정",
+  "market.rmGuide.1": "{name} 역량 출력 {out} — 운임·한도 변경 가능.",
+  "market.rmGuide.2": "{name} 역량 출력(3개월 평균) {out} — 내려가고 있습니다. 50 아래면 운임·한도 변경이 막힙니다({res}).",
+  "market.rmGuide.3": "{name} 역량 출력 {out}로 50 미만이라 이번 변경을 적용하지 않았습니다. {res}과 실제 집행 상황을 확인해 개선하세요. 월 갱신 후 3개월 평균이 50 이상이 되면 변경할 수 있습니다.",
+  "market.rmMonth.5": "역량 출력 < 50이 3개월 연속({out|fix:1}) — 기본값 복귀",
+  "ops.dly.acceptAll": "수용 + 앞으로 위임(운항통제 기본 행동)",
+  "ops.dowWhy.1": "통제 30일 달력에서는 요일 운항 불가(게임 정책 — 매일만)",
+  "ops.mxreq.body": "{reg}의 A 체크 남은 비행 {left}시간 — 앞으로 24시간 비행 {air}시간. 오늘 밤 {loc}에서 {am}분 정비 창을 잡을까요? 잡지 않으면 한도에서 운항이 차단됩니다.",
+  "ops2.conn.body": "{n}명이 {pfn}(도착 예정 {a})에서 갈아탑니다 · 최소 연결 {mct}분 · 지금 출발 예정 {e} — {need}분 늦어 놓칩니다 · 대기 한도 {lim}분(OCC 정책 — Vela 가정)",
+  "ops2.div.rfsDef": "화물 대체 수송 — {fn}: {at}→{to} 트럭 {m}분(Vela 가정 · 도로 연결 데이터 없음)",
+  "ops2.evtd.body": "{tgt} {name} — 영향 {n}편 · 안전·보안 절차(수색·하기·검색·탑승 대조·중량 확인)는 어느 선택지에서도 생략되지 않습니다 · 수치는 Vela 가정",
+  "ops2.evtn.co.mxlate": "정비 창 종료 지연",
+  "ops2.irr.body": "{apt} 출발 {n}편 중 {b}편이 지연 60분 이상·결항입니다 · 이 허브의 개별 지연 결재는 이 묶음의 줄로 들어옵니다(따로 멈추지 않음) · 제안은 규칙으로 정해짐(Vela 가정)",
+  "ops2.opt.delay": "다른 세트 도착까지 지연",
+  "ops2.opt.sby": "대기 세트 투입",
+  "ops2.pol.off": "2단계(운영) 캠페인에서만 쓰는 손잡이입니다",
+  "org.aiCand.3": "{name} 본부장(AI): {why}. 승인하면 같은 결정 경로(손잡이)로 적용합니다.",
+  "org.aiCand.7": "{name} — 턴 여유 영향 견적(자동 승인 — 대체편 없는 예약 0)",
+  "org.applyOrg.3": "{name} 본부장(AI): 조건이 바뀌어 금액을 다시 확인합니다 — {why}. 승인하면 같은 결정 경로(손잡이)로 적용합니다.",
+  "org.applyOrg.8": "{name} 본부장(AI): 품의 뒤 상태가 바뀌어 영향을 다시 견적했습니다 — {why}. 승인하면 같은 결정 경로(손잡이)로 적용합니다.",
+  "org.borrow.8": "통제 검산 모드 — 차입 0(중립표)",
+  "org.budgetWhy.1": " + 효력 전 예약 {rs|yen}",
+  "org.candTitle.2": "턴 여유 +{v}분",
+  "org.candTitle.6": "세트 목표 {v|join: · }",
+  "org.candidates.5": "앞으로 {v}개월 시간표 블록 ÷ (세트당 {v2}시간 × 87%)",
+  "org.decided.1": "[개시] 미배정 {name} {length}대({regs|join:·} · 기지 {hub} · 운용 리스 OP-A) — 운항승무원 +{v}세트 · 직원 표준 반영(난이도 {n})",
+  "org.delay.4": "지연 판단 기본 행동",
+  "org.delay.5": "지연 기본 행동",
+  "org.edu.1": "{amt|yen} · {v}부터 {months}개월 교육항 +{v2}/월(교육 상한 0.5)",
+  "org.fixedLines.1": "기타 부서 인건비(1C~ 단계 부서)",
+  "org.hours.2": "세트당 월 비행시간 상한",
+  "org.nextOwnWhy.4": "대체 구간 정비 창",
+  "org.resMonth.2": "[인사·채용] {name} 운항승무원 {n}세트 결원(남은 {sets}세트)",
+  "org.resMonth.3": "[인사·채용] {name} 운항승무원 {n}세트 투입(합계 {sets}세트)",
+  "org.resMonth.7": "[인사·채용] {name} 운항승무원 {wq}세트 이직 예고(사기 {morale|fix:1}) — {C} 결원",
+  "org.setMode.2": "통제 검산 모드",
+  "org.setMode.4": "실동작 부서만 방식 선택(1A-4 6부서 · 1C-1b 시장 캠페인은 수익관리·운임 포함)",
+  "org.setPolicy.7": "통제 검산 모드 — 중립표 고정",
+  "org.setPolicy.8": "고정(실습) 방식 — 손잡이가 진입 시점 값에서 동결돼 있습니다",
+  "org.setPolicy.9": "이 손잡이는 아직 열리지 않았습니다",
+  "org.sets.1": "운항승무원 세트 목표(채용 집행: 인사·채용)",
+  "org.sets.2": "{name} {v}세트({r})",
+  "org.sets.3": "기종·세트",
+  "org.slack.7": "{bw} — 턴 여유 개정의 재발권 비용",
+  "org.slack.8": "턴 여유 0·5·10·15분",
+  "org.syncPilots.2": "감축 {v}세트",
+  "org.syncPilots.3": "채용 {add}세트 — {C} 투입",
+  "org.syncPilots.4": "{name} 운항승무원 {add}세트 채용·훈련",
+  "org.validate.1": "시드",
+  "org.validate.2": "예약 사건 {length}건 — 위기 엔진은 1C부터(1A-4 활성 위기 유형 0)",
+  "org.validate.3": "시작일 {start} — 1A-4 데이터 범위는 {start2} 시작만(다른 시작은 4단계 시작 방식)",
+  "org.why2.16": "(b) 켬/끔 값 {b}(true/false)",
+  "org.why2.17": "프로필 {profile} 없음(K0·K1)",
+  "org.window.2": "야간 정비 창 길이",
+  "org.window.3": "야간 정비 창 300·360·420분",
+  "rp.approveSales.7": "판매 개시일 미정(설계대)",
+  "rp.auth.1": "노선계획 고정(실습) 방식 — 노선 프로젝트 단계·설계대·신청 동결",
+  "rp.auth.2": "통제 검산 모드 — 노선 프로젝트 변경 차단(중립표 고정)",
+  "rp.nul.1": "미실측(사본 종료 {grade})",
+  "rp.raiseApp.4": "(Vela 교육용 확률·결정적 시드)",
+  "rp.simulate.1": "3개월 실측 + 9개월 외삽(수요·변동비 = 계절 지수 · 손익 = 일정 밖 고정비 + 의무 일정의 손익분 · 현금 = 세전손익 + 일정 손익분 − 일정 지급(보증금·원금 = 현금만) · 운전자본 변동 외삽 0)",
+  "rp.simulate.2": "12개월 실측(연간 검산)",
+  "rp.simulate.5": "사본은 회생안 승인·감편 승인 가정(회생 {rehab}회 · 감편 {cut}회)",
+  "rp.simulate.6": "부분 실측(사본 종료 {grade} {d}까지)",
+  "skd.applyPend.6": "노선 프로젝트 기안이 품의 뒤 바뀜 — 이 품의는 옛 기안(적용 0) · 설계대 기안으로 다시 품의",
+  "skd.baseWhy.3": "{reg} 기지 {base} ≠ 회전 출발 {base2} — Vela에는 기체 이동(페리) 계획이 없어 출발 위치를 확보할 수 없습니다 · {v} 출발 공항을 {base3}로",
+  "skd.card.4": " · 적용 전제 비용(위기 대책 — 적용 대상 의도 전체) {icost|yenx}{v} — 적용 커밋에서 의무 생성 · 30일 현금 전망에 반영",
+  "skd.evaluate.1": "{a} 보유 슬롯 여유 {C} < 하루 최대 이착륙 증가 {dlt}({v} 기준 — 슬롯 신청 1C-2c)",
+  "skd.evaluate.2": "{v} {name} 운항 승무원 세트 부족(월 필요 {v2}h > 가용 {v3}h)",
+  "skd.gate.2": "노선계획 고정(실습) 방식 — 시간표 손잡이 동결",
+  "skd.gate.3": "통제 검산 모드 — 시간표·재안내 비용 변경 차단(중립표 고정)",
+  "skd.preCheck.2": "{reg} {at}–{v} — 기존 노선·기종 조합 아님(신규 노선은 노선 프로젝트 1C-2b)",
+  "slot.effect.1": "레벨 2 조정 신청 결과 {apt} {season} — 수락(Vela 간이)",
+  "slot.effect.2": "슬롯 시즌 전환 — {season} 시작(지난 시즌 시리즈 동결 · 판정은 evalDate)",
+  "slot.evalSeason.2": "슬롯 시즌 판정(evalDate {eval}) {sid} — 80% 이상 {keep} · 미달(역사적 우선권 상실, 신규 신청 가능) {lost} · 미정 {und}{v} · {nx} 승계 {succ}",
+  "slot.evalSeason.3": "슬롯 재검사 {nx} — 시간표 수요 대비 보유 occurrence 부족: {v|join: / } → 시간표 조정 또는 신청 필요(그대로면 출발 검사 HOLD)",
+  "slot.migrate.1": "슬롯 시리즈 이전(1B 하루 횟수 → 요일별 시리즈 {length}개 · 추가 여유 spareDaily {spareDaily}) — 과거 실적은 이전용 Vela 가정",
+  "slot.missing.1": "레벨 3 슬롯 occurrence 없음({out|join: · }) — 보유 시리즈·신청 필요",
+  "slot.patRet.3": "이 개정으로 운항하지 않게 된 요일의 슬롯 시리즈: {rows|join: / }. 슬롯 지침(WASG 8.5.2·8.5.3)은 쓰지 않을 것을 아는 슬롯을 즉시, 시리즈는 반납 기한(SRD)까지 반납하도록 정하며 늦은·고의 미반납은 다음 배분 우선순위에 불리합니다. 「보유」는 이 게임이 허용하는 선택이며 실제 지침이 미사용 보유를 동등하게 허용한다는 뜻이 아닙니다(보유하면 사용률 경고 · 시즌 판정 80% 미달 → 다음 시즌 우선권 상실).",
+  "slot.raiseApp.11": "슬롯 모듈 없음(통제 검산 모드)",
+  "slot.raiseApp.3": "① 신청 승인 — 신청료를 내도 좋다는 승인입니다(슬롯이 생기는 것이 아님). 승인 시각이 {sid} 초기 제출 기한({app} 23:59) 이내면 배분 결과일(SAL {sal}) 사건, 그 뒤면 승인일 + 심사 {review}일 사건에서 결과(수락 확률 Vela 가정 — 늦은 반납 감점). 결과일보다 이른 날짜는 기각.",
+  "slot.raiseApp.7": "레벨 2(일정 조정) 공항 — 조정 신청 품의 1건(비용·기간 {days}일, 결과 수락 — Vela 간이).",
+  "slot.reconcile.2": "슬롯 추가 여유 전환 {a} {v}(하루 1회 → 그 시각 요일별 시리즈 · {zs|join:·} · 남은 spareDaily {v2}){v3}",
+  "slot.shortWhy.1": "{apt} 레벨 3 슬롯 부족 — 하루 필요 +{need} > 쓸 수 있는 추가 여유 {avail}({at} 기준 · {season} · 보유 시리즈 + spareDaily — 시각이 같은 occurrence만) · 부족 {v} — 그 시즌·방향·시각·요일 신청(결과일 ≤ 효력일) 또는 시간표 조정 필요",
+  "world.adequacy.2": " — {gap|join:·} 결측 포함",
+  "world.adequacy.4": " · {gap|join:·} 결측은 경로표 가정 {assumeG}",
+  "world.adequacy.8": " — {gap|join:·} 결측은 실적으로 갈음",
+  "world.apt.2": "Vela 기본 표",
+  "world.assignNow.2": "1B 배정 {tail}",
+  "world.effect.6": "{apt} 조사 완료 — 결측은 교육용 C 가정(등급 C 유지)",
+  "world.feasibility.1": "기재 딜·ACMI",
+  "world.feasibility.10": "세트 채용(운항승무원 부서)",
+  "world.feasibility.102": "{v}{windKt} kt({v2}, 교육용 띠 모형)",
+  "world.feasibility.103": "보유 기체 0대 — 딜(1C FLEET)·ACMI 필요",
+  "world.feasibility.104": "자격 가족 승무원 없음(기종 미보유)",
+  "world.feasibility.107": "{nm} — 가정표 미완성(1단계는 B737-800·B787-9만 완결, 나머지는 표시 전용)",
+  "world.feasibility.108": " — 공항 데이터 일부만 사용 중(내장 60)",
+  "world.feasibility.110": "교육용 Vela 값 · 실제 운항 사용 금지 · 성능은 교육용 간이 판정(전체 활주로 길이 기준, 선언 거리 아님)",
+  "world.feasibility.2": "가용 기체 부족 {v}대 — 딜(1C FLEET)·ACMI·기존 편 감편",
+  "world.feasibility.32": "통제 입력: 대체 공항 적합 확인({alts|join:·})",
+  "world.feasibility.33": "통제 입력: 대체 공항 자료 없음",
+  "world.feasibility.34": "통제 입력: 대체 공항 부적합",
+  "world.feasibility.36": "후보 공항 조사 품의 · 경로 조사(1C 노선 설계대)",
+  "world.feasibility.44": "통제 입력",
+  "world.feasibility.6": "운항승무원 세트 목표 상향(채용 준비 약 {C}개월 · 운항승무원 예산 안)",
+  "world.feasibility.7": "{v} 승무원 가용 시간 부족(필요 {v2}h > {v3}h) — 약 {ns}세트 추가",
+  "world.feasibility.9": "필요 {v}h / 가용 {v2}h({sets}세트)",
+  "world.feasibility.91": "{v}탑재 감축 {v2}{v3} (판매 가능 {v4}석 · 묶는 한계 {v5})",
+  "world.feasibility.96": "페리 항속 초과 — 탑재 0으로도 등가 {eqKm} km를 못 감(페리 {rangeKm} km)",
+  "world.inp.10": "X 경로 최대 전환",
+  "world.inp.11": "Y 회사 승인",
+  "world.inp.12": "Z 기체-엔진 상한",
+  "world.inp.18": "기하 X(참고)",
+  "world.item9": "노선 프로젝트(1C)에서 권리·계약 진행",
+  "world.item9.12": "{iata} 슬롯 부족(여유 {sp} < {needM}) — 1C SLOT 신청",
+  "world.planFreq.1": "{c} 보유 슬롯 여유 {C} < 필요 {v}(1C SLOT 신청)",
+  "world.planFreq.2": "{v} 운항 승무원 세트 부족(월 필요 {v2}h > 가용 {v3}h · {sets}세트)",
+  "world.planFreq.3": "운항 승무원 세트 부족({type} 자격 없음)",
+  "world.planFreq.8": "{route} — 기존 노선 아님(1B는 증편만, 신규 노선은 1C 설계대)",
+  "world.raiseAssign.6": "{v}노선계획 초안(1B 증편 최소형 — 기존 노선만). 승인하면 {from}부터 편 생성{v2} 미배정 동안 리스·감가/이자·보험 등 고정비는 계속, 편 변동비 0.",
+  "world.raiseEtops.3": "심사 조건(Vela): 그 기종 누적 블록 {minBlockH}시간 이상 · 라인 정비 역량 {minCapMx} 이상. 심사 결과는 {days}일 뒤 판정일의 실제 상태로 — 자동 상승 없음(5.2).",
+  "world.raiseSurvey.2": "{v} — 운용 시간·소방 등급·PCN·주기장·활주로 결측을 확인합니다. 원천에 없는 값은 교육용 C 가정으로 채우고 자료 등급은 C 유지(A/B로 오르지 않음 — 판정은 그 가정 안에서 △/○ 가능). 비용은 노선계획 귀속.",
+  "world.summarize.4": "? 조사 필요(핵심 입력 결측)",
+  "world.tag1b": "1B 배정 {tail}",
+});
 
 /* 자동 생성: tools/build_tz_mg.py — 직접 고치지 말 것. IANA 전환표 2026~2031 (system zoneinfo 2026-10-22) */
 MG.data = MG.data || {};
@@ -3799,6 +4290,55 @@ MG.data.text = {
     'occ.comp.min': { ko: '최소' }, 'occ.comp.std': { ko: '표준' }, 'occ.comp.gen': { ko: '관대' },
     'occ.kn.out': { ko: '콜센터 외주' },
     'occ.kn.outHelp': { ko: '지금 재예약 처리 용량 시간당 {cap}명 — 외주 켬 = +50%(처리 단가 ×1.5) · 결항·연결 단절 복구(2A-2)에서 씀' },
+    /* 2단계 2C 승무원 화면(mg_ui_crew.js — 한국어 정본 · 일·영은 2단계 종합 뒤) */
+    'cr.title': { ko: '승무원 근무표 · 대기 · 훈련 · 채용' }, 'cr.yen': { ko: '엔' }, 'cr.man': { ko: '만 엔' }, 'cr.none': { ko: '없음' }, 'cr.mo': { ko: '월' },
+    'cr.old': { ko: '이 캠페인은 세트 근무표(승무원 2C)가 들어오기 전 판에서 시작했습니다. 지난 근무 기록이 없어 이 캠페인은 세트 근무표 없이 지금 방식(월 가용 시간)으로 계속합니다. 새 캠페인부터 근무표가 적용됩니다.' },
+    'cr.help': { ko: '게임용 가정(교육용) — 한도는 Vela 간이값이며 실제 규정 충족 판정이 아닙니다(실제 일본 기준은 시작 시각·편수별 비행시간·근무시간·주간 휴식 조건이 더 많습니다). 실제 업무로는 승무원 편성(Crew Scheduling)·운영(Crew Tracking)·운항훈련·인사가 나눠 맡습니다.' },
+    'cr.h.today': { ko: '오늘({d}) 근무표' }, 'cr.h.tomorrow': { ko: '내일({d}) 근무표' }, 'cr.h.sets': { ko: '운항 세트(기장 1 + 부기장 1)' }, 'cr.h.cab': { ko: '객실 세트 보기' },
+    'cr.h.trn': { ko: '정기 훈련·심사 달력(세트-일)' }, 'cr.h.cost': { ko: '이번 달 승무원 추가 비용' }, 'cr.h.chk': { ko: '계속 운항 검사(다음 회계연도 말까지)' }, 'cr.h.hire': { ko: '채용·승격' },
+    'cr.th.reg': { ko: '기체' }, 'cr.th.legs': { ko: '근무 구간' }, 'cr.th.ck': { ko: '운항' }, 'cr.th.cb': { ko: '객실' }, 'cr.miss': { ko: '미배정' },
+    'cr.th.set': { ko: '세트' }, 'cr.th.st': { ko: '상태' }, 'cr.th.loc': { ko: '위치' }, 'cr.th.m': { ko: '이번 달' }, 'cr.th.fy': { ko: '회계연도' }, 'cr.th.fat': { ko: '피로' }, 'cr.th.type': { ko: '기종' },
+    'cr.aug': { ko: '(3명)' }, 'cr.up': { ko: '(승격 훈련)' },
+    'cr.st.air': { ko: '비행 중' }, 'cr.st.sick': { ko: '질병 결원' }, 'cr.st.sby': { ko: '대기' }, 'cr.st.duty': { ko: '근무' }, 'cr.st.trn': { ko: '훈련' }, 'cr.st.lay': { ko: '레이오버' }, 'cr.st.off': { ko: '휴무' },
+    'cr.sby.now': { ko: '대기 세트({mode} · 비율 {r}%)' }, 'cr.sby.apt': { ko: '공항 대기' }, 'cr.sby.home': { ko: '자택 대기(+90분)' },
+    'cr.trn.help': { ko: '세트마다 연 6일(3일 × 2회) — 훈련 날에는 배정하지 않고 승인 검사 가용에서도 뺍니다(Vela 가정)' },
+    'cr.cost': { ko: '합계 {v} — 초과 근무 {ot} · 레이오버(호텔·일비) {lay} · 대기·호출 {sby}' },
+    'cr.short.none': { ko: '부족 예상 없음' }, 'cr.shortN': { ko: '약 {n}조 부족' },
+    'cr.k.ck': { ko: '운항 세트' }, 'cr.k.cb': { ko: '객실 세트' }, 'cr.k.fy': { ko: '연간 한도' },
+    'cr.pool.h': { ko: '짝 없는 조종사:' }, 'cr.pool': { ko: '기장 {c} · 부기장 {f}' }, 'cr.hireQ': { ko: '채용 중:' },
+    'cr.promo.h': { ko: '최근 승격 심사(합격률 {p}%):' }, 'cr.promo1': { ko: '후보 {n} · 합격 {p}' },
+    'cr.hk.cpt': { ko: '경력 기장' }, 'cr.hk.fo': { ko: '신입 부기장' }, 'cr.hk.intl': { ko: '외국인 기장' }, 'cr.hk.cab': { ko: '객실 승무원 조' },
+    'cr.kn.hire': { ko: '채용' }, 'cr.kn.hireBtn': { ko: '채용 시작' }, 'cr.kn.apply': { ko: '적용' },
+    'cr.kn.hireHelp': { ko: '경력 기장 3개월 · 신입 부기장 6개월(훈련) · 외국인 기장 90~180일(면허 전환) · 객실 조 2개월 — 기장과 부기장이 한 명씩 모이면 새 운항 세트가 됩니다' },
+    'cr.kn.sby': { ko: '대기 세트 정책' }, 'cr.kn.sbyHelp': { ko: '대기 세트는 비행이 없어도 근무일로 셉니다(일비) · 공항 대기 = 바로 투입 · 자택 대기 = 90분 뒤 · 다음 배정부터 적용' },
+    'cr.week': { ko: '효력 첫 주 세트 근무표(시뮬): {l}편 중 배정 못 한 편 {s} · 레이오버 {n}밤 · 회사 계획 시간 초과 {h}시간' }, 'cr.span': { ko: ' 기준 다음 회계연도 말까지' }, 'cr.weekNone': { ko: '효력 첫 주 세트 근무표(시뮬): 그 주에 만들 편이 없어 계산하지 못했습니다(배정 부족 0이라는 뜻이 아님)' },
+    'cr.kn.base': { ko: '승무원 베이스(본사 밖 상주)' }, 'cr.kn.baseBtn': { ko: '베이스 열기' }, 'cr.baseN': { ko: '세트 {n}' }, 'cr.kn.baseHelp': { ko: '그 도시에서 끝나는 근무는 레이오버(호텔·일비)가 아닙니다 · 개설 {o} · 월 {m} · 세트는 오늘·내일 배정이 없는 세트부터 옮깁니다' },
+    'cr.brief': { ko: '승무원' }, 'cr.brief.v': { ko: '미배정 {m}편 · 대기 세트 {s}' },
+    /* 2단계 2B 정비(M&E) 화면(mg_ui_mx.js — 한국어 정본 · 일·영은 2단계 종합 뒤) */
+    'mx.title': { ko: '정비 프로그램 · 작업지시' }, 'mx.old': { ko: '이 캠페인은 정비 프로그램(C 체크·엔진·MEL 관리)이 들어오기 전 판에서 시작했습니다. 지난 정비 기록이 없어 이 캠페인은 정비 프로그램 없이 계속합니다(기존 정비 처리 그대로). 정비 프로그램은 새 캠페인부터 쓸 수 있습니다.' }, 'mx.ekShop': { ko: '(엔진 정비소 작업이 끝난 뒤 첫 달부터)' }, 'mx.yen': { ko: '엔' }, 'mx.mil': { ko: '백만 엔' }, 'mx.none': { ko: '없음' },
+    'mx.help': { ko: '게임용 가정(교육용) — 실제 정비 프로그램은 제조사 정비 계획 자료를 바탕으로 운항사가 승인받으며 기종·회사마다 다릅니다. 실제 업무로는 정비계획·중정비·자재 부서와 외주 정비 회사(MRO)의 일입니다. 한도(달력·비행시간·비행 횟수)에 닿으면 정비를 마칠 때까지 운항할 수 없습니다 — 정할 수 있는 것은 언제·어디서·누가 대신 나는지와 비용입니다.' },
+    'mx.mode.auto': { ko: '계획안 자동' }, 'mx.mode.assist': { ko: '계획안 결재' }, 'mx.mode.manual': { ko: '수동 배치' },
+    'mx.h.prog': { ko: '기체별 다음 정비' }, 'mx.h.wo': { ko: '작업지시(정비 창)' }, 'mx.h.cal': { ko: '정비 달력(12개월)' }, 'mx.h.mel': { ko: 'MEL 유예 중인 결함' }, 'mx.h.ctl': { ko: '정비 설정' },
+    'mx.th.reg': { ko: '기체' }, 'mx.th.cDue': { ko: 'C 체크 한도' }, 'mx.th.left': { ko: '남은 여유' }, 'mx.th.eng': { ko: '엔진' }, 'mx.th.rel': { ko: '신뢰성' }, 'mx.th.mel': { ko: 'MEL' }, 'mx.th.next': { ko: '다음 창' },
+    'mx.th.what': { ko: '종류' }, 'mx.th.at': { ko: '장소' }, 'mx.th.when': { ko: '시작 · 기간' }, 'mx.th.cost': { ko: '비용' }, 'mx.th.st': { ko: '상태' },
+    'mx.th.item': { ko: '품목' }, 'mx.th.cat': { ko: '등급' }, 'mx.th.due': { ko: '수리 기한' }, 'mx.th.lim': { ko: '운항 제한' },
+    'mx.by.mo': { ko: '달력' }, 'mx.by.fh': { ko: '비행시간' }, 'mx.by.fc': { ko: '비행 횟수' },
+    'mx.left': { ko: '{d}일 · {fh}시간 · {fc}회' }, 'mx.engLeft': { ko: '{fh}시간' },
+    'mx.ek.A': { ko: '시간당 요율' }, 'mx.ek.B': { ko: '실비 정산' },
+    'mx.what.A': { ko: 'A 체크' }, 'mx.what.C': { ko: 'C 체크' }, 'mx.what.ENG': { ko: '엔진 교환' }, 'mx.what.MEL': { ko: 'MEL 수리' }, 'mx.what.SB': { ko: '서비스 회보 {id}' },
+    'mx.emg': { ko: '(긴급)' }, 'mx.days': { ko: '{n}일' }, 'mx.daysN': { ko: '{n}일' }, 'mx.inRate': { ko: '요율에 포함' },
+    'mx.st.plan': { ko: '예정' }, 'mx.st.on': { ko: '진행 중' }, 'mx.st.done': { ko: '완료' }, 'mx.cover': { ko: '예비기 {r}' }, 'mx.cut': { ko: '그 기간 운휴' }, 'mx.cnl': { ko: '예약 취소' },
+    'mx.cal.help': { ko: 'C = C 체크 · E = 엔진 교환 · S = 서비스 회보 · ! = 한도가 오는 달(창 없음) · 색칠한 달 = 비수기(수요 계절 계수 0.96 미만 — 정비 창 우선)' },
+    'mx.mel.none': { ko: '유예 중인 결함 없음' },
+    'mx.kn.place': { ko: 'C 체크 직접 배치' }, 'mx.kn.placeBtn': { ko: '예약' }, 'mx.kn.placeHelp': { ko: '외주 정비 슬롯은 90일 전까지 · 자사 격납고는 14일 전까지 · 한도일 전에 끝나야 합니다 · 같은 기종 예비기가 비어 있으면 그 기간 운항을 맡고, 없으면 그 기간 편은 판매하지 않습니다(이미 판 좌석은 일정 변경 환불)' },
+    'mx.kn.inv': { ko: '부품 재고 · 부품 풀' }, 'mx.kn.apply': { ko: '적용' },
+    'mx.kn.invHelp': { ko: '재고 하루분 {v}(현금 ↔ 재고자산) · 재고가 많을수록 AOG가 짧음(재고 안 4~8시간) · 풀 기본 월 {b}(12~24시간) · 확대 월 {f}(8~16시간) · 풀 없음 24~72시간' },
+    'mx.kn.eng': { ko: '엔진 정비 계약' }, 'mx.kn.engHelp': { ko: '시간당 요율 = 매달 비행시간 × 요율(예비 엔진 지원 포함 · 비용 예측 쉬움) · 실비 정산 = 정비 때 실제 비용 + 예비 엔진 임차(변동 큼) — 기대 비용은 같게 설정 · 다음 달 1일부터' },
+    'mx.kn.sb': { ko: '서비스 회보(권고) 적용' }, 'mx.kn.sbBtn': { ko: '적용 예약' }, 'mx.kn.sbHelp': { ko: '권고라 적용하지 않아도 운항은 막히지 않습니다(안전 지시 AD와 다름) · 적용 = 창 1일 · 신뢰성이 다음 달부터 오름' },
+    'mx.kn.hangar': { ko: '자사 격납고(나리타)' }, 'mx.kn.hangarBtn': { ko: '개설 결정' },
+    'mx.kn.hangarHelp': { ko: '중정비 인원 {n}명 · 월 인건비 {v} · 1회 C 체크 = 자재만(외주 기준 45%) · 10일 · 동시 1대 — 기체가 적으면 외주가 쌉니다' },
+    'mx.hangar.open': { ko: '운영 중 · 인원 {n}명 · {d} 개설' },
+    'mx.brief.mel': { ko: 'MEL 수리 기한(이틀 안)' },
     'ach.first_route': { ko: '첫 취항' }, 'ach.first_route.d': { ko: '시작 노선이 아닌 새 노선의 첫 편 출발' },
     'ach.long_haul': { ko: '첫 장거리' }, 'ach.long_haul.d': { ko: '블록 6시간(360분) 이상 편의 첫 출발(장거리 기준 6시간은 게임용 가정 · 공식 정의 아님)' },
     'ach.fleet_30': { ko: '기단 30대' }, 'ach.fleet_30.d': { ko: '등록 기체 30대 첫 도달(인도일 기준)' },
@@ -3852,6 +4392,34 @@ MG.data.text = {
     'ed.calc': { ko: '요약 계산 중…' }, 'ed.subYen': { ko: '{k} {v}억 엔 — 엔으로 바꾸면 1엔 미만이 남음(엔 단위 정수가 되도록 입력 · 반올림하지 않음)' }, 'ed.preview': { ko: '시작 뒤와 같은 계산(실제 시작 상태를 만들어 계산)' },
     'set.delay': { ko: '지연 판단' }, 'set.month': { ko: '월결산 확인' }, 'set.proposal': { ko: '품의(제안)' }, 'set.cash': { ko: '현금 경보' }, 'set.org': { ko: '조직 설정' }, 'set.crisis': { ko: '위기 카드' }, 'set.board': { ko: '이사회 안건' }, 'set.liq': { ko: '유동성 유예 카드' },
     'dv.accept': { ko: '지연 수용' }, 'dv.cancel': { ko: '결항' }, 'dv.approve': { ko: '승인' }, 'dv.reject': { ko: '반려' }, 'dv.ok': { ko: '확인' }, 'dv.hold': { ko: '보관(결재함)' }, 'dv.delegate': { ko: '위임' }, 'dv.loan': { ko: '한도 안 긴급 차입' },
+    /* 2단계 2D 로테이션 편집기(mg_ui_gantt.js — 한국어 정본 · 일·영은 2단계 종합 뒤) */
+    'gt.title': { ko: '로테이션 편집기' },
+    'gt.help': { ko: '게임용 가정(교육용) — 주기장 수·예비기 기준·지연 전파 추정은 Vela 간이값입니다. 편집은 기안 사본만 바꾸고(편·예약·장부 그대로), 승인 때 기존 시간표 경로로 효력이 생깁니다' },
+    'gt.t.from': { ko: '효력일' }, 'gt.b.open': { ko: '운영 조정 열기' }, 'gt.b.season': { ko: '시즌 복사 열기({d}부터)' }, 'gt.t.draft': { ko: '편집 중인 기안' },
+    'gt.empty': { ko: '열린 편집기 기안이 없습니다 — 효력일을 정해 「운영 조정 열기」 또는 「시즌 복사 열기」를 누르세요' },
+    'gt.t.day': { ko: '보는 날' }, 'gt.b.hq': { ko: '본사 시각' }, 'gt.b.lt': { ko: '현지 시각' }, 'gt.b.wide': { ko: '0~48시 보기' }, 'gt.b.narrow': { ko: '06~26시 보기' },
+    'gt.pc': { ko: '막대를 옆으로 끌면 그 편부터 뒤 편이 함께 움직이고, 다른 기체 줄에 놓으면 기지 왕복 묶음이 그 기체로 옮겨 갑니다(같은 기종·같은 기지만). 막대를 누르면 아래 표에서 고칠 수 있습니다' },
+    'gt.mob': { ko: '휴대폰에서는 간트는 보기만 합니다 — 아래 표에서 고치세요(PC 끌기와 같은 결과)' },
+    'gt.spare': { ko: '예비기' }, 'gt.idle': { ko: '운휴' }, 'gt.changed': { ko: '바뀜' }, 'gt.mxwin': { ko: '정비 창({what})' }, 'gt.curfew': { ko: '{base} 마지막 도착 한계 {hm}' },
+    'gt.h.edit': { ko: '표 편집 — {reg}' }, 'gt.h.warn': { ko: '경고(이 기안이 새로 만든 것 · 기존 충돌은 회색)' }, 'gt.h.diff': { ko: '차이(원본 → 기안 · 바뀐 기체만 승인 대상)' },
+    'gt.t.reg': { ko: '기체' }, 'gt.t.slack': { ko: '턴어라운드 여유(분)' }, 'gt.t.idleNow': { ko: '지금 운휴(편 없음)' },
+    'gt.b.apply': { ko: '적용' }, 'gt.b.idle': { ko: '운휴로' }, 'gt.b.unidle': { ko: '운휴 해제(원본 회전)' }, 'gt.b.reset': { ko: '원본으로' },
+    'gt.th.leg': { ko: '구간' }, 'gt.th.dep': { ko: '출발(현지)' }, 'gt.th.arr': { ko: '도착(현지)' }, 'gt.th.gap': { ko: '첫 출발 · 추가 대기(분)' }, 'gt.th.w': { ko: '경고' }, 'gt.min': { ko: '분' },
+    'gt.b.times': { ko: '시각 적용' }, 'gt.t.timesHelp': { ko: '첫 편 = 출발 시각 · 그 밖 = 그 편 앞 추가 지상 대기 분(뒤 편이 함께 밀림 · 0 아래로는 안 됨)' },
+    'gt.t.dow': { ko: '운항 요일(회전일)' },
+    'gt.dow.1': { ko: '월' }, 'gt.dow.2': { ko: '화' }, 'gt.dow.3': { ko: '수' }, 'gt.dow.4': { ko: '목' }, 'gt.dow.5': { ko: '금' }, 'gt.dow.6': { ko: '토' }, 'gt.dow.7': { ko: '일' },
+    'gt.t.move': { ko: '왕복 묶음 옮기기(받는 기체의 운항 요일을 따름 — 요일이 다르면 주간 편 수가 바뀜)' },
+    'gt.w.worse': { ko: '(기존보다 악화)' }, 'gt.rep.need': { ko: '효력일이 같은 승인 판 {v}이 있습니다 — 교체에 동의해야 승인 요청할 수 있습니다' }, 'gt.rep.ok': { ko: '승인 판 {v} 교체에 동의함' },
+    'gt.b.repOn': { ko: '교체 동의' }, 'gt.b.repOff': { ko: '동의 취소' }, 'gt.m.repOn': { ko: '{reg} 승인 판 교체 동의' }, 'gt.m.repOff': { ko: '{reg} 승인 판 교체 동의 취소' }, 'gt.t.loop': { ko: '편 {a}~{b}({to} 왕복)' }, 'gt.t.atFront': { ko: '맨 앞' }, 'gt.t.atAfter': { ko: '편 {n} 뒤({hm} 도착)' },
+    'gt.t.swap': { ko: '회전 맞바꾸기(같은 기종·기지 — 시각 그대로 · 편명은 기체·순번을 따라 바뀜)' }, 'gt.b.swap': { ko: '맞바꾸기' }, 'gt.m.swap': { ko: '{reg} ↔ {to} 회전 맞바꾸기' },
+    'gt.t.dep': { ko: '희망 출발' }, 'gt.t.depPh': { ko: '원래 시각' }, 'gt.b.move': { ko: '옮기기' },
+    'gt.w.none': { ko: '경고 없음' }, 'gt.w.sum': { ko: '새 경고 {n}건 · 기존 충돌 {pre}건' }, 'gt.w.pre': { ko: '(기존)' },
+    'gt.d.none': { ko: '원본과 차이 없음(승인할 내용 없음)' }, 'gt.d.a': { ko: '원본' }, 'gt.d.b': { ko: '기안' }, 'gt.d.daily': { ko: '매일' },
+    'gt.d.rot': { ko: '{n}편 · 첫 출발 {first} · 여유 {slack}분 · {dow} · {legs}' },
+    'gt.b.eval': { ko: '견적' }, 'gt.b.submit': { ko: '승인 요청' }, 'gt.b.drop': { ko: '기안 삭제' }, 'gt.t.flow': { ko: '견적·승인 요청은 아래 「기안」 목록과 같은 단추입니다(승인 때 다시 견적)' },
+    'gt.m.open': { ko: '편집기 기안 열기(운영 조정)' }, 'gt.m.season': { ko: '편집기 기안 열기(시즌 복사)' }, 'gt.m.slack': { ko: '{reg} 턴어라운드 여유 변경' }, 'gt.m.idle': { ko: '{reg} 운휴' },
+    'gt.m.unidle': { ko: '{reg} 운휴 해제' }, 'gt.m.reset': { ko: '{reg} 원본으로' }, 'gt.m.dow': { ko: '{reg} 운항 요일 변경' }, 'gt.m.times': { ko: '{reg} 시각 변경({n}건)' },
+    'gt.m.move': { ko: '{reg} 묶음 → {to}' }, 'gt.m.drag': { ko: '{reg} 편 {n} {min}분 이동' }, 'gt.m.badTime': { ko: '시각은 HH:MM으로 적어 주세요' },
     'ed.import': { ko: '시나리오 코드 가져오기' }, 'ed.export': { ko: '현재 편집 내용을 코드로' }
   }
 };
@@ -4006,6 +4574,140 @@ MG.data.ops2 = {
   briefMax: 6
 };
 
+/* ===== 경영 모드 2단계 2B · mg_data_mx.js — 정비(M&E) 데이터(경계 계약 v3 4-2 · 메모 v4 4절 · 15-7 R185-04·05 · 15-9) =====
+   · 전부 게임용 가정(교육용 · 검증 전) — 실제 정비 프로그램은 제조사 정비 계획 자료(MPD — MRB 보고서 등)를 바탕으로 운항사가 승인받은 프로그램이 정하며 기종·운항사마다 다름
+   · 한도·기간 = 분·일 · 비용 = 엔 정수 · s2 끔 캠페인은 이 표를 읽지 않음(V1) */
+MG.data.mx2 = {
+  // C 체크 3중 한도(달력 개월 · 비행시간 FH · 비행 횟수 FC — 먼저 닿는 것) · B789 FC 한도 = 게임 가정 미적용(null)
+  //   cost = 외주 기준 1회 비용(Sakura Tech 기준 · 업체 배수 곱함) · own/mro = 자사 격납고·외주 기간(일)
+  c: { B738: { mo: 24, fh: 7500 * 60, fc: 5000, own: 10, mro: 7, cost: 120000000 },
+       B789: { mo: 36, fh: 12000 * 60, fc: null, own: 10, mro: 7, cost: 300000000 } },
+  // 엔진(기체당 1묶음 · 누적 FH → shop visit) · 예비 엔진을 달면 기체 창 2일(swap) · 엔진은 60일 정비소(shop)
+  //   cost = shop visit 1회 기대 비용 · lease = 예비 엔진 임차(조건 B만 · 60일분) · 조건 A 요율 = (cost + lease) ÷ fh(같은 기대값 — 「요율형이 늘 비싸지 않음」)
+  //   T&M 실제 비용 = cost × [tmLo, tmHi] 균등(난수 'mx2eng') — 기대값 = cost
+  eng: { B738: { fh: 10000 * 60, cost: 450000000, lease: 30000000, swap: 2, shop: 60 },
+         B789: { fh: 12000 * 60, cost: 1000000000, lease: 60000000, swap: 2, shop: 60 } },
+  tm: [0.85, 1.15],
+  engPlanDays: 30,                              // 엔진 남은 FH가 약 30일 사용분 이하 = 교환 창 예약(자동)
+  engWait: [1, 3],                              // 계획 없이 엔진 한도 = 예비 엔진 수배 대기 1~3일
+  engK: { B738: 'B', B789: 'A' },               // 기종 기본 계약(개시·새 인도 기체) — A 시간당 요율 · B T&M
+  // 정비비 덜어 내기(계약 2-4 · M9): 기준 이용률(연 블록시간 · 연 FH)에서 C 체크·엔진 기대 비용을 블록시간당으로 바꿔 mxH에서 뺌
+  ref: { B738: { blkYr: 3000, fhYr: 2350 }, B789: { blkYr: 3800, fhYr: 3500 } },
+  // 외주 MRO 3곳(가칭 — 실존 상호 검색 뒤 확정 · 2026-11-17: 「Lion MRO」는 실재 그룹 정비 부문과 겹쳐 Kelong Aero Works로)
+  //   k = 비용 배수 · fx = 외화 결제(환율 가정 배수 — 게임에는 환율 지수가 없어 고정) · ferry = 오가는 날(창에 더함) · slots = 시즌당 기종별 슬롯 · lead = 예약 리드타임(일)
+  mro: {
+    SKR: { apt: 'NRT', k: 1.00, fx: 1.00, ferry: 0, slots: { B738: 2, B789: 1 }, lead: 90 },
+    HBA: { apt: 'ICN', k: 0.85, fx: 1.02, ferry: 1, slots: { B738: 3, B789: 2 }, lead: 90 },
+    KLA: { apt: 'SIN', k: 0.75, fx: 1.03, ferry: 2, slots: { B738: 3, B789: 3 }, lead: 90 }
+  },
+  dayVal: { B738: 6000000, B789: 15000000 },  // 업체 고르기용 — 기체 하루 운항 기여 추정(게임용 가정 · 오가는 날이 긴 업체는 그만큼 불리)
+  emerg: { k: 1.5, wait: [2, 5] },              // 계획 없이 한도 도달 = 긴급 외주(×1.5 · 대기 2~5일 — 난수 'mx2emg')
+  // 자사 격납고(허브 1곳 · 동시 1대) — 개설 = 결재(중정비 인원 30 + 기체당 6 · 인당 월 52만 엔 = 경계 계약 4-5 표) · 1회 = 자재만(외주 기준 비용 × mat)
+  hangar: { apt: 'NRT', base: 30, perTail: 6, wage: 520000, mat: 0.45, days: 10 },
+  warn: [90, 30, 7],                            // 한도 접근 경고(남은 날 — 결재함 알림 · 차단 아님)
+  planLead: 120,                                // 정비 계획안 = 시즌 시작 120일 전
+  planTail: 30,                                 // 계획 대상 = 그 시즌 끝 + 30일 안에 한도가 오는 기체
+  offPeak: 0.96,                                // 비수기 = 수요 계절 계수(MG.data.fin.season) 이 값 미만인 회계 월
+  // 신뢰성 지수(2B-d · 월 마감 갱신): 1 × (1 + age × 기령 5년 초과분) × (1 + use × (지난달 FH ÷ 기준 − 1)) × Π(1 − SB 몫) × (1 + mel × 열린 MEL 수)
+  //   → 출발 전 기술 지연 확률(MG.org.techP)과 기술 운항 사건(tec.*) 확률에 곱함 · 범위 [lo, hi]
+  rel: { age: 0.03, ageFrom: 5, use: 0.3, mel: 0.05, lo: 0.6, hi: 1.6 },
+  // 부품 재고·풀(2B-d): 재고 일수 0~30(기본 10 = 개시 재고자산) · 재고에 있을 확률 = min(1, 일수 ÷ 20)
+  //   AOG 지속(분) = 재고 안 4~8시간 · 재고 밖 + 풀 12~24시간(basic)·8~16시간(full) · 풀 없음 24~72시간 · 풀 = 월 회비
+  inv: { def: 10, max: 30, full: 20, inStock: [240, 480], pool: { basic: [720, 1440], full: [480, 960] }, none: [1440, 4320], fee: { basic: 5000000, full: 12000000 } },
+  // 서비스 회보(SB — 권고 · 차단 아님): 적용 = 창 1일 · 비용 · 신뢰성 몫 ↓
+  sb: { B738: [{ id: 'SB738-01', cost: 18000000, rel: 0.04 }, { id: 'SB738-02', cost: 30000000, rel: 0.05 }, { id: 'SB738-03', cost: 12000000, rel: 0.03 }],
+        B789: [{ id: 'SB789-01', cost: 40000000, rel: 0.04 }, { id: 'SB789-02', cost: 65000000, rel: 0.06 }, { id: 'SB789-03', cost: 25000000, rel: 0.03 }] },
+  // MEL 유예(2B-e · 계약 4-2-1): 품목 12(기종 공통 · 게임용 가정) — cat 등급(B 3일·C 10일·D 120일) · def = 유예 가능 · lim = 운항 제한 · rep = 수리 시간(분)
+  //   lim: gpu = 지상 전원(GPU) 계약이 있는 공항만(gpu 목록 — 게임용 가정) · lav = 블록 4시간 넘는 편 불가 · ice = 겨울(11~3월) 북쪽 공항(위도 40° 이상) 불가
+  mel: { days: { B: 3, C: 10, D: 120 }, deferMin: 15, gpu: ['HND', 'NRT', 'ITM', 'FUK', 'CTS', 'ICN', 'TPE', 'HKG'], items: [
+    { id: 'apu', cat: 'C', def: true, lim: 'gpu', rep: 180 }, { id: 'lav', cat: 'C', def: true, lim: 'lav', rep: 60 },
+    { id: 'cablt', cat: 'D', def: true, lim: null, rep: 60 }, { id: 'seat', cat: 'C', def: true, lim: null, rep: 30 },
+    { id: 'ife', cat: 'D', def: true, lim: null, rep: 60 }, { id: 'wxr', cat: 'C', def: true, lim: 'ice', rep: 120 },
+    { id: 'ap', cat: 'B', def: true, lim: null, rep: 120 }, { id: 'fqi', cat: 'B', def: true, lim: null, rep: 90 },
+    { id: 'btms', cat: 'B', def: true, lim: null, rep: 60 }, { id: 'pack', cat: 'B', def: true, lim: 'lav', rep: 180 },
+    { id: 'hyd', cat: null, def: false, lim: null, rep: 240 }, { id: 'emlt', cat: null, def: false, lim: null, rep: 90 }] },
+  // 개시 기체 경과값(지난 C 체크 뒤 개월 · FH · FC / 엔진 shop visit 뒤 FH) — 기령과 일관되게 · 1년에 B738 3대·B789 2대 C 체크(기대 2.5·1.7)
+  //   새로 인도된 기체·예비기 = 0에서 시작
+  init: {
+    JA81VA: { mo: 13, fh: 1900, fc: 3600, efh: 2000 },     // FC 먼저(약 8개월 뒤)
+    JA81VB: { mo: 17, fh: 3700, fc: 3100, efh: 5000 },     // 달력(7개월 뒤)
+    JA81VC: { mo: 7,  fh: 1700, fc: 1280, efh: 7500 },     // 엔진(약 10개월 뒤)
+    JA81VD: { mo: 20, fh: 4870, fc: 2430, efh: 4000 },     // 달력(4개월 뒤)
+    JA81VE: { mo: 2,  fh: 365,  fc: 120,  efh: 1000 },
+    JA89VA: { mo: 31, fh: 7900, fc: 1150, efh: 3000 },     // 달력(5개월 뒤)
+    JA89VB: { mo: 16, fh: 4100, fc: 650,  efh: 9000 },     // 엔진(약 12개월 뒤)
+    JA89VC: { mo: 14, fh: 5110, fc: 1700, efh: 6000 },     // FH 먼저(약 19개월 뒤)
+    JA89VD: { mo: 27, fh: 8860, fc: 3200, efh: 10500 },    // 달력(9개월 뒤) · 엔진(약 5개월 뒤)
+    JA89VE: { mo: 10, fh: 3300, fc: 1200, efh: 2000 }
+  }
+};
+
+/* ===== 경영 모드 2단계 2C · mg_data_crew.js — 승무원(세트 근무표·대기·훈련·레이오버·베이스·피로·승격·채용) 데이터
+   (경계 계약 v3 3-1·4-3 · 메모 v4 5절·15-2·16-1·16-7 · 구현 계획 2C)
+   · 전부 「Vela 가정(교육용 · 검증 전)」 — 실제 규정·회사 값과 다릅니다(화면 도움말 첫 줄에 표시)
+   · 실제 일본 기준은 시작 시각·편수에 따라 비행 8/9/10시간 · FDP 9~13시간 · 3인 편성 · 168시간마다 2야간 포함 36시간 휴식 등 조건이 더 많음(메모 15-7 R185-02)
+   · off = 시험 전용 끔 스위치(2A ops2.off · 2B mx2.off와 같은 방식 · 데이터만 · 저장 안 됨) */
+MG.data.crew2 = {
+  off: 0,
+  // 한도(분) — 1일 비행: 2명 세트 9h(구현 판단 11 — 개시 망 NRT-HKG 당일 왕복 블록 9h) · 3명(교대) 세트 12h · 근무 = 첫 출발 −pre ~ 마지막 도착 +post ≤ 13h · 지연 때만 기장 재량 연장 ext(배정 계획에는 쓰지 않음) · 지연이 notice분 넘게 미리 알려지면 보고 시각도 늦춤 · 휴식 ≥ 10h 또는 직전 근무 이상 · 연속 근무 ≤ 6일 · 월 100h · FY 1,000h
+  lim: { fly2: 540, fly3: 720, duty: 780, ext: 120, notice: 180, rest: 600, consec: 6, month: 6000, fy: 60000, pre: 60, post: 30 },
+  //   207차: fy(연 1,000h) = 운항 승무원만(실제 일본 기준도 운항 승무원 연간 한도 · 객실 = 월 한도만) · 장거리 편(블록 > crew3Blk) = 운항 3명 세트 또는 2명 세트 둘(복수 편성 · 둘 다 fly3) · 객실 조도 증원 편성(fly3) — Vela 가정
+  // 3명 세트가 필요한 편성: 한 근무에 블록 > crew3Blk 분 편이 있으면(장거리 · 메모 15-2 「블록 > 9h」)
+  crew3Blk: 540,
+  // 기지(도시 묶음 — 구현 판단 2): 같은 묶음 공항 사이 이동은 레이오버 아님 · 지상 이동 시간은 근무에 넣지 않음
+  metro: { HND: 'TYO', NRT: 'TYO', ITM: 'OSA', KIX: 'OSA', GMP: 'SEL', ICN: 'SEL', PVG: 'SHA', SHA: 'SHA', TPE: 'TPE', TSA: 'TPE' },
+  home: 'TYO',
+  // 대기(스탠바이 · 실무 보강 R2): ratio = 그날 배정 대상 세트 중 대기 비율 · 공항 대기 = 즉시 · 자택 대기 = +homeMin분 · 대기일 = 근무일(일비)
+  sby: { def: 0.05, max: 0.15, mode: 'apt', homeMin: 90, dayCost: 30000, callMin: 120, callCost: 60000 },   // callMin·callCost = 휴무 세트 호출(대기 세트도 없을 때)
+  // 정기 훈련·심사(실무 보강 R5): 세트마다 연 6일(3일 × 2회 · 6개월 간격 · 세트 번호로 월·날짜 결정)
+  trn: { days: 6, blocks: 2 },
+  // 레이오버: 호텔 1박 단가(공항별 · 없으면 def) × 방 수(운항 세트 = 인원 · 객실 세트 = 인원) + 해외 일비(1인 1박)
+  hotel: { def: 16000, apt: { TPE: 14000, ICN: 15000, PVG: 13000, HKG: 22000, SIN: 24000, BKK: 12000, LAX: 32000, SFO: 34000, HNL: 30000, SYD: 26000, LHR: 38000 }, perDiem: 6000 },
+  // 베이스(허브 밖 상주): 개설 비용 · 월 고정비 · 최소 상주 세트
+  base: { open: 30000000, mon: 3000000, minSets: 2 },
+  // 초과 근무: 회사 월 계획 시간(ops.cockpit.pol.hours) 초과분 1시간당(세트) — 100h(lim.month)는 넘을 수 없음
+  ot: { perH: 18000 },
+  // 피로 지수(교육용 FRMS — 실제 FRMS 인증과 무관): 근무마다 더하고 휴무일마다 덜어 냄 → 기종 평균 → 사건 계수 [k0, k1](k0 = 1 — 기준 이하 = 2A 기본 확률 그대로 · 넘으면 올라감)
+  fat: { night: 6, consec: 3, consecFrom: 3, tz: 8, tzH: 4, restShort: 10, duty12: 4, offDay: 9, max: 100, k0: 1.0, k1: 1.5, kRef: 25, kSlope: 0.012, morale: 0.04 },
+  // 운항 세트 계급(세트 = 기장 1 + 부기장 1): 개시 부기장 누적 비행 분 = 세트 번호로 결정적으로 흩음(promo.fh 근처에 몇 세트가 오게)
+  rank: { foH0: [24000, 96000] },
+  // 승격 심사: 연 2회(회계 월 · 4월 = 1) · 요건 부기장 비행 분 · 합격률 = base + 운항훈련 투자 몫(trnK × (투자 지수 − 1)) · [p0, p1]
+  promo: { months: [4, 10], fh: 90000, base: 0.7, trnK: 0.3, p0: 0.4, p1: 0.9, train: 60 },
+  // 채용 경로(구현 판단 5): pair = 1단계 「목표 세트 수」 채용(경력 기장 + 경력 부기장 · 비용·리드타임 = ops.cockpit preSet·lead 그대로)
+  hire: {
+    cpt: { lead: 3, cost: 9000000, wageX: 1.0 },            // 경력 기장(빠름·비쌈 — 비용 × 임금 지수)
+    fo: { lead: 6, cost: 3500000 },                          // 신입 부기장(쌈·느림 — 훈련 6개월)
+    intl: { lead: [90, 180], cost: 6500000 }                 // 외국인 조종사(기장 · 면허 전환 리드타임 90~180일 · 난수 crew2visa · 구현 판단 4)
+  },
+  // 객실(구현 판단 3): 편당 법정 최소 인원(좌석 50석당 1명 — Vela 간이) · 서비스 기준 인원 · 객실 세트 = 한 편의 객실 승무원 한 조 · 비용 = crewH에 이미 포함(새 고정비 0)
+  cab: { min: { B738: 4, B789: 6 }, std: { B738: 4, B789: 9 }, hireCost: 1200000, lead: 2 },
+  // 계속 운항 검사(16-1): 부족 월 경고 = 그 달 1일 warnDays일 전
+  chk: { warnDays: 90 }
+};
+
+/* ===== 경영 모드 2단계 2D · mg_data_skd2.js — 로테이션 편집기(간트 · 경고 7종 · 시즌 복사 · 견적) 데이터
+   (경계 계약 v3 3-1·4-4·6·7 G1~G3 · 메모 v4 6절·15-10 · 구현 계획 2D)
+   · 전부 「Vela 가정(교육용 · 검증 전)」 — 실제 공항 주기장 수·회사 예비기 정책·지연 통계와 다릅니다(화면 도움말 첫 줄에 표시)
+   · off = 시험 전용 끔 스위치(2A ops2.off · 2B mx2.off · 2C crew2.off와 같은 방식 · 데이터만 · 저장 안 됨) */
+MG.data.skd2 = {
+  off: 0,
+  // 계약 주기장 수(구현 판단 2 — 지상 계약 칸에 스폿 수가 없어 여기 둠): 공항별 동시에 세워 둘 수 있는 자사 기체 수 · 없는 공항 = def
+  //   개시 망 = 기지(HND·NRT)의 밤 주기 기체 + 낮 회전 여유 · 그 밖 지점 = 2
+  spots: { HND: 6, NRT: 8, def: 2 },
+  // 예비기 기준(구현 판단 3): 기종별 (예비기 ÷ 기단) < spareMin 이면 경고 — 예비기 = OCC 예비 기재 + 그날 회전 없는 운항 가능 기체
+  spareMin: 0.05,
+  // 조작 범위: 편 앞 추가 지상 대기 분(L[2]) 상한 · 턴어라운드 여유 상한(분)
+  gapMax: 1440, slackMax: 120,
+  // 경고를 보는 날 수(효력일부터 — 요일 패턴이 한 바퀴 도는 7일)
+  days: 7,
+  // 간트 기본 보기 창(본사 시각 · 시) — 창 밖 구간은 화살표(누락 0 · 메모 15-10)
+  view: { h0: 6, h1: 26 },
+  // 지연 전파 위험(견적 · 「추정」 표기 · 구현 판단 8): 앞 편이 늦을 확률 p · 늦을 때 평균 지연 mu(분) — 2A OTP 기록(최근 months개월)이 있으면 그 값
+  prop: { p: 0.2, mu: 25, months: 3, minDep: 60 },
+  // 편집 기록(gantt.log) 보관 개수
+  logMax: 100
+};
+
 /* ===== 경영 모드 2단계 · mg_s2.js — S2-0 틀(경계 계약 v3 1·2-2·3·4-0 · 기능 0) =====
    · 판 번호 C.s2v(새 캠페인 생성 때 한 번만 · MG.ops.newCampaign 끝) · 모든 2단계 분기는 술어 MG.s2.on(C) 하나
    · 공개 스위치 MG.data.base.s2 = { verNew, verRead } — 종합 검수 + 사용자 승인 전에는 둘 다 0(사이트판에 2단계 캠페인이 생기지도·열리지도 않음)
@@ -4074,7 +4776,7 @@ MG.ops2 = (function () {
   function local(C, t) { return MG.tz.local(t, C.hqTz); }
   function mkOf(C, f) { return MG.cal.per(C, local(C, f.std).date).mk; }
   function legOf(C, f) { var li = C.legIdx; if (li && li[f.legId] != null) return C.legs[li[f.legId]]; for (var i = 0; i < C.legs.length; i++) if (C.legs[i].id === f.legId) return C.legs[i]; return null; }
-  function kpiLeg(C, f) { var L = legOf(C, f); return !(L && (L.ferry || L.rec)); }   // 페리·재운항 임시 편 = 영업 KPI 밖(15-1 · 15-6)
+  function kpiLeg(C, f) { if (f.pmx) return false; var L = legOf(C, f); return !(L && (L.ferry || L.rec)); }   // 페리·재운항 임시 편 = 영업 KPI 밖(15-1 · 15-6) · 2B 계획 정비 운휴(f.pmx) = 공급에서 뺀 편 → 영업 KPI·irreg 밖(206차 N206-06 · 긴급 정비 결항은 그대로 안)
 
   /* ---------- 지연 원인 원장 ---------- */
   function dlSum(f) { var s = 0, a = f.dl || []; for (var i = 0; i < a.length; i++) s += a[i][1]; return s; }
@@ -4212,8 +4914,8 @@ MG.ops2 = (function () {
       else if (e.sc === 'net2d') { var gn = rg(C, date + ':NET:' + id); if (gn() < (e.p || 0)) { var t0n = MG.tz.dayStart(date, C.hqTz) + between(gn, [8 * 60, 18 * 60]); evtPush(C, date, 'NET', id, Math.max(C.t, t0n), Math.max(C.t, t0n) + 1); } }
       else if (e.sc === 'flt' || e.sc === 'divert') fls.forEach(function (f) {
         if (e.conn && !connIn(C, f)) return;
-        var g = rg(C, date + ':' + f.id + ':' + id); if (!(g() < evtP(C, e, date, f.from))) return;
-        var s0 = Math.max(C.t, e.sc === 'divert' ? f.std + X().div.rtbAfter : id === 'pax.med' ? f.std + between(g, X().div.medWin) : f.std - e.lead); evtPush(C, date, f.id, id, s0, s0 + 1, { m: between(g, e.m) });
+        var g = rg(C, date + ':' + f.id + ':' + id); if (!(g() < evtP(C, e, date, f.from) * (C.mx2 ? MG.mx2.evtK(C, id, f) : 1) * (C.crew2 ? MG.crew2.evtK(C, id, f) : 1))) return;   // 2B: 기술 사건 = 기체 신뢰성 계수 · 2C: 승무원 사건 = 피로 계수
+        var s0 = Math.max(C.t, e.sc === 'divert' ? f.std + X().div.rtbAfter : id === 'pax.med' ? f.std + between(g, X().div.medWin) : f.std - e.lead); evtPush(C, date, f.id, id, s0, s0 + 1, { m: id === 'tec.aog' && MG.mx2 && MG.mx2.on(C) ? MG.mx2.aogMin(C, f, g) : between(g, e.m) });   // 2B: AOG 지속 = 부품 재고·풀
       });
     });
   }
@@ -4244,6 +4946,7 @@ MG.ops2 = (function () {
       var fa = C.fl[ev.tgt]; if (fa && fa.state === 'AIR') { inAir(C, fa, t, ev.id, e.sc === 'divert'); return true; }
       if (e.sc === 'divert') return true; evtApply(C, q.ek, 'full'); return true;
     }
+    if (ev.id === 'crw.sick' && C.crew2) MG.crew2.sick(C, C.fl[ev.tgt]);   // 2C: 배정 운항 세트 = 그날 근무 불가
     if (e.dil) evtDecide(C, q.ek); else evtApply(C, q.ek, 'full');
     return true;
   }
@@ -4283,7 +4986,8 @@ MG.ops2 = (function () {
     if (oid === 'divPlan' || oid === 'reRun' || oid === 'rebook') return !!MG.ops2.divOK;          // 대체 공항 계획 = 2A-2f
     if (oid === 'melDefer') return !!(MG.mx2 && MG.mx2.melOK && MG.mx2.melOK(C, f));            // MEL = 2B
     if (oid === 'swap') return spareOK(C, f);
-    if (oid === 'sby') return !!f && MG.crew.n(C, f.type) >= 2;                                 // 대기 세트(2C 전 = 그 기종 세트 2 이상 · Vela 가정)
+    if (oid === 'poolReq') return !(MG.mx2 && MG.mx2.on(C)) || MG.mx2.poolOK(C);   // 2B: 부품 풀 요청 = 풀 계약이 있을 때만(2B 전 = 그대로)
+    if (oid === 'sby') return !!f && (C.crew2 ? MG.crew2.sbyOK(C, f) : MG.crew.n(C, f.type) >= 2);   // 대기 세트(2C = 그날 실제 대기 세트 · 2C 전 = 그 기종 세트 2 이상 · Vela 가정)
     if (oid === 'ownStaff') return !!(MG.data.base.airports[ev.tgt] && MG.data.base.airports[ev.tgt].hub);   // 그 업무 자격 인원 = 허브 자사 직원만(qual)
     return true;
   }
@@ -4302,6 +5006,7 @@ MG.ops2 = (function () {
     switch (oid) {
       case 'hold': case 'wait': case 'delay': case 'waitBag': case 'waitPax': case 'fixNow': evtApply(C, key, 'full'); if (oid === 'fixNow' && e.cls === 'reg') evCost(C, key, 'fix', D.cost.fix); break;
       case 'cnl': evtApply(C, key, 'cnl'); break;
+      case 'melDefer': if (!(MG.mx2 && f && MG.mx2.melDefer(C, f, ev.x.d))) evtApply(C, key, 'full'); break;   // 2B: MEL 유예하고 출발(유예 항목 열림 · 수리 지연 → 서류 처리)
       case 'divPlan': evtTargets(C, ev, e).forEach(function (x) { if (!x.dep || ev.id === 'reg.curfew') { var A = MG.data.base.airports[x.f.to]; dvPlanMark(C, x.f, ev.id === 'reg.curfew' ? MG.tz.dayStart(MG.tz.addDays(local(C, x.f.std).date, 1), A.tz) + X().dil.nextHM : ev.e, ev.id); } }); MG.ops._log(C, MG.M('ops2.div.plan0', { name: MG.M('ops2.evtn.' + ev.id) }), 'ev'); break;
       case 'swapLate': evtApply(C, key, 'cnlLate'); break;
       case 'reduce': evtApply(C, key, 'cnlLate'); break;
@@ -4309,9 +5014,17 @@ MG.ops2 = (function () {
         var T = evtApply(C, key, 'k', D.k[oid]);
         if (oid === 'manual' && rg(C, key + ':err')() < D.manualErr.p) T.forEach(function (x) { hit(C, x.f, { cc: e.cc, ccArr: e.ccArr, root: e.root, eff: 'flow' }, ev, D.manualErr.m, !x.dep); });
         if (D.cost[oid]) evCost(C, key, oid, D.cost[oid] * (oid === 'ownStaff' ? Math.max(1, T.length) : 1)); break;
-      case 'spareLease': evtApply(C, key, 'cap', D.cap.spareLease); evCost(C, key, oid, D.cost.spareLease); break;
+      case 'spareLease': evtApply(C, key, 'cap', D.cap.spareLease); evCost(C, key, oid, MG.mx2 ? MG.mx2.engEvtCost(C, f, D.cost.spareLease) : D.cost.spareLease); break;   // 2B: 엔진 시간당 요율 계약 = 예비 엔진 지원 포함(0)
       case 'swap': if (f && MG.org && MG.org.trySwap(C, f, C.t, MG.ops.blockWhy)) { var nw = Math.max(f.std, C.t + 30); if (nw < f.etd) { f.etd = nw; f.eta = nw + f.block; dlSync(C, f, e.cls === 'tec' || ev.id === 'co.mxlate' ? 46 : 96, 'swap', 'OWNOPS'); } MG.ops._log(C, MG.M('ops2.evt.swap', { fn: f.fn }), 'ev'); } else evtApply(C, key, 'full'); break;
-      case 'sby': if (ev.id === 'crw.sick') evtApply(C, key, 'fixed', D.sbyMin); evCost(C, key, 'sby', D.cost.sby); break;
+      case 'sby':
+        if (C.crew2) {   // 2C: 대기 세트 투입(비용 = 대기 일비 · 구현 판단 8) · 207차 N207-04: 준비 완료 시각(자택 대기 +90분)을 지연 하한으로 · 투입 못 하면 「대기」로 닫지 않고 기다림(hold)
+          var ru = MG.crew2.useSby(C, f);
+          if (!ru) { ev.opt = 'hold'; MG.ops._log(C, MG.M('crew2.log.sbyFail', { fn: f ? f.fn : '' }), 'ev'); evtApply(C, key, 'full'); break; }
+          var rm = ru.rdy && f ? Math.max(0, ru.rdy - f.etd) : 0, mm = ev.id === 'crw.sick' ? Math.max(D.sbyMin, rm) : rm;
+          if (mm > 0) evtApply(C, key, 'fixed', mm);
+          break;
+        }
+        if (ev.id === 'crw.sick') evtApply(C, key, 'fixed', D.sbyMin); evCost(C, key, 'sby', D.cost.sby); break;
       case 'rushBag': var ci = f && connIn(C, f); evCost(C, key, 'rushBag', D.cost.rushBag * (ci ? ci[1] : 1)); MG.ops._log(C, MG.M('ops2.evt.rushBag', { fn: f ? f.fn : '' }), 'ev'); break;
       case 'goOnTime': evtTargets(C, ev, e).forEach(function (x) { var g = x.f, n = Math.ceil(MG.fin.sold(C, g.id) * D.missShare), mv = 0;
           (C.fin.bkFk[g.id] || []).slice().sort(function (a, b) { return a[0] < b[0] ? -1 : 1; }).forEach(function (y) { var b = C.fin.bk[y[0]], sg = b && b.segs[y[1]]; if (mv >= n || !sg || sg.st !== 'O' || b.segs.length !== 1) return; mv += moveIn(C, b.id, y[1], Math.min(sg.s, n - mv), g.from, g.to, g.std + 1, g.std + X().rec.win, g.id); });
@@ -4353,7 +5066,7 @@ MG.ops2 = (function () {
     else if (rg(C, key + ':price')() < D.group.priceP) mktBook(C, key, f, ev.x.n, Math.round(ev.x.fare * D.group.priceFare), 'group');
     else MG.ops._log(C, MG.M('ops2.evt.groupLost', { fn: f.fn }), 'ev');
   }
-  function slotShift(C, key) { var ev = S(C).ev[key], f = C.fl[ev.tgt], m = X().dil.slot.shift; if (!f || f.state !== 'SCH') return; f.std += m; f.sta += m; if (f.etd < f.std) { f.etd = f.std; f.eta = f.etd + f.block; } dlSync(C, f, 99, 'slot', 'UNK'); MG.ops._log(C, MG.M('ops2.evt.slotShift', { fn: f.fn, m: m }), 'ev'); }   // STD가 늦춰지면 원장도 새 STD 기준(줄어든 분 = LIFO 감액 · N205-11)
+  function slotShift(C, key) { var ev = S(C).ev[key], f = C.fl[ev.tgt], m = X().dil.slot.shift; if (!f || f.state !== 'SCH') return; if (C.slot && MG.slot) MG.slot.retime(C, f, m); else { f.std += m; f.sta += m; } if (f.etd < f.std) { f.etd = f.std; f.eta = f.etd + f.block; } dlSync(C, f, 99, 'slot', 'UNK'); MG.ops._log(C, MG.M('ops2.evt.slotShift', { fn: f.fn, m: m }), 'ev'); }   // STD가 늦춰지면 원장도 새 STD 기준(줄어든 분 = LIFO 감액 · N205-11)
   function fdDue(C, q) { if (!MG.ledger.mark(C, 's2:fd:' + q.ek)) return; var D = X().dil; if (rg(C, q.ek + ':pen')() < D.penaltyP) { irrPost(C, 's2:svc:evt:' + q.ek + ':penalty', 'trans', D.cost.penalty); MG.ops._log(C, MG.M('ops2.evt.penalty', { v: D.cost.penalty }), 'ev'); } else MG.ops._log(C, MG.M('ops2.evt.planOk'), 'ev'); }
   /* 파생 사건(그 경로가 만듦 — 하루 편 하나 1회): 근무 한도(지연 누적) · 커퓨 임박 · 출발 전 결함(기존 기술 지연) · 정비 창 종료 지연 */
   function drvPush(C, f, id, x) {
@@ -4366,8 +5079,8 @@ MG.ops2 = (function () {
   function curfewOver(C, f) { var cf = MG.data.org.curfew && MG.data.org.curfew[f.to]; if (cf == null) return false; var A = MG.data.base.airports[f.to], d0 = MG.tz.dayStart(local(C, f.std).date, A.tz); return d0 != null && f.eta - d0 > cf; }
   function drvCheck(C, t) {
     C.order.forEach(function (id) { var f = C.fl[id]; if (!f || f.state !== 'SCH' || !kpiLeg(C, f) || f.etd > t + 180 || f.etd < t) return;
-      if (f.etd - f.std >= X().dil.fdpSlack) drvPush(C, f, 'crw.fdp');
-      else if (curfewOver(C, f)) drvPush(C, f, 'reg.curfew'); });
+      if (C.crew2 ? MG.crew2.fdpHit(C, f) : f.etd - f.std >= X().dil.fdpSlack) drvPush(C, f, 'crw.fdp');   // 2C: 배정 세트의 실제 근무 한도
+      else if ((!C.crew2 || f.etd - f.std < X().dil.fdpSlack) && curfewOver(C, f)) drvPush(C, f, 'reg.curfew'); });   // 2C: 통금 검사 자리 = 2A 그대로(지연 ≥ fdpSlack이면 건너뜀 — 2A 판단 유지 · 207차 확인 요청)
   }
   function techLate(C, f, m) { if (on2(C) && m >= 60) drvPush(C, f, 'tec.defect', { m: 0, d: m }); }   // 지연은 이미 기존 경로가 적용(기본 선택지 = 더하지 않음)
   function mxLate(C, f, m) { if (on2(C) && m >= 30) drvPush(C, f, 'co.mxlate', { m: 0, d: m }); }
@@ -4992,7 +5705,7 @@ MG.ops2 = (function () {
   }
   function foldKeep(C, keep) { var o = C.ops2; if (o && o.flL) o.flL = o.flL.filter(function (_, i) { return keep[i]; }); }
   // pack: 상세 편 부록 P.ops2.flx[i](C.order 순서 = flpS와 1:1 · 없는 편 = '') · 브리핑(파생) 제외
-  var FLX = ['dl', 'jk', 'dvPlan', 'dv', 'dvWhy', 'dvHold', 'rtbT', 'dvPax', 'dvArr', 'dvFinT'];   // 상세 편의 2A 정본 칸 전부(205차 N205-01 — 2A-2f 대체 착륙·회항 · 없는 칸 = 생략 · 1단계 편 행은 그대로)
+  var FLX = ['dl', 'jk', 'dvPlan', 'dv', 'dvWhy', 'dvHold', 'rtbT', 'dvPax', 'dvArr', 'dvFinT', 'pmx', 'mxc', 'mxq', 'cs', 'cb'];   // 상세 편의 2A 정본 칸 전부(205차 N205-01 — 2A-2f 대체 착륙·회항 · 없는 칸 = 생략 · 1단계 편 행은 그대로) · pmx = 2B 계획 정비 운휴 표지(206차 N206-02) · mxc = 예비기 덮기로 맡긴 WO(206차 재확인 N206R-02)
   function packX(C, P) {   // ops2 부록이 아직 없어도 편 정본 칸(FLX)이 있으면 저장(205차 재확인 권고 1 — s2 끔 = 칸 없음 → 그대로)
     var o = {}, k; for (k in C.ops2 || {}) if (k !== 'brief') o[k] = C.ops2[k];
     var any = false, flx = C.order.map(function (id) { var f = C.fl[id], e = {}, n = 0; FLX.forEach(function (k) { if (f[k] != null) { e[k] = f[k]; n++; } }); if (!n) return ''; any = true; return MG.canon(e); });
@@ -5018,9 +5731,1182 @@ MG.ops2 = (function () {
     MG.ops._log(C, MG.M('ops2.pol.set.' + k + '.' + (k === 'comp' || k === 'cw' ? v : (v ? 1 : 0))), 'ev');
     return { ok: true };
   }
-  return { cxComp: cxComp, setPol: setPol, on: on, on2: on2, dlSync: dlSync, rotRoot: rotRoot, fix: fix, main: main, sub: sub, grp: grp, codes: codes, sparse: sparse, kpi: kpi, dayClose: dayClose, otpOf: otpOf, adhoc: adhoc, divOK: true, divDoneTry: divDoneTry, divDue: divDue, recDead: recDead, dueCheck: dueCheck, timed: timed, dvFinal: dvFinal, cgoFwd: cgoFwd, txRun: txRun, slotShift: slotShift, altPick: altPick, blocked: blocked, onLand: onLand, landT: landT, inAir: inAir, divArrive: divArrive, divPlanCommit: divPlanCommit, applyDiv: applyDiv, recArrive: recArrive, dvPlanMark: dvPlanMark, isFerry: isFerry, posCommit: posCommit, posCancel: posCancel, ferryOffer: ferryOffer, applyFry: applyFry, evtDec: evtDec, evtOpt: evtOpt, optOK: optOK, autoDec: autoDec, techLate: techLate, mxLate: mxLate, drvCheck: drvCheck, evtTargets: evtTargets, dlyOpts: dlyOpts, applyDly: applyDly, applyIrr: applyIrr, irrAbsorb: irrAbsorb, irrOn: irrOn, irrScan: irrScan, occTick: occTick, connNeed: connNeed, recoverMiss: recoverMiss, connCheck: connCheck, irrCheck: irrCheck, recover: recover, rqRun: rqRun, capLeft: capLeft, evtExtract: evtExtract, evtEffect: evtEffect, evtP: evtP, connIn: connIn,
+  return { cxComp: cxComp, setPol: setPol, on: on, on2: on2, kpiLeg: kpiLeg, dlSync: dlSync, rotRoot: rotRoot, fix: fix, main: main, sub: sub, grp: grp, codes: codes, sparse: sparse, kpi: kpi, dayClose: dayClose, otpOf: otpOf, adhoc: adhoc, divOK: true, divDoneTry: divDoneTry, divDue: divDue, recDead: recDead, dueCheck: dueCheck, timed: timed, dvFinal: dvFinal, cgoFwd: cgoFwd, txRun: txRun, slotShift: slotShift, altPick: altPick, blocked: blocked, onLand: onLand, landT: landT, inAir: inAir, divArrive: divArrive, divPlanCommit: divPlanCommit, applyDiv: applyDiv, recArrive: recArrive, dvPlanMark: dvPlanMark, isFerry: isFerry, posCommit: posCommit, posCancel: posCancel, ferryOffer: ferryOffer, applyFry: applyFry, evtDec: evtDec, evtOpt: evtOpt, optOK: optOK, autoDec: autoDec, techLate: techLate, mxLate: mxLate, drvCheck: drvCheck, evtTargets: evtTargets, dlyOpts: dlyOpts, applyDly: applyDly, applyIrr: applyIrr, irrAbsorb: irrAbsorb, irrOn: irrOn, irrScan: irrScan, occTick: occTick, connNeed: connNeed, recoverMiss: recoverMiss, connCheck: connCheck, irrCheck: irrCheck, recover: recover, rqRun: rqRun, capLeft: capLeft, evtExtract: evtExtract, evtEffect: evtEffect, evtP: evtP, connIn: connIn,
            capHr: capHr, waitMin: waitMin, hotelCost: hotelCost, rebookCost: rebookCost, paxOn: paxOn, svcOK: svcOK,
            brief: brief, dayOpen: dayOpen, logRow: logRow, fold: fold, foldKeep: foldKeep, packX: packX, unpackX: unpackX, pol: function (C) { return on(C) ? S(C).pol : null; } };
+})();
+
+/* ===== 경영 모드 2단계 2B · mg_mx2.js — 정비(M&E): 정비 프로그램 · C 체크 3중 한도 · 정비 계획안 · 외주 MRO · 자사 격납고 · 긴급 외주
+   (경계 계약 v3 2-1 ②·2-4·3-1·3-3·4-2 · 메모 v4 4-1·4-2·15-7 R185-04·15-9 · 구현 계획 2B-a·2B-b)
+   · s2 끔 캠페인: 첫 줄에서 돌아감 — 객체·키·난수 0(V1·V2) · data.mx2.off = 시험 전용 끔(데이터만 · 저장 안 됨)
+   · 안전 원칙: 한도(달력·FH·FC) 도달 = 운항 차단(선택지 아님) · 플레이어가 정하는 것 = 언제·어디서(창 배치·업체·예비기) · 비용 */
+MG.mx2 = (function () {
+  function X() { return MG.data.mx2; }
+  function B() { return MG.data.base; }
+  function can(C) { return !!(MG.s2 && MG.s2.on(C) && X() && !X().off && C.cal !== '30d'); }   // 2B를 시작할 수 있는 캠페인(새 캠페인 start만 씀)
+  // 206차 N206-01: 2B = 새 캠페인 시작(start) 때 상태를 다 만든 캠페인만 · 2B 이전 판의 2단계 저장본(C.mx2 없음) = 정비 프로그램 없이 계속(화면 안내 · 검사·정비비 분리 모두 꺼짐 — 과거 사용량을 지금 FH로 덮어 새 기준점을 만들지 않음)
+  function on(C) { return can(C) && !!C.mx2; }
+  function M(k, p) { return MG.M(k, p); }
+  function today(C) { return MG.tz.local(C.t, C.hqTz).date; }
+  function dayT(C, d) { return MG.tz.dayStart(d, C.hqTz); }
+  function addMonths(d, n) {   // 'YYYY-MM-DD' + n개월(말일 넘침 = 그달 말일)
+    var y = +d.slice(0, 4), m = +d.slice(5, 7) - 1 + n, dd = +d.slice(8, 10);
+    y += Math.floor(m / 12); m = ((m % 12) + 12) % 12;
+    var last = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+    return y + '-' + MG.tz.p2(m + 1) + '-' + MG.tz.p2(Math.min(dd, last));
+  }
+  function daysBetween(a, b) { return Math.round((Date.UTC(+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(8, 10)) - Date.UTC(+a.slice(0, 4), +a.slice(5, 7) - 1, +a.slice(8, 10))) / 86400000); }
+  function S(C) { return C.mx2; }   // 2B 상태(조회 · 쓰기 없음 — 206차 N206-01: 만드는 곳 = start 하나)
+  function init(C) {   // 새 캠페인 시작 때 한 번: 필요한 칸 전부(화면·조회가 칸을 만들지 않게)
+    return C.mx2 = { prog: {}, wo: [], bk: {}, plans: {}, warn: {}, seq: 0, mode: modeOf(C),   // bk = MRO 슬롯 사용 수 [업체:시즌:기종] · plans = 계획안 낸 시즌 · warn = 경고 낸 기체·회차·남은 날
+      inv: { days: X().inv.def, pool: null, per: Math.round(MG.data.fin.opening.inventory / X().inv.def), n: 0 }, mel: [], mseq: 0 };
+  }
+  // 계획안 운영 방식(구현 판단 5): mx.planning은 2E 부서 → 2B는 개시 운영 방식 규칙(프리셋 문자열/맵 · fixed = 자동)을 그대로 적용
+  function modeOf(C) {
+    var m = C.org && C.org.modes && C.org.modes['mx.line'];
+    var pid = C.scenario && C.scenario.preset, ps = pid && MG.data.org.presets ? MG.data.org.presets.filter(function (p) { return p.id === pid; })[0] : null, mm = ps ? ps.modes : null;
+    var v = mm == null ? (m || 'assist') : typeof mm === 'string' ? mm : (mm['mx.planning'] || mm['*'] || 'assist');
+    return v === 'fixed' ? 'auto' : v === 'manual' || v === 'auto' ? v : 'assist';
+  }
+  function lim(type) { return X().c[type]; }
+  function air(C, f) { var ty = B().types[f.type]; return f.block - ty.taxiOut - ty.taxiIn; }
+  // 기체별 정비 프로그램 — 개시 기체 = 경과값 표 · 그 밖(인도 예정·새로 들어온 기체) = 0에서 · pbh0 = 조건 A 월 FH 기준점(만들 때부터 · 206차 N206-03)
+  //   last(지난 C 체크일 = 달력 한도 기준) = 인도 전 기체는 비워 두고 인도 뒤 처음 엔진이 볼 때(영업일 마감·출발 검사) 그날로
+  function mkP(C, reg) {
+    var T = C.tails[reg], ini = !T.fleet && !T.spare ? X().init[reg] : null;
+    var p = ini ? { last: addMonths(B().start, -ini.mo), fh0: T.fh - ini.fh * 60, fc0: T.fc - ini.fc, efh0: T.fh - ini.efh * 60, n: 0, en: 0 }
+                : { last: T.status === 'delivery' ? null : today(C), fh0: T.fh, fc0: T.fc, efh0: T.fh, n: 0, en: 0 };
+    p.ek = X().engK[T.type] || 'B'; p.pbh0 = T.fh;
+    return p;
+  }
+  function PE(C, reg, d) {   // 엔진 쓰기 경계 전용(시작 · 영업일 마감 · 출발 검사 · 창 · 플레이어 조작): 없으면 만들고 인도 뒤 last를 채움
+    var o = S(C), p = o.prog[reg] || (o.prog[reg] = mkP(C, reg));
+    if (p.last == null && C.tails[reg].status !== 'delivery') p.last = d || today(C);
+    return p;
+  }
+  function P(C, reg) { return (C.mx2 && C.mx2.prog[reg]) || null; }   // 조회(화면) — 쓰기 없음
+  function ensureAll(C, d) { Object.keys(C.tails).sort().forEach(function (r) { var T = C.tails[r]; if (X().c[T.type] && T.status !== 'returned') PE(C, r, d); }); }
+  // 하루 사용(FH 분·FC) — 앞으로 14일 생성된 그 기체 편(없으면 기준 이용률)
+  function rate(C, reg) {
+    var T = C.tails[reg], a = 0, n = 0, t0 = C.t, t1 = C.t + 14 * 1440;
+    (C.byTail[reg] || []).forEach(function (id) { var f = C.fl[id]; if (!f || f.std < t0 || f.std >= t1 || f.state === 'CNL') return; a += air(C, f); n++; });
+    if (!n) { var r = X().ref[T.type]; return { fh: r.fhYr * 60 / 365, fc: r.fhYr / 365 / 1.5 }; }
+    return { fh: a / 14, fc: n / 14 };
+  }
+  // C 체크 한도: 달력 만기일(그날 0시 = 운항 불가) · 남은 FH·FC · 예상일(먼저 닿는 것)
+  function due(C, reg) {   // 조회(쓰기 없음): 프로그램이 아직 없거나 인도 직후면 만들 값으로 계산만
+    var T = C.tails[reg], p = P(C, reg) || mkP(C, reg), L = lim(T.type), r = rate(C, reg), td = today(C);
+    var cal = addMonths(p.last || td, L.mo), fhL = L.fh - (T.fh - p.fh0), fcL = L.fc ? L.fc - (T.fc - p.fc0) : null;
+    var dFh = r.fh > 0 ? MG.tz.addDays(td, Math.max(0, Math.floor(fhL / r.fh))) : null, dFc = fcL != null && r.fc > 0 ? MG.tz.addDays(td, Math.max(0, Math.floor(fcL / r.fc))) : null;
+    var by = 'mo', d = cal;
+    if (dFh && dFh < d) { d = dFh; by = 'fh'; }
+    if (dFc && dFc < d) { d = dFc; by = 'fc'; }
+    return { cal: cal, calT: dayT(C, cal), fhL: fhL, fcL: fcL, date: d, by: by, left: daysBetween(td, d) };
+  }
+  /* ---------- 안전 차단(계약 4-2: 기존 검사 뒤 — C 한도 → 엔진 한도 → MEL) · 예비기에도 같은 함수(trySwap) ---------- */
+  function blockWhy(C, f, T, t) {
+    if (!on(C) || !T || !X().c[T.type]) return null;
+    var p = PE(C, T.reg), L = lim(T.type), a = air(C, f), cal = addMonths(p.last, L.mo);
+    if (f.eta >= dayT(C, cal)) return [M('mx2.blk.cal', { reg: T.reg, d: cal }), false, 'C'];
+    if (T.fh - p.fh0 + a > L.fh) return [M('mx2.blk.fh', { reg: T.reg, left: Math.max(0, Math.round((L.fh - (T.fh - p.fh0)) / 60)) }), false, 'C'];
+    if (L.fc && T.fc - p.fc0 + 1 > L.fc) return [M('mx2.blk.fc', { reg: T.reg, left: Math.max(0, L.fc - (T.fc - p.fc0)) }), false, 'C'];
+    var E = X().eng[T.type]; if (E && T.fh - p.efh0 + a > E.fh) return [M('mx2.blk.eng', { reg: T.reg }), false, 'ENG'];   // 엔진 한도(계약 4-2 순서: C → 엔진)
+    var ms = melOpenOf(C, T.reg), dep = Math.max(t, f.etd);   // MEL(계약 4-2-1): 기한 = 출발 시각(실제 · 지연 포함) < dueT · 운항 제한 불일치
+    for (var i = 0; i < ms.length; i++) if (dep >= ms[i].dueT) return [M('mx2.blk.mel', { reg: T.reg, it: M('mx2.mel.' + ms[i].item) }), false, 'MEL'];
+    for (var j = 0; j < ms.length; j++) if (!limOK(C, ms[j].lim, f)) return [M('mx2.blk.mlim', { reg: T.reg, it: M('mx2.mel.' + ms[j].item), lim: M('mx2.lim.' + ms[j].lim) }), false, 'MEL'];
+    return null;
+  }
+  /* ---------- 창(작업지시 WO) ---------- */
+  function cost(C, type, at, emg) {
+    var c = X().c[type].cost;
+    if (at === 'OWN') return Math.round(c * X().hangar.mat);
+    var m = X().mro[at]; return Math.round(c * m.k * m.fx * (emg ? X().emerg.k : 1));
+  }
+  function days(C, type, at) { return at === 'OWN' ? X().hangar.days : X().c[type].mro + X().mro[at].ferry * 2; }
+  function seasonOf(d) { var y = +d.slice(0, 4), s = MG.skd.seasonStarts(y), p = MG.skd.seasonStarts(y - 1); if (d >= s[1]) return 'W' + (y % 100); if (d >= s[0]) return 'S' + (y % 100); return 'W' + ((y - 1) % 100); }
+  function seasonRange(id) { var w = id[0] === 'W', y = 2000 + +id.slice(1), a = MG.skd.seasonStarts(y), b = MG.skd.seasonStarts(y + 1); return w ? { start: a[1], end: MG.tz.addDays(b[0], -1) } : { start: a[0], end: MG.tz.addDays(a[1], -1) }; }
+  function nextSeason(d) { var id = seasonOf(d), r = seasonRange(id); return seasonOf(MG.tz.addDays(r.end, 1)); }
+  function woOf(C, reg, what) { return S(C).wo.filter(function (w) { return w.reg === reg && w.what === what && w.st !== 'done' && w.st !== 'cnl'; }); }
+  /* ---------- 예비기 덮기(206차 N206-05): 계획 때 실제로 투입할 수 있는 예비기만 — 창 안 편을 그 예비기에 미리 배정(예약 = 배정 자체 · trySwap도 이 예비기를 다른 데 쓰지 않음)
+     조건: 같은 기종 · 상태 spare · 본기체와 같은 기지 · 그 기간 다른 덮기·자기 정비 창(2B WO·1단계 정비 창) 없음 · 자기 편과 겹침 없음 · 자기 한도(C 체크 예상일·엔진 남은 FH·MEL 기한)가 창 끝 뒤
+     · 창 안 편 줄 = 앞뒤가 예비기 위치와 이어짐(첫 편 출발 = 예비기 기지 · 끝 편 도착 = 창 뒤 본기체 다음 편 출발) — 못 맞추면 덮기 없음 → 계획 운휴(판매 중지·환불) */
+  function live(w) { return w.st === 'plan' || w.st === 'on'; }
+  function pre(g) { return !!g && (g.state === 'SCH' || g.state === 'BRD') && g.aobt == null; }   // 출발 전 편(206차 재확인2 N206S-01): 탑승 준비 BRD 포함 · 밀어내기(AOBT) 뒤·AIR·ARR·CNL·HOLD = 손대지 않음
+  function inWin(C, reg, a, b) { return (C.byTail[reg] || []).map(function (id) { return C.fl[id]; }).filter(function (g) { return g && g.state === 'SCH' && g.std < b && g.eta > a; }).sort(function (x, y) { return x.std - y.std; }); }
+  function spareOK(C, R, T, a, b, list, not) {
+    var Sp = C.tails[R]; if (!Sp || Sp.type !== T.type || Sp.status !== 'spare' || Sp.base !== T.base || !X().c[Sp.type]) return false;
+    if (S(C).wo.some(function (w) { return w !== not && live(w) && w.start < b && w.end > a && (w.cover === R || w.reg === R); })) return false;
+    if ((C.mxWindows || []).some(function (m) { return m.tail === R && m.state !== 'done' && m.start < b && m.end > a; })) return false;
+    var mine = (C.byTail[R] || []).map(function (id) { return C.fl[id]; }).filter(function (g) { return g && g.state !== 'CNL' && g.state !== 'ARR'; });
+    if (mine.some(function (g) { return g.std < b && g.eta > a; })) return false;
+    var d = due(C, R); if (d.date <= MG.tz.local(b, C.hqTz).date) return false;
+    var need = list.reduce(function (s, g) { return s + air(C, g); }, 0), el = engLeftOf(C, R); if (el != null && el <= need) return false;
+    if (d.fhL <= need || (d.fcL != null && d.fcL <= list.length)) return false;
+    if (melOpenOf(C, R).some(function (m) { return m.dueT <= b; })) return false;
+    if (list.length) {
+      if (!fitOK(C, R, list)) return false;                                                     // 206차 재확인 N206R-01: 실제 위치·준비 시각·턴·앞뒤 이어짐
+      var after = (C.byTail[T.reg] || []).map(function (id) { return C.fl[id]; }).filter(function (g) { return g && g.state === 'SCH' && g.std >= b; }).sort(function (x, y) { return x.std - y.std; })[0];
+      if (after && list[list.length - 1].to !== after.from) return false;
+    }
+    return true;
+  }
+  // 투입 가능 검사 하나(계획 spareOK · 생성 coverAdd · 마감 coverCheck 공통 — 206차 재확인 N206R-01)
+  //   예비기의 그 줄 직전 위치 = 앞 편(취소·이 줄 제외)의 도착지 · 없으면 실제 위치 Sp.loc(행정 기지 base로 대신하지 않음)
+  //   준비 = 앞 편 도착 + 턴 · 없으면 Sp.readyT · 줄 안 편끼리 이어짐(도착지 = 다음 출발지 · 도착 + 턴 ≤ 다음 출발) · 줄 뒤 예비기 자기 편과도 이어짐
+  function fitOK(C, R, list) {
+    var Sp = C.tails[R]; if (!Sp || !list.length) return !!Sp;
+    var tn = MG.org ? MG.org.turnOf(C, Sp.type) : B().types[Sp.type].turn, ids = {}; list.forEach(function (g) { ids[g.id] = 1; });
+    var mine = (C.byTail[R] || []).map(function (id) { return C.fl[id]; }).filter(function (g) { return g && !ids[g.id] && g.state !== 'CNL' && g.state !== 'HOLD'; });
+    var f0 = list[0], fz = list[list.length - 1];
+    if (mine.some(function (g) { return list.some(function (x) { return g.std < x.eta + tn && g.eta + tn > x.std; }); })) return false;   // 자기 편과 겹침(턴 포함)
+    var prev = mine.filter(function (g) { return g.std < f0.std; }).sort(function (x, y) { return y.std - x.std; })[0];
+    var pos = prev ? (prev.state === 'ARR' ? (prev.dv || prev.to) : prev.to) : Sp.loc, rdy = prev ? (prev.aibt != null ? prev.aibt : prev.eta) + tn : (Sp.readyT || 0);
+    if (!pos || pos !== f0.from || rdy > f0.std) return false;
+    for (var i = 1; i < list.length; i++) if (list[i - 1].to !== list[i].from || list[i - 1].eta + tn > list[i].std) return false;
+    var next = mine.filter(function (g) { return g.std >= fz.std; }).sort(function (x, y) { return x.std - y.std; })[0];
+    if (next && (next.from !== fz.to || fz.eta + tn > next.std)) return false;
+    return true;
+  }
+  function spareFree(C, T, a, b, list, not) {
+    if (!C.org || !C.org.spares) return null;
+    return C.org.spares.slice().sort().filter(function (r) { return spareOK(C, r, T, a, b, list, not); })[0] || null;
+  }
+  function reserved(C, R, a, b) { return !!(on(C) && C.mx2.wo.some(function (w) { return w.cover === R && live(w) && w.start < b && w.end > a; })); }   // mg_org trySwap 한 줄: 덮기로 잡힌 예비기 = 다른 대체 투입에 안 씀
+  function coverAdd(C, w, f) {   // 생성된 편 하나를 덮는 예비기에 배정(같은 투입 가능 검사 fitOK) — 못 하면 덮기 해제 = 그 WO가 맡긴 미출발 편 + 지금 생성 중인 편을 함께 재평가(uncover · 206차 재확인2 N206S-02) · 늘 처리 끝(onGen이 다시 cut하지 않음)
+    var R = w.cover, Sp = C.tails[R], ok = !!(Sp && Sp.status === 'spare' && Sp.type === f.type) && fitOK(C, R, [f]);
+    if (ok) ok = !(C.mxWindows || []).some(function (m) { return m.tail === R && m.state !== 'done' && m.start < f.eta && m.end > f.std; })
+      && due(C, R).date > MG.tz.local(f.eta, C.hqTz).date && !melOpenOf(C, R).some(function (m) { return m.dueT <= f.eta; });
+    if (ok) { var el = engLeftOf(C, R); if (el != null && el <= air(C, f)) ok = false; }
+    if (ok) { f.mxc = w.id; MG.ops._reassign(C, f.id, R); return 'cover'; }
+    return uncover(C, w, f);
+  }
+  // 덮기 해제(206차 재확인 N206R-02): 그 WO가 예비기에 맡긴 미출발 편(f.mxc = WO id) 전체 → 다른 예비기로 다시 덮을 수 있으면 옮기고, 아니면 원 기체로 되돌려 계획 운휴(판매 중지·환불)
+  //   이미 출발·도착한 편은 그대로 · 출발 전 = SCH·BRD(AOBT 없음 — pre) · 환불 실패 편 = 재시도 담당 f.mxq(cut이 남김)로 영업일 마감 retryCuts가 다시 처리
+  //   gen = 지금 생성 중인 편(206차 재확인2 N206S-02: 함께 재평가 — 다른 예비기로 옮기면 같이 옮기고, 운휴면 같이 운휴) · 안내 = 결과에 따라 한 번(권고 2: 교체 성공 coverNew / 운휴 coverLost)
+  //   결과: 'new' = 다른 예비기로 옮김 · 'cut' = 원 기체로 계획 운휴
+  function covered(C, w) { return C.order.map(function (id) { return C.fl[id]; }).filter(function (g) { return g && g.mxc === w.id; }); }
+  function uncover(C, w, gen) {
+    var T = C.tails[w.reg], left = covered(C, w).filter(pre), old = w.cover;
+    if (gen && left.indexOf(gen) < 0) left.push(gen);
+    left.sort(function (x, y) { return x.std - y.std || (x.id < y.id ? -1 : x.id > y.id ? 1 : 0); });
+    w.cover = null;
+    if (!left.length) { MG.ops._log(C, M('mx2.log.coverLost0', { reg: w.reg, sp: old || '' }), 'ev'); return 'cut'; }
+    var nv = spareFree(C, T, w.start, w.end, left, w);
+    if (nv && nv !== old) { w.cover = nv; left.forEach(function (g) { g.mxc = w.id; MG.ops._reassign(C, g.id, nv); }); MG.ops._log(C, M('mx2.log.coverSwap', { reg: w.reg, old: old || '', sp: nv }), 'ev'); return 'new'; }   // 키 coverSwap(206차 재확인3) — 이전 판 기록의 coverNew(old 칸 없음)는 옛 문장 그대로
+    MG.ops._log(C, M('mx2.log.coverLost', { reg: w.reg, sp: old || '', fn: left[0].fn }), 'ev');
+    left.forEach(function (g) { delete g.mxc; MG.ops._reassign(C, g.id, w.reg); cut(C, g, w); });
+    return 'cut';
+  }
+  // 영업일 마감(206차 재확인 N206R-02): 덮기 중인 창 = 예비기 상태·남은 맡긴 편의 투입 가능을 다시 확인 → 안 되면 덮기 해제
+  function coverCheck(C) {
+    C.mx2.wo.forEach(function (w) {
+      if (!live(w) || !w.cover) return;
+      var Sp = C.tails[w.cover], left = covered(C, w).filter(pre).sort(function (x, y) { return x.std - y.std; });
+      if (!Sp || Sp.status !== 'spare' || (left.length && !fitOK(C, w.cover, left))) uncover(C, w, null);   // 안내 = uncover가 결과대로
+    });
+  }
+  function slotFree(C, at, sid, type) { if (at === 'OWN') return true; return (S(C).bk[at + ':' + sid + ':' + type] || 0) < X().mro[at].slots[type]; }
+  function ownFree(C, a, b) { var h = S(C).hangar; if (!h || !h.open) return false; return !S(C).wo.some(function (w) { return w.at === 'OWN' && w.st !== 'done' && w.st !== 'cnl' && w.start < b && w.end > a; }); }
+  // 창 확정(커밋 하나): planMx 큐 · WO 줄 · 슬롯 사용 · 예비기 덮기 또는 계획 운휴(그 기간 편 = 판매 전 결항 · 지표 밖)
+  function commit(C, x, why) {
+    var wt = x.what || 'C', o = S(C), T = C.tails[x.reg], sb = /^SB:/.test(wt) ? sbOf(T.type, wt.slice(3)) : null, dur = wt === 'ENG' ? X().eng[T.type].swap : sb ? 1 : days(C, T.type, x.at), start = dayT(C, x.date), end = start + dur * 1440;
+    if (woOf(C, x.reg, wt).length) return { ok: false, why: M('mx2.why.dup', { reg: x.reg }) };
+    var sid = seasonOf(x.date);
+    if (wt === 'C' && !x.emg && !slotFree(C, x.at, sid, T.type)) return { ok: false, why: M('mx2.why.slot', { at: atName(x.at), s: sName(sid) }) };
+    if (x.at === 'OWN' && !ownFree(C, start, end)) return { ok: false, why: M('mx2.why.own') };
+    var mw = MG.ops.planMx(C, x.reg, wt, start, dur * 1440); if (!mw) return { ok: false, why: M('mx2.why.dup', { reg: x.reg }) };
+    var list = inWin(C, x.reg, start, end), cv = x.emg ? null : spareFree(C, T, start, end, list, null), n = ++o.seq;
+    var w = { id: mw.id, no: n, reg: x.reg, what: wt, at: x.at, date: x.date, start: start, end: end, days: dur, cost: wt === 'ENG' ? 0 : sb ? sb.cost : cost(C, T.type, x.at, x.emg), st: 'plan', emg: !!x.emg, by: why || 'plan', cover: cv, season: sid, cyc: sb ? 1 : (wt === 'ENG' ? PE(C, x.reg).en : PE(C, x.reg).n) + 1 };
+    o.wo.push(w);
+    if (wt === 'C' && x.at !== 'OWN' && !x.emg) { var bk = x.at + ':' + sid + ':' + T.type; o.bk[bk] = (o.bk[bk] || 0) + 1; MG.ledger.mark(C, 's2:mro:' + x.at + ':' + sid + ':' + n); }
+    if (cv) list.forEach(function (f) { f.mxc = w.id; MG.ops._reassign(C, f.id, cv); });   // 덮기 = 창 안 편을 예비기에 배정(실제 투입 조건을 확인한 줄 · f.mxc = 맡긴 WO — 덮기 해제 때 추적)
+    else list.forEach(function (f) { cut(C, f, w); });
+    MG.ops._log(C, M((wt === 'ENG' ? 'mx2.log.e' : sb ? 'mx2.log.sb' : 'mx2.log.') + (cv ? 'cover' : 'cut'), { reg: x.reg, at: atName(x.at), d: x.date, n: dur, sp: cv || '' }), 'ev');
+    return { ok: true, w: w };
+  }
+  function atName(at) { return M('mx2.at.' + at); }
+  function sName(sid) { return M('mx2.sid.' + sid[0], { y: 2000 + +sid.slice(1) }); }   // W27 → 2027년 겨울 시즌(IATA 시즌 약호를 풀어 씀)
+  // 계획 운휴: 판매 전(생성 때) 또는 승인 때 이미 생성된 편 → 결항(지표 밖 f.pmx · 이미 판 좌석 = 1단계·2A 복구 경로 그대로) · 긴급 = 지표 안(계획 아님)
+  function cut(C, f, w) {
+    var why = M((w.emg ? 'mx2.cause.emg' : 'mx2.cause.pmx') + (w.what === 'ENG' ? 'E' : /^SB:/.test(w.what) ? 'S' : ''), { reg: w.reg });
+    if (w.emg) { MG.ops._cancel(C, f, why, 'MX'); return true; }   // 긴급 = 비정상(지표 안 · 2A 복구)
+    // 계획 = 일정 변경: 판매 중지(noSale) + 이미 판 좌석 환불(1단계 환불 경로 — 2A 비정상 복구 대기열에 넣지 않음) · 지표 밖(f.pmx — 저장 칸 FLX)
+    //   206차 N206-07: 환불 = 원자 커밋(2A txRun — 예약·색인·fin·시장·분개·키·잔액) · 실패면 편은 SCH 그대로(표지 없음) → 영업일 마감의 재시도(retryCuts)가 다시 함
+    f.pmx = w.id; f.mxq = w.id;   // mxq = 계획 운휴 재시도 담당(206차 재확인2 N206S-02 — 저장 칸 FLX · 덮기 상태·시각과 따로) · 성공 때 지움
+    var bids = C.fin ? (C.fin.bkFk[f.id] || []).map(function (x) { return x[0]; }).filter(function (v, i, a) { return a.indexOf(v) === i; }) : [];
+    var r = !bids.length || !MG.fin || !C.fin ? { ok: true } : MG.ops2 && MG.ops2.txRun ? MG.ops2.txRun(C, bids, [f.id], function () { MG.fin.refundFlight(C, f); }) : (MG.fin.refundFlight(C, f), { ok: true });
+    if (!r.ok) { delete f.pmx; MG.ops._log(C, M('mx2.log.rfFail', { fn: f.fn, reg: w.reg }), 'ev'); return false; }
+    delete f.mxq; f.state = 'CNL'; f.cause = why; f.cc = 'MX';
+    if (C.slot && MG.slot) MG.slot.onCancel(C, f, why);
+    MG.ops._log(C, M('ops.cancel', { fn: f.fn, why: why }), 'ev');
+    if (!bids.length && MG.fin && C.fin && C.fin.bkFk[f.id]) MG.fin.refundFlight(C, f);   // (방어) 커밋 중 생긴 색인
+    return true;
+  }
+  // 영업일 마감 재시도(206차 재확인2 N206S-01·02): ① 덮기 없는 창 = 남은 맡긴 편을 원 기체로 · 창 안 출발 전 편(SCH·BRD · 지연 편 포함 — 원 STD 지남과 무관)에 재시도 담당 표지
+  //   ② 재시도 담당 표지(f.mxq) 편 = WO의 덮기 상태와 상관없이 다시 계획 운휴(환불 원자 경로) · 출발했거나 이미 결항·WO 끝남/취소 = 표지만 지움
+  function woById(C, id) { for (var i = 0; i < C.mx2.wo.length; i++) if (C.mx2.wo[i].id === id) return C.mx2.wo[i]; return null; }
+  function retryCuts(C) {
+    C.mx2.wo.forEach(function (w) { if (!live(w) || w.emg) return;
+      if (!w.cover) covered(C, w).forEach(function (g) { if (pre(g)) { delete g.mxc; MG.ops._reassign(C, g.id, w.reg); g.mxq = w.id; } });
+      // 본기체에 남은 창 안 출발 전 편 = 덮기 상태와 상관없이 담당(206차 재확인3 — 이전 판 저장본: 환불 실패 편에 mxq 없음 · WO는 다른 예비기로 덮인 채)
+      //   덮인 창에서는 정상 편이 모두 예비기에 있으므로 본기체에 남은 편 = 정리 못 한 편뿐
+      (C.byTail[w.reg] || []).forEach(function (id) { var g = C.fl[id]; if (pre(g) && !g.pmx && g.mxc !== w.id && g.std < w.end && g.eta > w.start) g.mxq = w.id; }); });
+    C.order.forEach(function (id) { var g = C.fl[id]; if (!g || g.mxq == null) return; var w = woById(C, g.mxq);
+      if (!pre(g) || !w || !live(w) || w.emg) { delete g.mxq; return; }
+      if (g.mxc === w.id) { delete g.mxq; return; }   // 다시 덮인 편(다른 예비기로 옮김) = 운휴 아님
+      if (g.tail !== w.reg) MG.ops._reassign(C, g.id, w.reg);
+      cut(C, g, w); });
+  }
+  // 판매 중지(시장 판매 후보 · MG.fin.canSell 한 줄): 계획 운휴 창에 걸리는 leg·날짜 — s2 끔 = false
+  function noSale(C, L, depDate) {
+    if (!C.mx2 || !C.mx2.wo.length || !on(C)) return false;
+    var ws = C.mx2.wo; for (var i = 0; i < ws.length; i++) { var w = ws[i]; if (w.reg !== L.tail || w.cover || w.emg || !live(w)) continue;
+      var t = MG.tz.toUTC(depDate, L.stdLocal, MG.data.base.airports[L.from].tz).t; if (t < w.end && t + L.block > w.start) return true; }
+    return false;
+  }
+  function onGen(C, f) {   // genLeg 끝(편 생성 직후 · 판매 전): 창 안 편 = 덮는 예비기에 배정(가능할 때) 또는 계획 운휴
+    if (!on(C)) return;
+    var w = C.mx2.wo.filter(function (w) { return w.reg === f.tail && live(w) && f.std < w.end && f.eta > w.start; })[0];
+    if (!w) return;
+    if (w.cover) { coverAdd(C, w, f); return; }   // 덮기 · 또는 uncover가 생성 중인 편까지 함께 처리(206차 재확인2 N206S-02 — 두 번 cut 없음)
+    cut(C, f, w);
+  }
+  /* ---------- 큐 사건(창 시작·끝 — mg_ops mx-start/mx-end 한 줄) ---------- */
+  function wOf(C, q) { if (!C.mx2) return null; return C.mx2.wo.filter(function (w) { return w.reg === q.tail && w.what === q.what && w.st !== 'cnl' && (w.st !== 'done'); }).sort(function (a, b) { return a.start - b.start; })[0] || null; }
+  function kp(w) { return /^SB:/.test(w.what) ? 's2:sb:' + w.reg + ':' + w.what.slice(3) : (w.what === 'ENG' ? 's2:eng:' : 's2:c:') + w.reg + ':' + w.cyc; }
+  function mine(q) { return q.what === 'C' || q.what === 'ENG' || /^SB:/.test(q.what); }
+  function mxStart(C, q, t) {
+    if (!on(C) || !mine(q)) return;
+    var w = wOf(C, q); if (!w || !MG.ledger.mark(C, kp(w) + ':start')) return;
+    w.st = 'on';
+    if (w.what === 'ENG') { engStart(C, w); return; }
+    if (/^SB:/.test(w.what) && w.cost > 0 && C.fin) { MG.fin.addObl(C, { id: 'mx2:' + w.id, kind: 'mx2', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.sb', { reg: w.reg, id: w.what.slice(3) }), state: 'committed', inst: [{ no: 1, due: MG.tz.local(w.end, C.hqTz).date, amt: w.cost, st: 'S' }] }); return; }
+    if (w.cost > 0 && C.fin) MG.fin.addObl(C, { id: 'mx2:' + w.id, kind: 'mx2', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.c', { reg: w.reg, at: atName(w.at) }), state: 'committed',
+      inst: [{ no: 1, due: MG.tz.local(w.end, C.hqTz).date, amt: w.cost, st: 'S' }] });   // 창 시작 때 지급 의무(계약 4-2) · 지급일 = 창 종료일(계획 판단 1)
+  }
+  function mxEnd(C, q, t) {
+    if (!on(C)) return;
+    if (/^MEL:/.test(q.what)) { melFix(C, q.what.slice(4)); return; }
+    if (!mine(q)) return;
+    var w = wOf(C, q); if (!w || !MG.ledger.mark(C, kp(w))) return;
+    if (/^SB:/.test(w.what)) { var ps = PE(C, w.reg); (ps.sb || (ps.sb = [])).push(w.what.slice(3)); w.st = 'done'; MG.ops._log(C, M('mx2.log.sbdone', { reg: w.reg, id: w.what.slice(3) }), 'ev'); return; }
+    var T = C.tails[w.reg], p = PE(C, w.reg);
+    if (w.what === 'ENG') { p.efh0 = T.fh; p.en = w.cyc; p.shopT = w.start + X().eng[T.type].shop * 1440; w.st = 'done'; MG.ops._log(C, M('mx2.log.edone', { reg: w.reg, k: M('mx2.ek.' + p.ek) }), 'ev'); return; }   // 206차 N206-04: 기체 교환(2일) 끝 ≠ 엔진 정비소(60일) 끝 — shopT까지 계약 변경 보류
+    p.last = today(C); p.fh0 = T.fh; p.fc0 = T.fc; p.n = w.cyc; w.st = 'done';
+    MG.ops._log(C, M('mx2.log.cdone', { reg: w.reg, at: atName(w.at) }), 'ev');
+  }
+  /* ---------- 긴급 외주(계획 없이 한도 도달 — 차단 뒤) ---------- */
+  function onBlock(C, reg, kind, t) {
+    if (on(C) && kind === 'MEL') { melRepair(C, reg, true); return; }
+    if (!on(C) || (kind !== 'C' && kind !== 'ENG') || woOf(C, reg, kind).length) return;
+    var g = MG.rand.r(C, 'mx2emg', reg + ':' + kind + ':' + (kind === 'ENG' ? PE(C, reg).en : PE(C, reg).n)), E = X().emerg, W = kind === 'ENG' ? X().engWait : E.wait, wait = W[0] + Math.floor(g * (W[1] - W[0] + 1));
+    var r = commit(C, { reg: reg, what: kind, at: kind === 'ENG' ? 'LINE' : 'SKR', date: MG.tz.addDays(today(C), wait), emg: true }, 'emg');
+    if (!r.ok) return;
+    var w = r.w; (C.byTail[reg] || []).slice().forEach(function (id) { var f = C.fl[id]; if (f && f.state === 'SCH' && f.std >= t && f.std < w.start) cut(C, f, w); });   // 기다리는 동안도 비행 불가(한도 넘음)
+    MG.ops._raise(C, { kind: 'mxemg', id: 'mxemg:' + w.id, title: M(kind === 'ENG' ? 'mx2.emgE.title' : 'mx2.emg.title', { reg: reg }), body: M(kind === 'ENG' ? 'mx2.emgE.body' : 'mx2.emg.body', { reg: reg, d: w.date, n: w.days, v: w.cost }), opts: [{ id: 'ok', label: M('ui.ok') }] });
+  }
+  /* ---------- 정비 계획안(시즌 시작 120일 전 · 개시 = 지금 시즌) ---------- */
+  function offPeak(C, d) { var s = MG.data.fin.season, fm = MG.cal.per(C, d).fm; return s[fm] < X().offPeak; }
+  // 기체 하나의 창 후보: 업체마다 [가장 이른 날(리드타임), 한도 − 기간 − 1일] 안에서 늦은 비수기 날 → 없으면 가장 늦은 날 · 고르기 = 비수기 → 비용 → 늦은 날
+  function pick(C, reg, until, used) {
+    var T = C.tails[reg], td = today(C), best = null;
+    var ats = Object.keys(X().mro).concat(S(C).hangar && S(C).hangar.open ? ['OWN'] : []);
+    ats.forEach(function (at) {
+      var dur = days(C, T.type, at), lead = at === 'OWN' ? 14 : X().mro[at].lead, lo = MG.tz.addDays(td, lead), hi = MG.tz.addDays(until, -dur - 1), got = null, gotOff = false;
+      for (var d = hi; d >= lo; d = MG.tz.addDays(d, -1)) {
+        var sid = seasonOf(d), s0 = dayT(C, d), s1 = s0 + dur * 1440, k = at + ':' + sid + ':' + T.type;
+        if (at !== 'OWN' && (S(C).bk[k] || 0) + (used[k] || 0) >= X().mro[at].slots[T.type]) continue;
+        if (at === 'OWN' && (!ownFree(C, s0, s1) || (used.own || []).some(function (x) { return x[0] < s1 && x[1] > s0; }))) continue;
+        if (offPeak(C, d)) { got = d; gotOff = true; break; }
+        if (!got) got = d;
+      }
+      if (!got) return;
+      var c = { reg: reg, at: at, date: got, off: gotOff, cost: cost(C, T.type, at), days: dur }; c.score = c.cost + dur * (X().dayVal[T.type] || 0);   // 고르기 = 비용 + 기체가 빠지는 날 × 하루 운항 기여(게임용 가정)
+      if (!best || (c.off && !best.off) || (c.off === best.off && (c.score < best.score || (c.score === best.score && c.date > best.date)))) best = c;
+    });
+    return best;
+  }
+  function needList(C, upto) {   // 계획 안 된 기체 중 한도가 upto 이전(예상)
+    return Object.keys(C.tails).sort().filter(function (r) { var T = C.tails[r]; return X().c[T.type] && T.status !== 'delivery' && T.status !== 'returned' && T.status !== 'parked' && !woOf(C, r, 'C').length; })
+      .map(function (r) { return { reg: r, d: due(C, r) }; }).filter(function (x) { return x.d.date <= upto; }).sort(function (a, b) { return a.d.date < b.d.date ? -1 : a.d.date > b.d.date ? 1 : (a.reg < b.reg ? -1 : 1); });
+  }
+  function buildPlan(C, sid) {
+    var r = seasonRange(sid), upto = MG.tz.addDays(r.end, X().planTail), used = { own: [] }, items = [], miss = [];
+    needList(C, upto).forEach(function (x) {
+      var c = pick(C, x.reg, x.d.date, used);
+      if (!c) { miss.push({ reg: x.reg, due: x.d.date }); return; }
+      c.due = x.d.date; c.by = x.d.by; items.push(c);
+      if (c.at === 'OWN') { var s0 = dayT(C, c.date); used.own.push([s0, s0 + c.days * 1440]); } else { var k = c.at + ':' + seasonOf(c.date) + ':' + C.tails[x.reg].type; used[k] = (used[k] || 0) + 1; }
+    });
+    return { sid: sid, items: items, miss: miss };
+  }
+  function planSeason(C, sid, init) {
+    var o = S(C); if (o.plans[sid]) return; o.plans[sid] = 1;
+    var pl = buildPlan(C, sid), md = init ? 'auto' : o.mode;   // 개시 시즌 = 이전 경영진이 이미 예약한 창(결재 없이 · 「개시 예약」 기록)
+    if (!pl.items.length && !pl.miss.length) return;
+    if (md === 'auto') { applyItems(C, pl.items, init ? 'init' : 'auto'); pl.miss.forEach(function (m) { MG.ops._log(C, M('mx2.log.miss', { reg: m.reg, d: m.due }), 'ev'); }); return; }
+    var lines = pl.items.map(function (c) { return M('mx2.plan.line', { reg: c.reg, at: atName(c.at), d: c.date, n: c.days, v: c.cost, due: c.due, by: M('mx2.by.' + c.by), off: c.off ? M('mx2.plan.off') : '' }); })
+      .concat(pl.miss.map(function (m) { return M('mx2.plan.miss', { reg: m.reg, d: m.due }); }));
+    var opts = md === 'manual' ? [{ id: 'ok', label: M('ui.ok') }] : [{ id: 'approve', label: M('mx2.plan.approve') }, { id: 'reject', label: M('mx2.plan.reject') }];
+    MG.ops._raise(C, { kind: 'mxplan', id: 'mxplan:' + sid, sid: sid, items: md === 'manual' ? [] : pl.items, title: M('mx2.plan.title', { s: sName(sid) }), body: M(md === 'manual' ? 'mx2.plan.bodyMan' : 'mx2.plan.body', { s: sName(sid), lines: M('_j', { xs: lines, s: '\n' }) }), opts: opts });
+  }
+  function applyItems(C, items, by) { var n = 0; items.forEach(function (c) { var r = commit(C, c, by); if (r.ok) n++; else MG.ops._log(C, M('mx2.log.skip', { reg: c.reg, why: r.why }), 'ev'); }); return n; }
+  function applyPlan(C, p, oid) {   // 결재(mg_ops applyDec0 한 줄): 승인 = 다시 검사하며 커밋(리드타임은 결재 시점 기준 — 늦은 승인은 그 줄만 건너뜀)
+    if (p.kind !== 'mxplan' || oid !== 'approve') return { ok: true };
+    var td = today(C), ok = (p.items || []).filter(function (c) { return c.at === 'OWN' || daysBetween(td, c.date) >= X().mro[c.at].lead; });
+    (p.items || []).filter(function (c) { return ok.indexOf(c) < 0; }).forEach(function (c) { MG.ops._log(C, M('mx2.log.late', { reg: c.reg, d: c.date }), 'ev'); });
+    applyItems(C, ok, 'plan'); return { ok: true };
+  }
+  // 직접 배치(수동·M&E 화면): 같은 검사(리드타임·슬롯·격납고·한도 전 끝)
+  function placeC(C, reg, at, date) {
+    if (!on(C)) return { ok: false };
+    var T = C.tails[reg], d = due(C, reg), lead = at === 'OWN' ? 14 : X().mro[at].lead, td = today(C);
+    if (daysBetween(td, date) < lead) return { ok: false, why: M('mx2.why.lead', { n: lead }) };
+    if (MG.tz.addDays(date, days(C, T.type, at)) > d.date) return { ok: false, why: M('mx2.why.late', { d: d.date }) };
+    return commit(C, { reg: reg, at: at, date: date }, 'player');
+  }
+  function cancelWo(C, id) {   // 시작 전 창 취소(슬롯 반납 · 계획 운휴 편은 그대로 — 이미 결항 처리됨)
+    var w = S(C).wo.filter(function (x) { return x.id === id && x.st === 'plan'; })[0]; if (!w) return { ok: false };
+    w.st = 'cnl'; C.queue = C.queue.filter(function (q) { return q.key !== w.id + ':start' && q.key !== w.id + ':end'; });
+    C.mxWindows = C.mxWindows.filter(function (m) { return m.id !== w.id; });
+    if (w.at !== 'OWN' && !w.emg) { var k = w.at + ':' + w.season + ':' + C.tails[w.reg].type; S(C).bk[k] = Math.max(0, (S(C).bk[k] || 1) - 1); }
+    MG.ops._log(C, M('mx2.log.cnl', { reg: w.reg, d: w.date }), 'ev'); return { ok: true };
+  }
+  /* ---------- 자사 격납고(개설 = 결재 · 월 인건비 의무) ---------- */
+  function openHangar(C) {
+    if (!on(C)) return { ok: false }; var o = S(C); if (o.hangar && o.hangar.open) return { ok: false };
+    var H = X().hangar, n = Object.keys(C.tails).filter(function (r) { var T = C.tails[r]; return T.status !== 'returned'; }).length, amt = Math.ceil(H.base + H.perTail * n) * H.wage, pm = MG.cal.per(C, today(C));
+    o.hangar = { open: true, since: today(C), staff: Math.ceil(H.base + H.perTail * n) };
+    if (C.fin) MG.fin.addObl(C, { id: 'mx2:hangar', kind: 'fixed', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.hangar'), state: 'committed', gen: { mi0: pm.mi + 1, day: MG.data.fin.fixedDay, amt: amt, n: null } });
+    MG.ops._log(C, M('mx2.log.hangar', { n: o.hangar.staff, v: amt }), 'ev'); return { ok: true, amt: amt };
+  }
+  /* ---------- 엔진(2B-c): shop visit = 예비 엔진 교환 창 2일 · 계약 A 시간당 요율(월) / B T&M(창 때) ---------- */
+  function engLeftOf(C, reg) { var T = C.tails[reg], p = P(C, reg) || mkP(C, reg), E = X().eng[T.type]; return E ? E.fh - (T.fh - p.efh0) : null; }   // 조회(쓰기 없음)
+  var engLeft = engLeftOf;
+  function engRate(type) { var E = X().eng[type]; return (E.cost + E.lease) / (E.fh / 60); }   // 조건 A 요율(FH당) = 조건 B 기대값과 같음
+  function engStart(C, w) {   // 조건 B = 실제 비용(T&M 난수) + 예비 엔진 임차 · 조건 A = 요율에 포함(창 비용 0)
+    var T = C.tails[w.reg], p = PE(C, w.reg), E = X().eng[T.type];
+    if (p.ek !== 'B' || !C.fin) { MG.ops._log(C, M('mx2.log.eA', { reg: w.reg }), 'ev'); return; }
+    var g = MG.rand.r(C, 'mx2eng', w.reg + ':' + w.cyc), tm = X().tm, amt = Math.round(E.cost * (tm[0] + g * (tm[1] - tm[0]))) + Math.round(E.lease * (w.emg ? X().emerg.k : 1));
+    w.cost = amt;
+    MG.fin.addObl(C, { id: 'mx2:' + w.id, kind: 'mx2', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.e', { reg: w.reg }), state: 'committed',
+      inst: [{ no: 1, due: MG.tz.addDays(MG.tz.local(w.start, C.hqTz).date, E.shop), amt: amt, st: 'S' }] });   // 엔진 정비소 끝(60일) 청구
+  }
+  function engPlan(C) {   // 남은 FH가 약 30일 사용분 이하 = 교환 창 예약(자동 — 정비계획 담당 · 비수기와 무관한 짧은 창)
+    Object.keys(C.tails).sort().forEach(function (reg) {
+      var T = C.tails[reg]; if (!X().eng[T.type] || T.status === 'delivery' || T.status === 'returned' || T.status === 'parked' || woOf(C, reg, 'ENG').length) return;
+      var left = engLeft(C, reg), r = rate(C, reg), dl = r.fh > 0 ? Math.floor(left / r.fh) : 999;
+      if (dl > X().engPlanDays) return;
+      commit(C, { reg: reg, what: 'ENG', at: 'LINE', date: MG.tz.addDays(today(C), Math.max(2, Math.min(dl - 3, 14))) }, 'plan');
+    });
+  }
+  function pbhMonth(C, mk, td) {   // 월 마감: 조건 A 기체의 그달 FH × 요율 = 지급 의무 한 건(다음 달 지급일) · 다음 달 계약 변경 적용
+    var o = S(C), sum = 0, n = 0;
+    Object.keys(o.prog).sort().forEach(function (reg) {
+      var p = o.prog[reg], T = C.tails[reg]; if (!T || !X().eng[T.type]) return;
+      if (p.ek === 'A') { var fh = T.fh - p.pbh0; if (fh > 0) { sum += Math.round(fh / 60 * engRate(T.type)); n++; } }
+      relCalc(C, reg, p, T, T.fh - p.pbh0, td);
+      p.pbh0 = T.fh;
+      if (p.ekNext && !inShop(C, reg, p)) { p.ek = p.ekNext; delete p.ekNext; }   // 다음 달 1일부터 · 정비소 작업 중(교환 창 · 그 뒤 shop 60일) = 끝난 뒤 첫 월 경계로 미룸
+    });
+    if (sum > 0 && C.fin) { var pm = MG.cal.per(C, td); MG.fin.addObl(C, { id: 'mx2:pbh:' + mk, kind: 'mx2', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.pbh', { y: +mk.slice(1, 5), mo: +mk.slice(6, 8), n: n }), state: 'committed', inst: [{ no: 1, due: MG.cal.dateOf(C, pm.mi, MG.data.fin.fixedDay), amt: sum, st: 'S' }] }); }
+  }
+  function inShop(C, reg, p) { return woOf(C, reg, 'ENG').some(function (w) { return w.st === 'on'; }) || (p.shopT != null && C.t < p.shopT); }
+  function setEngK(C, reg, k) { if (!on(C) || (k !== 'A' && k !== 'B')) return { ok: false }; var p = PE(C, reg); if (p.ek === k) { delete p.ekNext; return { ok: true }; } p.ekNext = k; return { ok: true }; }
+  function engEvtCost(C, f, base) { if (!on(C) || !f) return base; var p = P(C, f.tail) || mkP(C, f.tail); return p.ek === 'A' ? 0 : base; }   // 운항 사건 「계획 밖 엔진 교환」의 예비 엔진 임차: 조건 A = 요율에 포함
+  /* ---------- 신뢰성 지수(2B-d · M5): 월 마감 갱신 · 기술 지연·기술 사건 확률 계수 ---------- */
+  function r3(v) { return Math.round(v * 1000) / 1000; }
+  function relCalc(C, reg, p, T, mfh, td) {
+    var R = X().rel, age = (T.age0 || 0) + (MG.cal.per(C, td).fy - MG.cal.per(C, B().start).fy), ref = X().ref[T.type].fhYr * 60 / 12;
+    var v = (1 + R.age * Math.max(0, age - R.ageFrom)) * (1 + R.use * (mfh / ref - 1));
+    (p.sb || []).forEach(function (id) { var x = sbOf(T.type, id); if (x) v *= 1 - x.rel; });
+    p.rel = r3(Math.min(R.hi, Math.max(R.lo, v)));
+  }
+  function relK(C, reg) {   // 지금 계수 = 월 지수 × (1 + 열린 MEL 수 × 몫) — s2 끔 = 1
+    if (!on(C) || !C.mx2 || !C.mx2.prog[reg]) return 1;
+    var R = X().rel, v = (C.mx2.prog[reg].rel || 1) * (1 + R.mel * melOpenOf(C, reg).length);
+    return Math.min(R.hi, Math.max(R.lo, v));
+  }
+  function evtK(C, id, f) { return on(C) && f && id.slice(0, 4) === 'tec.' ? relK(C, f.tail) : 1; }   // 운항 사건 확률(2A 추출 한 줄) — 기술 사건만
+  /* ---------- 부품 재고·풀(2B-d · M6) ---------- */
+  function INV(C) { return S(C).inv; }   // 조회(쓰기 없음 — 206차 N206-01: 시작 때 init이 만듦)
+  function aogMin(C, f, g) {   // AOG 지속(분): 재고 안 / 재고 밖 + 풀 / 풀 없음 — 난수는 사건 수열 g(2A 추출 결정성 그대로)
+    var I = INV(C), D = X().inv, inS = g() < Math.min(1, I.days / D.full), a = inS ? D.inStock : I.pool ? D.pool[I.pool] : D.none;
+    return a[0] + Math.floor(g() * (a[1] - a[0] + 1));
+  }
+  function setInv(C, days) {   // 재고 일수 변경 = 현금 ↔ 재고자산(즉시 · 키 s2:inv:<n>)
+    if (!on(C) || !C.fin) return { ok: false }; days = Math.max(0, Math.min(X().inv.max, Math.round(days)));
+    var I = INV(C), dv = (days - I.days) * I.per; if (!dv) return { ok: true };
+    if (dv > 0 && (C.bal.cash || 0) < dv) return { ok: false, why: M('mx2.why.cash') };
+    I.n++; MG.ledger.post(C, 's2:inv:' + I.n, 'mx2inv', dv > 0 ? [{ acct: 'inv', dr: dv }, { acct: 'cash', cr: dv }] : [{ acct: 'cash', dr: -dv }, { acct: 'inv', cr: -dv }]);
+    MG.ops._log(C, M('mx2.log.inv', { a: I.days, b: days, v: Math.abs(dv) }), 'ev'); I.days = days; return { ok: true };
+  }
+  function setPool(C, kind) {   // 부품 풀 계약(월 회비 · 다음 달부터) — null = 해지
+    if (!on(C) || (kind && !X().inv.fee[kind])) return { ok: false }; var I = INV(C); if (I.pool === kind) return { ok: true };
+    var pm = MG.cal.per(C, today(C)), nd = MG.cal.dateOf(C, pm.mi + 1, 1);
+    if (I.poolId && C.fin) MG.fin.endFrom(C, I.poolId, nd);
+    I.pool = kind || null; I.poolId = null;
+    if (kind && C.fin) { I.n++; I.poolId = 'mx2:pool:' + I.n; MG.fin.addObl(C, { id: I.poolId, kind: 'fixed', acct: 'xMxH', dept: 'mx.line', label: M('mx2.obl.pool', { k: M('mx2.pool.' + kind) }), state: 'committed', gen: { mi0: pm.mi + 1, day: MG.data.fin.fixedDay, amt: X().inv.fee[kind], n: null } }); }
+    MG.ops._log(C, M('mx2.log.pool', { k: M(kind ? 'mx2.pool.' + kind : 'mx2.pool.none') }), 'ev'); return { ok: true };
+  }
+  function poolOK(C) { return on(C) && !!INV(C).pool; }
+  /* ---------- 서비스 회보(SB · M7): 권고 — 적용 = 창 1일 · 비용 · 신뢰성 몫 ↓ · 차단 아님 ---------- */
+  function sbOf(type, id) { return (X().sb[type] || []).filter(function (x) { return x.id === id; })[0] || null; }
+  function applySB(C, reg, id) {
+    if (!on(C)) return { ok: false }; var T = C.tails[reg], x = sbOf(T.type, id), p = PE(C, reg);
+    if (!x || (p.sb || []).indexOf(id) >= 0) return { ok: false, why: M('mx2.why.sbdone') };
+    return commit(C, { reg: reg, what: 'SB:' + id, at: 'LINE', date: MG.tz.addDays(today(C), 3) }, 'player');
+  }
+  /* ---------- MEL 유예(2B-e · 계약 4-2-1 · M10) ---------- */
+  function melOpenOf(C, reg) { return C.mx2 && C.mx2.mel ? C.mx2.mel.filter(function (m) { return m.reg === reg && m.st === 'open'; }) : []; }
+  function melItem(id) { return X().mel.items.filter(function (x) { return x.id === id; })[0]; }
+  function melPick(C, f) {   // 출발 전 결함의 품목(편 하나에 한 번 · 난수 'mx2mel') — 유예 가능/불가는 데이터가 정함(선택 아님)
+    var L = X().mel.items; return L[Math.floor(MG.rand.r(C, 'mx2mel', f.id) * L.length)];   // 같은 편 = 같은 품목(난수 열쇠 = 편 id · 조회가 칸을 만들지 않음 — 206차 N206-01)
+  }
+  function limOK(C, lim, f) {
+    if (!lim) return true; var A = MG.data.base.airports;
+    if (lim === 'gpu') { var G = X().mel.gpu; return G.indexOf(f.from) >= 0 && G.indexOf(f.to) >= 0; }
+    if (lim === 'lav') return f.block <= 240;
+    if (lim === 'ice') { var m = +MG.tz.local(f.std, C.hqTz).date.slice(5, 7); return !((m >= 11 || m <= 3) && [f.from, f.to].some(function (a) { return A[a] && A[a].lat >= 40; })); }
+    return true;
+  }
+  function melOK(C, f) { if (!on(C) || !f) return false; var it = melPick(C, f); return !!(it && it.def && limOK(C, it.lim, f) && !melOpenOf(C, f.tail).some(function (m) { return m.item === it.id; })); }
+  function melDue(C, reg, d0, cat) { var T = C.tails[reg], tz = MG.data.base.airports[T.base].tz; return MG.tz.dayStart(MG.tz.addDays(d0, X().mel.days[cat] + 1), tz); }   // 발견일 제외 · 기지 현지 0시부터 n번째 달력일 24시
+  function melDefer(C, f, d) {   // 유예하고 출발: 수리 지연(d분)을 서류 처리 15분으로 줄임 · 유예 항목 열림 · 키 s2:mel:<id>:open
+    if (!melOK(C, f)) return false;
+    var o = S(C), it = melPick(C, f), T = C.tails[f.tail], d0 = MG.tz.local(C.t, MG.data.base.airports[T.base].tz).date;
+    o.mseq = (o.mseq || 0) + 1; var id = 'MEL' + o.mseq;
+    if (!MG.ledger.mark(C, 's2:mel:' + id + ':open')) return false;
+    o.mel.push({ id: id, reg: f.tail, item: it.id, cat: it.cat, lim: it.lim, rep: it.rep, d0: d0, openT: C.t, dueT: melDue(C, f.tail, d0, it.cat), st: 'open', fid: f.id });
+    var cut = Math.max(0, (d || 0) - X().mel.deferMin), ne = Math.max(f.std, f.etd - cut);
+    if (ne < f.etd && (f.state === 'SCH' || f.state === 'BRD')) { f.etd = ne; f.eta = ne + f.block; if (MG.ops2) MG.ops2.dlSync(C, f, 41, 'mel', 'TECH'); }
+    MG.ops._log(C, M('mx2.log.melOpen', { reg: f.tail, it: M('mx2.mel.' + it.id), cat: it.cat, d: MG.tz.local(o.mel[o.mel.length - 1].dueT - 1, MG.data.base.airports[T.base].tz).date }), 'ev');
+    return true;
+  }
+  function melRepair(C, reg, now) {   // 수리 창(기지 · 다음 출발 전 시간이 되면) — 기한 차단 때는 지금 바로
+    var T = C.tails[reg], A = MG.data.base.airports[T.loc];
+    melOpenOf(C, reg).forEach(function (m) {
+      if (m.win) return;
+      var nx = (C.byTail[reg] || []).map(function (id) { return C.fl[id]; }).filter(function (g) { return g && g.state === 'SCH' && g.std >= C.t; }).sort(function (a, b) { return a.std - b.std; })[0];
+      if (!now && (!A || !A.hub || (T.status !== 'line' && T.status !== 'spare') || (nx && nx.std < C.t + m.rep + 30))) return;
+      var w = MG.ops.planMx(C, reg, 'MEL:' + m.id, C.t, m.rep); if (w) { m.win = w.id; MG.ops._log(C, M('mx2.log.melRep', { reg: reg, it: M('mx2.mel.' + m.item), n: m.rep }), 'ev'); }
+    });
+  }
+  function melFix(C, id) { var m = (C.mx2 && C.mx2.mel || []).filter(function (x) { return x.id === id && x.st === 'open'; })[0]; if (!m || !MG.ledger.mark(C, 's2:mel:' + id + ':fix')) return; m.st = 'fixed'; m.fixT = C.t; MG.ops._log(C, M('mx2.log.melFix', { reg: m.reg, it: M('mx2.mel.' + m.item) }), 'ev'); }
+  /* ---------- 영업일 마감(mg_ops stepDayClose 한 줄): 계획안 · 접근 경고 ---------- */
+  function dayClose(C, closing, td) {
+    if (!on(C)) return;
+    ensureAll(C, closing);   // 새로 계약·인도된 기체의 프로그램(만든 날 기준점 · 인도 뒤 last = 인도된 영업일)
+    var o = S(C), ns = nextSeason(td), r = seasonRange(ns);
+    if (td >= MG.tz.addDays(r.start, -X().planLead)) planSeason(C, ns);
+    var mk0 = MG.cal.per(C, closing).mk; if (mk0 !== MG.cal.per(C, td).mk) pbhMonth(C, mk0, td);
+    engPlan(C);
+    coverCheck(C); retryCuts(C);   // 206차 재확인 N206R-02: 덮기 유효성 재확인 → 해제분·환불 실패분 계획 운휴
+    if (o.mel.length) Object.keys(C.tails).sort().forEach(function (reg) { if (melOpenOf(C, reg).length) melRepair(C, reg, false); });   // MEL 야간 수리 창
+    Object.keys(C.tails).sort().forEach(function (reg) {
+      var T = C.tails[reg]; if (!X().c[T.type] || T.status === 'delivery' || T.status === 'returned' || woOf(C, reg, 'C').length) return;
+      var d = due(C, reg), p = PE(C, reg);
+      X().warn.forEach(function (n) {
+        var k = reg + ':' + p.n + ':' + n; if (d.left > n || o.warn[k]) return; o.warn[k] = 1;
+        MG.ops._raise(C, { kind: 'mxwarn', id: 'mxwarn:' + k, tail: reg, title: M('mx2.warn.title', { reg: reg, n: d.left }), body: M('mx2.warn.body', { reg: reg, d: d.date, by: M('mx2.by.' + d.by), n: d.left }), opts: [{ id: 'ok', label: M('mx2.warn.ok') }, { id: 'emg', label: M('mx2.warn.emg') }] });
+      });
+    });
+  }
+  function applyWarn(C, p, oid) { if (p.kind === 'mxwarn' && oid === 'emg' && on(C) && !woOf(C, p.tail, 'C').length) commit(C, { reg: p.tail, at: 'SKR', date: MG.tz.addDays(today(C), X().emerg.wait[1]), emg: true }, 'emg'); return { ok: true }; }
+  // 새 캠페인(판 번호 기록 직후 한 번): 기체별 프로그램 · 지금 시즌 계획안
+  function start(C) {
+    if (!can(C) || C.mx2) return;
+    init(C); ensureAll(C);   // 206차 N206-01: 2B 상태는 여기서 전부(프로그램 · 재고 · 목록) — 화면·조회는 만들지 않음
+    planSeason(C, seasonOf(today(C)), true);
+  }
+  /* ---------- 정비비 덜어 내기(계약 2-4 · M9): 시간당 정비비 중 C 체크·엔진 기대 몫 ---------- */
+  function carve(C, type) {
+    var c = X().c[type], e = X().eng[type], r = X().ref[type], mxH = MG.data.fin.cost[type].mxH;
+    if (!c || !e || !r) return 0;
+    var cBlk = c.mo / 12 * r.blkYr, eBlk = e.fh / 60 * r.blkYr / r.fhYr;
+    return (c.cost / cBlk + (e.cost + e.lease) / eBlk) / mxH;
+  }
+  function mxK(C, type) { return on(C) ? 1 - carve(C, type) : 1; }
+  return { on: on, S: S, P: P, due: due, rate: rate, blockWhy: blockWhy, noSale: noSale, onBlock: onBlock, onGen: onGen, mxStart: mxStart, mxEnd: mxEnd, dayClose: dayClose, start: start,
+           applyPlan: applyPlan, engLeft: engLeft, relK: relK, evtK: evtK, aogMin: aogMin, setInv: setInv, setPool: setPool, poolOK: poolOK, INV: INV, applySB: applySB, sbOf: sbOf, melOK: melOK, melDefer: melDefer, melPick: melPick, melOpenOf: melOpenOf, limOK: limOK, reserved: reserved, inShop: inShop, fitOK: fitOK, coverCheck: coverCheck, uncover: uncover, can: can, engLeftOf: engLeftOf, melDue: melDue, engRate: engRate, setEngK: setEngK, engEvtCost: engEvtCost, applyWarn: applyWarn, placeC: placeC, cancelWo: cancelWo, openHangar: openHangar, carve: carve, mxK: mxK, cost: cost, days: days,
+           seasonOf: seasonOf, planSeason: planSeason, nextSeason: nextSeason, seasonRange: seasonRange, buildPlan: buildPlan, addMonths: addMonths, offPeak: offPeak };
+})();
+
+/* ===== 경영 모드 2단계 2C · mg_crew2.js — 승무원: 세트 정본 · 세트 근무표 배정 · 출발 검사 · 근무 누적(예약/확정) · 대기·훈련·레이오버·베이스 · 피로 · 승격·채용
+   (경계 계약 v3 2-1 ②③⑥·2-2·2-4·3-1·3-3·4-3 · 메모 v4 5절·15-2·16-1·16-7·16-8 · 구현 계획 2C)
+   · s2 끔 캠페인: 첫 줄에서 돌아감 — 객체·키·난수 0(V1·V2) · data.crew2.off = 시험 전용 끔(데이터만 · 저장 안 됨)
+   · 206차 교훈: can(C) = 시작할 수 있는 캠페인 · on(C) = can && C.crew2(상태는 start 하나에서 만듦 — 2C 이전 판의 2단계 저장본 = 2C 없이 계속)
+   · 조회·화면 함수는 쓰기 0 · 자주 지나는 자리는 C.crew2가 있을 때만 이 모듈을 부름
+   · 안전 원칙: 한도 초과 배정·최소 인원 미달 출발은 선택지가 아님(대기 세트 → 없으면 보류 CREW) */
+MG.crew2 = (function () {
+  function X() { return MG.data.crew2; }
+  function B() { return MG.data.base; }
+  function can(C) { return !!(MG.s2 && MG.s2.on(C) && X() && !X().off && C.cal !== '30d'); }
+  function on(C) { return can(C) && !!C.crew2; }
+  function today(C) { return MG.tz.local(C.t, C.hqTz).date; }
+  function metro(apt) { return (X().metro && X().metro[apt]) || apt; }   // 기지 = 도시 묶음(구현 판단 2)
+  function S(C) { return C.crew2; }
+
+  /* ---------- 2C-a 세트 정본(계약 3-1 · 4-3 · 메모 15-2) ----------
+     세트 행 = { id, type, kind:'ck'|'cb', base, n(인원), rank:{cpt,fo}(운항만), foH(부기장 누적 비행 분 · 운항만), since,
+                 fat(피로), m:{mk:분}, fy:{fy:분}, dw(연속 근무일), dl(마지막 근무일), last:{t, apt}|null, rsv:null|{fid,from,planEnd}, quit(감소 대기) }
+     id = <기종>-C<번호>(운항) · <기종>-K<번호>(객실) — 번호는 기종·종류별 증가(seq) · 감소한 번호는 다시 쓰지 않음 */
+  function rowOf(C, type, kind, no, why) {
+    var o = S(C), r = { id: type + (kind === 'ck' ? '-C' : '-K') + no, type: type, kind: kind, base: X().home, n: kind === 'ck' ? 2 : X().cab.std[type], since: today(C),
+      fat: 0, m: {}, fy: {}, dw: 0, dl: null, last: null, rsv: null };
+    if (kind === 'ck') { r.rank = { cpt: 1, fo: 1 }; r.foH = foH0(C, type, no, why); }
+    return r;
+  }
+  // 개시 부기장 누적 비행 분: 세트 번호로 결정적(구간 [a, b] 안에 고르게 · 구현 판단 6) · 그 밖(채용) = 채용 경로가 정함(기본 = 구간 아래 끝)
+  function foH0(C, type, no, why) {
+    var a = X().rank.foH0[0], b = X().rank.foH0[1];
+    if (why !== 'init') return a;
+    var h = MG.rand.hash32('foH|' + type + '|' + no) >>> 0;
+    return a + Math.round((h % 1000) / 999 * (b - a));
+  }
+  function init(C) {
+    var o = C.crew2 = { sets: {}, cab: {}, seq: {}, asg: {}, sby: { ratio: X().sby.def, mode: X().sby.mode }, bases: {}, hotels: {}, pool: {}, hire: [], promo: {}, warn: {}, acc: {} };
+    Object.keys(C.crew).sort().forEach(function (ty) {
+      var n = C.crew[ty].sets; o.sets[ty] = []; o.cab[ty] = []; o.seq[ty] = { ck: 0, cb: 0 }; o.pool[ty] = { cpt: 0, fo: 0 };
+      for (var i = 0; i < n; i++) { o.sets[ty].push(rowOf(C, ty, 'ck', ++o.seq[ty].ck, 'init')); o.cab[ty].push(rowOf(C, ty, 'cb', ++o.seq[ty].cb, 'init')); }
+      delete C.crew[ty].sets;   // 계약 3-1: s2 켬 = C.crew[type].sets는 저장하지 않는 파생 뷰(MG.crew.n) — 정본 = 세트 행 하나(두 벌 0)
+    });
+    return o;
+  }
+  // 세트 수(파생 뷰): 감소 대기(quit) 행은 세지 않음
+  function nOf(C, type, kind) { var o = S(C), a = o && (kind === 'cb' ? o.cab : o.sets)[type]; if (!a) return 0; var n = 0; for (var i = 0; i < a.length; i++) if (!a[i].quit) n++; return n; }
+  // 세트 늘리기·줄이기 — 커밋 하나(키 s2:crew:<세트 id>:<사건>) · why: init/fleet/hire/add:<키>/cut/quit/pair/…
+  //   줄이기 = 번호 큰 세트부터(비행 중(rsv) 세트는 quit 표시 → 도착 확정 때 뺌) · 그 세트의 출발 전 배정은 풀림(출발 검사가 대기 세트 → 보류)
+  function addSets(C, type, n, why, kind) {
+    var o = S(C), k = kind || 'ck', a = (k === 'cb' ? o.cab : o.sets)[type], ev = String(why || 'add').replace(/[:|]/g, '_');
+    if (!a) { a = (k === 'cb' ? o.cab : o.sets)[type] = []; o.seq[type] = o.seq[type] || { ck: 0, cb: 0 }; o.pool[type] = o.pool[type] || { cpt: 0, fo: 0 }; }
+    if (n > 0) for (var i = 0; i < n; i++) { var r = rowOf(C, type, k, ++o.seq[type][k], why); a.push(r); key(C, 's2:crew:' + r.id + ':' + ev); }
+    else if (n < 0) {
+      var left = -n;
+      for (var j = a.length - 1; j >= 0 && left > 0; j--) {
+        var s = a[j]; if (s.quit) continue;
+        key(C, 's2:crew:' + s.id + ':' + ev);
+        if (s.rsv) s.quit = ev; else { unAsg(C, s.id); a.splice(j, 1); }
+        left--;
+      }
+    }
+    return nOf(C, type, k);
+  }
+  function key(C, k) { if (C.keys) C.keys[k] = C.t; }
+  function unAsg(C, sid) { var o = S(C); for (var d in o.asg) for (var fid in o.asg[d]) { var v = o.asg[d][fid]; if (v && (v.ck === sid || v.k2 === sid || v.cb === sid)) { if (v.ck === sid) v.ck = null; if (v.k2 === sid) v.k2 = null; if (v.cb === sid) v.cb = null; } } }   // 207차 N207-01: 복수 편성 둘째 세트(k2)도
+  function setOf(C, sid) { var o = S(C); if (!o || !sid) return null; var ty = sid.slice(0, sid.lastIndexOf('-')), k = sid.charAt(sid.lastIndexOf('-') + 1) === 'K' ? o.cab : o.sets, a = k[ty] || []; for (var i = 0; i < a.length; i++) if (a[i].id === sid) return a[i]; return null; }
+
+  /* ---------- 2C-b 세트 근무표(계약 4-3 · 메모 5-1) ----------
+     asg[영업일][fid] = { ck: 운항 세트 id | null, k2: 둘째 운항 세트(3명 세트가 없을 때 복수 편성) | null, cb: 객실 세트 id | null }
+     asg[영업일]._sby = { type: [세트 id…] }(대기 세트) — 영업일 = 출발 예정 시각의 본사 날짜(OTP와 같음) · 근무 = (세트, 영업일) 하나
+     정본: 열 때 다시 계산하지 않음 · 마감에서 지우는 것 = 출발·결항·보류가 끝난 줄만(늦어져 자정을 넘긴 편의 배정은 남김) */
+  function L() { return X().lim; }
+  function biz(C, f) { return MG.tz.local(f.std, C.hqTz).date; }
+  function perOf(C, d) { return MG.cal.per(C, d); }
+  function hoursPlan(C) { var d = C.org && C.org.depts && C.org.depts['ops.cockpit'], h = d && d.pol && d.pol.hours; return Math.min(L().month, (h > 0 ? h : 64) * 60); }   // 구현 판단 1: 회사 월 계획 시간(기본 64h) ≤ 100h
+  function rows(C, type, kind) { var o = S(C); return ((kind === 'cb' ? o.cab : o.sets)[type]) || []; }
+  function aug(C, f) { return f.block > X().crew3Blk; }
+  function flyLim(n3) { return n3 ? L().fly3 : L().fly2; }
+  // 정기 훈련·심사(실무 보강 R5): 세트 번호로 결정적 — FY 월 a·a+6의 dd~dd+2일(3일 × 2회) · 저장 칸 없음(순수 함수)
+  function trnOn(C, s, d) {
+    var no = +s.id.slice(s.id.lastIndexOf('-') + 2) || 0, p = perOf(C, d), m = +d.slice(5, 7), a = ((no * 5 + (s.kind === 'cb' ? 3 : 0)) % 6) + 1, dd = 3 + (no * 7) % 22, day = +d.slice(8, 10);
+    var mo = ((m - 4 + 12) % 12) + 1;   // 회계 월(4월 = 1)
+    if (mo !== a && mo !== a + 6) return false;
+    if (s.since && s.since > d) return false;
+    return day >= dd && day < dd + X().trn.days / X().trn.blocks && !!p;
+  }
+  // 근무 한 줄의 계획값(출발 전): 보고 = 첫 편 STD − pre · 끝 = 마지막 편 STA + post · 비행 = Σ블록
+  function dutyOf(C, d, sid) {
+    var A = S(C).asg[d]; if (!A) return null; var legs = [];
+    for (var fid in A) { if (fid === '_sby') continue; var a = A[fid]; if (a && (a.ck === sid || a.k2 === sid || a.cb === sid)) { var f = C.fl[fid]; if (f) legs.push(f); } }
+    if (!legs.length) return null;
+    legs.sort(function (x, y) { return x.std - y.std || (x.id < y.id ? -1 : 1); });
+    var fly = 0; legs.forEach(function (f) { fly += f.block; });
+    var lf = legs[legs.length - 1];
+    return { legs: legs, rep: legs[0].std - L().pre, end: lf.std + lf.block + L().post, fly: fly, to: lf.to };
+  }
+  function sbyOf(C, d, sid) { var A = S(C).asg[d], y = A && A._sby; if (!y) return false; for (var t in y) if (y[t].indexOf(sid) >= 0) return true; return false; }
+  // 배정용 투영 상태(쓰기 없음): 확정 값 + 비행 중 예약 + 그 날 전 영업일의 계획 근무
+  function proj(C, s, d) {
+    var o = S(C), t = s.last ? s.last.t : -1e9, apt = s.last ? s.last.apt : null, dl = s.dl, dw = s.dw, p = perOf(C, d), mm = s.m[p.mk] || 0, fy = s.fy[p.fy] || 0;
+    if (s.rsv) { t = Math.max(t, s.rsv.planEnd); var rf = C.fl[s.rsv.fid]; if (rf) { apt = rf.to; if (biz(C, rf) === dl || dl == null || biz(C, rf) > dl) { var rd = biz(C, rf); if (rd !== dl) { dw = dl && MG.tz.addDays(dl, 1) === rd ? dw + 1 : 1; dl = rd; } } if (perOf(C, biz(C, rf)).mk === p.mk) mm += rf.block; if (perOf(C, biz(C, rf)).fy === p.fy) fy += rf.block; } }
+    Object.keys(o.asg).sort().forEach(function (e) {
+      if (e >= d) return;
+      var du = dutyOf(C, e, s.id), sb = sbyOf(C, e, s.id);
+      if (du) { var left = du.legs.filter(function (f) { return f.aobt == null && f.state !== 'CNL' && f.state !== 'HOLD'; }); if (left.length) { var lf = left[left.length - 1]; t = Math.max(t, lf.std + lf.block + L().post); apt = lf.to; left.forEach(function (f) { if (perOf(C, e).mk === p.mk) mm += f.block; if (perOf(C, e).fy === p.fy) fy += f.block; }); } }
+      if ((du || sb) && e !== dl) { dw = dl && MG.tz.addDays(dl, 1) === e ? dw + 1 : 1; dl = e; }
+    });
+    if (!apt) apt = null;
+    return { t: t, apt: apt, loc: apt ? metro(apt) : s.base, dl: dl, dw: dw, m: mm, fy: fy, lastDur: s.ld || 0 };
+  }
+  // 그 날(d) 그 세트가 rep에 근무를 시작할 수 있나(투영 상태 기준 · 휴식 · 연속 근무 · 훈련 · 월·FY)
+  function canStart(C, s, d, P, rep, fly, cap) {
+    if (s.quit || trnOn(C, s, d)) return false;
+    if (P.dl === d) return false;                                                      // 그날 이미 근무(근무 = 하루 하나)
+    var rest = Math.max(L().rest, P.lastDur || 0);
+    if (P.t > -1e8 && rep - P.t < rest) return false;
+    if (P.dl && MG.tz.addDays(P.dl, 1) === d && P.dw >= L().consec) return false;
+    if (P.m + fly > cap || (s.kind === 'ck' && P.fy + fly > L().fy)) return false;
+    return true;
+  }
+  // 근무 나누기: 한 기체의 그날 편(출발 순) → [ [i, j, 3명?] … ] — 한도 안 최대로 늘리되 끝은 기지(도시 묶음)에서 끊는 것이 우선 · 기지 끝이 없으면 밖에서 끝(레이오버)
+  function cut(C, legs, home) {
+    var out = [], i = 0;
+    while (i < legs.length) {
+      var j = i - 1, fly = 0, n3 = false, best = -1;
+      for (var k = i; k < legs.length; k++) {
+        var f = legs[k], n3k = n3 || aug(C, f), fk = fly + f.block, span = f.std + f.block + L().post - (legs[i].std - L().pre);
+        if (fk > flyLim(n3k) || span > L().duty) break;
+        j = k; fly = fk; n3 = n3k; if (home[metro(f.to)]) best = k;
+      }
+      if (j < i) { out.push([i, i, aug(C, legs[i]), true]); i++; continue; }           // 한 편만으로도 한도 초과 = 배정 불가(출발 검사가 보류)
+      var e = best >= i ? best : j;
+      var n3e = false; for (var q = i; q <= e; q++) n3e = n3e || aug(C, legs[q]);
+      out.push([i, e, n3e, false]); i = e + 1;
+    }
+    return out;
+  }
+  function homes(C) { var h = {}; h[X().home] = 1; var b = S(C).bases; for (var k in b) if (b[k] && b[k].n > 0) h[k] = 1; return h; }
+  // 후보 고르기(결정적): 그 공항(도시 묶음)에 있는 세트 — 밖에서 밤을 보낸 세트(레이오버) 먼저 · 그다음 월 누적 적은 순 · id 순
+  function pick(C, type, kind, d, at, rep, fly, n3, taken, PS) {
+    var cap = hoursPlan(C), list = rows(C, type, kind), best = null, bk = null;
+    for (var pass = 0; pass < 2 && !best; pass++) {
+      var lim = pass ? L().month : cap;   // 첫 바퀴 = 회사 계획 시간 안 · 둘째 = 법정 상한(초과 근무)
+      for (var i = 0; i < list.length; i++) {
+        var s = list[i]; if (taken[s.id]) continue;
+        if (kind === 'ck' && n3 && (s.n || 2) < 3) continue;
+        var P = PS[s.id] || (PS[s.id] = proj(C, s, d));
+        if (P.loc !== metro(at) && P.apt !== at) continue;
+        if (!canStart(C, s, d, P, rep, fly, lim)) continue;
+        var key = [P.apt && P.apt === at && !homes(C)[metro(at)] ? 0 : 1, P.m, s.id];
+        if (!bk || key[0] < bk[0] || (key[0] === bk[0] && (key[1] < bk[1] || (key[1] === bk[1] && key[2] < bk[2])))) { best = s; bk = key; }
+      }
+    }
+    return best;
+  }
+  // 그 영업일 배정(결정적 · 키 s2:asg:<영업일>) — 이미 있으면 다시 하지 않음(정본)
+  //   part = 이미 배정한 날에 새로 생긴 편만(시간표 개정 뒤 · 키 s2:asg:<영업일>:p<n>) — 기존 줄은 그대로(정본)
+  function assign(C, d, part) {
+    var o = S(C); if (!part && (o.asg[d] || C.keys['s2:asg:' + d])) return;
+    if (part && !o.asg[d]) return;
+    var A = part ? o.asg[d] : (o.asg[d] = {}), byT = {}, PS = {}, taken = {}, home = homes(C), nNew = 0;
+    C.order.forEach(function (id) { var f = C.fl[id]; if (!f || f.state === 'CNL' || f.state === 'HOLD' || f.aobt != null || biz(C, f) !== d || A[f.id]) return; (byT[f.tail] = byT[f.tail] || []).push(f); nNew++; });
+    if (part && !nNew) return;
+    if (part) for (var fx in A) { if (fx === '_sby') continue; var gx = C.fl[fx]; if (!gx || ((gx.state === 'CNL' || gx.state === 'HOLD') && gx.aobt == null)) delete A[fx]; }   // 개정으로 지워진·결항한 편의 줄 = 세트를 풀어 줌
+    if (part) { for (var fid0 in A) { if (fid0 === '_sby') { var y0 = A._sby; for (var t0 in y0) y0[t0].forEach(function (sid) { taken[sid] = 1; }); continue; } var a0 = A[fid0]; [a0.ck, a0.k2, a0.cb].forEach(function (sid) { if (sid) taken[sid] = 1; }); } }
+    Object.keys(byT).sort().forEach(function (reg) {
+      var legs = byT[reg].sort(function (x, y) { return x.std - y.std || (x.id < y.id ? -1 : 1); }), ty = legs[0].type;
+      cut(C, legs, home).forEach(function (g) {
+        var seg = legs.slice(g[0], g[1] + 1), fly = 0; seg.forEach(function (f) { fly += f.block; });
+        var rep = seg[0].std - L().pre, at = seg[0].from, ck = null, k2 = null, cb = null;
+        if (!g[3]) {
+          ck = pick(C, ty, 'ck', d, at, rep, fly, g[2], taken, PS);
+          if (!ck && g[2]) { ck = pick(C, ty, 'ck', d, at, rep, fly, false, taken, PS); if (ck) { taken[ck.id] = 1; k2 = pick(C, ty, 'ck', d, at, rep, fly, false, taken, PS); if (!k2) { delete taken[ck.id]; ck = null; } } }   // 3명 세트가 없으면 2명 세트 둘(복수 편성)
+          cb = pick(C, ty, 'cb', d, at, rep, fly, false, taken, PS);
+        }
+        [ck, k2, cb].forEach(function (s) { if (s) taken[s.id] = 1; });
+        seg.forEach(function (f) { A[f.id] = { ck: ck ? ck.id : null, k2: k2 ? k2.id : null, cb: cb ? cb.id : null }; });
+      });
+    });
+    // 대기 세트(R2): 기종·종류마다 ratio × 세트 수(반올림) — 기지에 있고 그날 시작할 수 있는 세트 중 월 누적 적은 순
+    if (part) { o.pn = (o.pn || 0) + 1; key(C, 's2:asg:' + d + ':p' + o.pn); return; }
+    var sb = {}, r = o.sby.ratio || 0;
+    if (r > 0) Object.keys(o.sets).sort().forEach(function (ty) {
+      ['ck', 'cb'].forEach(function (kind) {
+        var k = Math.round(r * nOf(C, ty, kind)); if (!k) return;
+        var cand = rows(C, ty, kind).filter(function (s) { if (taken[s.id]) return false; var P = PS[s.id] || (PS[s.id] = proj(C, s, d)); return P.loc === s.base && canStart(C, s, d, P, MG.tz.dayStart(d, C.hqTz) + 6 * 60, 0, L().month); })
+          .sort(function (a, b) { return (PS[a.id].m - PS[b.id].m) || (a.id < b.id ? -1 : 1); }).slice(0, k);
+        if (cand.length) (sb[ty] = sb[ty] || []).push.apply(sb[ty] = sb[ty] || [], cand.map(function (s) { taken[s.id] = 1; return s.id; }));
+      });
+    });
+    if (Object.keys(sb).length) A._sby = sb;
+    key(C, 's2:asg:' + d);
+  }
+
+  /* ---------- 출발 검사 교체(계약 2-1 ② (다)) — 배정 세트가 실제 시각에 한도 안 → 통과 / 아니면 대기 세트 / 없으면 보류 CREW ----------
+     반환: null = 통과(세트 확정은 out에서) · { wait: t } = 그 시각까지 출발 늦춤(휴식 부족 짧음 · 자택 대기 호출) · { hold: 사유 키 } */
+  //   n3 = 적용 비행 한도(장거리 편 = 3명 세트 또는 2명 세트 둘 · 객실 조도 증원 편성 — cut과 같은 정의) · need3 = 그 운항 자리에 3명 세트가 필요(복수 편성이 아닐 때 · 207차 N207-01)
+  function okNow(C, s, f, t, d, n3, need3) {
+    if (!s || s.quit || s.sick === d) return false;
+    if (need3 && s.kind === 'ck' && (s.n || 2) < 3) return false;                                      // 질병 결원(운항 사건 crw.sick) = 그 영업일 근무 불가
+    if (s.rsv && s.rsv.fid !== f.id) return false;                                       // 다른 편 비행 중
+    var here = s.last ? s.last.apt : null;
+    if (here && here !== f.from && !(metro(here) === metro(f.from) && homes(C)[metro(f.from)])) return false;   // 위치(기지 도시 묶음 안 이동만 허용)
+    if (!here && metro(f.from) !== s.base) return false;
+    var restN = Math.max(L().rest, s.ld || 0), fresh = !s.last || (t - L().pre) - s.last.t >= restN, cont = !fresh && s.dl === d;
+    if (!fresh && !cont) return { rest: s.last.t + restN + L().pre };                     // 앞 근무 뒤 휴식 부족 — 휴식이 끝나면 새 근무
+    var du = dutyOf(C, d, s.id);
+    if (fresh && !(du && du.legs.some(function (x) { return x.id === f.id; })) && (trnOn(C, s, d) || (s.dl && s.dl !== d && MG.tz.addDays(s.dl, 1) === d && s.dw >= L().consec))) return false;   // 새로 근무를 여는 세트(대기·호출): 훈련일·연속 근무 한도
+    var flown = 0, rep;
+    if (cont) { if (du) du.legs.forEach(function (x) { if (x.aibt != null && x.id !== f.id) flown += x.aibt - x.aobt; }); rep = s.ds != null ? s.ds : (du ? du.rep : t - L().pre); }
+    else { rep = Math.min(t - L().pre, Math.max(du ? du.rep : f.std - L().pre, t - L().pre - L().notice, s.last ? s.last.t + restN : -1e9)); }   // 새 근무 = 계획 보고 시각(휴식 뒤) ~ 실제 출발 전 · 지연이 notice분보다 길면 보고 시각도 늦춤(지연 통보)
+    if (flown + f.block > flyLim(n3) || t + f.block + L().post - rep > L().duty + L().ext) return s.last ? { rest: s.last.t + restN + L().pre } : false;   // 지연으로 늘어난 근무 = 기장 재량 연장 ext까지 · 넘으면 쉬고 새 근무
+    var p = perOf(C, d); if ((s.m[p.mk] || 0) + f.block > L().month || (s.kind === 'ck' && (s.fy[p.fy] || 0) + f.block > L().fy)) return false;   // FY 1,000h = 운항 승무원만(207차 N207-03)
+    return true;
+  }
+  // 그 공항에 와 있는 세트(밖에서 멈춘 세트 · 레이오버 세트) — 그날 남은 배정이 없고 지금 근무할 수 있으면(기지 밖 공항만)
+  function callHere(C, f, t, d, kind, n3, need3, excl) {
+    if (homes(C)[metro(f.from)]) return null;
+    var list = rows(C, f.type, kind === 'cb' ? 'cb' : 'ck'), best = null;
+    for (var i = 0; i < list.length; i++) {
+      var s = list[i]; if (!s.last || s.last.apt !== f.from || s.rsv || s.quit || (excl && excl.indexOf(s.id) >= 0)) continue;
+      if (kind !== 'cb' && need3 && (s.n || 2) < 3) continue;
+      var du = dutyOf(C, d, s.id); if (du && du.legs.some(function (x) { return x.id !== f.id && x.aobt == null && x.tail !== f.tail; })) continue;
+      if (okNow(C, s, f, t, d, n3, need3) !== true) continue;
+      if (!best || s.id < best.id) best = s;
+    }
+    return best ? { s: best, wait: 0, ev: 'here' } : null;
+  }
+  function assignable(C, f, t) {
+    var o = S(C), d = biz(C, f); if (!o.asg[d]) { if (C.keys['s2:asg:' + d]) o.asg[d] = {}; else assign(C, d); }   // 정리된 날의 새 편(페리 등) = 빈 줄에서 late
+    if (!o.asg[d][f.id] && C.keys['s2:asg:' + d]) assign(C, d, true);   // 배정 뒤 생긴 편(시간표 개정·기단 배정·복구 편 — 경로 무관) = 그날 새 편만 정식 배정(기존 줄 유지)
+    var a = o.asg[d][f.id] || (o.asg[d][f.id] = late(C, f, d)), n3 = aug(C, f), wait = 0, why = null, out1 = !homes(C)[metro(f.from)];
+    // [자리, 3명 세트 필요] — 적용 비행 한도는 모두 n3(복수 편성 = 2명 세트 둘이 12h 한도 · 207차 N207-01)
+    //   207차 재확인 N207R-01: 장거리 편인데 운항 자리가 3명 세트가 아니면(k2가 감소·퇴직으로 비었거나 처음부터 2명 세트) = 복수 편성으로 다시 구성 — 둘째 자리(k2)를 대기·호출·그 공항 세트로 채움(같은 세트 두 번 0)
+    var c0 = setOf(C, a.ck), dual = n3 && (!!a.k2 || !(c0 && (c0.n || 2) >= 3));
+    var res = [['ck', n3 && !dual], ['cb', false]];
+    if (dual) res.push(['k2', false]);
+    if (a.rdy && a.rdy > t) wait = a.rdy;   // 207차 N207-04: 대기 투입 준비 완료 시각(자택 대기 +90분 — 사건 결재·출발 검사 같은 하한)
+    for (var i = 0; i < res.length; i++) {
+      var slot = res[i][0], kind = slot === 'cb' ? 'cb' : 'ck', s = setOf(C, a[slot]), r = okNow(C, s, f, t, d, n3, res[i][1]);
+      if (r === true) continue;
+      var rw = r && r.rest ? r.rest : 0;
+      var sb = callHere(C, f, t, d, kind, n3, res[i][1], [a.ck, a.k2, a.cb]) || callSby(C, f, t, d, kind, n3, res[i][1]);   // 바로 넣을 수 있는 세트 먼저(그 공항에 와 있는 세트 · 대기 세트)
+      if (!sb && !(rw && rw - t <= X().sby.callMin)) sb = callOut(C, f, t, d, kind, n3, res[i][1]);   // 휴무 세트 호출(callMin) — 기다림이 더 짧으면 기다림
+      if (sb) { swap(C, d, f, slot, a[slot], sb.s.id, sb.ev || 'sby'); if (sb.wait) { wait = Math.max(wait, sb.wait); rdyMark(C, d, f, sb.wait); } continue; }
+      if (rw && (rw - t <= 180 || (out1 && rw - t <= 720))) { wait = Math.max(wait, rw); continue; }   // 휴식 부족 = 기다림(기지 180분 · 밖 = 쉬고 새 근무 720분까지 — 긴 지연은 2A 결재가 다음 날·결항을 물음)
+      why = kind === 'cb' ? 'cb' : 'ck'; break;
+    }
+    if (why) return { hold: why };
+    return wait > t ? { wait: wait, cc: 'CREW' } : null;
+  }
+  // 승무원 운영(Crew Tracking) 재배정: 앞 근무가 늦게 끝나 다음 근무 보고 시각까지 휴식이 모자라거나(또는 질병) → 그 근무 전체를 쉬어 있는 세트로 미리 바꿈
+  //   (출발 직전 대기·호출·기다림보다 먼저 · 대기 세트는 쓰지 않음 — 그날 쉬는 세트에서 고름) · 키 s2:crew:<새 세트>:fix:<첫 편>
+  function repair(C, s, d) {
+    var o = S(C), A = o.asg[d]; if (!A || !s) return false;
+    var du = dutyOf(C, d, s.id); if (!du) return false;
+    var left = du.legs.filter(function (x) { return x.aobt == null && x.state !== 'CNL' && x.state !== 'HOLD'; }); if (!left.length || left[0] !== du.legs[0]) return false;   // 이미 시작한 근무는 그대로
+    var restN = Math.max(L().rest, s.ld || 0), endT = s.rsv ? s.rsv.planEnd : s.last ? s.last.t : -1e9;
+    if (s.sick !== d && du.rep >= endT + restN) return false;
+    var slot = s.kind === 'cb' ? 'cb' : (left.some(function (x) { return A[x.id] && A[x.id].k2 === s.id; }) ? 'k2' : 'ck'), taken = {}, PS = {};
+    for (var fid in A) { if (fid === '_sby') { for (var t0 in A._sby) A._sby[t0].forEach(function (sid) { taken[sid] = 1; }); continue; } var a0 = A[fid]; [a0.ck, a0.k2, a0.cb].forEach(function (sid) { if (sid) taken[sid] = 1; }); }
+    var n3 = slot === 'ck' && !A[left[0].id].k2 && du.legs.some(function (x) { return aug(C, x); });
+    var nw = pick(C, s.type, s.kind, d, du.legs[0].from, du.rep, du.fly, n3, taken, PS);
+    if (!nw) return false;
+    left.forEach(function (x) { if (A[x.id] && A[x.id][slot] === s.id) A[x.id][slot] = nw.id; });
+    key(C, 's2:crew:' + nw.id + ':fix:' + left[0].id);
+    return true;
+  }
+  function repairAll(C, d) { var o = S(C), A = o.asg[d]; if (!A) return; var seen = {}; Object.keys(A).sort().forEach(function (fid) { if (fid === '_sby') return; var a = A[fid]; [a.ck, a.k2, a.cb].forEach(function (sid) { if (!sid || seen[sid]) return; seen[sid] = 1; repair(C, setOf(C, sid), d); }); }); }
+  // 배정 줄이 없는 편(배정 뒤 생긴 편 · 페리·재운항 임시 편): 같은 기체 앞 편 세트가 이어 갈 수 있으면 그 세트 · 아니면 비움(대기 세트 → 보류)
+  function late(C, f, d) {
+    var A = S(C).asg[d], prev = null, bt = C.byTail[f.tail] || [];
+    for (var i = 0; i < bt.length; i++) { var g = C.fl[bt[i]]; if (g && g.id !== f.id && biz(C, g) === d && g.std < f.std && A[g.id]) prev = A[g.id]; }
+    key(C, 's2:asg:' + d + ':' + f.id);
+    return prev ? { ck: prev.ck, k2: prev.k2, cb: prev.cb } : { ck: null, k2: null, cb: null };
+  }
+  function callSby(C, f, t, d, kind, n3, need3) {
+    var A = S(C).asg[d], y = A._sby && A._sby[f.type]; if (!y) return null;
+    for (var i = 0; i < y.length; i++) {
+      var s = setOf(C, y[i]); if (!s || (s.kind === 'cb') !== (kind === 'cb')) continue;
+      if (metro(f.from) !== s.base) continue;
+      if (okNow(C, s, f, t, d, n3, need3) !== true) continue;
+      y.splice(i, 1);
+      return { s: s, wait: S(C).sby.mode === 'home' ? t + X().sby.homeMin : 0 };
+    }
+    return null;
+  }
+  // 휴무 세트 호출(대기 세트도 없을 때 · 기지에서 · 그날 근무 없음 · 휴식·연속 근무·훈련 한도 안) — callMin 뒤 투입 · 비용 callCost(xCrewX 대기 몫)
+  function callOut(C, f, t, d, kind, n3, need3) {
+    if (metro(f.from) !== X().home && !homes(C)[metro(f.from)]) return null;
+    var list = rows(C, f.type, kind === 'cb' ? 'cb' : 'ck'), A = S(C).asg[d], best = null;
+    for (var i = 0; i < list.length; i++) {
+      var s = list[i]; if (s.base !== metro(f.from) || dutyOf(C, d, s.id) || sbyOf(C, d, s.id) || s.dl === d) continue;
+      if (kind !== 'cb' && need3 && (s.n || 2) < 3) continue;
+      if (okNow(C, s, f, t + X().sby.callMin, d, n3, need3) !== true) continue;
+      if (!best || (s.m[perOf(C, d).mk] || 0) < (best.m[perOf(C, d).mk] || 0)) best = s;
+    }
+    if (!best) return null;
+    accrue(C, d, 'sby', X().sby.callCost);
+    return { s: best, wait: t + X().sby.callMin, ev: 'call' };
+  }
+  // 2C-d 운항 사건 연결(계약 4-1 사건 15·16): 질병 결원 = 배정 운항 세트가 그날 근무 불가 · 대기 선택지 = 실제 대기 세트 · 근무 한도 도달 = 실제 근무 한도
+  function sick(C, f) { if (!f) return; var d = biz(C, f), a = S(C).asg[d] && S(C).asg[d][f.id], s = a && setOf(C, a.ck); if (s && !s.rsv) { s.sick = d; key(C, 's2:crew:' + s.id + ':sick:' + d); } }
+  function sbyOK(C, f) {   // 조회(쓰기 없음)
+    if (!f) return false; var d = biz(C, f), A = S(C).asg[d], y = A && A._sby && A._sby[f.type]; if (!y) return false;
+    var a = A[f.id], n3 = aug(C, f), need3 = n3 && !(a && a.k2);
+    return y.some(function (sid) { var s = setOf(C, sid); return s && s.kind === 'ck' && s.base === metro(f.from) && okNow(C, s, f, Math.max(C.t, f.etd), d, n3, need3) === true; });
+  }
+  //   반환: null = 투입 못 함(대기 세트 없음 · 한도) · { s, rdy } = 투입(rdy = 준비 완료 시각 · 공항 대기 = 0 — 207차 N207-04 · 배정 줄 rdy에도 남김)
+  function useSby(C, f) {
+    var d = biz(C, f), A = S(C).asg[d]; if (!A) return null; var a = A[f.id] || (A[f.id] = late(C, f, d)), n3 = aug(C, f), sb = callSby(C, f, Math.max(C.t, f.etd), d, 'ck', n3, n3 && !a.k2);
+    if (!sb) return null; swap(C, d, f, 'ck', a.ck, sb.s.id, 'sby'); if (sb.wait) rdyMark(C, d, f, sb.wait); return { s: sb.s.id, rdy: sb.wait || 0 };
+  }
+  // 준비 완료 시각(rdy): 그 편과 같은 근무의 남은(출발 전) 편 줄에 — 그 전에는 출발하지 않음(저장 재개 포함 · 정본 asg)
+  function rdyMark(C, d, f, w) { var A = S(C).asg[d], a = A && A[f.id]; if (a) a.rdy = Math.max(a.rdy || 0, w); }
+  function fdpHit(C, f) {   // 조회: 늦어진 출발 시각(ETD)에 배정 세트가 근무 한도(13h + 기장 재량 연장)를 넘고 그 전에 쉴 수도 없음 → 결재(대기 세트·다음 날·결항)
+    var d = biz(C, f), A = S(C).asg[d], a = A && A[f.id], s = a && setOf(C, a.ck); if (!s || s.rsv) return false;
+    var r = okNow(C, s, f, Math.max(C.t, f.etd), d, aug(C, f), aug(C, f) && !a.k2);
+    return r !== true && !!(r && r.rest && r.rest > f.etd + 180);
+  }
+  // 세트 교체 커밋(s2:crew:<새 세트>:<사건>:<fid>) — 그 편과 같은 근무의 남은(출발 전) 편도 새 세트로 · 출발 뒤 편은 바꾸지 않음
+  function swap(C, d, f, slot, oldId, newId, ev) {
+    var A = S(C).asg[d];
+    for (var fid in A) { if (fid === '_sby') continue; var a = A[fid], g = C.fl[fid]; if (!g || g.aobt != null) continue; if (fid === f.id || (oldId && a[slot] === oldId && g.tail === f.tail && g.std >= f.std)) a[slot] = newId; }
+    key(C, 's2:crew:' + newId + ':' + ev + ':' + f.id);
+  }
+  // 출발(AOBT) — 세트 id를 편 정본에(f.cs 운항 · f.cb 객실) · 예약 rsv(누적값은 아직 안 바꿈) · 키 s2:duty:<fid>:<세트>:out
+  function out(C, f, t) {
+    var o = S(C), d = biz(C, f), a = (o.asg[d] && o.asg[d][f.id]) || {};
+    f.cs = a.k2 ? [a.ck, a.k2] : a.ck; f.cb = a.cb;
+    if (a.k2) { var bm = perOf(C, d).mk, kb = o.k2bk || (o.k2bk = {}), km = kb[bm] || (kb[bm] = {}); km[f.type] = (km[f.type] || 0) + f.block; }   // 207차 N207-01: 복수 편성 둘째 세트 몫(필요량 — crewBooked와 같은 출발 시점)
+    [a.ck, a.k2, a.cb].forEach(function (sid) { var s = setOf(C, sid); if (!s) return; var du = dutyOf(C, d, sid), restN = Math.max(L().rest, s.ld || 0), nd = !s.last || (t - L().pre) - s.last.t >= restN, from = nd ? Math.min(t - L().pre, Math.max(du ? du.rep : t - L().pre, t - L().pre - L().notice, s.last ? s.last.t + restN : -1e9)) : (s.ds != null ? s.ds : t - L().pre); s.rsv = { fid: f.id, from: from, planEnd: t + f.block + L().post, nd: nd }; key(C, 's2:duty:' + f.id + ':' + sid + ':out'); });   // nd = 쉬고 새로 여는 근무
+  }
+  // 도착(AIBT — 대체 착륙·회항 포함) — 실제 블록을 월·FY(출발일 귀속)에 확정 · last = 실제 착륙지 · 연속 근무일 · 키 :in
+  function inn(C, f, at) {
+    var d = biz(C, f), p = perOf(C, d), ids = [].concat(f.cs || [], f.cb ? [f.cb] : []);
+    ids.forEach(function (sid) {
+      var s = setOf(C, sid); if (!s || !s.rsv || s.rsv.fid !== f.id) return;
+      if (C.keys['s2:duty:' + f.id + ':' + sid + ':in']) return;
+      var blk = f.aibt - f.aobt;
+      var m0 = s.m[p.mk] || 0, ot = otYen(C, s, m0, blk);   // 초과 근무 = 회사 월 계획 시간을 넘긴 몫(구현 판단 1)
+      s.m[p.mk] = m0 + blk; s.fy[p.fy] = (s.fy[p.fy] || 0) + blk; foAdd(s, blk);
+      // 207차 N207-02: 출발 영업일이 이미 마감됐으면(자정을 넘긴 편) 마감 때 미리 계상한 몫(rsv.ot)과의 차액만 지금 열린 영업일에 — 마감 뒤 출발한 편은 전액을 열린 영업일에
+      if (dayShut(C, d)) { var dif = ot - (s.rsv.ot || 0); if (dif) accrue(C, today(C), 'ot', dif); } else if (ot > 0) accrue(C, d, 'ot', ot);
+      if (s.rsv.nd) { if (s.dl !== d) { s.dw = s.dl && MG.tz.addDays(s.dl, 1) === d ? s.dw + 1 : 1; s.dl = d; } s.ds = s.rsv.from; s.rb = s.last ? s.rsv.from - s.last.t : null; }   // 새 근무: 연속 근무일(영업일) · 근무 시작 · rb = 이 근무 전 휴식(분 · 피로)
+      else if (s.dl !== d && s.dl < d) s.dl = d;
+      s.ld = f.aibt + L().post - (s.ds || s.rsv.from);
+      fatLate(C, s, f, d);
+      s.last = { t: f.aibt + L().post, apt: at || f.to }; s.rsv = null;
+      key(C, 's2:duty:' + f.id + ':' + sid + ':in');
+      [d, MG.tz.addDays(d, 1)].forEach(function (e) { if (S(C).asg[e]) repair(C, s, e); });   // 늦게 끝난 근무 → 오늘·내일 다음 근무 미리 재배정(Crew Tracking)
+      if (s.quit) { var a = rows(C, s.type, s.kind), i = a.indexOf(s); if (i >= 0) a.splice(i, 1); unAsg(C, s.id); }
+    });
+  }
+  /* ---------- 2C-c 비용(계약 2-4 · 새 줄 xCrewX): 초과 근무 · 레이오버(호텔 + 일비) · 대기 세트 일비 ----------
+     하루 한 분개(s2:crewx:<영업일> · 귀속일 = 그 영업일) — 월 마감 전에 넣음(그 달 손익에 들어가게) · 분해 = C.crew2.cost[월] */
+  function accrue(C, d, k, amt) { var o = S(C), A = o.acc[d] || (o.acc[d] = { ot: 0, lay: 0, sby: 0 }); A[k] += amt; }
+  function otYen(C, s, m0, blk) { if (s.kind !== 'ck') return 0; var hp = hoursPlan(C), ot = Math.max(0, m0 + blk - Math.max(hp, m0)); return ot > 0 ? Math.round(ot / 60 * X().ot.perH) : 0; }
+  function dayShut(C, d) { return !!(C.closeKeys && C.closeKeys.day && C.closeKeys.day >= 'D' + d); }   // 그 영업일 마감이 이미 끝났나(마감 중인 날 포함 — dayCost는 closeKeys.day를 바꾼 뒤 부름)
+  // 207차 N207-02: 마감 때 비행 중인 근무(rsv · 그 영업일 이전 출발) = 계획 블록으로 초과 근무를 그날 계상(한 번 · rsv.ot) → 도착 때 차액 정산(inn)
+  function rsvAccrue(C, closing) {
+    var o = S(C);
+    o.sets && Object.keys(o.sets).sort().forEach(function (ty) { o.sets[ty].forEach(function (s) {
+      var r = s.rsv, rf = r && C.fl[r.fid]; if (!rf || r.ot != null || biz(C, rf) > closing) return;
+      var p = perOf(C, biz(C, rf)); r.ot = otYen(C, s, s.m[p.mk] || 0, rf.block); if (r.ot > 0) accrue(C, closing, 'ot', r.ot);
+    }); });
+  }
+  function hotelOf(apt) { var h = X().hotel; return (h.apt && h.apt[apt]) || h.def; }
+  function dayCost(C, closing) {
+    if (!on(C)) return;
+    var o = S(C), y = o.asg[closing] && o.asg[closing]._sby, hm = homes(C);
+    if (y) Object.keys(y).sort().forEach(function (ty) { y[ty].forEach(function (sid) { var s = setOf(C, sid); if (!s) return; accrue(C, closing, 'sby', X().sby.dayCost); if (s.dl !== closing) { s.dw = s.dl && MG.tz.addDays(s.dl, 1) === closing ? s.dw + 1 : 1; s.dl = closing; } }); });   // 대기일 = 근무일(일비)
+    ['sets', 'cab'].forEach(function (k) { Object.keys(o[k]).sort().forEach(function (ty) { o[k][ty].forEach(function (s) {
+      if (s.rsv || !s.last || metro(s.last.apt) === s.base) return;                               // 밖에서 밤(레이오버) — 비행 중이면 다음 착륙지에서 셈 · 207차 권고 1: 면제 = 그 세트의 소속 기지(본사 또는 상주 베이스)만 — 다른 세트의 베이스 도시에서 밤 = 호텔·일비(실제 항공사와 같음)
+      accrue(C, closing, 'lay', s.n * (hotelOf(s.last.apt) + X().hotel.perDiem));
+    }); }); });
+    rsvAccrue(C, closing);
+    fatDay(C, closing);
+    var A = o.acc[closing]; delete o.acc[closing];
+    if (!A) return; var amt = A.ot + A.lay + A.sby; if (!amt || !C.fin) return;
+    var ln = amt > 0 ? [{ acct: 'xCrewX', dr: amt }, { acct: 'cash', cr: amt }] : [{ acct: 'cash', dr: -amt }, { acct: 'xCrewX', cr: -amt }];   // 음수 = 도착 정산(실제 블록이 계획보다 짧음)의 환입
+    if (MG.ledger.post(C, 's2:crewx:' + closing, 'crewx', ln, null, closing)) {
+      var mk = perOf(C, closing).mk, c = o.cost || (o.cost = {}), m = c[mk] || (c[mk] = { ot: 0, lay: 0, sby: 0 }); m.ot += A.ot; m.lay += A.lay; m.sby += A.sby;
+      Object.keys(c).forEach(function (k2) { if (k2 < 'M' + MG.tz.addDays(closing, -400).slice(0, 7)) delete c[k2]; });
+    }
+  }
+  /* ---------- 2C-d 피로 지수(교육용 FRMS — 실제 FRMS 인증과 무관 · 메모 5-2) ----------
+     근무한 날: 야간(본사 22~06시 걸침) · 연속 근무(consecFrom일째부터) · 시차(기지와 tzH시간 이상) · 짧은 휴식(12h 미만) · 12h 넘는 근무 → 더함 · 쉰 날 → offDay 덜어 냄 · [0, max] */
+  function tzOff(C, d, tz) { return MG.tz.dayStart(d, C.hqTz) - MG.tz.dayStart(d, tz); }   // 기지(본사) 시각과의 차(분)
+  function fatDay(C, d) {
+    var o = S(C), F = X().fat, A = o.asg[d];
+    ['sets', 'cab'].forEach(function (k) { Object.keys(o[k]).sort().forEach(function (ty) { o[k][ty].forEach(function (s) {
+      var du = A ? dutyOf(C, d, s.id) : null, add = 0;
+      // 207차 N207-02: 마감 때 그날 출발한 편으로 비행 중인 새 근무(rsv.nd · 도착 전이라 dl·ds·ld 미확정) = 근무한 날(계획값으로 한 번 · 도착 뒤 다음 날 마감은 그 근무를 다시 세지 않음)
+      //   그날 근무가 있지만 아직 출발 전(늦어져 자정을 넘긴 편) = 이날은 더하지도 덜지도 않음 → 도착 때 한 번(inn · fatLate)
+      var rf = s.rsv && C.fl[s.rsv.fid], fly = !!(rf && s.rsv.nd && biz(C, rf) === d && s.dl !== d && du);
+      var pend = !fly && s.dl !== d && du && !s.rsv && du.legs.some(function (x) { return x.aobt == null && x.state !== 'CNL' && x.state !== 'HOLD'; });
+      if ((s.dl === d || fly) && du) {
+        var inF = !!(rf && biz(C, rf) === d), ld = inF ? s.rsv.planEnd - (fly ? s.rsv.from : (s.ds || s.rsv.from)) : s.ld;   // 비행 중 편이 있으면 근무 끝 = 그 편 계획 끝
+        add = fly ? fatAdd(C, d, du, s.rsv.from, ld, s.dl && MG.tz.addDays(s.dl, 1) === d ? s.dw + 1 : 1, s.last ? s.rsv.from - s.last.t : null) : fatAdd(C, d, du, s.ds, ld, s.dw, s.rb);
+        s.fd = { d: d, add: add };   // 그 근무일에 더한 몫(도착 확정 때 실제 값과의 차만 더함 — fatLate)
+        s.fat = Math.min(F.max, (s.fat || 0) + add);
+      } else if (pend) { /* 도착 때 */ }
+      else if (s.dl !== d) s.fat = Math.max(0, (s.fat || 0) - F.offDay);
+    }); }); });
+  }
+  function fatAdd(C, d, du, ds, ld, dw, rb) {
+    var F = X().fat, add = 0, a = MG.tz.local(ds || du.rep, C.hqTz), st = a.hm, en = st + (ld || (du.end - du.rep));
+    if (st < 360 || en > 1320) add += F.night;
+    if (dw >= F.consecFrom) add += F.consec * (dw - F.consecFrom + 1);
+    if (du.legs.some(function (g) { var ap = MG.data.base.airports[g.to]; return ap && Math.abs(tzOff(C, d, ap.tz)) >= F.tzH * 60; })) add += F.tz;
+    if (rb != null && rb < 720) add += F.restShort;
+    if ((ld || 0) > 720) add += F.duty12;
+    return add;
+  }
+  // 207차 N207-02: 출발 영업일 마감이 끝난 뒤 도착한 근무 = 실제 값(근무 시작·길이·연속 근무일·휴식)으로 그 근무일 몫을 다시 셈 → 마감 때 더한 몫(fd)보다 크면 차만 더함(한 번 · 마감 때 출발 전이던 근무 = 전부)
+  function fatLate(C, s, f, d) {
+    if (!dayShut(C, d)) return;
+    var du = dutyOf(C, d, s.id) || { legs: [f], rep: f.std - L().pre, end: f.std + f.block + L().post };
+    var full = fatAdd(C, d, du, s.ds, s.ld, s.dw, s.rb), prev = s.fd && s.fd.d === d ? s.fd.add : 0;
+    if (full > prev) { s.fat = Math.min(X().fat.max, (s.fat || 0) + full - prev); s.fd = { d: d, add: full }; }
+  }
+  function fatAvg(C, type) { var o = S(C); if (!o) return 0; var n = 0, v = 0; ['sets', 'cab'].forEach(function (k) { Object.keys(o[k]).forEach(function (ty) { if (type && ty !== type) return; o[k][ty].forEach(function (s) { n++; v += s.fat || 0; }); }); }); return n ? v / n : 0; }
+  function fatK(C, type) { var F = X().fat; return Math.max(F.k0, Math.min(F.k1, 1 + F.kSlope * (fatAvg(C, type) - F.kRef))); }
+  function evtK(C, id, f) { return on(C) && f && id.slice(0, 4) === 'crw.' ? fatK(C, f.type) : 1; }   // 승무원 사건 확률 계수(2A 추출 한 줄)
+  function moraleHit(C) { return on(C) ? Math.max(0, fatAvg(C) - X().fat.kRef) * X().fat.morale : 0; }   // 조종사 사기 월 감소 몫(1단계 근무 시간 몫에 더함)
+  // 영업일 마감 ⑥(계약 4-3 순서): 그날 도착분 확정(도착 처리에서 이미) → 월/FY 넘김(누적 칸 정리) → 훈련·대기(순수 함수·배정에 포함) → 다음 영업일 배정
+  function dayClose(C, closing, d) {
+    if (!on(C)) return;
+    var o = S(C), keep = perOf(C, d), prevMk = perOf(C, closing).mk;
+    Object.keys(o.asg).sort().forEach(function (e) {
+      if (e > closing) return; var A = o.asg[e], left = 0;
+      for (var fid in A) { if (fid === '_sby') continue; var g = C.fl[fid]; if (!g || g.aobt != null || g.state === 'CNL' || g.state === 'HOLD') delete A[fid]; else left++; }
+      if (!left) delete o.asg[e]; else delete A._sby;
+    });
+    if (o.k2bk) Object.keys(o.k2bk).forEach(function (mk) { if (mk !== keep.mk && mk !== prevMk) delete o.k2bk[mk]; });
+    ['sets', 'cab'].forEach(function (k) { for (var ty in o[k]) o[k][ty].forEach(function (s) {
+      Object.keys(s.m).forEach(function (mk) { if (mk !== keep.mk && mk !== prevMk) delete s.m[mk]; });
+      Object.keys(s.fy).forEach(function (fy) { if (+fy < keep.fy - 1) delete s.fy[fy]; });
+    }); });
+    hireArrive(C, d); promoDone(C, d); promoRun(C, d); pair(C);   // 채용 도착 → 승격 완료(교체 부기장) → 승격 심사(연 2회) → 짝짓기(새 세트)
+    seasonChk(C, d);                                                // 계속 운항 검사(FY·시즌 시작 · 그 밖의 날 = 90일 전 경고만)
+    assign(C, d, true);                                             // 오늘(새 영업일) 배정 뒤 생긴 편 · 내일 배정 전 마지막 보완
+    repairAll(C, d);                                                // 오늘 근무 중 휴식 부족·질병 세트 = 쉬어 있는 세트로(Crew Tracking)
+    assign(C, MG.tz.addDays(d, 1));
+  }
+
+  /* ---------- 2C-e 승격·채용(메모 5-3 · 구현 판단 4·5·6) ----------
+     pool[type] = { cpt, fo }: 짝이 없는 기장·부기장(채용 도착·승격 완료) → 영업일 마감에 짝짓기(기장 1 + 부기장 1 = 새 세트 · s2:crew:<id>:pair)
+     hire = [{ id, type, k:'cpt'|'fo'|'intl'|'cab', n, at(도착일), obl }] · promo[FY:회] = { type: { n 후보, pass 합격, done 완료일 } } */
+  function hireCost(C, k, type) { var H = X().hire; if (k === 'cab') return X().cab.hireCost; var wx = MG.org && C.res && C.res.wage ? (C.res.wage.pilot || 1) : 1; return k === 'cpt' ? Math.round(H.cpt.cost * wx) : k === 'fo' ? H.fo.cost : H.intl.cost; }
+  function hireLeadDays(C, k, id) {
+    var H = X().hire, lf = MG.org && MG.org.f ? 2 - MG.org.f(C, 'hr.people') : 1;
+    if (k === 'intl') { var g = MG.rand.stream ? null : null, u = (MG.rand.hash32('crew2visa|' + C.id + '|' + id) >>> 0) % 1000 / 999; return Math.round(H.intl.lead[0] + u * (H.intl.lead[1] - H.intl.lead[0])); }   // 면허 전환 90~180일(구현 판단 4 · 결정적)
+    var mo = k === 'cpt' ? H.cpt.lead : k === 'fo' ? H.fo.lead : X().cab.lead;
+    return Math.max(30, Math.round(mo * 30.4 * Math.max(0.5, lf)));
+  }
+  // 채용 주문(CREW 화면 · 결재 crewwarn 「채용」): 비용 = 의무 하나(xTrn · 다음 지급일) · 키 s2:hire:<id>
+  //   207차 N207-05: 묶음 주문(기장 + 부기장) = 의무 하나 · 승인 하나 — 예산이 모자라면 아무것도 남기지 않음(주문·의무·번호·키 0 · 한쪽만 0)
+  function hire(C, type, k, n) { return hireSet(C, type, [{ k: k, n: n }]); }
+  function hireSet(C, type, list) {
+    if (!on(C)) return { ok: false, why: MG.M('crew2.why.off') };
+    if (!C.crew[type] || !list.length || list.some(function (x) { return !(x.n >= 1 && x.n <= 20 && x.n === Math.round(x.n)) || ['cpt', 'fo', 'intl', 'cab'].indexOf(x.k) < 0; })) return { ok: false, why: MG.M('crew2.why.bad') };
+    var o = S(C), n0 = o.hseq || 0, ids = list.map(function (x, i) { return 'H' + (n0 + 1 + i); }), oid = 'crew2:' + ids[0], amt = 0, td = today(C);
+    list.forEach(function (x) { amt += hireCost(C, x.k, type) * x.n; });
+    if (C.fin && amt > 0) {
+      var labs = list.map(function (x) { return MG.M('crew2.obl.hire', { k: MG.M('crew2.hk.' + x.k), type: B().types[type].name, n: x.n }); }), lab = labs.length === 1 ? labs[0] : MG.M('_j', { xs: labs, s: ' · ' });   // 207차 재확인 N207R-04: 구조 문장 그대로(문자열 join 0 — 표시 때 렌더)
+      var r = MG.fin.approve(C, { id: oid, kind: 'pre', acct: 'xTrn', dept: 'ops.cockpit', label: lab, inst: [{ due: MG.tz.addDays(td, 1), amt: amt }] });
+      if (!r.ok) return { ok: false, why: r.why || MG.M('crew2.why.cash') };
+      MG.fin.commitObl(C, oid);
+    }
+    o.hseq = n0 + list.length;
+    var res = list.map(function (x, i) {
+      var id = ids[i], at = MG.tz.addDays(td, hireLeadDays(C, x.k, id));
+      o.hire.push({ id: id, type: type, k: x.k, n: x.n, at: at, obl: oid });
+      key(C, 's2:hire:' + id);
+      if (MG.ops && MG.ops._log) MG.ops._log(C, MG.M('crew2.log.hire', { k: MG.M('crew2.hk.' + x.k), type: B().types[type].name, n: x.n, d: at }), 'ev');
+      return { id: id, at: at };
+    });
+    return { ok: true, id: res[0].id, at: res[0].at, list: res };
+  }
+  function hireArrive(C, d) {
+    var o = S(C), keep = [];
+    o.hire.forEach(function (h) {
+      if (h.at > d) { keep.push(h); return; }
+      var P = o.pool[h.type] || (o.pool[h.type] = { cpt: 0, fo: 0 });
+      if (h.k === 'cab') addSets(C, h.type, h.n, 'hire:' + h.id, 'cb');
+      else if (h.k === 'fo') P.fo += h.n; else P.cpt += h.n;
+      key(C, 's2:hire:' + h.id + ':in');
+      if (MG.ops && MG.ops._log) MG.ops._log(C, MG.M('crew2.log.arrive', { k: MG.M('crew2.hk.' + h.k), type: B().types[h.type].name, n: h.n }), 'ev');
+    });
+    o.hire = keep;
+  }
+  function pair(C) {
+    var o = S(C);
+    Object.keys(o.pool).sort().forEach(function (ty) { var P = o.pool[ty]; while (P.cpt > 0 && P.fo > 0) { P.cpt--; P.fo--; addSets(C, ty, 1, 'pair', 'ck'); } });
+  }
+  // 승격 심사(연 2회 · 회계 월 promo.months의 1일 · s2:promo:<FY>:<회>): 요건 = 부기장 비행 ≥ fh · 합격률 = base + trnK × (운항승무원 부서 역량 − 1) · 합격 = train일 뒤 기장(pool) · 그 세트 부기장 자리는 pool 부기장이 채움(없으면 완료가 미뤄짐 — 계속 부기장으로 비행)
+  function promoP(C) { var Pm = X().promo, fx = MG.org && MG.org.f ? MG.org.f(C, 'ops.cockpit') : 1; return Math.max(Pm.p0, Math.min(Pm.p1, Pm.base + Pm.trnK * (fx - 1))); }
+  function promoRun(C, d) {
+    var Pm = X().promo, p = perOf(C, d), fm = ((+d.slice(5, 7) - 4 + 12) % 12) + 1, ix = Pm.months.indexOf(fm);
+    if (ix < 0 || d.slice(8, 10) !== '01') return;
+    var k = 's2:promo:' + p.fy + ':' + (ix + 1); if (C.keys[k]) return; key(C, k);
+    var o = S(C), rec = o.promo[p.fy + ':' + (ix + 1)] = {}, pr = promoP(C);
+    Object.keys(o.sets).sort().forEach(function (ty) {
+      var cand = o.sets[ty].filter(function (s) { return !s.quit && !s.up && (s.foH || 0) >= Pm.fh; }), pass = 0;
+      cand.forEach(function (s) { var u = (MG.rand.hash32('crew2promo|' + C.id + '|' + k + '|' + s.id) >>> 0) % 1000 / 1000; if (u < pr) { s.up = MG.tz.addDays(d, Pm.train); pass++; key(C, 's2:crew:' + s.id + ':promo:' + p.fy + ':' + (ix + 1)); } });
+      rec[ty] = { n: cand.length, pass: pass, p: Math.round(pr * 100) };
+    });
+    if (MG.ops && MG.ops._log) MG.ops._log(C, MG.M('crew2.log.promo', { r: MG.M('_j', { xs: Object.keys(rec).map(function (ty) { return MG.M('crew2.log.promo1', { type: B().types[ty].name, n: rec[ty].n, pass: rec[ty].pass }); }), s: ' · ' }) }), 'ev');
+  }
+  function promoDone(C, d) {
+    var o = S(C);
+    Object.keys(o.sets).sort().forEach(function (ty) { var P = o.pool[ty] || (o.pool[ty] = { cpt: 0, fo: 0 }); o.sets[ty].forEach(function (s) {
+      if (!s.up || s.up > d || s.rsv || P.fo < 1) return;                       // 교체 부기장이 있어야 완료(없으면 계속 부기장으로 비행)
+      P.fo--; P.cpt++; s.foH = X().rank.foH0[0]; delete s.up; key(C, 's2:crew:' + s.id + ':up:' + d);
+    }); });
+  }
+  // 비행 분 → 부기장 경력(승격 요건) — 근무 확정 때
+  function foAdd(s, blk) { if (s.kind === 'ck') s.foH = (s.foH || 0) + blk; }
+
+  /* ---------- 2C-e 필요량·가용(메모 16-7·16-1 · W9~W11·W13) ----------
+     need = 개정 사본(D)의 확정 시간표 전체 월 비행 + 다른 조건부 예약(extra) — 1단계 crewMonths와 같은 셈(같은 함수 하나 · 운항·객실 같은 정의)
+     avail = Σ세트 × 회사 월 계획 시간 × 역량 계수 × (1 − 그 달 훈련 몫) × (1 − 대기 비율) · 채용 도착·짝짓기 예정 반영 · FY = Σ세트 × 1,000h */
+  //   반환 need = 편 시간(운항·객실 같은 정의 · 1단계 crewMonths와 같은 셈) · bk = 이미 출발한 몫(crewBooked) · aug = 앞으로의 장거리(블록 > crew3Blk) 편 시간
+  //   207차 N207-01: 운항 필요량 = need + 복수 편성 몫(ckNeed — 3명 세트가 없으면 장거리 편 = 2명 세트 둘 · 이미 출발한 복수 편성 = k2bk)
+  function needM(D, type, mi, extra, ref) {
+    var td = today(D), legs = D.legs.filter(function (Lg) { return Lg.type === type; }), d0 = MG.cal.dateOf(D, mi, 1), pp0 = MG.cal.per(D, d0), mk = pp0.mk, bk = (D.crewBooked[mk] || {})[type] || 0, need = bk, todayLeft = 0, aug = 0, augT = 0, c3 = X().crew3Blk;
+    var exB = extra && typeof extra === 'object' ? extra.blk || 0 : extra || 0, exA = extra && typeof extra === 'object' ? extra.aug || 0 : 0;   // 207차 재확인 N207R-02: extra = 하루 블록 분 또는 { blk, aug }(다른 조건부 계획의 장거리 편 몫)
+    for (var fk in D.fl) { var f = D.fl[fk]; if (f.type !== type || f.aobt != null || f.state === 'CNL' || f.state === 'HOLD') continue; if (MG.tz.local(f.std, D.hqTz).date === td) { todayLeft += f.block; if (f.block > c3) augT += f.block; } }
+    for (var dd = 1; dd <= pp0.n; dd++) { var d = MG.cal.dateOf(D, mi, dd); if (d < td) continue; if (d === td) { need += todayLeft; aug += augT; } else legs.forEach(function (Lg) { if (MG.ops.legOn(D, Lg, d)) { need += Lg.block; if (Lg.block > c3) aug += Lg.block; } }); if ((exB || exA) && ref && d >= ref) { need += exB; aug += exA; } }
+    var o = S(D), k2b = o && o.k2bk && o.k2bk[mk] ? o.k2bk[mk][type] || 0 : 0;
+    return { mk: mk, need: need, n: pp0.n, d0: d0, bk: bk, aug: aug, k2b: k2b };
+  }
+  function has3(D, type) { return rows(D, type, 'ck').some(function (s) { return !s.quit && (s.n || 2) >= 3; }); }
+  function ckNeed(D, type, nd) { return nd.need + nd.k2b + (has3(D, type) ? 0 : nd.aug); }
+  // 207차 N207-03: FY 운항 필요량 = 그 FY에 이미 확정한 세트 시간(s.fy) + 비행 중 예약(rsv) + 오늘부터 FY 말까지 남은 계획(이미 출발한 몫 제외 · 중복 0) — 다음 FY = 계획만
+  function fyNeed(D, type, fy, extra, ref, cache) {
+    var td = today(D), p0 = MG.cal.per(D, td), used = 0, fut = 0;
+    if (fy === p0.fy) rows(D, type, 'ck').forEach(function (s) { used += s.fy[fy] || 0; var r = s.rsv, rf = r && D.fl[r.fid]; if (rf && MG.cal.per(D, biz(D, rf)).fy === fy) used += rf.block; });
+    for (var k = 0; k < 36; k++) { var mi = p0.mi + k, pp = MG.cal.per(D, MG.cal.dateOf(D, mi, 1)); if (pp.fy > fy) break; if (pp.fy < fy) continue; var nd = cache && cache[mi] || needM(D, type, mi, extra, ref); if (cache) cache[mi] = nd; fut += ckNeed(D, type, nd) - nd.bk - nd.k2b; }
+    return { used: used, fut: fut, need: used + fut };
+  }
+  function setsAt(D, type, mi, kind) {   // 그 달 1일 기준 세트 수(지금 + 채용 도착·짝짓기 예정 · 1단계 채용 큐 · 승무원 추가 큐)
+    var o = S(D), d0 = MG.cal.dateOf(D, mi, 1), t0 = MG.tz.dayStart(d0, D.hqTz), n = nOf(D, type, kind);
+    if (kind === 'cb') { o.hire.forEach(function (h) { if (h.type === type && h.k === 'cab' && h.at <= d0) n += h.n; }); return n; }
+    var P = o.pool[type] || { cpt: 0, fo: 0 }, c = P.cpt, fo = P.fo;
+    o.hire.forEach(function (h) { if (h.type === type && h.at <= d0) { if (h.k === 'fo') fo += h.n; else if (h.k !== 'cab') c += h.n; } });
+    n += Math.min(c, fo) - Math.min(P.cpt, P.fo);
+    if (D.res) D.res.pilotQ.forEach(function (q) { if (q.type === type && q.at <= mi) n += q.n; });
+    D.queue.forEach(function (q) { if (q.kind === 'crew-add' && q.type === type && q.t <= t0) n += q.sets; });
+    return n;
+  }
+  function availM(D, type, mi, kind, n) {
+    var d0 = MG.cal.dateOf(D, mi, 1), pp = MG.cal.per(D, d0), capF = MG.org ? MG.org.crewCapF(D) : 1, hp = hoursPlan(D), sb = S(D).sby.ratio || 0, rs = rows(D, type, kind), trn = 0;
+    rs.forEach(function (s) { for (var dd = 1; dd <= pp.n; dd++) if (trnOn(D, s, MG.cal.dateOf(D, mi, dd))) trn++; });
+    var per = rs.length ? trn / (rs.length * pp.n) : 0;
+    return Math.floor(n * hp * capF * (1 - per) * (1 - sb));
+  }
+  // 1단계 crewMonths의 2C 판(같은 반환 모양 + cb(객실) · fy(그 FY 합) 칸): 검사 구간 = ref ~ 다음 FY 말(16-1 상시 효력 · 최소 12 최대 24개월)
+  function months(D, type, ref, extra) {
+    var p0 = MG.cal.per(D, ref), pEnd = p0.fy + 1, out = [], fyAcc = {}, cache = {};
+    for (var k = 0; k < 24; k++) {
+      var mi = p0.mi + k, d0 = MG.cal.dateOf(D, mi, 1), pp = MG.cal.per(D, d0); if (pp.fy > pEnd) break;
+      var nd = cache[mi] || (cache[mi] = needM(D, type, mi, extra, ref)), n = setsAt(D, type, mi, 'ck'), nc = setsAt(D, type, mi, 'cb');
+      var m = { mk: nd.mk, need: ckNeed(D, type, nd), cap: availM(D, type, mi, 'ck', n), sets: n, cb: { need: nd.need, cap: availM(D, type, mi, 'cb', nc), sets: nc } };
+      var fa = fyAcc[pp.fy]; if (!fa) { var fn = fyNeed(D, type, pp.fy, extra, ref, cache); fa = fyAcc[pp.fy] = { fy: pp.fy, need: fn.need, used: fn.used, cap: 0 }; } fa.cap = n * L().fy; m.fyRef = fa;
+      out.push(m);
+    }
+    out.forEach(function (m, i) { var nx = out[i + 1]; if (!nx || nx.fyRef !== m.fyRef) m.fy = { fy: m.fyRef.fy, need: m.fyRef.need, used: m.fyRef.used, cap: m.fyRef.cap }; delete m.fyRef; });
+    return out;
+  }
+  // 부족 사유(승인 가능 검사 · 계속 운항 검사 공통)
+  function shortOf(cm) { var bad = []; (cm || []).forEach(function (m) { if (m.need > m.cap) bad.push({ mk: m.mk, k: 'ck', need: m.need, cap: m.cap, sets: m.sets }); if (m.cb && m.cb.need > m.cb.cap) bad.push({ mk: m.mk, k: 'cb', need: m.cb.need, cap: m.cb.cap, sets: m.cb.sets }); if (m.fy && m.fy.need > m.fy.cap) bad.push({ mk: m.mk, k: 'fy', fy: m.fy.fy, need: m.fy.need, cap: m.fy.cap }); }); return bad; }
+
+  /* ---------- 계속 운항 검사(16-1 · 16-8 ②): FY 시작·시즌 시작(s2:crewchk:<FY>:<시즌>) + 개정 승인·채용 뒤 즉시 · 부족 월 90일 전 경고(결재함 crewwarn) ---------- */
+  function check(C, why) {
+    var o = S(C), td = today(C), res = {};
+    Object.keys(C.crew).sort().forEach(function (ty) { shortOf(months(C, ty, td, 0)).forEach(function (b) { var k = ty + ':' + b.mk + ':' + b.k; res[k] = { type: ty, mk: b.mk, k: b.k, n: b.k === 'fy' ? 0 : Math.ceil((b.need - b.cap) / Math.max(1, hoursPlan(C))) }; }); });
+    o.short = res; warnDue(C, td);
+    return res;
+  }
+  function warnDue(C, td) {
+    var o = S(C);
+    Object.keys(o.short || {}).sort().forEach(function (k) {
+      var b = o.short[k], d1 = b.mk.slice(1) + '-01', due = MG.tz.addDays(d1, -X().chk.warnDays);
+      if (td < due || o.warn[k]) return; o.warn[k] = td;
+      MG.ops._raise(C, { kind: 'crewwarn', id: 'crewwarn:' + k, title: MG.M('crew2.warn.title', { m: b.mk.slice(1), type: B().types[b.type].name, k: MG.M('crew2.k.' + b.k) }),
+        body: MG.M('crew2.warn.body', { m: b.mk.slice(1), type: B().types[b.type].name, k: MG.M('crew2.k.' + b.k), n: b.n }), crewKey: k,
+        opts: [{ id: 'ok', label: MG.M('crew2.warn.ok') }, { id: 'hire', label: MG.M('crew2.warn.hire', { n: Math.max(1, b.n) }) }] });
+    });
+  }
+  // 207차 N207-05: 반환 { ok } — 실패면 결정 기록 없이 결재 유지(mg_ops 결정 전 검사 자리 · 다른 결재와 같은 방식) · 부족이 이미 풀렸으면 주문 없이 닫음
+  function applyWarn(C, p, oid) {
+    if (p.kind !== 'crewwarn' || oid !== 'hire') return { ok: true };
+    var b = (S(C).short || {})[p.crewKey]; if (!b) return { ok: true, none: true };
+    var n = Math.max(1, b.n), r = b.k === 'cb' ? hireSet(C, b.type, [{ k: 'cab', n: n }]) : hireSet(C, b.type, [{ k: 'cpt', n: n }, { k: 'fo', n: n }]);
+    return r.ok ? { ok: true } : { ok: false, why: r.why };
+  }
+  function seasonChk(C, d) {
+    var p = perOf(C, d), sid = seasonOf(d);
+    var k = 's2:crewchk:' + p.fy + ':' + sid; if (C.keys[k]) { warnDue(C, d); return; }
+    key(C, k); check(C, 'season');
+  }
+
+  /* ---------- 2C-e 상세 견적(승인 1층 · W7): 개정 사본에서 효력 첫 주 세트 근무표 시뮬 — 부족(배정 못 한 편) · 레이오버 밤 · 초과 근무 분 ---------- */
+  //   207차 N207-06: 효력 첫 주가 편 생성 창(genThrough) 밖이면 사본에서 그 주(+1일)까지 편을 만들고 · 그때까지 도착하는 채용·짝짓기·1단계 채용 큐·승무원 추가 큐를 사본 세트에 반영 → 근무표 계산
+  //   계획에 편이 있는데 표본이 0이면 none = true(「0편 정상」과 구분) · 원본 쓰기 0(D = 사본)
+  function weekSim(D, from) {
+    var o = S(D), short = 0, lay = 0, ot = 0, legs = 0, hp = hoursPlan(D), td = today(D), last = MG.tz.addDays(from, 7), gen = 0;
+    if (from > td) for (var gd = MG.tz.addDays(D.genThrough || td, 1); gd <= last; gd = MG.tz.addDays(gd, 1)) gen += MG.ops.genDay(D, gd) || 0;
+    // 207차 재확인 N207R-03 · 재확인2 N207S-01: 견적일마다 배정 전에 그날까지 도착하는 인력을 사본에 — 실제 영업일 마감 순서(hireArrive → promoDone → promoRun → pair → 1단계 채용 큐 · 승무원 추가 큐 → 배정)와 같음 · 새 행의 since = 도착일
+    function arrive(d) {
+      var n0 = {}; ['sets', 'cab'].forEach(function (k) { for (var ty in o[k]) n0[k + ty] = o[k][ty].length; });
+      hireArrive(D, d); promoDone(D, d); promoRun(D, d); pair(D);   // 207차 재확인2 N207S-01: 실제 영업일 마감과 같은 순서(채용 도착 → 승격 완료(교체 부기장 먼저 소비) → 승격 심사 → 짝짓기)
+      var mi = MG.cal.per(D, d).mi, t0 = MG.tz.dayStart(d, D.hqTz);
+      if (D.res) D.res.pilotQ = D.res.pilotQ.filter(function (q) { if (q.at <= mi) { addSets(D, q.type, q.n, 'proj', 'ck'); return false; } return true; });
+      D.queue = D.queue.filter(function (q) { if (q.kind === 'crew-add' && q.t <= t0) { addSets(D, q.type, q.sets, 'proj', 'ck'); return false; } return true; });
+      ['sets', 'cab'].forEach(function (k) { for (var ty in o[k]) o[k][ty].slice(n0[k + ty] || 0).forEach(function (s) { s.since = d; }); });
+    }
+    for (var i = 0; i < 7; i++) {
+      var d = MG.tz.addDays(from, i); if (d > td) arrive(d); if (!o.asg[d]) { delete D.keys['s2:asg:' + d]; assign(D, d); } else assign(D, d, true);   // 이미 배정한 날 = 개정으로 새로 생긴 편만 더 배정(사본)
+      var A = o.asg[d];
+      for (var fid in A) { if (fid === '_sby') continue; var g = D.fl[fid]; if (!g || g.state === 'CNL' || g.state === 'HOLD') continue; legs++; if (!A[fid].ck || !A[fid].cb) short++; }
+      ['sets', 'cab'].forEach(function (k) { for (var ty in o[k]) o[k][ty].forEach(function (s) { var du = dutyOf(D, d, s.id); if (du && metro(du.to) !== s.base) lay++; if (du && s.kind === 'ck') { var P = proj(D, s, d); if (P.m + du.fly > hp) ot += Math.min(du.fly, P.m + du.fly - hp); } }); });
+    }
+    return { legs: legs, short: short, lay: lay, ot: ot, gen: gen, none: !legs };
+  }
+
+  // 베이스 개설(허브 밖 상주 · 메모 5-1): 그 공항(도시 묶음)에 그 기종 운항·객실 세트 n개씩 상주 → 그곳에서 끝나는 근무 = 레이오버 아님
+  //   비용 = 개설 1회(xCrewX · 다음 날 지급) + 월 고정비(xCrewX · 다음 달부터) · 세트는 번호 큰(그날 배정 없는) 세트부터 옮김 · 키 s2:crew:base:<공항>
+  function openBase(C, apt, type, n) {
+    if (!on(C)) return { ok: false, why: MG.M('crew2.why.off') };
+    var B0 = X().base, k = metro(apt), o = S(C);
+    if (!B().airports[apt] || k === X().home || !C.crew[type] || !(n >= B0.minSets && n <= 10 && n === Math.round(n))) return { ok: false, why: MG.M('crew2.why.base') };
+    if (o.bases[k] && o.bases[k].n > 0) return { ok: false, why: MG.M('crew2.why.baseDup') };
+    var td = today(C), d1 = MG.tz.addDays(td, 1), mv = [];
+    ['ck', 'cb'].forEach(function (kind) { var a = rows(C, type, kind).filter(function (s) { return s.base === X().home && !s.rsv && !s.quit && !dutyOf(C, td, s.id) && !dutyOf(C, d1, s.id) && !sbyOf(C, td, s.id) && !sbyOf(C, d1, s.id); }); mv.push(a.slice(-n)); });
+    if (mv[0].length < n || mv[1].length < n) return { ok: false, why: MG.M('crew2.why.baseSets') };
+    if (C.fin) {
+      var r = MG.fin.approve(C, { id: 'crew2:base:' + k, kind: 'pre', acct: 'xCrewX', dept: 'ops.cockpit', label: MG.M('crew2.obl.base', { a: apt }), inst: [{ due: d1, amt: B0.open }] });
+      if (!r.ok) return { ok: false, why: r.why || MG.M('crew2.why.cash') };
+      MG.fin.commitObl(C, 'crew2:base:' + k);
+      var pm = MG.cal.per(C, td); MG.fin.addObl(C, { id: 'crew2:basem:' + k, kind: 'fixed', acct: 'xCrewX', dept: 'ops.cockpit', label: MG.M('crew2.obl.baseM', { a: apt }), state: 'committed', gen: { mi0: pm.mi + 1, day: MG.data.fin.fixedDay, amt: B0.mon, n: null } });
+    }
+    o.bases[k] = { apt: apt, type: type, n: n, since: td };
+    mv.forEach(function (a) { a.forEach(function (s) { s.base = k; s.last = { t: C.t, apt: apt }; }); });   // 상주 이동(이동 근무 시간은 넣지 않음 — Vela 간이)
+    key(C, 's2:crew:base:' + k);
+    if (MG.ops && MG.ops._log) MG.ops._log(C, MG.M('crew2.log.base', { a: apt, type: B().types[type].name, n: n }), 'ev');
+    return { ok: true };
+  }
+  // 대기 정책(CREW 화면): 비율 0~15% · 공항/자택 — 다음 배정부터(이미 배정한 날은 그대로 · 정본) · 키 s2:crew:sby:<n>
+  function setSby(C, r, m) {
+    if (!on(C)) return { ok: false, why: MG.M('crew2.why.off') };
+    if (!(r >= 0 && r <= X().sby.max) || (m !== 'apt' && m !== 'home')) return { ok: false, why: MG.M('crew2.why.bad') };
+    var o = S(C); o.sby = { ratio: r, mode: m }; o.sbyN = (o.sbyN || 0) + 1; key(C, 's2:crew:sby:' + o.sbyN); return { ok: true };
+  }
+  // 시간표 개정 승인 뒤(사본 견적 제외): 오늘·내일 새 편 배정(기존 줄 유지) · 계속 운항 검사 즉시(16-8 ②)
+  function afterPlan(C) { if (!on(C)) return; var d = today(C); assign(C, d, true); assign(C, MG.tz.addDays(d, 1), true); check(C, 'plan'); }
+  function seasonOf(d) { var y = +d.slice(0, 4), s = MG.skd.seasonStarts(y); if (d >= s[1]) return 'W' + (y % 100); if (d >= s[0]) return 'S' + (y % 100); return 'W' + ((y - 1) % 100); }
+  /* ---------- 시작(새 캠페인 하나) ---------- */
+  function start(C) {
+    if (!can(C) || C.crew2) return;
+    init(C);
+    var d = today(C); assign(C, d); assign(C, MG.tz.addDays(d, 1));
+  }
+
+  return { X: X, can: can, on: on, S: S, metro: metro, start: start, nOf: nOf, addSets: addSets, setOf: setOf,
+           assign: assign, assignable: assignable, out: out, inn: inn, dayClose: dayClose, dayCost: dayCost, hotelOf: hotelOf, sick: sick, sbyOK: sbyOK, useSby: useSby, fdpHit: fdpHit, fatAvg: fatAvg, fatK: fatK, evtK: evtK, moraleHit: moraleHit, hire: hire, hireSet: hireSet, hireCost: hireCost, promoP: promoP, months: months, shortOf: shortOf, check: check, applyWarn: applyWarn, weekSim: weekSim, afterPlan: afterPlan, setSby: setSby, openBase: openBase, needM: needM, availM: availM, setsAt: setsAt, dutyOf: dutyOf, proj: proj, trnOn: trnOn, hoursPlan: hoursPlan, cut: cut, okNow: okNow, _canStart: canStart, _promoRun: promoRun, _promoDone: promoDone, _hireArrive: hireArrive, _pair: pair };
+})();
+
+/* ---------- 계약 2-2 함수 교체(2C): s2 켬 + 2C 상태 = 세트 행이 정본 · 그 밖(s2 끔 · 2C 이전 판 2단계 저장본) = 기존 칸 그대로 ---------- */
+(function () {
+  var n0 = MG.crew.n, add0 = MG.crew.add;
+  MG.crew.n = function (C, type) { return C.crew2 ? MG.crew2.nOf(C, type, 'ck') : n0(C, type); };
+  MG.crew.add = function (C, type, n, why) { return C.crew2 ? MG.crew2.addSets(C, type, n, why, 'ck') : add0(C, type, n, why); };
+  // 메모 16-7: 필요량 함수 하나(화면 견적·승인·조건부 확보 재검사·계속 운항 검사 모두 crewMonths → 2C 판 months → needM) — kind: 'ck'|'cb'(같은 정의)
+  MG.crew.need = function (D, type, mk, kind, extra, ref) { var mi = MG.cal.per(D, mk.slice(1) + '-01').mi; return MG.crew2.needM(D, type, mi, extra, ref).need; };
 })();
 
 /* ===== 경영 모드 1A-2 · mg_fin.js — 거래 수명주기·분개·예약 묶음·지급 의무·예산·마감·3표·세금·현금 경보 =====
@@ -5039,7 +6925,7 @@ MG.fin = (function () {
     rPax: { n: MG.M('fin.rPax.n'), s: 'R', g: 'rev' }, rAnc: { n: MG.M('fin.rAnc.n'), s: 'R', g: 'rev' }, rCgo: { n: MG.M('fin.rCgo.n'), s: 'R', g: 'rev' }, rFee: { n: MG.M('fin.rFee.n'), s: 'R', g: 'rev' }, rRelief: { n: MG.M('fin.rRelief.n'), s: 'R', g: 'ext' },   // 1C-3b-2 Q85·N145-01: 원장 대변 → 보고서 ext 양수
     xFuel: { n: MG.M('fin.xFuel.n'), s: 'X', g: 'var' }, xMx: { n: MG.M('fin.xMx.n'), s: 'X', g: 'var' }, xCrew: { n: MG.M('fin.xCrew.n'), s: 'X', g: 'var' }, xApt: { n: MG.M('fin.xApt.n'), s: 'X', g: 'var' }, xPax: { n: MG.M('fin.xPax.n'), s: 'X', g: 'var' }, xDist: { n: MG.M('fin.xDist.n'), s: 'X', g: 'var' },
     xStaff: { n: MG.M('fin.xStaff.n'), s: 'X', g: 'fixed' }, xStn: { n: MG.M('fin.xStn.n'), s: 'X', g: 'fixed' }, xIT: { n: MG.M('fin.xIT.n'), s: 'X', g: 'fixed' }, xMkt: { n: MG.M('fin.xMkt.n'), s: 'X', g: 'fixed' },
-    xOH: { n: MG.M('fin.xOH.n'), s: 'X', g: 'fixed' }, xIns: { n: MG.M('fin.xIns.n'), s: 'X', g: 'fixed' }, xTrn: { n: MG.M('fin.xTrn.n'), s: 'X', g: 'fixed' }, xOther: { n: MG.M('fin.xOther.n'), s: 'X', g: 'fixed' }, xIrreg: { n: MG.M('fin.xIrreg.n'), s: 'X', g: 'var' },   /* 2A-1 Q-S3: 비정상 운항(지연·복구 서비스) 세부 — s2 켬만 분개 */ xFltEnd: { n: MG.M('fin.xFltEnd.n'), s: 'X', g: 'fixed' },
+    xOH: { n: MG.M('fin.xOH.n'), s: 'X', g: 'fixed' }, xIns: { n: MG.M('fin.xIns.n'), s: 'X', g: 'fixed' }, xTrn: { n: MG.M('fin.xTrn.n'), s: 'X', g: 'fixed' }, xOther: { n: MG.M('fin.xOther.n'), s: 'X', g: 'fixed' }, xIrreg: { n: MG.M('fin.xIrreg.n'), s: 'X', g: 'var' }, xMxH: { n: MG.M('fin.xMxH.n'), s: 'X', g: 'var' }, xCrewX: { n: MG.M('fin.xCrewX.n'), s: 'X', g: 'var' },   /* 2B: 중정비(C 체크·엔진·외주 MRO·격납고) 세부 — s2 켬만 분개 */   /* 2A-1 Q-S3: 비정상 운항(지연·복구 서비스) 세부 — s2 켬만 분개 */ xFltEnd: { n: MG.M('fin.xFltEnd.n'), s: 'X', g: 'fixed' },
     xMxF: { n: MG.M('fin.xMxF.n'), s: 'X', g: 'fixed' }, xLease: { n: MG.M('fin.xLease.n'), s: 'X', g: 'fixed' },
     xPre: { n: MG.M('fin.xPre.n'), s: 'X', g: 'pre' }, xDep: { n: MG.M('fin.xDep.n'), s: 'X', g: 'dep' }, xInt: { n: MG.M('fin.xInt.n'), s: 'X', g: 'int' }, xTax: { n: MG.M('fin.xTax.n'), s: 'X', g: 'tax' }
   };
@@ -5287,7 +7173,7 @@ MG.fin = (function () {
   // 날짜 변경(계약 v5 3-2): 남은 구간만 다른 편으로(선수금 금액 그대로, 수수료는 수입), 운송 끝난 구간은 불변
   //   1C-1b 시장 코호트: 같은 노선·같은 운임군·운임 차액 0, S 불가 · D 5,000엔/인 · F 0, 새 편 중첩 한도·연결 MCT 검사 — m < s명이면 자식 코호트 <id>:c<n>(한 커밋)
   function rotOfFk(C, fk) { var L = legOf(C, fk); return L ? MG.tz.addDays(fk.slice(fk.lastIndexOf(':') + 1), -(L.dayOffset || 0)) : null; }
-  function canSell(C, fk) { var L = legOf(C, fk), fl = C.fl[fk], rot = rotOfFk(C, fk); if (!L) return false; if (fl) return fl.state === 'SCH'; return !!(C.genThrough && rot > C.genThrough && valid(C, L, rot)); }
+  function canSell(C, fk) { var L = legOf(C, fk), fl = C.fl[fk], rot = rotOfFk(C, fk); if (!L) return false; if (fl) return fl.state === 'SCH'; return !!(C.genThrough && rot > C.genThrough && valid(C, L, rot)) && !(C.mx2 && MG.mx2.noSale(C, L, MG.tz.addDays(rot, L.dayOffset))); }   // 2B: 계획 정비 운휴 = 판매 중지(s2 끔 = false)
   //   newFk가 배열이면 여정의 여러 구간을 한 번에(연결 여정 날짜 변경 — [첫 구간 새 편, 둘째 새 편], null = 그대로), i는 무시
   function changeSeg(C, bid, i, newFk, fee, m, invol) {   // invol = 회사 사정 비자발 이동(2A 복구 — 수수료·운임 규칙 검사 없음 · s2 켬만 넘김)
     var b = C.fin.bk[bid]; if (!b) return { ok: false, why: 'no-booking' };
@@ -5444,7 +7330,7 @@ MG.fin = (function () {
   }
   // K 비용: 연료·정비·승무원·공항 사용료(at = 실제 착륙지 — MG.world.feeOf 넷째 인자 · s2 끔 = f.to) → 비용 줄(현금)
   function arrCost(C, f, at, pax) {
-    var c = F().cost[f.type], h = (f.aibt - f.aobt) / 60, cr3 = MG.crisis && MG.crisis.on(C), fuel = Math.round(h * c.fuelKgH * F().fuelYenPerKg * ((C.scn && C.scn.fuelF) || 1) * (cr3 ? MG.crisis.fuelF(C) : 1)), mx = Math.round(h * c.mxH * (MG.org ? MG.org.mxF(C, f.tail) : 1) * (cr3 ? MG.crisis.mxF(C) : 1)), crew = Math.round(h * c.crewH), apt = c.sector, px = pax * c.pax;
+    var c = F().cost[f.type], h = (f.aibt - f.aobt) / 60, cr3 = MG.crisis && MG.crisis.on(C), fuel = Math.round(h * c.fuelKgH * F().fuelYenPerKg * ((C.scn && C.scn.fuelF) || 1) * (cr3 ? MG.crisis.fuelF(C) : 1)), mx = Math.round(h * c.mxH * (C.mx2 ? MG.mx2.mxK(C, f.type) : 1) * (MG.org ? MG.org.mxF(C, f.tail) : 1) * (cr3 ? MG.crisis.mxF(C) : 1)), crew = Math.round(h * c.crewH), apt = c.sector, px = pax * c.pax;
     // 1B(B9): 실운영은 공항 사용료 등급 단가(착륙·주기·여객·항행 각 한 번) — 통제 검산(30d)은 모델 v2 편당 단가 그대로(11.12)
     var fe = C.cal !== '30d' && MG.world ? (at === f.to ? MG.world.feeOf(C, f, pax) : MG.world.feeOf(C, f, pax, at)) : null;
     if (fe) apt = fe.apt;
@@ -5513,6 +7399,7 @@ MG.fin = (function () {
   function seatFree(C, fk) { var L = legOf(C, fk); return L ? seatsOf(L.type) - sold(C, fk) : 0; }
   // 결항·보류 지표·경쟁사 종료(계약 v3 2-2-1 · S2-0에서 떼어 냄) — refundFlight와 2A 복구 경로(MG.ops2.recover)가 같은 함수를 부름(복구 경로에서 빠지지 않게)
   function cnlStat(C, f, why) {
+    if (f.pmx) return;   // 2B: 정비 창 계획 운휴(판매 전 · s2 켬만 칸이 생김) = 결항·보류 지표 밖
     var k = kpiOf(C, f); if (f.state === 'CNL') k.cnl++; else k.hold++;
     if (MG.comp && C.mkt && C.mkt.compPlan) MG.comp.selfFin(C, f.id, 0, 0, f.state !== 'CNL');      // 1C-3a-2 N138-01: 결항 = 실적 0·0(최종) / 보류 = 0·0(잠정 — 운항하면 도착 때 대사)
   }
@@ -5709,7 +7596,9 @@ MG.ops = (function () {
     if (MG.crisis && MG.data.crisis) MG.crisis.init(C, opt);         // 1C-3a E13: 프로필(K1 일반 = 세계 일정 12개월 창 · K0 호환 = 필드 추가 0)
     if (opt.settings) startSettings(C, opt.settings);                // 1C-3c-1 5-2: 편집기 위임 한도·자동 정지 — crisis/board/liq 기본 주입 뒤 깊은 병합 → scenario.settings0 = 실제 시작 settings 스냅숏(있을 때만)
     if (MG.s2) MG.s2.stamp(C, opt);                                   // 2단계 판 번호(경계 계약 v3 1-1 — 새 캠페인 생성 때 한 번만 · verNew 0 = 칸 없음)
-    if (MG.ops2 && MG.ops2.on2(C)) MG.ops2.evtExtract(C, MG.tz.local(C.t, C.hqTz).date);   // 2A-2a: 첫 영업일 운항 사건(전날 마감이 없으므로 여기서 한 번 · 계약 4-1 권고 3)
+    if (MG.ops2 && MG.ops2.on2(C)) MG.ops2.evtExtract(C, MG.tz.local(C.t, C.hqTz).date);
+    if (MG.crew2) MG.crew2.start(C);                                  // 2C: 운항·객실 세트 행(세트 정본 — s2 끔 = 0)
+    if (MG.mx2) MG.mx2.start(C);                                      // 2B: 기체별 정비 프로그램 · 지금 시즌 정비 계획안(s2 끔 = 0)   // 2A-2a: 첫 영업일 운항 사건(전날 마감이 없으므로 여기서 한 번 · 계약 4-1 권고 3)
     if (opt.startHM != null) while (C.t < t0 + opt.startHM) tick(C);   // 시작 시각까지 실제로 진행(자정 처리·판매·지급을 건너뛰지 않음)
     return C;
   }
@@ -5726,6 +7615,7 @@ MG.ops = (function () {
   function planLegs(C, r, ref, nLegs) {
     var B = D(), T = B.types[r.type], at = r.base, dep = MG.tz.toUTC(ref, r.first, B.airports[at].tz).t, seq = 0, out = [], last = 0;
     r.legs.slice(0, nLegs == null ? r.legs.length : nLegs).forEach(function (L) {
+      dep += L[2] || 0;   // 2D(구현 판단 1): 편 앞 추가 지상 대기 분 — 편집기(s2 켬)만 만듦 · 없으면 0(1단계 값 그대로)
       var to = L[0], block = L[1], depL = MG.tz.local(dep, B.airports[at].tz), hub = B.airports[at].hub ? [at, to] : [to, at];
       seq++;
       out.push({ id: r.reg + (r.ver > 1 ? 'v' + r.ver : '') + '-' + seq, fn: 'VL' + legNo(r, seq), tail: r.reg, type: r.type, from: at, to: to, stdLocal: depL.hm,
@@ -5758,7 +7648,8 @@ MG.ops = (function () {
       var rk = r.reg + '#' + (r.ver || 1), end = MG.tz.addDays(nr.validFrom, -1);
       r.validTo = end;
       C.legs.forEach(function (L) { if (L.rk === rk && (!L.validTo || L.validTo > end)) L.validTo = end; });
-      Object.keys(C.fl).forEach(function (id) { var f = C.fl[id], L = legById(C, f.legId); if (!L || L.rk !== rk) return; var rd = MG.tz.addDays(id.slice(-10), -L.dayOffset); if (rd >= nr.validFrom && f.state === 'SCH' && (!(C.fin && C.fin.bkFk[id]) || mktOnly(C, id))) { if (C.fin && C.fin.bkFk[id]) { aff.push({ fk: id, rk: rk, rd: rd }); affS[id] = 1; } removeFlight(C, id); } });
+      Object.keys(C.fl).forEach(function (id) { var f = C.fl[id], L = legById(C, f.legId); if (!L || L.rk !== rk) return; var rd = MG.tz.addDays(id.slice(-10), -L.dayOffset); if (rd >= nr.validFrom && cutOK(f) && (!(C.fin && C.fin.bkFk[id]) || mktOnly(C, id))) { if (C.fin && C.fin.bkFk[id]) { aff.push({ fk: id, rk: rk, rd: rd }); affS[id] = 1; } removeFlight(C, id); } });
+      //   지우는 편 = cutOK(SCH · 또는 2B 계획 운휴 결항 편 — 같은 날 두 번 세지 않음 · 206차 재확인3 T-d)
       // 아직 만들지 않은 날짜(D−90 밖)의 판매분도 fk 소멸 대상
       if (C.fin) Object.keys(C.fin.bkFk).forEach(function (fk) { if (C.fl[fk]) return; var L = MG.fin.legOf(C, fk); if (!L || L.rk !== rk) return; var rd = MG.tz.addDays(fk.slice(-10), -L.dayOffset); if (rd >= nr.validFrom && !affS[fk]) { aff.push({ fk: fk, rk: rk, rd: rd }); affS[fk] = 1; } });
       var n = nr.legs.length, cf = (MG.data.org && MG.data.org.curfew[nr.base]) || 1e9, p = planLegs(C, nr, nr.validFrom, n);
@@ -5773,6 +7664,8 @@ MG.ops = (function () {
     if (aff.length) { if (MG.rea && C.mkt && C.mkt.polHist && MG.mkt.prof(C).cv === 'std') rea = MG.rea.revise(C, C.schedVer, aff, nrs, opt); else aff.forEach(function (a) { MG.fin.markW(C, a.fk); }); }
     return { cut: cut, ver: C.schedVer, rea: rea };
   }
+  // 시간표 새 판이 지울 수 있는 편(두 개정 길 — reschedule · MG.skd cut 공통): 출발 전 SCH · 또는 2B 정비 창 계획 운휴로 이미 결항한 편(pmx · CNL · 출발 안 함 — 판매분은 계획 운휴 때 환불 끝 · 새 판 편이 같은 창에서 다시 계획 운휴) — pmx는 s2 켬(2B)에만 생김(206차 재확인3 T-d · N206T-01)
+  function cutOK(f) { return f.state === 'SCH' || (!!f.pmx && f.state === 'CNL' && f.aobt == null); }
   function mktOnly(C, fk) { return (C.fin.bkFk[fk] || []).every(function (x) { var b = C.fin.bk[x[0]]; return b && (b.p0 != null || b.ch === 'cargo'); }); }   // 시장 코호트만 있는 편(1C-1b) — 소멸 처리 가능
   function legById(C, id) { for (var i = C.legs.length - 1; i >= 0; i--) if (C.legs[i].id === id) return C.legs[i]; return null; }
   function removeFlight(C, id) {
@@ -5866,7 +7759,7 @@ MG.ops = (function () {
       snap: { schedVer: L.schedVer, type: L.type, seats: MG.clone(T.seats) }, day: dIdx };
     var inj = C.inject[L.fn + '@' + depDate];
     if (inj) { f.etd = f.std + inj.min; f.eta = f.etd + f.block; f.cause = inj.cause; if (MG.ops2) MG.ops2.dlSync(C, f, 99, 'inject', 'UNK'); }   // 2A-1: 시험 주입 지연 = 미분류
-    C.fl[key] = f; insertOrder(C, f); if (C.slot && MG.slot) MG.slot.reserve(C, f); if (C.crisis && C.crisis.q) MG.crisis.onGen(C, f); return 1;
+    C.fl[key] = f; insertOrder(C, f); if (C.slot && MG.slot) MG.slot.reserve(C, f); if (C.crisis && C.crisis.q) MG.crisis.onGen(C, f); if (C.mx2) MG.mx2.onGen(C, f); return 1;   // 2B: 정비 창 기간 편 = 판매 전 계획 운휴(s2 끔 = 0)
   }
   function cmp(C, a, b) { var A = C.fl[a], Bf = C.fl[b]; return A.std - Bf.std || (a < b ? -1 : a > b ? 1 : 0); }
   function insertOrder(C, f) {
@@ -5896,7 +7789,7 @@ MG.ops = (function () {
     C.log.push({ t: C.t, txt: txt, cls: cls || '' }); if (C.log.length > 400) C.log.shift();
     C.dayLog.push([MG.tz.hmStr(L.hm), txt]);
   }
-  function dayLine(x) { return Array.isArray(x) ? x[0] + ' ' + MG.T.ko(x[1]) : x; }
+  function dayLine(x) { return Array.isArray(x) ? x[0] + ' ' + MG.T.sig(x[1]) : x; }   // 206차 N206-08: 서명 투영(표시 문장 교정과 무관)
   var M = MG.M;
   function hmv(C, t, apt) { var a = D().airports[apt]; return MG.tz.local(t, a ? a.tz : C.hqTz).hm; }   // 현지 시각(분) — 문장 매개값(원시값)
 
@@ -5935,8 +7828,8 @@ MG.ops = (function () {
       var q = due[di];
       if (!MG.ledger.mark(C, 'fx:' + q.key)) continue;
       var T = C.tails[q.tail];
-      if (q.kind === 'mx-start') { T.status = 'mx'; log(C, M('ops.mx.in', { tail: q.tail, what: q.what }), 'ev'); }
-      else if (q.kind === 'mx-end') { T.status = 'line'; if (q.what === 'A') T.sinceA = 0; T.readyT = t; if (/^AD:/.test(q.what)) C.ads.forEach(function (a) { if (a.tail === q.tail && a.id === q.what.slice(3)) a.done = true; }); log(C, M('ops.mx.done', { tail: q.tail, what: q.what })); }   // 1C-3a: AD 점검 창 종료 = 그 AD 조치 완료
+      if (q.kind === 'mx-start') { T.status = 'mx'; log(C, M('ops.mx.in', { tail: q.tail, what: q.what }), 'ev'); if (MG.mx2) MG.mx2.mxStart(C, q, t); }   // 2B: C 체크 창 시작 = 지급 의무(s2 끔 = 0)
+      else if (q.kind === 'mx-end') { T.status = 'line'; if (q.what === 'A') T.sinceA = 0; T.readyT = t; if (/^AD:/.test(q.what)) C.ads.forEach(function (a) { if (a.tail === q.tail && a.id === q.what.slice(3)) a.done = true; }); log(C, M('ops.mx.done', { tail: q.tail, what: q.what })); if (MG.mx2) MG.mx2.mxEnd(C, q, t); }   // 2B: C 체크 창 종료 = 한도 재설정(s2 끔 = 0) · 1C-3a: AD 점검 창 종료 = 그 AD 조치 완료
       else if (MG.s2 && q.kind.slice(0, 3) === 's2-' && MG.s2.effect(C, q, t)) { }   // 2단계 처리기 한 곳(계약 v3 2-1 ① — s2 끔 = s2- 사건이 없음 · 문자열 비교만)
       else if (MG.liq && MG.liq.effect(C, q, t)) { }                    // 1C-3b-2 E19: 유예 끝·채권단 기한·회생 효력·감편 기한·회생 종료(키 liq:·insol: — (b) 켬만)
       else if (q.kind === 'ad-due') { log(C, M('ops.ad.due', { tail: q.tail, ad: q.ad }), 'ev'); }
@@ -6000,6 +7893,7 @@ MG.ops = (function () {
     if (ad) return [M('ops.blk.ad', { id: ad.id, t: hmv(C, ad.dueT, f.from) })];
     var air = f.block - ty.taxiOut - ty.taxiIn;
     if (T.sinceA + air + 30 > ty.aLimitFh) return [M('ops.blk.alim', { left: Math.max(0, ty.aLimitFh - T.sinceA), air: air }), true];
+    if (C.mx2) { var w2 = MG.mx2.blockWhy(C, f, T, t); if (w2) return w2; }   // 2B(계약 4-2): 기존 검사 뒤 C 체크 한도(달력·FH·FC) — s2 끔 = null
     return null;
   }
 
@@ -6018,17 +7912,24 @@ MG.ops = (function () {
       if (bw) {
         if (MG.org && MG.org.trySwap(C, f, t, blockWhy)) { i--; continue; }
         holdF(C, f, bw[0], 'mx', 'MX');
+        if (bw[2] && MG.mx2) MG.mx2.onBlock(C, f.tail, bw[2], t);   // 2B: 계획 없이 C 한도 = 긴급 외주(s2 켬만 bw[2]가 생김)
         if (bw[1] && (!MG.org || MG.org.autoMx(C) || (C.org.mxReq[f.tail]))) { planMx(C, f.tail, 'A', t, aMin(C, f.type)); if (C.org) delete C.org.mxReq[f.tail]; }
         continue;
       }
-      var mk = monthKey(C, MG.tz.local(f.std, C.hqTz).date), cap = Math.floor(MG.crew.n(C, f.type) * C.crew[f.type].capMinPerSet * (MG.org ? MG.org.crewCapF(C) : 1)), bk = (C.crewBooked[mk] || {})[f.type] || 0;
-      if (bk + f.block > cap) { holdF(C, f, M('ops.hold.crew', { m: mk.slice(1), type: f.type }), 'crew', 'CREW'); continue; }
+      var mk = monthKey(C, MG.tz.local(f.std, C.hqTz).date), bk = (C.crewBooked[mk] || {})[f.type] || 0;
+      if (C.crew2) {                                                         // 2C(계약 2-1 ② (다)): 월 cap 식 → 세트 근무표 출발 검사(배정 세트 → 대기 세트 → 보류 CREW) — s2 끔 = 아래 기존 식 그대로
+        var cw = MG.crew2.assignable(C, f, t);
+        if (cw && cw.hold) { holdF(C, f, M('crew2.hold.' + cw.hold, { type: f.type, n: MG.data.crew2.cab.min[f.type] }), 'crew', 'CREW'); continue; }
+        if (cw && cw.wait) { f.etd = cw.wait; f.eta = f.etd + f.block; if (MG.ops2 && MG.ops2.on(C)) MG.ops2.dlSync(C, f, 95, '', 'CREW'); continue; }
+      } else { var cap = Math.floor(MG.crew.n(C, f.type) * C.crew[f.type].capMinPerSet * (MG.org ? MG.org.crewCapF(C) : 1));
+      if (bk + f.block > cap) { holdF(C, f, M('ops.hold.crew', { m: mk.slice(1), type: f.type }), 'crew', 'CREW'); continue; } }
       var sm = C.slot && MG.slot ? MG.slot.missing(C, f) : null;              // 1C-2c ④ 운항 허용: 레벨 3 슬롯 occurrence
       if (sm) { holdF(C, f, sm, 'slot', 'SLOT'); continue; }
       // 출발
       f.aobt = t; f.eta = t + f.block; f.state = 'OUT'; T.loc = null; if (C.slot && MG.slot) MG.slot.onOut(C, f);
       if (MG.ops2) MG.ops2.fix(C, f);                                        // 2A-1: 지연 원장 확정(AOBT) · Vela 추가 서비스(식사) — s2 끔 = 0
       (C.crewBooked[mk] = C.crewBooked[mk] || {})[f.type] = bk + f.block;
+      if (C.crew2) MG.crew2.out(C, f, t);                                 // 2C: 세트 id를 편 정본(f.cs·f.cb)에 · 근무 예약(:out)
       log(C, M('ops.out', { fn: f.fn, from: f.from, t: hmv(C, t, f.from), dly: f.aobt > f.std ? M('ops.out.dly', { min: f.aobt - f.std, cause: f.cause }) : '' }));
       if (C.ach && MG.ach) MG.ach.achEvent(C, { type: 'out', f: f });   // 1C-3c-1 4-3 ①: 첫 편 OUT 커밋 끝(첫 취항·첫 장거리 — 날짜 = 출발)
     }
@@ -6077,6 +7978,7 @@ MG.ops = (function () {
     var T = C.tails[f.tail], ty = D().types[f.type];
     if (C.slot && MG.slot && at === f.to) MG.slot.onIn(C, f);                    // 2A-2f: 대체 착륙 = 슬롯 「미도착」(at ≠ f.to — s2 끔은 늘 같음)
     if (MG.ledger.mark(C, 'flt:' + f.id + ':aibt')) T.block += f.aibt - f.aobt;  // 블록(AIBT)
+    if (C.crew2) MG.crew2.inn(C, f, at);                                         // 2C: 근무 확정(:in · 실제 착륙지 · 출발일 귀속)
     T.loc = at; T.readyT = t + (MG.org ? MG.org.turnOf(C, f.type) : ty.turn);
     planCheckOnArrival(C, f.tail, t);
   }
@@ -6090,6 +7992,8 @@ MG.ops = (function () {
       C.days[closing] = { hash: (MG.rand.hash32(C.dayLog.map(dayLine).join('|')) >>> 0).toString(16), n: C.dayLog.length };   // 일 해시 = 고정 한국어 투영(서명 — 언어 선택 무관)
       C.closeKeys.day = dk; C.dayLog = [];
       if (MG.ops2) MG.ops2.dayClose(C, closing);                          // 2A-1: OTP 영업일 집계(월 마감 전 · 키 s2:otp:<날짜>) — s2 끔 = 0
+      if (MG.mx2) MG.mx2.dayClose(C, closing, L.date);                     // 2B: 정비 계획안(시즌 시작 120일 전) · C 체크 한도 접근 경고 · 월 요율 · 재시도 — s2 끔 = 0
+      if (C.crew2) MG.crew2.dayCost(C, closing);                          // 2C: 그 영업일 승무원 추가 비용(초과 근무·레이오버·대기 — xCrewX · 월 마감 전)
       var pa = MG.cal.per(C, closing), pb = MG.cal.per(C, L.date), fy = pa.fy; C.fyDays[fy] = (C.fyDays[fy] || 0) + 1;
       // ⑵ 월말 → ⑶ 회계연도 말이면 세금 계상 → ⑷ 월 보고서(3표·KPI) 확정 → 연 보고서
       if (pa.mk !== pb.mk) {
@@ -6109,6 +8013,7 @@ MG.ops = (function () {
         if (pa.fy !== pb.fy && MG.ledger.mark(C, 'close:FY' + fy)) { C.closeKeys.fy = 'FY' + fy; log(C, M('ops.fyclose', { fy: fy, n: C.fyDays[fy] }), 'ev'); }
       }
       if (C.ended) return;
+      if (C.crew2) MG.crew2.dayClose(C, closing, L.date);                 // 2C: 지난 영업일 배정 정리 · 월/FY 누적 칸 정리 · 다음 영업일 세트 근무표(계약 4-3 ⑥ 순서)
       if (C.slot && MG.slot) MG.slot.closeDay(C, closing);                // 1C-2c: 일 마감 — planned → due / 편 없는 occurrence → pending
       genDay(C, MG.tz.addDays(L.date, C.settings.horizon));
       compact(C, t);
@@ -6229,6 +8134,7 @@ MG.ops = (function () {
     if (p.kind === 'liq' && MG.liq) { var rq = MG.liq.applyPend(C, p, o.id, by); if (!rq.ok) { p.lastFail = rq.why; return false; } }   // 1C-3b-2 E19: 유예·채권단 카드(사전 검사 → 차입·증자·즉시 재시도 / 회생 승인 커밋 / 청산)
     if (p.kind === 'skd' && MG.skd) { var rs = MG.skd.applyPend(C, p, o.id, by); if (!rs.ok) { p.lastFail = rs.why; return false; } }   // 1C-2a: 시간표 기안 승인(재견적 다르면 적용 0·다시 확인)   // 1B: 조사·ETOPS·배정 — 실패면 기록 없이 안건 유지
     if (p.kind === 'div' && MG.ops2 && MG.ops2.on(C)) { var rv = MG.ops2.applyDiv(C, p, o.id); if (!rv || !rv.ok) { p.lastFail = rv && rv.why; return false; } }   // 2A-2f(205차 재확인 R06): 승객 계획 커밋 실패 = 결정 기록 없이 결재 유지
+    if (p.kind === 'crewwarn' && MG.crew2) { var rw = MG.crew2.applyWarn(C, p, o.id); if (!rw.ok) { p.lastFail = rw.why; return false; } }   // 2C: 계속 운항 검사 부족 경고 — 「채용」 = 기장·부기장(또는 객실) 채용 주문 한 묶음 · 207차 N207-05: 실패 = 결정 기록 없이 결재 유지
     if (C.ended) { recDec(C); return true; }                 // N150-02: 이 결정으로 종료 확정(기록은 종료 커밋 안에서 먼저) — 뒤 처리 0
     MG.ledger.mark(C, 'dec:' + p.id);
     var decId = 'DEC' + (++C.seq.dec);
@@ -6240,6 +8146,7 @@ MG.ops = (function () {
     if (p.kind === 'delay' && o.id === 'acceptAll' && MG.org) MG.org.setPolicy(C, 'ops.occ', 'delay', 'accept', by === 'test' ? 'test' : 'player', M('ops.dly.delegNote'));
     if (p.kind === 'proposal' && MG.fin && C.fin) MG.fin.applyProposal(C, p, o.id, decId);
     if (p.kind === 'mxreq' && o.id === 'plan' && MG.org) MG.org.requestA(C, p.tail);
+    if ((p.kind === 'mxplan' || p.kind === 'mxwarn') && MG.mx2) { MG.mx2.applyPlan(C, p, o.id); MG.mx2.applyWarn(C, p, o.id); }   // 2B: 정비 계획안 승인 · 한도 경고의 긴급 외주
     C.decisions.push({ id: decId, target: p.id, kind: p.kind, title: p.title, optionId: o.id, label: o.label, t: C.t, by: by || 'player' });
     log(C, M('ops.dec', { lab: o.label, pid: p.id, oid: o.id }), 'ev');
     C.pending = C.pending.filter(function (x) { return x.id !== p.id; });
@@ -6300,7 +8207,7 @@ MG.ops = (function () {
   // 1C-2 경계 계약 v4 2-1: 시간표 개정 일반 경로 = MG.ops.revise(C, plan) — 회전의 legs·기종·노선까지(구현은 mg_skd.applyPlan, 대응표 이후는 MG.rea.revise 한 경로 · 턴 여유 개정 reschedule도 같은 MG.rea.revise로)
   function revise(C, plan, opt) { return MG.skd.applyPlan(C, plan, opt); }
   return { recoverOrRefund: recoverOrRefund, saleable: saleable, arrPhys: arrPhys, _recDec: recDec, revise: revise, newCampaign: newCampaign, tick: tick, runUntil: runUntil, blocks: blocks, runFrame: runFrame, decide: decide, applyDecision: applyDecision,
-    genDay: genDay, lastEff: lastEff, legOn: legOn, rotOn: rotOn, dowOn: dowOn, rotCopy: rotCopy, idleStats: idleStats, nDow: nDow, dowOf: dowOf, dowWhy: dowWhy, dowNorm: dowNorm, dowStr: dowStr, _log: log, _raise: raise, _addRotation: addRotation, _planLegs: planLegs, _reschedule: reschedule, _legById: legById, _mktOnly: mktOnly, _removeFlight: removeFlight, _genLeg: genLeg, _reassign: reassign, _planCheck: planCheckOnArrival, blockWhy: blockWhy, planMx: planMx, addAD: addAD, _hold: holdF, _cancel: cancelF, park: park, unpark: unpark, flightBy: flightBy, hm: hm, fyOf: fyOf };
+    genDay: genDay, lastEff: lastEff, legOn: legOn, rotOn: rotOn, dowOn: dowOn, rotCopy: rotCopy, idleStats: idleStats, nDow: nDow, dowOf: dowOf, dowWhy: dowWhy, dowNorm: dowNorm, dowStr: dowStr, _log: log, _raise: raise, _addRotation: addRotation, _planLegs: planLegs, _reschedule: reschedule, _legById: legById, _mktOnly: mktOnly, _cutOK: cutOK, _removeFlight: removeFlight, _genLeg: genLeg, _reassign: reassign, _planCheck: planCheckOnArrival, blockWhy: blockWhy, planMx: planMx, addAD: addAD, _hold: holdF, _cancel: cancelF, park: park, unpark: unpark, flightBy: flightBy, hm: hm, fyOf: fyOf };
 })();
 
 /* ===== 경영 모드 1A-4 · mg_org.js — 조직(본부 15·부서 63)·역량·세계 표류·운영 방식·벤치마크·Tier·난이도·시나리오 코드·실동작 6부서 =====
@@ -6445,7 +8352,7 @@ MG.org = (function () {
   function techP(C, f0) {
     if (!C.org || ctl(C)) return 0;
     var o = O(), T = C.tails[f0.tail], age = (T && T.age0 || 0) + yrs(C);
-    return o.tech.p0 * (2 - f(C, 'mx.line')) * (1 + o.tech.ageRel * age * diffP(C).drift) * (o.window[dept(C, 'mx.line').pol.window] || 1) * (diffP(C).dly || 1);   // 178차 D2: 기술 지연 배수(1번만 · 칸 없음 = 1.0)
+    return o.tech.p0 * (2 - f(C, 'mx.line')) * (1 + o.tech.ageRel * age * diffP(C).drift) * (o.window[dept(C, 'mx.line').pol.window] || 1) * (diffP(C).dly || 1) * (C.mx2 ? MG.mx2.relK(C, f0.tail) : 1);   // 2B: 기체 신뢰성 계수(s2 끔 = 1) · 178차 D2: 기술 지연 배수(1번만 · 칸 없음 = 1.0)
   }
   // 출발 전 기술 지연(11.1 ② 앞 — BRD 전환 때 한 번, 사건 키 난수)
   function techCheck(C, fl) {
@@ -6530,6 +8437,7 @@ MG.org = (function () {
       var end = mine.reduce(function (a, g) { return Math.max(a, g.eta); }, 0) + 120;
       var busy = (C.byTail[S.reg] || []).some(function (id) { var g = C.fl[id]; return g.state !== 'CNL' && g.state !== 'HOLD' && g.state !== 'ARR' && g.std < end && g.eta > t; });
       if (busy) continue;
+      if (C.mx2 && MG.mx2.reserved(C, S.reg, t, end)) continue;   // 2B: 정비 창 덮기로 잡힌 예비기(206차 N206-05) — s2 끔 = 칸 없음
       if (block(C, fl, S, t)) continue;                       // 같은 검사 함수(정비·AD·A 한도·주기)를 예비기에 그대로
       if (S.status === 'line' && nextOwnWhy(C, S, mine, t)) continue;   // 조건 3·4: 대체 끝 공항 = 다음 자기 편 출발 공항 ∧ ETA + 턴 + 여유 ≤ 다음 STD ∧ 대체 구간 정비 창 0(불확실 = 제외 · 페리 0)
       if (!MG.ledger.mark(C, 'swap:' + fl.id)) return false;
@@ -6647,10 +8555,10 @@ MG.org = (function () {
       if ([0, 5, 10, 15].indexOf(v) < 0) return { ok: false, why: MG.M('org.slack.8') };
       var from = MG.tz.addDays(today(C), F().sales.pDays + 1), xd = O().varDept.xDist;
       if (by !== 'test' && MG.rea && budgetLim(C, per(C, today(C)).fy, xd) != null) { var e = MG.rea.estimate(C, v), bw = e.reissue ? budgetWhy(C, xd, e.reissue) : null; if (bw) return { ok: false, why: MG.M('org.slack.7', { bw: bw }) }; }   // 120차 N120-01: 재발권 지출도 판매비 예산 관문
-      var sw = slackSlotWhy(C, v, from); if (sw) return { ok: false, why: sw };   // 레벨 3 슬롯 공항 — 바뀐 시각의 슬롯이 없으면 적용 0회(시간표 개정과 같은 검사 · AI 제안도 같은 길)
+      var sw = slackSlotWhy(C, v, from); if (sw) return { ok: false, why: sw };   // 206차 재확인3(1년 진행 발견): 레벨 3 슬롯 공항 — 바뀐 시각의 슬롯이 없으면 적용 0회(시간표 개정과 같은 검사 · AI 제안도 같은 길)
       var legs0 = C.slot && MG.slot && MG.slot.on(C) ? MG.clone(C.legs) : null;
       var r = MG.ops._reschedule(C, v, from, { by: by });
-      if (legs0) { MG.slot.reconcile(C, from, { tag: MG.M('org.slack.tag'), srcTag: 'slack', base: { C: C, legs: legs0 } }); MG.slot.reserveAll(C); }   // 추가 여유 → 새 시각 시리즈 전환·편 예약
+      if (legs0) { MG.slot.reconcile(C, from, { tag: MG.M('org.slack.tag'), srcTag: 'slack', base: { C: C, legs: legs0 } }); MG.slot.reserveAll(C); }   // 추가 여유(spareDaily) → 새 시각 시리즈 전환·편 예약(견적과 같은 함수)
       return { ok: true, title: MG.M('org.slack.6'), label: MG.M('org.slack.5', { v: v, from: from, schedVer: C.schedVer, v2: r.rea ? MG.M('org.slack.2', { moved: r.rea.moved, failed: r.rea.failed }) : MG.M('org.slack.1'), v3: r.cut ? MG.M('org.slack.4', { cut: r.cut }) : MG.M('org.slack.3') }) };
     },
     spare: function (C, d, v, mi, cur) {
@@ -6860,7 +8768,7 @@ MG.org = (function () {
   function resMonth(C, mi) {
     var o = O(), M = o.morale, w = C.org.wageIdx || 1, mk = C.world.idx.wage;
     if (!ctl(C)) {
-      var pp = (w / mk - 1) * 100, fat = Math.max(0, (dept(C, 'ops.cockpit').pol.hours || 64) - 64) * o.hoursFatigue;
+      var pp = (w / mk - 1) * 100, fat = Math.max(0, (dept(C, 'ops.cockpit').pol.hours || 64) - 64) * o.hoursFatigue + (C.crew2 ? MG.crew2.moraleHit(C) : 0);   // 2C: 세트 피로 지수 몫
       for (var gk in C.res.staff) {
         var g = C.res.staff[gk], dm = M.k * pp * (pp > 0 ? (100 - g.morale) / 40 : 1) - (gk === 'pilot' ? fat : 0) - (g.cutHit || 0);
         if (MG.crisis && MG.crisis.on(C)) { var wD = M.k * pp * (pp > 0 ? (100 - g.morale) / 40 : 1), cA = MG.crisis.staffAdd(C, gk), m0 = g.morale; dm += cA; }   // 1C-3a E11 ⑤: 위기 효과(사기 기여 — 일회성은 한 번)
@@ -6969,7 +8877,8 @@ MG.org = (function () {
     return { ok: !!r.ok, why: r.why, cost: r.cost || 0, short: !r.ok && D.org.lastShort ? D.org.lastShort.short : 0, shortDept: !r.ok && D.org.lastShort ? D.org.lastShort.dept : null };
   }
   // N88-02: 후보를 사본에서 끝까지 돌려 부족한 부서 전부의 증액안(bumps)을 구한다. 돌아오는 값: { ok, bumps:[{dept, lim, add}], total, cost, why }
-  function slackSlotWhy(C, v, from) {   // 턴 여유 변경의 슬롯 검사: 초안에서 같은 개정 → 레벨 3 이착륙 시각별 수요 vs 보유 시리즈 + 추가 여유
+  // 턴 여유 변경의 슬롯 검사(206차 재확인3): 초안에서 같은 개정을 돌려 레벨 3 이착륙 시각별 수요 vs 보유 시리즈 + 추가 여유 — 모자라면 이유(시간표 개정 skd.evaluate와 같은 reconcile · dry)
+  function slackSlotWhy(C, v, from) {
     if (!C.slot || !MG.slot || !MG.slot.on(C)) return null;
     var D = MG.draft(C).C, legs0 = MG.clone(D.legs); MG.ops._reschedule(D, v, from, { noPend: true, by: 'estimate' });
     var sr = MG.slot.reconcile(D, from, { dry: true, base: { C: D, legs: legs0 } });
@@ -7670,6 +9579,7 @@ MG.world = (function () {
   // ref부터 3개월 — 효력 전 증편(내일 이후 validFrom)·예정 세트(채용 큐·인도 연계 투입)도 그 달에 반영. extra = ref 이후 하루 추가 분
   function crewMonths(C, type, ref, extra) {
     var cr = C.crew[type]; if (!cr) return null;
+    if (C.crew2) return MG.crew2.months(C, type, ref, extra);   // 2C(메모 16-1·16-7): 세트 근무 가용 · 검사 구간 = 다음 FY 말까지 · 객실·FY 칸 — s2 끔 = 아래 그대로
     var capF = MG.org ? MG.org.crewCapF(C) : 1, td = today(C), legs = C.legs.filter(function (L) { return L.type === type; }), p0 = MG.cal.per(C, ref), out = [];
     // N92-02: 오늘은 시간표가 아니라 오늘(본사 날짜) 편 원장에서 「아직 출발 안 한(crewBooked에 없는)」 편만 — 출발한 편은 crewBooked로 한 번, 결항·보류는 0
     var todayLeft = 0; for (var fk in C.fl) { var f = C.fl[fk]; if (f.type !== type || f.aobt != null || f.state === 'CNL' || f.state === 'HOLD') continue; if (MG.tz.local(f.std, C.hqTz).date === td) todayLeft += f.block; }
@@ -7792,7 +9702,7 @@ MG.world = (function () {
       [[L.from, L.stdLocal, MG.M('world.planFreq.7')], [L.to, arr.hm, MG.M('world.planFreq.6')]].forEach(function (x) { var h = hrsA[x[0]]; if (!h || !h.airport) return; var hm = typeof x[1] === 'number' ? x[1] : hmOf(x[1]); if (hm < hmOf(h.airport.open) || hm >= hmOf(h.airport.close)) bad.push(MG.M('world.planFreq.5', { fn: L.fn, v: x[0], v2: x[2], hm: MG.tz.hmStr(hm), open: h.airport.open, close: h.airport.close })); });
     });
     if (cf && pl.last > cf) bad.push(MG.M('world.planFreq.4', { base: base }));
-    var perDay = pl.legs.reduce(function (s, L) { return s + L.block; }, 0), cm = crewMonths(C, T.type, ref, perDay), add = perDay;   // N91-04: 효력일 기준·효력 전 증편 포함·실제 출발과 같은 가용량
+    var perDay = pl.legs.reduce(function (s, L) { return s + L.block; }, 0), ex2 = C.crew2 && MG.data.crew2 ? { blk: perDay, aug: pl.legs.reduce(function (s, L) { return s + (L.block > MG.data.crew2.crew3Blk ? L.block : 0); }, 0) } : perDay, cm = crewMonths(C, T.type, ref, ex2), add = perDay;   // 2C(207차 재확인 N207R-02): 장거리 편 몫 같은 단위   // N91-04: 효력일 기준·효력 전 증편 포함·실제 출발과 같은 가용량
     if (!cm) bad.push(MG.M('world.planFreq.3', { type: T.type }));
     else cm.forEach(function (m) { if (m.need > m.cap) bad.push(MG.M('world.planFreq.2', { v: m.mk.slice(1), v2: Math.round(m.need / 60), v3: Math.round(m.cap / 60), sets: m.sets })); });
     var mv = {}; pl.legs.forEach(function (L) { mv[L.from] = (mv[L.from] || 0) + 1; mv[L.to] = (mv[L.to] || 0) + 1; });
@@ -8033,7 +9943,7 @@ MG.mkt = (function () {
     var od = odKey(x, y), o = stat().ods[od], out = [], ref = o.ref, si = selfIdx(C, od), wm = wMult(C, o.dom);
     C.legs.forEach(function (L) {
       if (!MG.ops.saleable(L) || !MG.ops.legOn(C, L, d) || cityOf(L.from) !== x || cityOf(L.to) !== y) return;   // 2-2: 판매 대상 leg(임시 leg 판매 0)
-      var depDate = MG.tz.addDays(d, L.dayOffset), fk = L.id + ':' + depDate, f = C.fl[fk]; if (ctx && (!openF(C, f, d) || !onSale(C, L) || (OPEN && !OPEN[L.id]) || crB(C, L, depDate))) return;
+      var depDate = MG.tz.addDays(d, L.dayOffset), fk = L.id + ':' + depDate, f = C.fl[fk]; if (ctx && (!openF(C, f, d) || !onSale(C, L) || (OPEN && !OPEN[L.id]) || crB(C, L, depDate) || (C.mx2 && MG.mx2.noSale(C, L, depDate)))) return;
       var t = stdT(C, L, depDate); if (t == null) return;
       out.push({ kind: 'self', carrier: 'VL', legs: [{ fk: fk, L: L, seats: seatsOf(L.type) }], dep: t, elapsed: L.block, fare: Math.round(ref * si), qf: wm === 1 ? null : ref * si * wm, hour: Math.floor(MG.tz.local(t, aptTz(L.from)).hm / 60), id: fk });
     });
@@ -8041,11 +9951,11 @@ MG.mkt = (function () {
     var cn = M().connect;
     C.legs.forEach(function (L1) {
       if (!MG.ops.saleable(L1) || !MG.ops.legOn(C, L1, d) || cityOf(L1.from) !== x || cn.hubs.indexOf(L1.to) < 0 || cityOf(L1.to) === y) return;
-      var dd1 = MG.tz.addDays(d, L1.dayOffset), fk1 = L1.id + ':' + dd1, f1 = C.fl[fk1]; if (ctx && (!openF(C, f1, d) || !onSale(C, L1) || crB(C, L1, dd1))) return;
+      var dd1 = MG.tz.addDays(d, L1.dayOffset), fk1 = L1.id + ':' + dd1, f1 = C.fl[fk1]; if (ctx && (!openF(C, f1, d) || !onSale(C, L1) || crB(C, L1, dd1) || (C.mx2 && MG.mx2.noSale(C, L1, dd1)))) return;
       var t1 = stdT(C, L1, dd1); if (t1 == null) return; var arr1 = t1 + L1.block;
       C.legs.forEach(function (L2) {
         if (!MG.ops.saleable(L2) || !MG.ops.legOn(C, L2, d) || L2.from !== L1.to || cityOf(L2.to) !== y) return;
-        var dd2 = MG.tz.addDays(d, L2.dayOffset), fk2 = L2.id + ':' + dd2, f2 = C.fl[fk2]; if (ctx && (!openF(C, f2, d) || !onSale(C, L2) || (OPEN && !OPEN[L1.id] && !OPEN[L2.id]) || crB(C, L2, dd2))) return;
+        var dd2 = MG.tz.addDays(d, L2.dayOffset), fk2 = L2.id + ':' + dd2, f2 = C.fl[fk2]; if (ctx && (!openF(C, f2, d) || !onSale(C, L2) || (OPEN && !OPEN[L1.id] && !OPEN[L2.id]) || crB(C, L2, dd2) || (C.mx2 && MG.mx2.noSale(C, L2, dd2)))) return;
         var t2 = stdT(C, L2, dd2); if (t2 == null) return;
         var k1 = cityOf(L1.from) && M().cities[cityOf(L1.from)].cc === M().cities[cityOf(L1.to)].cc ? 'dom' : 'intl', k2 = M().cities[cityOf(L2.from)].cc === M().cities[cityOf(L2.to)].cc ? 'dom' : 'intl', mct = cn.mct[k1 + '-' + k2];
         var gap = t2 - arr1; if (gap < mct || gap > cn.maxMin) return;
@@ -8935,7 +10845,7 @@ MG.rea = (function () {
     if (C.fl[to] && C.fl[to].state !== 'SCH') return { to: to, why: MG.M('market.candOk.1', { state: C.fl[to].state }) };
     return { to: to };
   }
-  function mapOf(C, aff, nrs, pool) {
+  function mapOf(C, aff, nrs, pool, wide) {
     var map = {};
     aff.forEach(function (a) {
       var Lo = MG.fin.legOf(C, a.fk), x = nrs[a.nrk || a.rk];   // 1C-2a: nrk = 회전일을 덮는 이번 기안의 새 회전
@@ -8953,6 +10863,10 @@ MG.rea = (function () {
       (pool || []).forEach(function (Ln) {
         if (seen[Ln.id] || Ln.from !== Lo.from || Ln.to !== Lo.to || seqOf(Ln.id) !== sq) return;
         var k = candOk(C, Ln, a); if (!k.why) { cs.push({ to: k.to, reg: Ln.tail }); seen[Ln.id] = 1; } else if (k.off && offs.indexOf(Ln) < 0) offs.push(Ln);
+      });
+      if (!cs.length && wide) (pool || []).forEach(function (Ln) {   // 2D(구현 판단 11 · 편집기 기안 승인만 — opt.wide): 편집기 묶음 옮기기로 순번이 바뀐 편 — 이번 개정의 같은 노선 새 편(순번·reg 무관 · 같은 회전일) 후보 → 아래 「출발 시각이 가장 가까운 편」 규칙
+        if (seen[Ln.id] || Ln.from !== Lo.from || Ln.to !== Lo.to) return;
+        var k = candOk(C, Ln, a); if (!k.why) { cs.push({ to: k.to, reg: Ln.tail }); seen[Ln.id] = 1; }
       });
       if (!cs.length && offs.length) offs.forEach(function (Ln) {   // 주간 운항 계약 v3 2-5(Q102): 사라진 회전일이 새 패턴의 비운항 요일 → 같은 leg의 ±1일 운항 편(기존 Vela 재예약 규칙 · 만석·연결은 아래 적용 단계 검사)
         [1, -1].forEach(function (k) { var rd2 = MG.tz.addDays(a.rd, k), to2 = Ln.id + ':' + MG.tz.addDays(rd2, Ln.dayOffset || 0);
@@ -8981,7 +10895,7 @@ MG.rea = (function () {
   // ②·③ 계획 + 적용(한 번에 — 호출자가 커밋 단위). opt.by = 적용 주체
   function revise(C, R, aff, nrs, opt) {
     opt = opt || {};
-    var map = mapOf(C, aff, nrs, opt.pool), affSet = {}, ids = {}, held = {}, out = { R: R, ver: C.schedVer, t: C.t, by: opt.by || '', aff: aff.length, moved: 0, movedJr: 0, movedSeg: 0, failed: 0, failedJr: 0, failedSeg: 0, rfCash: 0, rfAr: 0, rfArBm: {}, why: [], failFk: {}, alt: 0, reissueN: 0, reissue: 0 };
+    var map = mapOf(C, aff, nrs, opt.pool, opt.wide), affSet = {}, ids = {}, held = {}, out = { R: R, ver: C.schedVer, t: C.t, by: opt.by || '', aff: aff.length, moved: 0, movedJr: 0, movedSeg: 0, failed: 0, failedJr: 0, failedSeg: 0, rfCash: 0, rfAr: 0, rfArBm: {}, why: [], failFk: {}, alt: 0, reissueN: 0, reissue: 0 };
     aff.forEach(function (a) { affSet[a.fk] = 1; (C.fin.bkFk[a.fk] || []).forEach(function (x) { var b = C.fin.bk[x[0]]; if (b && b.p0 != null) ids[x[0]] = 1; }); });
     var order = Object.keys(ids).sort();               // 고정 우선순위 = 여정 코호트 id 사전순
     function heldOf(fk) { if (held[fk] == null) held[fk] = MG.fin.sold(C, fk); return held[fk]; }
@@ -9144,11 +11058,11 @@ MG.rea = (function () {
   }
   // 193차: 사유별 인원 = [[사유 m, 인원], …] — 같은 사유 = 정규 문자열(MG.canon) 같음 · 처음 나온 순서 유지(종전 객체 키 순서)
   function whyAdd(L, w, n) { var c = MG.canon(w); for (var i = 0; i < L.length; i++) if (MG.canon(L[i][0]) === c) { L[i][1] += n; return; } L.push([w, n]); }
-  function whyObj(L) { if (!Array.isArray(L)) return L; var o = {}; L.forEach(function (x) { var k = MG.T.ko(x[0]); o[k] = (o[k] || 0) + x[1]; }); return o; }
+  function whyObj(L) { if (!Array.isArray(L)) return L; var o = {}; L.forEach(function (x) { var k = MG.T.sig(x[0]); o[k] = (o[k] || 0) + x[1]; }); return o; }
   if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { (L.mkt && L.mkt.reaLog || []).forEach(function (lg) { if (Array.isArray(lg.why)) lg.why = whyObj(lg.why); }); });
   if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { var seen = new Set(); (function w(v) { if (!v || typeof v !== 'object' || seen.has(v)) return; seen.add(v); if (!Array.isArray(v) && 'rfArIn30' in v && 'cashNow' in v && Array.isArray(v.why)) v.why = whyObj(v.why); for (var k in v) w(v[k]); })(L); });   // 영향 견적(품의·기안 안 사본)
   if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { var RM = L.mkt && L.mkt.reaMap; if (RM) Object.keys(RM).forEach(function (R) { var mp = RM[R]; Object.keys(mp).forEach(function (fk) { if (Array.isArray(mp[fk]) && mp[fk][0] === '!') mp[fk] = '!' + mp[fk][1]; }); }); });   // 대응표 실패 표지(['!', 글] → '!글')
-  if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { (L.decisions || []).forEach(function (d) { var m = /^(mkt:[^:]+:)(market\.[\w.]+)$/.exec(d.target || ''); if (m && MG.T.dict.ko[m[2]] != null) d.target = m[1] + MG.T.ko({ k: m[2] }); }); });   // RM 문지기 결정 target(문장 키 → 184차 글)   // 184차 투영: 배열 → {한국어 사유: 인원}(koDeep 뒤라 m은 이미 글 — whyObj는 글도 그대로 키)
+  if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { (L.decisions || []).forEach(function (d) { var m = /^(mkt:[^:]+:)(market\.[\w.]+)$/.exec(d.target || ''); if (m && MG.T.dict.ko[m[2]] != null) d.target = m[1] + MG.T.sig({ k: m[2] }); }); });   // RM 문지기 결정 target(문장 키 → 184차 글)   // 184차 투영: 배열 → {한국어 사유: 인원}(koDeep 뒤라 m은 이미 글 — whyObj는 글도 그대로 키)
   return { mapOf: mapOf, revise: revise, applyPend: applyPend, applySlack: function () { return { ok: true }; }, manualMove: manualMove, estimate: estimate, estOf: estOf, card: card, connWhy: connWhy, candidates: candidates, batchPlan: batchPlan, manualBatch: manualBatch, wOf: wOf, postReissue: postReissue, visible: visible };
 })();
 
@@ -9234,6 +11148,7 @@ MG.skd = (function () {
         if (sg.rot.dow != null) { var dw = MG.ops.dowWhy(C, sg.rot.dow); if (dw) why.push(MG.M('skd.preCheck.5', { reg: sg.reg, dw: dw })); }   // 주간 운항 계약 v3 2-1 검사(보정 0)
         var base = sg.rot.base || T.base; if (!B.airports[base]) why.push(MG.M('skd.preCheck.4', { reg: sg.reg, base: base }));
         var at = base; (sg.rot.legs || []).forEach(function (l) {
+          if (l.length > 2) { var g2 = l[2], s2ok = MG.skd2 && MG.skd2.on(C); if (!s2ok || typeof g2 !== 'number' || g2 !== Math.floor(g2) || g2 < 1 || g2 > MG.data.skd2.gapMax || l.length > 3) why.push(MG.M('skd2.pre.gap', { reg: sg.reg, v: l[0] })); }   // 2D(구현 판단 1): 편 앞 추가 지상 대기 분 — 편집기(s2 켬)만 만듦 · s2 끔 = 거절
           if (!B.airports[l[0]]) why.push(MG.M('skd.preCheck.3', { reg: sg.reg, v: l[0] }));
           else { var hub = B.airports[at] && B.airports[at].hub ? [at, l[0]] : [l[0], at], key = hub[0] + '-' + hub[1] + '/' + T.type; if (!(MG.data.fin.routes[key] || MG.data.fin.routes[key + '/X'] || (C.rp && C.rp.routes[key]) || (plan.rp && MG.rp && MG.rp.get(C, plan.rp) && MG.rp.get(C, plan.rp).route === key))) why.push(MG.M('skd.preCheck.2', { reg: sg.reg, at: at, v: l[0] })); }
           at = l[0];
@@ -9252,7 +11167,8 @@ MG.skd = (function () {
     Object.keys(C.fl).forEach(function (id) {
       var f = C.fl[id], L = MG.ops._legById(C, f.legId); if (!L || L.rk !== k) return;
       var rd = add(id.slice(-10), -L.dayOffset);
-      if (rd >= date && f.state === 'SCH' && (!(C.fin && C.fin.bkFk[id]) || MG.ops._mktOnly(C, id))) { if (C.fin && C.fin.bkFk[id]) { aff.push({ fk: id, rk: k, rd: rd }); affS[id] = 1; } MG.ops._removeFlight(C, id); }
+      if (rd >= date && MG.ops._cutOK(f) && (!(C.fin && C.fin.bkFk[id]) || MG.ops._mktOnly(C, id)))   // 206차 재확인3 N206T-01: 지우는 편 = reschedule과 같은 조건(MG.ops._cutOK)
+         { if (C.fin && C.fin.bkFk[id]) { aff.push({ fk: id, rk: k, rd: rd }); affS[id] = 1; } MG.ops._removeFlight(C, id); }
     });
     if (C.fin) Object.keys(C.fin.bkFk).forEach(function (fk) { if (C.fl[fk] || affS[fk]) return; var L = MG.fin.legOf(C, fk); if (!L || L.rk !== k) return; var rd = add(fk.slice(-10), -L.dayOffset); if (rd >= date) { aff.push({ fk: fk, rk: k, rd: rd }); affS[fk] = 1; } });
   }
@@ -9303,9 +11219,10 @@ MG.skd = (function () {
     Object.keys(S(C).ver).forEach(function (v) { var x = S(C).ver[v]; if (x.state !== 'approved') return; var rs = C.rots.filter(function (r) { return r.pv === +v; }); if (rs.length && rs.every(empty)) { x.state = 'superseded'; x.supBy = plan.v; } });
     var rea = null;
     if (aff.length) {
-      if (MG.rea && C.mkt && C.mkt.polHist && MG.mkt.prof(C).cv === 'std') rea = MG.rea.revise(C, R, aff, nrs, { pool: pool, by: opt.by || 'skd', noPend: opt.noPend });
+      if (MG.rea && C.mkt && C.mkt.polHist && MG.mkt.prof(C).cv === 'std') rea = MG.rea.revise(C, R, aff, nrs, { pool: pool, by: opt.by || 'skd', noPend: opt.noPend, wide: !!(plan.gantt && MG.skd2 && MG.skd2.on(C)) || undefined });   // 2D: 편집기 기안만 같은 노선 대응 넓힘
       else aff.forEach(function (a) { MG.fin.markW(C, a.fk); });
     }
+    if (C.crew2 && opt.by !== 'estimate') MG.crew2.afterPlan(C);   // 2C: 새 편 배정 · 계속 운항 검사 즉시(사본 견적 제외)
     return { R: R, rea: rea, made: made, aff: aff.length };
   }
 
@@ -9321,13 +11238,16 @@ MG.skd = (function () {
   // 174차 N174-03: 승무원 월 가용 검사 = 한 함수(최종 승인 evaluate와 화면 과제 견적이 같은 코드) — D = 후보 시간표를 반영한 사본(revise 뒤) · 다른 조건부 승인 예약분 · 채용 큐(crewMonths)
   function crewPost(C, D, plan) {
     var types = {}; plan.segs.forEach(function (sg) { var ty = C.tails[sg.reg].type; types[ty] = sg.from < (types[ty] || '9999') ? sg.from : types[ty]; });
-    return Object.keys(types).map(function (ty) { return { type: ty, from: types[ty], cm: MG.world ? MG.world.crewMonths(D, ty, types[ty], condCrew(C, ty, plan.v)) : null }; });
+    return Object.keys(types).map(function (ty) { var ex = condCrew(C, ty, plan.v); if (D.crew2 && MG.crew2) ex = { blk: ex, aug: condCrewAug(C, ty, plan.v) };   // 2C(207차 재확인 N207R-02): 다른 조건부 계획의 장거리 편 몫(3명 세트가 없으면 둘째 세트) — 객실·단거리는 블록 한 번
+      return { type: ty, from: types[ty], cm: MG.world ? MG.world.crewMonths(D, ty, types[ty], ex) : null }; });
   }
   // 화면용 읽기 전용 견적: 원본 C 쓰기 0(사본 D에서만 revise·condCrew) — 거절 사유가 있으면 crew = null + why(preCheck 그대로)
   function crewQuote(C, plan, opt) {
     var D = MG.draft(C).C, why = preCheck(D, plan, opt); if (why.length) return { ok: false, why: why };
     try { MG.ops.revise(D, plan, { noPend: true, by: 'estimate' }); } catch (e) { return { ok: false, why: [String(e.message || e)] }; }
-    return { ok: true, crew: crewPost(D, D, plan) };
+    var q = { ok: true, crew: crewPost(D, D, plan) };
+    if (D.crew2 && MG.crew2) { var f0 = plan.segs.map(function (sg) { return sg.from; }).sort()[0]; q.week = MG.crew2.weekSim(D, f0); }   // 2C(메모 15-2 ①): 상세 견적 = 효력 첫 주 세트 근무표 시뮬(사본)
+    return q;
   }
   function evaluate(C, v, plan0, rec, opt) {
     var plan = plan0 || S(C).draft[v]; if (!plan) return { ok: false, why: [MG.M('skd.applyPend.7', { v: v })] };
@@ -9340,7 +11260,9 @@ MG.skd = (function () {
       if (cf && p.last > cf) post.push(MG.M('skd.evaluate.3', { reg: sg.reg, base: nr.base }));
       hoursBad(D, p.legs, sg.from).forEach(function (x) { post.push(MG.M('skd.regMsg', { reg: sg.reg, x: x })); });
     });
-    crewPost(C, D, plan).forEach(function (cq) { if (cq.cm) cq.cm.forEach(function (m) { if (m.need > m.cap) post.push(MG.M('skd.evaluate.2', { v: m.mk.slice(1), name: MG.data.base.types[cq.type].name, v2: Math.round(m.need / 60), v3: Math.round(m.cap / 60) })); }); });
+    crewPost(C, D, plan).forEach(function (cq) { if (cq.cm) cq.cm.forEach(function (m) { if (m.need > m.cap) post.push(MG.M('skd.evaluate.2', { v: m.mk.slice(1), name: MG.data.base.types[cq.type].name, v2: Math.round(m.need / 60), v3: Math.round(m.cap / 60) }));
+      if (m.cb && m.cb.need > m.cb.cap) post.push(MG.M('crew2.eval.cb', { v: m.mk.slice(1), name: MG.data.base.types[cq.type].name, v2: Math.round(m.cb.need / 60), v3: Math.round(m.cb.cap / 60) }));   // 2C: 객실 세트
+      if (m.fy && m.fy.need > m.fy.cap) post.push(MG.M('crew2.eval.fy', { fy: m.fy.fy, name: MG.data.base.types[cq.type].name, v2: Math.round(m.fy.need / 60), v3: Math.round(m.fy.cap / 60) })); }); });   // 2C: FY 1,000h
     var slotD = {}, slotShort = [], slotSup = [], rd = plan.rp && MG.rp ? MG.rp.readiness(C, plan) : null, f0 = plan.segs.map(function (s) { return s.from; }).sort()[0];
     if (C.slot && MG.slot) {                         // 1C-2c E5: 날짜마다 레벨 3 수요(후보 타임라인) vs 보유 시리즈 → 부족분 spareDaily 전환(사본) — 그래도 부족하면 신청 필요(노선 프로젝트는 결과일 ≤ 효력일 신청이 있으면 확보 대기 slot)
       // 125차 N124-01~03: 공용 자원 판정 — 시각이 같은 occurrence만 공급 · 계획이 늘린 부족만(base = 원본) · 노선 프로젝트는 그 부족 단위(공항·시즌·방향·시각·요일)를 덮는 신청(결과일 ≤ 효력일, 다른 cond 예약 단위 제외)만 확보 대기
@@ -9355,19 +11277,21 @@ MG.skd = (function () {
     var bb = b1(D); if (bb.length) post = post.concat(bb);
     if (rd) post = post.concat(rd.why);   // 1C-2b ② 조건부 투자 승인 준비 조건(✕ = 거절 · pending = 조건부 승인)
     var e = MG.rea ? MG.rea.estOf(C, D, r.rea) : { failed: 0, failedJr: 0, reissue: 0 };
-    e.v = plan.v; e.from = plan.segs.map(function (s) { return s.from; }).sort()[0]; e.R = r.R; e.made = r.made; e.aff = r.aff; e.slotD = slotD; e.slotFp = MG.rand.hash32(MG.canon(MG.T.koDeep(slotD))) >>> 0; e.pend = rd ? rd.pend.join(',') : ''; if (plan.rp) e.rp = plan.rp; if (rd && rd.slotApps) { e.slotApps = rd.slotApps; e.slotAppUse = rd.slotAppUse; } e.slotShort = slotShort; if (slotSup.length) e.slotSupUse = slotSup;
+    e.v = plan.v; e.from = plan.segs.map(function (s) { return s.from; }).sort()[0]; e.R = r.R; e.made = r.made; e.aff = r.aff; e.slotD = slotD; e.slotFp = MG.rand.hash32(MG.canon(MG.T.sigDeep(slotD))) >>> 0; e.pend = rd ? rd.pend.join(',') : ''; if (plan.rp) e.rp = plan.rp; if (rd && rd.slotApps) { e.slotApps = rd.slotApps; e.slotAppUse = rd.slotAppUse; } e.slotShort = slotShort; if (slotSup.length) e.slotSupUse = slotSup;
     if (MG.crisis && MG.crisis.on(C)) {             // 1C-3a 4-2: 적용 대상 의도(현재 waiting 전체 + 품의의 재연결 목록 — 가상) — 승인 견적 지문·부서 예산·증액안·30일 현금 전망에 포함(N135-04·05)
       var ic = MG.crisis.icost(C, plan.v, rec), fp = MG.crisis.intentFp(C, plan.v, rec), xd = {}; xd[MG.data.org.varDept.xDist] = e.reissue || 0; var pa = ic ? MG.crisis.preApply(C, plan.v, rec, xd) : null;   // N136-01: 재발권과 같은 부서면 합계로
       if (fp) e.icFp = fp;
       if (ic) { e.icost = ic; if (e.cash30 != null) { e.cash30 -= ic; e.icPay30 = ic; } }   // 적용 커밋 당일 지급 회차(30일 안) — 실제 적용 뒤 MG.fin.forecast(…,30)과 1엔 대사
       if (pa && !pa.ok) post.push(pa.why); else if (pa && pa.incs.length) { e.icInc = pa.incs.reduce(function (s, b) { return s + b.add; }, 0); e.icIncs = pa.incs; }
     }
+    if (MG.skd2 && MG.skd2.on(C)) e.w2 = MG.skd2.est(C, plan);   // 2D(계약 4-4): 경고 7종 요약·지연 전파 추정 — 화면·결재 카드가 같은 결과(승인을 막지 않음 · 막는 규칙은 위 그대로)
     return { ok: !post.length, why: post, est: e };
   }
   function card(e) {
     var base = MG.rea && e.flights != null ? MG.rea.card(e) : '';
     var ic = e.icost ? MG.M('skd.card.4', { icost: e.icost, v: e.icInc ? MG.M('skd.card.3', { icInc: e.icInc }) : '' }) : '';
-    return MG.M('skd.card.2', { v: e.v, v2: e.made.map(function (m) { return MG.M('skd.card.1', { reg: m.reg, from: m.from, v: m.to || '', legs: m.legs }); }), aff: e.aff, base: base, ic: ic });
+    var c0 = MG.M('skd.card.2', { v: e.v, v2: e.made.map(function (m) { return MG.M('skd.card.1', { reg: m.reg, from: m.from, v: m.to || '', legs: m.legs }); }), aff: e.aff, base: base, ic: ic }), w2 = e.w2 && MG.skd2 ? MG.skd2.cardLine(e.w2) : null;
+    return w2 ? MG.M('_j', { xs: [c0, w2], s: '' }) : c0;   // 2D: 편집기 경고 한 줄(s2 켬 · 없으면 1단계 카드 그대로)
   }
 
   /* ---------- 승인(②′ 자동 적용 조건 · 결재) ---------- */
@@ -9463,6 +11387,11 @@ MG.skd = (function () {
   function condCrew(C, ty, v) {                      // 다른 조건부 승인이 예약한 승무원 가용(하루 블록 분) — 같은 기종(확보 대기·재승인 대기)
     var m = 0; Object.keys(S(C).cond || {}).forEach(function (k) { var c = S(C).cond[k]; if ((c.st === 'wait' || c.st === 'reapprove') && +k !== v && c.type === ty) m += c.crew || 0; }); return m;
   }
+  function condCrewAug(C, ty, v) {                   // 2C: 다른 조건부 승인 계획의 하루 장거리(블록 > crew3Blk) 편 분 — 저장 칸 없음(cond.plan 회전에서 셈 · 1단계 저장 바이트 그대로)
+    var c3 = MG.data.crew2 ? MG.data.crew2.crew3Blk : 1e9, m = 0;
+    Object.keys(S(C).cond || {}).forEach(function (k) { var c = S(C).cond[k]; if ((c.st === 'wait' || c.st === 'reapprove') && +k !== v && c.type === ty) { var sg = c.plan && c.plan.segs && c.plan.segs[0]; ((sg && sg.rot && sg.rot.legs) || []).forEach(function (l) { if (l[1] > c3) m += l[1]; }); } });
+    return m;
+  }
   function condRegister(C, plan, est, by) {
     var K = S(C), sg = plan.segs[0], T = C.tails[sg.reg], blk = (sg.rot ? sg.rot.legs : []).reduce(function (a, l) { return a + l[1]; }, 0);
     K.cond = K.cond || {};
@@ -9537,8 +11466,416 @@ MG.skd = (function () {
     var x = S(C).ver[q.v]; MG.ops._log(C, MG.M('skd.effect.2', { v: q.v, v2: x && x.state === 'superseded' ? MG.M('skd.effect.1') : '' }), 'ev');
     return true;
   }
-  return { init: init, tl: tl, cur: cur, b1: b1, seasonStarts: seasonStarts, isSeasonStart: isSeasonStart, newDraft: newDraft, dropDraft: dropDraft, crewQuote: crewQuote, preCheck: preCheck, baseWhy: baseWhy, applyPlan: applyPlan, evaluate: evaluate, card: card,
+  return { _hoursBad: hoursBad, _crewPost: crewPost, _condCrew: condCrew, _condCrewAug: condCrewAug, init: init, tl: tl, cur: cur, b1: b1, seasonStarts: seasonStarts, isSeasonStart: isSeasonStart, newDraft: newDraft, dropDraft: dropDraft, crewQuote: crewQuote, preCheck: preCheck, baseWhy: baseWhy, applyPlan: applyPlan, evaluate: evaluate, card: card,
     autoOk: autoOk, yenX: yenX, gate: gate, applyInc: applyInc, condRegister: condRegister, condSecured: condSecured, condRelease: condRelease, condExpire: condExpire, condApply: condApply, nextSeason: nextSeason, peakMoves: peakMoves, submit: submit, commitPlan: commitPlan, applyPend: applyPend, effect: effect, movesOn: movesOn };
+})();
+
+/* ===== 경영 모드 2단계 2D · mg_skd2.js — 로테이션 편집기: 기안 사본(간트) · 조작 6종 · 경고 7종(+ 회전 겹침) · 시즌 복사 · 견적 확장
+   (경계 계약 v3 3-1·4-4·6·7 G1~G3 · 메모 v4 6절·15-10 · 구현 계획 2D)
+   · 정본은 계속 C.rots 하나 — 이 파일의 조작은 C.skd.draft[v].gantt(편집 사본)와 그 기안의 segs만 바꾼다(편·예약·원장·시간표·키 쓰기 0)
+   · 승인·효력은 기존 MG.skd.submit → applyPend → applyPlan 그대로(2D가 더하는 것 = 견적 칸 est.w2 · 카드 한 줄)
+   · 경고는 warn(C, plan) 하나(순수 · 쓰기 0) — 화면·견적·결재 카드가 같은 결과를 쓴다(화면에만 있는 경고 0)
+   · 2D는 캠페인 상태를 만들지 않는다(기안이 없으면 저장본에 2D 칸 0) → on = can */
+MG.skd2 = (function () {
+  function X() { return MG.data.skd2; }
+  function B() { return MG.data.base; }
+  function M(k, p) { return MG.M(k, p); }
+  function can(C) { return !!(C && MG.s2 && MG.s2.on(C) && X() && !X().off && C.cal !== '30d'); }
+  function on(C) { return can(C); }
+  function today(C) { return MG.tz.local(C.t, C.hqTz).date; }
+  function add(d, n) { return MG.tz.addDays(d, n); }
+  function fail(why) { return { ok: false, why: why }; }
+  function empty(r) { return r.validTo && r.validTo < r.validFrom; }
+  function tzOf(C, a) { var x = B().airports[a]; return x ? x.tz : C.hqTz; }
+  function hm(s) { return typeof s === 'number' ? s : (+s.slice(0, 2)) * 60 + (+s.slice(3, 5)); }
+  function occ(C) { return (C.org && C.org.depts['ops.occ'] && C.org.depts['ops.occ'].pol.slack) || 0; }
+  function int(x) { return typeof x === 'number' && x === Math.floor(x) && isFinite(x); }
+  function canon(x) { return MG.canon(x == null ? null : x); }
+
+  /* ---------- 회전 ↔ 편집 행 ---------- */
+  // 편집 행 = { base, first, slack(플레이어 여유 — OCC 추가 여유 제외 · applyPlan과 같은 뜻), legs:[[to, block, gap?]], dow?, route? } 또는 null(운휴)
+  function rowOf(r) {
+    if (!r || !r.legs || !r.legs.length) return null;
+    var o = { base: r.base, first: r.first, slack: r.slack0 != null ? r.slack0 : r.slack, legs: MG.clone(r.legs) };
+    if (r.dow && r.dow.length < 7) o.dow = r.dow.slice();
+    if (r.route) o.route = r.route;
+    return o;
+  }
+  function rotAt(C, reg, d) {
+    return C.rots.filter(function (r) { return r.reg === reg && !empty(r) && r.validFrom <= d && (!r.validTo || r.validTo >= d); })
+      .sort(function (a, b) { return a.validFrom < b.validFrom ? 1 : -1; })[0] || null;
+  }
+  function spareSet(C) { var o = {}; ((C.org && C.org.spares) || []).forEach(function (r) { o[r] = 1; }); return o; }
+  // 편집 대상 기체(구현 판단 9): 인도 전·반납·OCC 예비기 제외
+  function editable(C) {
+    var sp = spareSet(C);
+    return Object.keys(C.tails).sort().filter(function (k) { var T = C.tails[k]; return T.status !== 'delivery' && T.status !== 'returned' && !sp[k] && !T.spare; });
+  }
+  // 행 → 편 시각(순수 — applyPlan과 같은 planLegs · 같은 slack 식): ref = 회전일(기지 현지 날짜)
+  function times(C, reg, row, ref) {
+    if (!row || !row.legs || !row.legs.length) return [];
+    var T = C.tails[reg], nr = { reg: reg, type: T.type, base: row.base || T.base, first: row.first || '08:00', slack: (row.slack || 0) + occ(C), legs: row.legs, ver: 1, validFrom: ref };
+    var p = MG.ops._planLegs(C, nr, ref), out = [];
+    p.legs.forEach(function (L, i) {
+      var dep = MG.tz.toUTC(add(ref, L.dayOffset), L.stdLocal, tzOf(C, L.from)).t;
+      out.push({ i: i, from: L.from, to: L.to, dep: dep, arr: dep + L.block, block: L.block, gap: row.legs[i][2] || 0, fn: L.fn, L: L });
+    });
+    return out;
+  }
+  function turnOf(C, type) { return MG.org && MG.org.turnOf ? MG.org.turnOf(C, type) : B().types[type].turn; }
+
+  /* ---------- 기안 사본 열기(운영 조정 · 시즌 복사) ---------- */
+  // o = { kind:'ops'|'season', from?, title? } — 원본 base[reg] = 효력일에 적용되는 회전 · 사본 rows = 운영 조정은 원본 그대로 / 시즌 복사는 효력일 전날(현 시즌) 회전 + 요일 패턴
+  function open(C, o) {
+    if (!on(C)) return fail(M('skd2.off'));
+    o = o || {};
+    var kind = o.kind === 'season' ? 'season' : 'ops', td = today(C), from = o.from || (kind === 'season' ? MG.skd.nextSeason(C) : add(td, MG.data.fin.sales.pDays + 1));
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(from)) || from <= td) return fail(M('skd2.open.from', { td: add(td, 1) }));
+    if (kind === 'season' && from < MG.skd.nextSeason(C)) return fail(M('skd2.open.season', { d: MG.skd.nextSeason(C) }));
+    var regs = editable(C), base = {}, rows = {}, src = kind === 'season' ? add(from, -1) : from;
+    regs.forEach(function (reg) {
+      base[reg] = rowOf(rotAt(C, reg, from));
+      var s = kind === 'season' ? rowOf(rotAt(C, reg, src)) : null;
+      rows[reg] = MG.clone(kind === 'season' && s ? s : base[reg]);
+    });
+    var v = MG.skd.newDraft(C, { kind: kind, title: o.title || M(kind === 'season' ? 'skd2.title.season' : 'skd2.title.ops', { d: from }), segs: [], by: 'player' });
+    var D = C.skd.draft[v];
+    D.gantt = { from: from, src: src, base: base, rows: rows, log: [], at: C.t };
+    sync(C, D);
+    return { ok: true, v: v, segs: D.segs.length };
+  }
+  // 효력일이 같은 승인 구간(211차 N211-06): 이 기안이 그 기체를 바꾸면 기존 preCheck 규칙대로 replaces에 명시해야 함
+  function conflicts(C, g, reg) {
+    var td = today(C);
+    return C.rots.filter(function (r) { return r.reg === reg && !empty(r) && r.validFrom === g.from && r.validFrom > td; }).map(function (r) { return r.pv || 0; }).sort(function (a, b) { return a - b; });
+  }
+  // 바뀐 기체만 segs(정한 규칙 2): 원본과 정규형이 다른 행 · 교체 동의(g.rep[reg])는 지금 충돌 판과 정확히 같을 때만 replaces로 전달(다르면 무효 — 지움)
+  function sync(C, D) {
+    var g = D.gantt, rep = g.rep || {};
+    D.segs = Object.keys(g.rows).sort().filter(function (reg) { return canon(g.rows[reg]) !== canon(g.base[reg]); })
+      .map(function (reg) { var s = { reg: reg, from: g.from, rot: g.rows[reg] ? MG.clone(g.rows[reg]) : null }, cf = conflicts(C, g, reg); if (rep[reg] && cf.length && canon(rep[reg]) === canon(cf)) s.replaces = cf.slice(); return s; });
+    if (g.rep) { Object.keys(g.rep).forEach(function (reg) { var s = D.segs.filter(function (x) { return x.reg === reg; })[0]; if (!s || !s.replaces) delete g.rep[reg]; }); if (!Object.keys(g.rep).length) delete g.rep; }
+    return D.segs;
+  }
+
+  /* ---------- 조작 7종(PC 끌기와 휴대폰 표가 같은 함수 — G3) ---------- */
+  //   { k:'shift', reg, i, min } · { k:'slack', reg, min } · { k:'dow', reg, dow } · { k:'idle', reg, on } · { k:'reset', reg }
+  //   { k:'swap', reg, to } — 두 기체의 회전을 맞바꿈(같은 기종·같은 기지)
+  //   { k:'move', reg, i, to, at, dep? } — 편 i가 든 「기지 출발 → 기지 도착」 묶음을 기체 to의 회전 경계 at에 넣음(dep = 넣는 묶음의 희망 출발 · 기지 현지 분 · 없으면 원래 시각)
+  function loopOf(row, i) {
+    var L = row.legs, b = row.base, s = i, e = i;
+    while (s > 0 && L[s - 1][0] !== b) s--;
+    while (e < L.length - 1 && L[e][0] !== b) e++;
+    return L[e][0] === b ? [s, e] : null;
+  }
+  function bounds(row) { var out = [0]; if (!row) return out; row.legs.forEach(function (l, k) { if (l[0] === row.base) out.push(k + 1); }); return out; }
+  function setGap(l, g) { if (g > 0) l[2] = g; else l.length = 2; }
+  // 기지 현지 분(회전일 0시 기준) — 다일 구간은 1440 이상
+  function relMin(C, row, ref, t) { return t - MG.tz.dayStart(ref, tzOf(C, row.base)); }
+  function op(C, v, o) {
+    if (!on(C)) return fail(M('skd2.off'));
+    var D = C.skd && C.skd.draft[v]; if (!D || !D.gantt) return fail(M('skd2.op.nodraft', { v: v }));
+    var g = D.gantt, rows = g.rows; o = o || {};
+    if (!Object.prototype.hasOwnProperty.call(rows, o.reg)) return fail(M('skd2.op.noreg', { reg: o.reg }));
+    var r = rows[o.reg], ref = g.from, T = C.tails[o.reg];
+    if (o.k === 'shift') {
+      if (!r) return fail(M('skd2.op.idle', { reg: o.reg }));
+      if (!int(o.i) || o.i < 0 || o.i >= r.legs.length) return fail(M('skd2.op.leg', { reg: o.reg }));
+      if (!int(o.min) || !o.min || Math.abs(o.min) > X().gapMax) return fail(M('skd2.op.min', { max: X().gapMax }));
+      if (o.i === 0) { var f = hm(r.first) + o.min; if (f < 0 || f >= 1440) return fail(M('skd2.op.first')); r.first = MG.tz.hmStr(f); }
+      else { var gp = (r.legs[o.i][2] || 0) + o.min; if (gp < 0) return fail(M('skd2.op.early', { n: r.legs[o.i][2] || 0 })); if (gp > X().gapMax) return fail(M('skd2.op.min', { max: X().gapMax })); setGap(r.legs[o.i], gp); }
+    } else if (o.k === 'slack') {
+      if (!r) return fail(M('skd2.op.idle', { reg: o.reg }));
+      if (!int(o.min) || o.min < 0 || o.min > X().slackMax) return fail(M('skd2.op.slack', { max: X().slackMax }));
+      r.slack = o.min;
+    } else if (o.k === 'dow') {
+      if (!r) return fail(M('skd2.op.idle', { reg: o.reg }));
+      var dw = MG.ops.dowWhy(C, o.dow); if (dw) return fail(dw);
+      var nd = MG.ops.dowNorm(o.dow); if (nd) r.dow = nd; else delete r.dow;
+    } else if (o.k === 'idle') {
+      if (o.on) { if (!r) return fail(M('skd2.op.already')); rows[o.reg] = null; }
+      else { if (r) return fail(M('skd2.op.notIdle')); if (!g.base[o.reg]) return fail(M('skd2.op.noBase', { reg: o.reg })); rows[o.reg] = MG.clone(g.base[o.reg]); }
+    } else if (o.k === 'reset') {
+      rows[o.reg] = MG.clone(g.base[o.reg]);
+    } else if (o.k === 'replace') {   // 211차 N211-06: 효력일이 같은 승인 판 교체에 명시 동의(on) / 취소 — 바뀐 기체에만
+      if (canon(r) === canon(g.base[o.reg])) return fail(M('skd2.rep.nochg', { reg: o.reg }));
+      var cf = conflicts(C, g, o.reg); if (!cf.length) return fail(M('skd2.rep.none', { reg: o.reg }));
+      if (o.on) { g.rep = g.rep || {}; g.rep[o.reg] = cf; } else if (g.rep) delete g.rep[o.reg];
+    } else if (o.k === 'swap') {   // 회전 맞바꾸기(기체 배정 교체 — 같은 기종·같은 기지 · 시각·편 그대로)
+      if (!Object.prototype.hasOwnProperty.call(rows, o.to) || o.to === o.reg) return fail(M('skd2.mv.to', { to: o.to }));
+      var Tt = C.tails[o.to], rt0 = rows[o.to], bs0 = r ? r.base : T.base, bt0 = rt0 ? rt0.base : Tt.base;
+      if (T.type !== Tt.type) return fail(M('skd2.mv.type', { to: o.to }));
+      if (bs0 !== bt0) return fail(M('skd2.mv.base', { to: o.to, b: bt0, b2: bs0 }));
+      if (!r && !rt0) return fail(M('skd2.op.idle', { reg: o.reg }));
+      rows[o.reg] = rt0; rows[o.to] = r;
+    } else if (o.k === 'move') {
+      var w = moveWhy(C, g, o); if (w) return fail(w);
+      doMove(C, g, o);
+    } else return fail(M('skd2.op.kind', { k: o.k }));
+    sync(C, D);
+    g.log.push({ k: o.k, reg: o.reg, i: o.i, min: o.min, to: o.to, at: o.at, dep: o.dep, dow: o.dow, on: o.on, t: C.t });
+    if (g.log.length > X().logMax) g.log.splice(0, g.log.length - X().logMax);
+    return { ok: true, segs: D.segs.length };
+  }
+  function moveWhy(C, g, o) {
+    var r = g.rows[o.reg]; if (!r) return M('skd2.op.idle', { reg: o.reg });
+    if (!int(o.i) || o.i < 0 || o.i >= r.legs.length) return M('skd2.op.leg', { reg: o.reg });
+    if (!Object.prototype.hasOwnProperty.call(g.rows, o.to) || o.to === o.reg) return M('skd2.mv.to', { to: o.to });
+    var Ts = C.tails[o.reg], Tt = C.tails[o.to], rt = g.rows[o.to], tb = rt ? rt.base : Tt.base;
+    if (Ts.type !== Tt.type) return M('skd2.mv.type', { to: o.to });
+    if (tb !== r.base) return M('skd2.mv.base', { to: o.to, b: tb, b2: r.base });
+    if (!loopOf(r, o.i)) return M('skd2.mv.loop', { reg: o.reg });
+    if (bounds(rt).indexOf(o.at) < 0 && !(rt == null && o.at === 0)) return M('skd2.mv.at', { to: o.to });
+    if (o.dep != null && (!int(o.dep) || o.dep < 0 || o.dep >= 2880)) return M('skd2.mv.dep');
+    var want = o.dep != null ? o.dep : relMin(C, r, g.from, times(C, o.reg, r, g.from)[loopOf(r, o.i)[0]].dep);
+    if (o.at === 0 && rt && want >= 1440) return M('skd2.op.first');
+    return null;
+  }
+  function doMove(C, g, o) {
+    var ref = g.from, src = g.rows[o.reg], lp = loopOf(src, o.i), s = lp[0], e = lp[1];
+    var ts = times(C, o.reg, src, ref), turn = B().types[C.tails[o.reg].type].turn, sl = (src.slack || 0) + occ(C);   // planLegs와 같은 턴(데이터 값) — 시각 보존 계산
+    var moved = src.legs.slice(s, e + 1).map(function (l) { return [l[0], l[1]].concat(l[2] ? [l[2]] : []); }), dep0 = relMin(C, src, ref, ts[s].dep);
+    // ① 원 기체: 묶음을 빼고 뒤 편 시각 유지(뒤 편 앞 대기 분으로 흡수)
+    var after = e + 1 < ts.length ? ts[e + 1] : null;
+    src.legs.splice(s, e - s + 1);
+    if (!src.legs.length) g.rows[o.reg] = null;
+    else if (after) {
+      var nx = src.legs[s];
+      if (s === 0) { nx.length = 2; var a0 = relMin(C, src, ref, after.dep); if (a0 < 1440) src.first = MG.tz.hmStr(a0); else setGap(nx, a0 - hm(src.first)); }
+      else { var pv = ts[s - 1], need = pv.arr + turn + sl; setGap(nx, Math.max(0, after.dep - need)); }
+    }
+    // ② 받는 기체: 경계 at에 넣고(희망 출발 dep · 없으면 원래 시각) 뒤 편은 가능하면 제자리(대기 분 흡수 · 모자라면 밀림)
+    var tg = g.rows[o.to], want = o.dep != null ? o.dep : dep0;
+    moved[0].length = 2;
+    if (!tg) { g.rows[o.to] = { base: src ? (src.base || C.tails[o.reg].base) : C.tails[o.to].base, first: MG.tz.hmStr(want < 1440 ? want : 1439), slack: src ? src.slack : 0, legs: moved }; if (want >= 1440) setGap(moved[0], want - 1439); return; }
+    var tt = times(C, o.to, tg, ref), nextOld = o.at < tt.length ? tt[o.at] : null, tsl = (tg.slack || 0) + occ(C);
+    if (o.at === 0) tg.first = MG.tz.hmStr(want);
+    else { var pv2 = tt[o.at - 1], nat = relMin(C, tg, ref, pv2.arr + turn + tsl); setGap(moved[0], Math.max(0, want - nat)); }
+    Array.prototype.splice.apply(tg.legs, [o.at, 0].concat(moved));
+    if (nextOld) {   // 넣은 묶음 뒤 첫 편: 옛 출발 시각을 지킬 수 있으면 대기 분으로 맞춤
+      var t2 = times(C, o.to, tg, ref), k = o.at + moved.length, lst = t2[k - 1], nat2 = lst.arr + turn + tsl;
+      setGap(tg.legs[k], Math.max(0, nextOld.dep - nat2));
+    }
+  }
+
+  /* ---------- 보기 모형(화면 · 경고 공용 — 순수) ---------- */
+  // 날짜별 유효 회전 투영 하나(211차 N211-01): 기안 seg는 효력일부터 「보존되는 뒤 구간」 전날까지만(applyPlan과 같은 끝 경계) · 그 밖 = 승인 시간표
+  function rowFor(C, plan, reg, d) {
+    var sg = (plan && plan.segs || []).filter(function (s) { return s.reg === reg && s.from <= d; }).sort(function (a, b) { return a.from < b.from ? 1 : -1; })[0];
+    if (sg) {
+      var rep = sg.replaces || [], kept = C.rots.filter(function (r) { return r.reg === reg && !empty(r) && r.validFrom > sg.from && rep.indexOf(r.pv || 0) < 0; }).map(function (r) { return r.validFrom; }).sort()[0];
+      if (!kept || d < kept) return sg.rot ? sg.rot : null;
+    }
+    return rowOf(rotAt(C, reg, d));
+  }
+  function rotOnRow(C, row, d) { return !!row && MG.ops.dowOn(row.dow, d); }
+  // 기체 하나의 [d0, d1] 회전일 편 시각(본사 기준 분 · 다일 포함)
+  // 앞선 회전일 돌아보기(다일 회전 — 편 앞 대기 분이 커서 회전이 며칠에 걸쳐도 넘어온 편을 빠뜨리지 않음)
+  //   211차 재확인 N211R-01: 고정 일수가 아니라 「지금 있을 수 있는 가장 긴 회전」의 실제 시각 범위에서 구함 — 승인 시간표의 모든 회전 + 기안 seg
+  //   (회전일 0시 → 마지막 도착까지 분 ÷ 1440 올림 · 최소 1일) · 호출마다 같은 C·plan이면 같은 값(순수)
+  function spanDays(C, reg, row, ref) { var ts = times(C, reg, row, ref); return ts.length ? Math.ceil((ts[ts.length - 1].arr - MG.tz.dayStart(ref, C.hqTz)) / 1440) : 0; }
+  function backOf(C, plan) {
+    var m = 1, ref = (plan && plan.segs && plan.segs[0] && plan.segs[0].from) || today(C);
+    C.rots.forEach(function (r) { if (!empty(r) && C.tails[r.reg]) m = Math.max(m, spanDays(C, r.reg, rowOf(r), ref)); });
+    (plan && plan.segs || []).forEach(function (s) { if (s.rot && C.tails[s.reg]) m = Math.max(m, spanDays(C, s.reg, s.rot, s.from)); });
+    return m;
+  }
+  function legsRange(C, plan, reg, d0, d1) {
+    var out = [];
+    for (var d = d0; d <= d1; d = add(d, 1)) { var row = rowFor(C, plan, reg, d); if (rotOnRow(C, row, d)) times(C, reg, row, d).forEach(function (x) { x.rd = d; out.push(x); }); }
+    return out.sort(function (a, b) { return a.dep - b.dep; });
+  }
+  function shown(C) { return Object.keys(C.tails).sort().filter(function (k) { var s = C.tails[k].status; return s !== 'delivery' && s !== 'returned'; }); }
+  function mxWins(C) {
+    var seen = {}, out = [];
+    (C.mx2 && C.mx2.wo || []).forEach(function (w) { if (w.st === 'plan' || w.st === 'on') { seen[w.id] = 1; out.push({ id: w.id, reg: w.reg, what: w.what, start: w.start, end: w.end, at: w.at }); } });
+    (C.mxWindows || []).forEach(function (w) { if (w.state !== 'done' && !seen[w.id]) out.push({ id: w.id, reg: w.tail, what: w.what, start: w.start, end: w.end, at: w.base && w.base.at || null }); });
+    return out;
+  }
+  // 화면 모형: 행 = 기체 · 편 = 효력일(회전일) 하나의 편 + 전날에서 넘어온 편 · 축 0 = 효력일 0시(본사)
+  function model(C, v, opt) {
+    opt = opt || {};
+    var D = C.skd && C.skd.draft[v]; if (!D || !D.gantt) return null;
+    var g = D.gantt, d = opt.d || g.from, t0 = MG.tz.dayStart(d, C.hqTz), sp = spareSet(C), W = warn(C, D), wk = {}, BK = backOf(C, D);
+    W.list.forEach(function (x) { if (x.reg == null || x.pre) return; (x.is || (x.i != null ? [x.i] : [])).forEach(function (i) { (wk[x.reg + '|' + i] = wk[x.reg + '|' + i] || []).push(x.k); }); });
+    var rows = shown(C).map(function (reg) {
+      var T = C.tails[reg], has = Object.prototype.hasOwnProperty.call(g.rows, reg), row = rowFor(C, D, reg, d), ed = has && canon(row) === canon(g.rows[reg]);   // 보는 날에 실제로 편집 사본이 적용될 때만 편집(끌기) 가능
+      var legs = (rotOnRow(C, row, d) ? times(C, reg, row, d) : []).map(function (x) { return { i: x.i, from: x.from, to: x.to, a: x.dep - t0, b: x.arr - t0, block: x.block, gap: x.gap, fn: x.fn,
+        depL: MG.tz.hmStr(MG.tz.local(x.dep, tzOf(C, x.from)).hm), arrL: MG.tz.hmStr(MG.tz.local(x.arr, tzOf(C, x.to)).hm), depH: MG.tz.hmStr(MG.tz.local(x.dep, C.hqTz).hm), arrH: MG.tz.hmStr(MG.tz.local(x.arr, C.hqTz).hm), w: wk[reg + '|' + x.i] || [] }; });
+      var carry = legsRange(C, D, reg, add(d, -BK), add(d, -1)).filter(function (x) { return x.arr > t0; })   // 앞선 회전일들(같은 투영)에서 넘어온 편
+        .map(function (x) { return { i: x.i, rd: x.rd, from: x.from, to: x.to, a: x.dep - t0, b: x.arr - t0, prev: true }; });
+      var mw = mxWins(C).filter(function (w) { return w.reg === reg && w.end > t0 && w.start < t0 + 2 * 1440; }).map(function (w) { return { what: w.what, a: w.start - t0, b: w.end - t0 }; });
+      return { reg: reg, type: T.type, base: row ? row.base : T.base, edit: ed, spare: !!(sp[reg] || T.spare), idle: !row, changed: has && canon(g.rows[reg]) !== canon(g.base[reg]), slack: row ? row.slack : null, first: row ? row.first : null, dow: row && row.dow || null, legs: legs, carry: carry, mx: mw, bounds: ed ? bounds(row) : [] };
+    });
+    return { v: v, kind: D.kind, from: g.from, d: d, t0: t0, rows: rows, warn: W, segs: D.segs.length };
+  }
+  // 차이(시즌 복사·운영 조정 공통 — 바뀐 기체만): 원본 · 사본 요약
+  function diff(C, v) {
+    var D = C.skd && C.skd.draft[v]; if (!D || !D.gantt) return [];
+    var g = D.gantt, sm = function (r) { return r ? { n: r.legs.length, first: r.first, slack: r.slack, dow: r.dow || null, legs: r.legs.map(function (l) { return l[0] + (l[2] ? '+' + l[2] : ''); }) } : null; };
+    return D.segs.map(function (s) { var cf = conflicts(C, g, s.reg); return { reg: s.reg, from: s.from, a: sm(g.base[s.reg]), b: sm(g.rows[s.reg]), conf: cf, rep: !!(s.replaces && canon(s.replaces) === canon(cf)) }; });
+  }
+
+  /* ---------- 경고 7종 + 회전 겹침(순수 · 쓰기 0) ---------- */
+  //   항목 = { k, key, q?, reg?, i?, is?, apt?, type?, d, txt, pre, worse } — pre = 지금 시간표에도 같은 크기 이하로 있음(기존) · worse = 기존보다 커짐 · n = 새로 만든 것 + 악화
+  var KINDS = ['mx', 'fdp', 'cf', 'spot', 'slot', 'mct', 'spare', 'ovl'];
+  function warn(C, plan) {
+    var out = { list: [], n: {}, pre: 0 };
+    KINDS.forEach(function (k) { out.n[k] = 0; });
+    if (!on(C) || !plan || !plan.segs || !plan.segs.length) return out;
+    var regs = {}; plan.segs.forEach(function (s) { regs[s.reg] = 1; });
+    var from = plan.segs.map(function (s) { return s.from; }).sort()[0], base = core(C, { segs: [] }, regs, from), now = core(C, plan, regs, from), pk = {};
+    base.forEach(function (x) { pk[x.key] = x.q || 1; });
+    //   211차 권고 2: 같은 충돌이라도 크기(q — 겹친 편 수·최대 대수·부족 정도·연결 인원)가 커지면 「악화」 = 새 경고로 셈
+    now.forEach(function (x) { var b0 = pk[x.key]; x.pre = !!b0 && (x.q || 1) <= b0; x.worse = !!b0 && !x.pre; out.list.push(x); if (x.pre) out.pre++; else out.n[x.k]++; });
+    return out;
+  }
+  function core(C, plan, regs, from) {
+    var out = [], N = X().days, d0 = from, d1 = add(from, N - 1), seen = {}, all = shown(C), sp = spareSet(C);
+    //   같은 key는 기간 안 가장 큰 크기(q)의 항목 하나(211차 재확인 권고 1 — 뒤 날짜의 악화가 첫 날짜에 가려지지 않게)
+    function put(x) { var i = seen[x.key]; if (i == null) { seen[x.key] = out.length; out.push(x); } else if ((x.q || 1) > (out[i].q || 1)) out[i] = x; }
+    var BK = backOf(C, plan);
+    var L = {}, sl = {}; all.forEach(function (reg) { L[reg] = legsRange(C, plan, reg, add(d0, -BK), d1); });
+    var t0 = MG.tz.dayStart(d0, C.hqTz), t1 = MG.tz.dayStart(add(d1, 1), C.hqTz), wins = mxWins(C);
+    // ① 정비 창 겹침 — 기안 기체의 편이 정비 창(A/C/엔진/AD · 2B 작업 지시 + 1단계 창)과 겹침(효력일 이후 모든 창 — 창 날짜의 회전으로 계산)
+    wins.forEach(function (w) {
+      if (!regs[w.reg] || w.end <= t0) return;
+      var a = MG.tz.local(w.start, C.hqTz).date, b = MG.tz.local(w.end, C.hqTz).date; if (a < from) a = from;
+      var hit = legsRange(C, plan, w.reg, add(a, -BK), b).filter(function (x) { return x.rd >= from && x.dep < w.end && x.arr > w.start; }), is = [];
+      hit.forEach(function (x) { if (is.indexOf(x.i) < 0) is.push(x.i); });
+      if (hit.length) put({ k: 'mx', key: 'mx|' + w.id, q: hit.length, reg: w.reg, is: is.sort(function (p, q) { return p - q; }), d: hit[0].rd, txt: M('skd2.w.mx', { reg: w.reg, n: hit.length, what: w.what, d: MG.tz.local(w.start, C.hqTz).date, d2: MG.tz.local(w.end, C.hqTz).date }) });
+    });
+    Object.keys(regs).sort().forEach(function (reg) {
+      var T = C.tails[reg];
+      for (var d = d0; d <= d1; d = add(d, 1)) {
+        var row = rowFor(C, plan, reg, d); if (!rotOnRow(C, row, d)) continue;
+        var ts = times(C, reg, row, d);
+        // ② 승무원 FDP — 2C 근무 나누기로도 한도 안에 못 넣는 편(어떤 세트도 배정 불가 · 교대 필요)
+        if (MG.crew2 && MG.data.crew2) {
+          var home = {}; home[MG.data.crew2.home] = 1; var bs = C.crew2 && C.crew2.bases || {}; Object.keys(bs).forEach(function (k) { if (bs[k] && bs[k].n > 0) home[k] = 1; });
+          MG.crew2.cut(C, ts.map(function (x) { return { std: x.dep, block: x.block, to: x.to }; }), home).forEach(function (p) {
+            if (p[3]) put({ k: 'fdp', key: 'fdp|' + reg + '|' + p[0], reg: reg, i: p[0], d: d, txt: M('skd2.w.fdp', { reg: reg, fn: ts[p[0]].fn, b: ts[p[0]].block }) });
+          });
+        }
+        // ③ 커퓨·공항 운영 시간 — 1단계 hoursBad(같은 판정) + 기지 마지막 도착 한계(MG.data.org.curfew · 1단계 턴 여유 개정이 감편하는 기준)
+        MG.skd._hoursBad(C, ts.map(function (x) { return x.L; }), d).forEach(function (s, j) { put({ k: 'cf', key: 'cf|' + reg + '|' + MG.canon(s), reg: reg, i: null, d: d, txt: M('skd2.w.cf', { reg: reg, x: s }) }); });
+        var cf = MG.data.org.curfew && MG.data.org.curfew[row.base], lz = ts[ts.length - 1];
+        if (cf && lz) { var lm = relMin(C, row, d, lz.arr); if (lz.to === row.base && lm > cf) put({ k: 'cf', key: 'cfb|' + reg, reg: reg, i: lz.i, d: d, txt: M('skd2.w.cfb', { reg: reg, fn: lz.fn, base: row.base, hm: MG.tz.hmStr(lm % 1440), lim: MG.tz.hmStr(cf % 1440) }) }); }
+        // ⑤ 슬롯 시각 — 레벨 3 공항 이착륙과 같은 시각·요일·시즌의 보유 시리즈 없음(빠른 안내 · 승인 판정은 evaluate의 슬롯 대조)
+        if (C.slot && MG.slot && MG.slot.on(C)) ts.forEach(function (x) {   // 같은 편·방향은 요일을 모아 한 줄(아래 sl)
+          [[x.from, 'D', x.dep], [x.to, 'A', x.arr]].forEach(function (m) {
+            if ((MG.data.world.slot || {})[m[0]] !== 3) return;
+            var lc = MG.tz.local(m[2], tzOf(C, m[0])), sid = MG.slot.seasonOf(lc.date); if (!sid) return;
+            var dw = MG.slot.dowOf(lc.date), ok = Object.keys(C.slot.series).some(function (id) { var s = C.slot.series[id]; return s.apt === m[0] && s.season === sid && s.dir === m[1] && s.dow === dw && s.hm === lc.hm && s.state === 'held'; });
+            if (!ok) { var sk = reg + '|' + x.i + '|' + m[1], q = sl[sk] || (sl[sk] = { reg: reg, i: x.i, d: d, fn: x.fn, apt: m[0], dir: m[1], hm: lc.hm, dws: [] }); if (q.dws.indexOf(dw) < 0) q.dws.push(dw); }
+          });
+        });
+        // ⑧ 회전 겹침 — 마지막 도착 + 턴이 다음 운항 회전일 첫 출발을 넘음(같은 기체가 두 편에 걸림)
+        //   다음 「운항」 회전일(211차 N211-02 — 비매일 요일 간격·다일 회전 · 보는 기간 다음 운항일까지 · 판 경계는 같은 투영)
+        if (lz) for (var k = 1; k <= 7 + BK; k++) {
+          var nd = add(d, k), nrow = rowFor(C, plan, reg, nd); if (!rotOnRow(C, nrow, nd)) continue;
+          var nt = times(C, reg, nrow, nd)[0];
+          if (nt && lz.arr + turnOf(C, T.type) > nt.dep) put({ k: 'ovl', key: 'ovl|' + reg, reg: reg, i: lz.i, d: d, txt: M('skd2.w.ovl', { reg: reg, fn: lz.fn, hm: MG.tz.hmStr(MG.tz.local(lz.arr, C.hqTz).hm), fn2: nt.fn, d2: nd }) });
+          break;
+        }
+      }
+    });
+    Object.keys(sl).sort().forEach(function (sk) { var q = sl[sk]; put({ k: 'slot', key: 'slot|' + sk + '|' + q.hm, reg: q.reg, i: q.i, d: q.d, txt: M('skd2.w.slot', { reg: q.reg, fn: q.fn, apt: q.apt, dir: M(q.dir === 'D' ? 'skd2.dir.D' : 'skd2.dir.A'), hm: MG.tz.hmStr(q.hm), dw: MG.M('_j', { xs: q.dws.sort(function (p, q2) { return p - q2; }).map(function (w) { return MG.slot.DOWK[w]; }), s: '·' }) }) }); });
+    // ④ 주기장 — 공항별 동시 지상 기체(도착 ~ 다음 출발 · 밤 주기 · 회전 없는 기체 포함 · 정비 창 중 기체 제외) > 계약 주기장
+    for (var d = d0; d <= d1; d = add(d, 1)) {
+      var a0 = MG.tz.dayStart(d, C.hqTz), a1 = MG.tz.dayStart(add(d, 1), C.hqTz), ev = {};
+      all.forEach(function (reg) {
+        var T = C.tails[reg], ls = L[reg].filter(function (x) { return x.arr > a0 - 1440 && x.dep < a1 + 1440; }), segs = [];
+        if (!ls.length) segs.push([T.loc || T.base, a0, a1]);
+        else {
+          if (ls[0].dep > a0) segs.push([ls[0].from, a0, ls[0].dep]);
+          for (var k = 0; k < ls.length; k++) { var nx = ls[k + 1]; segs.push([ls[k].to, ls[k].arr, nx ? nx.dep : a1]); }
+        }
+        segs.forEach(function (s) {
+          var a = Math.max(s[1], a0), b = Math.min(s[2], a1); if (b <= a) return;
+          minus([a, b], wins.filter(function (w) { return w.reg === reg; })).forEach(function (p) { (ev[s[0]] = ev[s[0]] || []).push([p[0], 1], [p[1], -1]); });   // 211차 N211-03: 정비 창과 겹치는 시간만 뺌(합집합)
+        });
+      });
+      Object.keys(ev).sort().forEach(function (apt) {
+        var e = ev[apt].sort(function (x, y) { return x[0] - y[0] || x[1] - y[1]; }), n = 0, pk = 0, at = null, cap = X().spots[apt] != null ? X().spots[apt] : X().spots.def;
+        e.forEach(function (x) { n += x[1]; if (n > pk) { pk = n; at = x[0]; } });
+        if (pk > cap) put({ k: 'spot', key: 'spot|' + apt, q: pk, apt: apt, d: d, txt: M('skd2.w.spot', { apt: apt, n: pk, cap: cap, hm: MG.tz.hmStr(MG.tz.local(at, tzOf(C, apt)).hm), d: d }) });
+      });
+    }
+    // ⑥ MCT 은행 — 판매된 연결 예약(두 구간)의 두 편이 기안 기체에 있고, 같은 회전·같은 순번의 새 편 사이 간격 < MCT(같은 공항일 때만 · 대응이 없으면 재안내 견적이 맡음)
+    if (C.fin && C.fin.bk) {
+      var pr = {};
+      Object.keys(C.fin.bk).forEach(function (id) {
+        var b = C.fin.bk[id]; if (!b.segs || b.segs.length < 2) return;
+        for (var j = 1; j < b.segs.length; j++) {
+          var s1 = b.segs[j - 1], s2 = b.segs[j]; if (!MG.fin.openSt(s1) || !MG.fin.openSt(s2)) continue;
+          var L1 = MG.fin.legOf(C, s1.fk), L2 = MG.fin.legOf(C, s2.fk); if (!L1 || !L2 || !(regs[L1.tail] || regs[L2.tail])) continue;
+          var r1 = add(s1.fk.slice(-10), -L1.dayOffset), r2 = add(s2.fk.slice(-10), -L2.dayOffset); if (r1 < from && r2 < from) continue;
+          var n1 = nth(C, plan, L1, r1), n2 = nth(C, plan, L2, r2); if (!n1 || !n2) continue;
+          var mct = MG.mkt.mctOf(C, s1.fk, s2.fk), gap = n2.dep - n1.arr; if (gap >= mct) continue;
+          var pkk = L1.id + '>' + L2.id; (pr[pkk] = pr[pkk] || { pax: 0, gap: gap, mct: mct, L1: L1, L2: L2, n1: n1, n2: n2, d: r1 }).pax += s1.s || 0;   // 211차 N211-05: 뒤 편(n2) 보존 → 막대·표 연결
+        }
+      });
+      Object.keys(pr).sort().forEach(function (k) { var x = pr[k]; put({ k: 'mct', key: 'mct|' + k, q: x.pax * 10000 + (x.mct - x.gap), reg: x.L2.tail, i: x.n2 ? x.n2.i : null, d: x.d, txt: M('skd2.w.mct', { fn: x.L1.fn, fn2: x.L2.fn, apt: x.L1.to, gap: x.gap, mct: x.mct, pax: x.pax }) }); });
+    }
+    // ⑦ 예비기 비율 — 기종별 (OCC 예비기 + 그날 회전 없는 운항 가능 기체) ÷ 기단 < spareMin
+    var ty = {}; all.forEach(function (reg) { var T = C.tails[reg]; (ty[T.type] = ty[T.type] || []).push(reg); });
+    Object.keys(ty).sort().forEach(function (tp) {
+      var worst = null, wd = null;
+      for (var d = d0; d <= d1; d = add(d, 1)) { var n = ty[tp].filter(function (reg) { return avail(C, reg, d, wins) && (sp[reg] || C.tails[reg].spare || !rotOnRow(C, rowFor(C, plan, reg, d), d)); }).length, r = n / ty[tp].length; if (worst == null || r < worst) { worst = r; wd = d; } }   // 211차 N211-04: 그날 실제로 쓸 수 있는 기체만(정비 창·주기·준비 시각 · 예비기 표지도 같은 검사)
+      if (worst != null && worst < X().spareMin) put({ k: 'spare', key: 'spare|' + tp, q: Math.round((1 - worst) * 1000), type: tp, d: wd, txt: M('skd2.w.spare', { name: B().types[tp].name, n: Math.round(worst * ty[tp].length), fleet: ty[tp].length, p: Math.round(worst * 100), min: Math.round(X().spareMin * 100) }) });
+    });
+    return out;
+  }
+  // 지상 구간 [a,b]에서 정비 창 합집합을 뺀 조각들
+  function minus(ab, ws) {
+    var cut = ws.filter(function (w) { return w.start < ab[1] && w.end > ab[0]; }).map(function (w) { return [Math.max(ab[0], w.start), Math.min(ab[1], w.end)]; }).sort(function (x, y) { return x[0] - y[0]; }), out = [], cur = ab[0];
+    cut.forEach(function (c) { if (c[0] > cur) out.push([cur, c[0]]); if (c[1] > cur) cur = c[1]; });
+    if (cur < ab[1]) out.push([cur, ab[1]]);
+    return out;
+  }
+  // 그날(본사 날짜) 운항에 쓸 수 있는 기체: 인도 전·반납·주기(parked) 아님 · 준비 시각이 그날 끝 전 · 그날과 겹치는 정비 창 없음
+  function avail(C, reg, d, wins) {
+    var T = C.tails[reg], a = MG.tz.dayStart(d, C.hqTz), b = MG.tz.dayStart(add(d, 1), C.hqTz);
+    if (T.status === 'delivery' || T.status === 'returned' || T.status === 'parked') return false;
+    if (T.readyT && T.readyT >= b) return false;
+    return !wins.some(function (w) { return w.reg === reg && w.start < b && w.end > a; });
+  }
+  // 옛 leg(L — 판매 예약의 편) → 기안의 같은 회전일·같은 순번 새 편(공항이 같을 때만)
+  function nth(C, plan, L, rd) {
+    var row = rowFor(C, plan, L.tail, rd); if (!rotOnRow(C, row, rd)) return null;
+    var q = +String(L.id).slice(String(L.id).lastIndexOf('-') + 1) - 1, ts = times(C, L.tail, row, rd), x = ts[q];
+    return x && x.from === L.from && x.to === L.to ? x : null;
+  }
+
+  /* ---------- 견적 확장(evaluate의 est.w2 — 메모 6절) ---------- */
+  // 지연 전파 위험(구현 판단 8 · 「추정」): 턴마다 p·mu·e^(−여유/mu) 분 합 — 기안 기체의 효력일 회전(기안 · 지금)
+  function propPar(C) {
+    var P = X().prop, o = C.ops2 && C.ops2.otp; if (!o) return { p: P.p, mu: P.mu, src: 'def' };
+    var ks = Object.keys(o).sort().slice(-P.months), dep = 0, late = 0, min = 0;
+    ks.forEach(function (k) { var R = o[k]; dep += R.dep || 0; late += (R.dep || 0) - (R.d0 || 0); Object.keys(R.byCode || {}).forEach(function (c) { if (c !== '93') min += R.byCode[c]; }); });
+    if (dep < P.minDep || late <= 0) return { p: P.p, mu: P.mu, src: 'def' };
+    return { p: late / dep, mu: Math.max(5, min / late), src: 'hist' };
+  }
+  function propOf(C, plan, reg, d, P) {
+    var row = rowFor(C, plan, reg, d); if (!rotOnRow(C, row, d)) return 0;
+    var ts = times(C, reg, row, d), turn = turnOf(C, C.tails[reg].type), s = 0;
+    for (var k = 1; k < ts.length; k++) { var fl = ts[k].dep - ts[k - 1].arr - turn; s += P.p * P.mu * Math.exp(-Math.max(0, fl) / P.mu); }
+    return s;
+  }
+  function est(C, plan) {
+    var W = warn(C, plan), P = propPar(C), from = (plan.segs || []).map(function (s) { return s.from; }).sort()[0], a = 0, b = 0;
+    (plan.segs || []).forEach(function (s) { a += propOf(C, plan, s.reg, from, P); b += propOf(C, { segs: [] }, s.reg, from, P); });
+    return { n: W.n, pre: W.pre, prop: { d: Math.round(a), b: Math.round(b), src: P.src } };
+  }
+  function cardLine(w2) {
+    if (!w2) return '';
+    var parts = KINDS.filter(function (k) { return w2.n[k]; }).map(function (k) { return MG.M('_j', { xs: [M('skd2.k.' + k), ' ' + w2.n[k]], s: '' }); });
+    return M('skd2.card', { v: parts.length ? MG.M('_j', { xs: parts, s: ' · ' }) : M('skd2.card.none'), pre: w2.pre, d: w2.prop.d, b: w2.prop.b, src: M('skd2.src.' + w2.prop.src) });
+  }
+
+  return { backOf: backOf, conflicts: conflicts, minus: minus, avail: avail, rowFor: rowFor, can: can, on: on, open: open, op: op, sync: sync, model: model, diff: diff, warn: warn, est: est, cardLine: cardLine, KINDS: KINDS,
+           rowOf: rowOf, rotAt: rotAt, editable: editable, times: times, loopOf: loopOf, bounds: bounds, relMin: relMin, legsRange: legsRange, propPar: propPar };
 })();
 
 /* ===== 경영 모드 1C-2b · mg_rp.js — 노선 프로젝트 7단계·준비 상태 4단·조건부 승인(cond)·판매 개시 사건·A/B·월간 보고 =====
@@ -9568,7 +11905,7 @@ MG.rp = (function () {
   }
   // 122차 N122-03: 5단계 기안 지문(기체·기지·첫 출발·턴 여유·구간·효력일) — 최종 투자 품의·조건부 승인에 고정, 승인 직전 대조
   function draftOf(d) { var o = { reg: d.reg || null, base: d.base, first: d.first, slack: d.slack, legs: d.legs, from: d.from }; if (d.dow && d.dow.length < 7) o.dow = d.dow; return o; }   // 주간 운항 계약 v3 5: 매일 = dow 키 없음(기존 지문 같음)
-  function draftFp(C, id) { var p = get(C, id); return p ? MG.rand.hash32(MG.canon(MG.T.koDeep(draftOf(p.legsDraft)))) >>> 0 : null; }
+  function draftFp(C, id) { var p = get(C, id); return p ? MG.rand.hash32(MG.canon(MG.T.sigDeep(draftOf(p.legsDraft)))) >>> 0 : null; }
   var ST = ['', MG.M('rp.1'), MG.M('rp.2'), MG.M('rp.4'), MG.M('rp.4'), MG.M('rp.5'), MG.M('rp.6'), MG.M('rp.7')];
 
   /* ---------- 공항·노선 키 ---------- */
@@ -10236,6 +12573,15 @@ MG.slot = (function () {
     movesOfFlight(f).forEach(function (m) { if (!r[m[1]]) out.push(MG.M('slot.missing.4', { v: m[0], v2: m[1] === 'D' ? MG.M('slot.missing.3') : MG.M('slot.missing.2'), v3: m[2], v4: MG.tz.hmStr(m[3]) })); });
     return out.length ? MG.M('slot.missing.1', { out: out }) : null;
   }
+  // 규제 당국 시각 변경(2A reg.slot · 206차 재확인3): 그 편의 원래 occurrence = 정당 미사용(j · 사유 기록) · 새 시각 = 그날 한 번의 임시 배정(1회 시리즈 — 역사적 우선권 대상 아님) · 편 예약을 새 시각으로
+  function retime(C, f, m) {
+    if (!on(C) || (MG.ops2 && MG.ops2.adhoc && MG.ops2.on(C) && MG.ops2.adhoc(C, f))) { f.std += m; f.sta += m; return; }
+    var r = MG.clone(resOf(C, f)), mv0 = movesOfFlight(f);
+    release(C, f); f.std += m; f.sta += m;
+    mv0.forEach(function (x) { var s = r[x[1]] && S(C).series[r[x[1]]]; if (s && setOcc(C, s, x[2], 'j')) s.pc[x[2]] = MG.M('slot.retime.pc'); });
+    movesOfFlight(f).forEach(function (x) { var sid = seasonOf(x[2]); if (sid) mk(C, { apt: x[0], season: sid, dir: x[1], dow: dowOf(x[2]), hm: x[3], dates: [x[2]], historic: false, added: false, note: 'reg', src: 'reg' }); });
+    reserve(C, f);
+  }
   function setOcc(C, s, d, ch) {
     var o = s.occ[d]; if (o === ch || o === 'o' || o === 'j' || o === 'x' || o === 'r') return false;   // 최종 결과는 한 번만
     s.occ[d] = ch; if (ch === 'o') s.operated++; else if (ch === 'j') s.unusedJ++; else if (ch === 'x') s.unusedO++; return true;
@@ -10596,7 +12942,7 @@ MG.slot = (function () {
   function unrle(r) { var o = ''; r.replace(/([^0-9])(\d*)/g, function (m, c, n) { o += new Array((n ? +n : 1) + 1).join(c); return ''; }); return o; }
   // 193차 P1-a 184차 표현 투영(시험 T2 전용 · 2-6-5 고정 목록): 시리즈 출처 꼬리표 'spare:#N' → 'spare:시간표 #N' · 'spare:1B:기체' → 'spare:1B 배정 기체'
   if (MG.T && MG.T.legacyHooks) MG.T.legacyHooks.push(function (L) { var sr = L.slot && L.slot.series; if (!sr) return; Object.keys(sr).forEach(function (id) { var x = sr[id], m;
-    if (typeof x.src !== 'string') return; if ((m = /^spare:#(\d+)$/.exec(x.src))) x.src = 'spare:' + MG.T.ko(MG.M('skd.tag', { v: +m[1] })); else if ((m = /^spare:1B:(.+)$/.exec(x.src))) x.src = 'spare:' + MG.T.ko(MG.M('world.tag1b', { tail: m[1] })); }); });
+    if (typeof x.src !== 'string') return; if ((m = /^spare:#(\d+)$/.exec(x.src))) x.src = 'spare:' + MG.T.sig(MG.M('skd.tag', { v: +m[1] })); else if ((m = /^spare:1B:(.+)$/.exec(x.src))) x.src = 'spare:' + MG.T.sig(MG.M('world.tag1b', { tail: m[1] })); }); });
   function packS(sl) {
     if (!sl) return sl; var P = {}, k; for (k in sl) if (k !== 'series') P[k] = sl[k];
     var prev = [], pid = 0;
@@ -10639,7 +12985,7 @@ MG.slot = (function () {
   }
 
   return { packS: packS, unpackS: unpackS, on: on, init: init, restore: restore, migrate: migrate, sInfo: sInfo, seasonOf: seasonOf, nextSeason: nextSeason, nextSame: nextSame, dowDates: dowDates, dowOf: dowOf, DOWK: DOWK,
-    reserve: reserve, reserveAll: reserveAll, release: release, resOf: resOf, missing: missing, onOut: onOut, onIn: onIn, onCancel: onCancel, closeDay: closeDay, judge: judge, classify: classify,
+    reserve: reserve, reserveAll: reserveAll, retime: retime, release: release, resOf: resOf, missing: missing, onOut: onOut, onIn: onIn, onCancel: onCancel, closeDay: closeDay, judge: judge, classify: classify,
     stat: stat, effect: effect, evalSeason: evalSeason, reconcile: reconcile, shortWhy: shortWhy, avail: avail, activeOn: activeOn, raiseApp: raiseApp, applyPend: applyPend, ret: ret, retPlan: retPlan,
     resAt: resAt, appsDone: appsDone, b2: b2, idsOf: idsOf, horizonEnd: horizonEnd, legMoves: legMoves, movesOn: movesOn, patRet: patRet, minSeries: minSeries, owners: owners, touch: bump, mk: mk, sched: sched };
 })();
@@ -10707,7 +13053,7 @@ MG.fleet = (function () {
     x.endRule = D.endRule[o.m];
     return x;
   }
-  function fp(x) { return MG.rand.hash32(MG.canon(MG.T.koDeep(x))) >>> 0; }
+  function fp(x) { return MG.rand.hash32(MG.canon(MG.T.sigDeep(x))) >>> 0; }
   function schedule(C, x, qty, from) {            // 계약일·인도일(매월 1일, 첫 인도 = 계약월 + lead · 간격 gap개월)
     var sign = add(from, DD().signDays), mi = per(C, sign).mi, out = [];
     for (var i = 0; i < qty; i++) { var dmi = mi + x.lead + i * x.gap; out.push({ dmi: dmi, dd: MG.cal.dateOf(C, dmi, 1), end: x.m === 'buy' ? null : MG.cal.dateOf(C, dmi + x.n, 1) }); }
@@ -11988,7 +14334,7 @@ MG.comp = (function () {
     return { date: date, q1: q1, q2: q2, sm: sm, compM: pick(C.mkt.compM), selfM: pick(P(C).selfM), odM: pick(C.mkt.odM), selfOds: Object.keys(selfOds).sort(), selfIdx: MG.clone(C.mkt.pol.fareIdx),
       routes: routes, cash: cash, pend: MG.clone(C.mkt.pend), plans: MG.clone(P(C).plans), fw: MG.clone(P(C).fw), news: news, reserved: MG.clone((C.scenario && C.scenario.reserved) || []).filter(function (r) { return r.id === 'op.farewar'; }), seed: C.seed };
   }
-  function sig(V) { return (MG.rand.hash32(MG.canon(MG.T.koDeep(V))) >>> 0).toString(16); }
+  function sig(V) { return (MG.rand.hash32(MG.canon(MG.T.sigDeep(V))) >>> 0).toString(16); }
 
   /* ---------- 실적 계산(view만) ---------- */
   function lfOf(V, mks, who, od) {           // who = 경쟁사 코드 또는 'VL'(자사 직항)
@@ -12411,7 +14757,7 @@ MG.board = (function () {
     commit(C, pick.grade, pick.why);
   }
   function commit(C, g, why) {
-    if (C.ended || !MG.ledger.mark(C, 'end:' + MG.T.ko(g))) return;   // 처리 키 = 종전 그대로(고정 한국어 투영 — 옛 저장본 키와 같음)
+    if (C.ended || !MG.ledger.mark(C, 'end:' + MG.T.sig(g))) return;   // 처리 키 = 종전 그대로(고정 한국어 투영 — 옛 저장본 키와 같음)
     if (MG.ops && MG.ops._recDec) MG.ops._recDec(C);   // N150-02: 결정 커밋 중 종료 = 그 결정(원인) 기록을 스냅숏 전에
     var p = per(C, today(C));
     C.ended = { grade: g, why: why, t: C.t, d: today(C), mk: p.mk, fy: p.fy, report: { conf: C.board ? C.board.conf : null, cash: C.bal.cash || 0, decisions: C.seq.dec },
@@ -12599,7 +14945,7 @@ MG.board = (function () {
     cand.sort(function (a, b) { return b.S - a.S || (b.rec ? 1 : 0) - (a.rec ? 1 : 0) || a.idx - b.idx; });
     var best = cand[0], view = { occ: MG.crisis.occKey(o), type: o.id, opts: p.opts.map(function (x) { return x.id; }), est: p.est, net30: net30, lim: lim, base: [base.mk, Math.round(base.paxRev), Math.round(base.fuel), Math.round(base.mx)], baseOd: rnd(base.odRev), baseRg: rnd(base.regionRev), head: base.headcount, plan: !!base.plan,
       eff: Object.keys(C.crisis.eff).sort().map(function (k) { var x = C.crisis.eff[k]; return [k, x.target, x.unit || (x.scope && (x.scope.region || x.scope.od || x.scope.group)) || null, x.v, x.startT, x.endT == null ? null : x.endT]; }), conf: C.board.conf, seed: C.seed };   // 148차 권고 2: 서명 = 점수에 쓰인 입력 전부(OD·지역 수입 · 직군 인원 · 기존 효과)
-    var rec = { optId: best.id, score: best.S, why: best.why, alt: cand[1] ? cand[1].id : null, deleg: best.deleg, head: hqHead(p.dept), baseMk: mk, baseSrc: mk ? 'actual' : 'plan', sig: (MG.rand.hash32(MG.canon(MG.T.koDeep(view))) >>> 0).toString(16), scores: cand.map(function (c) { return [c.id, c.S]; }) };
+    var rec = { optId: best.id, score: best.S, why: best.why, alt: cand[1] ? cand[1].id : null, deleg: best.deleg, head: hqHead(p.dept), baseMk: mk, baseSrc: mk ? 'actual' : 'plan', sig: (MG.rand.hash32(MG.canon(MG.T.sigDeep(view))) >>> 0).toString(16), scores: cand.map(function (c) { return [c.id, c.S]; }) };
     (C.crisis.rec || (C.crisis.rec = {}))[p.id] = rec; p.rec = rec;
     var lab = best.id === 'none' ? MG.M('board.recCard.4') : (p.opts.filter(function (x) { return x.id === best.id; })[0] || {}).label || best.id;
     rec.txt = MG.M('board.recCard.6', { head: rec.head, v: MG.T.short(lab), S: best.S, v2: best.why.map(function (w) { return MG.M('board.recCard.1', { item: w.item, value: w.value }); }), v3: mk ? MG.M('board.recCard.3', { mk: ym(mk) }) : MG.M('board.recCard.2', { mk: ym(base.mk) }), v4: cand[1] ? MG.M('board.recCard.5', { v: MG.T.short(cand[1].id === 'none' ? MG.M('board.recCard.4') : (p.opts.filter(function (x) { return x.id === cand[1].id; })[0] || {}).label || cand[1].id), S: cand[1].S, v2: cand[1].why.map(function (w) { return MG.M('board.recCard.1', { item: w.item, value: w.value }); }) }) : '' });
@@ -12612,7 +14958,7 @@ MG.board = (function () {
   function check(C) {
     if (!on(C)) return null; var B = C.board; if (!B || !(B.conf >= 0 && B.conf <= 100)) return 'conf';
     var s = 0; B.log.forEach(function (L) { var t = 0; L.items.forEach(function (x) { s += x.applied; t += x.applied; }); }); if (Math.abs(r2(D().conf0 + s) - B.conf) > 0.011) return 'sum:' + r2(D().conf0 + s) + '≠' + B.conf;
-    if (C.ended && !C.keys['end:' + MG.T.ko(C.ended.grade)]) return 'end-key';
+    if (C.ended && !C.keys['end:' + MG.T.sig(C.ended.grade)]) return 'end-key';
     return null;
   }
 
@@ -13706,7 +16052,7 @@ MG.ux = (function () {
   }
   function watch(S, C, s0) {
     var out = [];
-    if (!s0.ended && C.ended) out.push({ id: 'gameover', key: 'end:' + MG.T.ko(C.ended.grade), stop: true });
+    if (!s0.ended && C.ended) out.push({ id: 'gameover', key: 'end:' + MG.T.sig(C.ended.grade), stop: true });
     if (gradeKeys(C).join(',') !== s0.g) { var g0 = s0.g ? s0.g.split(',') : []; gradeKeys(C).forEach(function (fy) { if (g0.indexOf(fy) < 0) out.push({ id: 'yearend', key: 'fy:' + fy + ':grade', stop: true }); }); }
     if (achKeys(C).join(',') !== s0.a) { var a0 = s0.a ? s0.a.split(',') : []; achKeys(C).forEach(function (id) { if (a0.indexOf(id) < 0) out.push({ id: 'ach', key: 'ach:' + id, stop: false }); }); }
     var seen = (S && S.ux && S.ux.seen) || {};
@@ -14861,7 +17207,9 @@ MG.uiOrg = (function () {
         MG.T.s(kn('조 목표', '', '채용 집행은 인사·채용 — 준비 4개월 · 조당 선확보 ' + MG.T.s(y(a.preSet)) + ' · 급여 월 ' + MG.T.s(y(a.setWage * w)), 'sets')) +
         MG.T.s(kn('조당 월 비행시간 상한(블록 분 기준)', sel('k_hours', [[60, '60h'], [64, '64h'], [70, '70h'], [75, '75h']], p.hours), '가용 블록 시간 증가 · 64시간 초과 1시간당 사기 −0.06/월 · 과부하 요소(÷64) · 교육용 간이 가용량 모델 — 법정 FDP·근무표 대체 아님', 'hours'));
     }
+    if (d.id === 'ops.cockpit' && MG.uiCrew) h += MG.uiCrew.panel(c);   // 2C: 세트 근무표·대기·훈련·채용(2단계 캠페인만)
     if (d.id === 'mx.line') {
+      if (MG.uiMx) h += MG.uiMx.panel(c);   // 2B: 정비 프로그램·작업지시(2단계 캠페인만)
       h += kn('야간 정비 시간대 길이', sel('k_window', [[300, '300분'], [360, '360분'], [420, '420분']], p.window), 'A 체크 시간 · 기술 지연 계수 300 ×1.15 / 360 ×1.00 / 420 ×0.90 · 길면 정비 시간대를 못 잡는 밤이 늘어남', 'window');
       if (c.org.modes['mx.line'] === 'manual') {
         var B = MG.data.base, list = Object.keys(c.tails).filter(function (r) { var T = c.tails[r]; return T.status !== 'returned' && T.status !== 'delivery'; }).map(function (r) { var T = c.tails[r]; return [r, (B.types[T.type].aLimitFh - T.sinceA) / 60]; }).sort(function (x, z) { return x[1] - z[1]; }).slice(0, 6);
@@ -14896,6 +17244,8 @@ MG.uiOrg = (function () {
         act(function (cc) { return MG.org.setPolicy(cc, id, k, val, 'player'); }, b.parentNode.parentNode.querySelector('.kl2').textContent);
       };
     });
+    if (MG.uiMx) MG.uiMx.bind(c, act);   // 2B 정비 화면 단추
+    if (MG.uiCrew) MG.uiCrew.bind(c, act);   // 2C 승무원 화면 단추
     Array.prototype.forEach.call(document.querySelectorAll('#deptView [data-repay]'), function (b) { b.onclick = function () { act(function (cc) { return MG.org.repay(cc, b.dataset.repay); }, '조기 상환'); }; });
     Array.prototype.forEach.call(document.querySelectorAll('#deptView [data-areq]'), function (b) { b.onclick = function () { act(function (cc) { return MG.org.requestA(cc, b.dataset.areq); }, 'A 체크 요청'); }; });
     if (c.org.modes[d.id] === 'fixed') Array.prototype.forEach.call(document.querySelectorAll('#deptView .knobs button, #deptView .knobs input, #deptView .knobs select'), function (x) { x.disabled = true; });
@@ -15445,6 +17795,7 @@ MG.uiSkd = (function () {
           return cu && cu.rv === s.rv ? '<b>' + esc(txt) + '</b>' : esc(txt);
         }), '<br>') || '—')) + '</td></tr>';
       }), '')) + '</table></div></div>';
+    if (MG.uiGantt) h += MG.uiGantt.panel(c);   // 2D: 로테이션 편집기(2단계 캠페인만 · s2 끔 = 빈 문자열)
     // ② 기안 편집
     var r0 = rotNow(c, V.reg) || { base: c.tails[V.reg].base, first: '08:00', slack0: 15, legs: [] };
     h += '<div class="mgrid2"><div class="pn"><h3>기안 만들기 <small>기존 노선·기종 조합만(신규 노선은 「노선 설계」) · 운영 조정 = 내일 이후 · 시즌 개편 = 다음 시즌 시작일(' + MG.T.s(MG.skd.nextSeason(c)) + ') 이후)</small></h3>' +
@@ -15483,6 +17834,7 @@ MG.uiSkd = (function () {
     return out;
   }
   function bind(rows) {
+    if (MG.uiGantt) MG.uiGantt.bind(C(), act, render);   // 2D 편집기 단추·끌기(견적·승인 요청·삭제 단추는 아래 data-sk* 그대로)
     Array.prototype.forEach.call(document.querySelectorAll('[data-sreg]'), function (b) { b.onclick = function () { V.reg = b.dataset.sreg; render(); }; });
     var sr = $('skReg'); if (sr) sr.onchange = function () { V.reg = sr.value; render(); };
     var nb = $('skNew'); if (nb) nb.onclick = function () {
@@ -15580,10 +17932,11 @@ MG.uiRp = (function () {
     if (!qv.ok) return '<div class="sub">승무원 견적 계산 전 — ' + esc(MG.T.J(qv.why || [], ' · ')) + '(효력일·기체를 고친 뒤 다시 계산)</div>';
     var cq = (qv.crew || []).filter(function (z) { return z.type === ty; })[0], cm = cq && cq.cm; if (!cm) return '';
     var cn = qv.cond != null ? (qv.same ? '<div class="sub">조건부 승인 #' + MG.T.s(qv.cond) + '의 계획 기준(이 프로젝트가 예약한 기체·승무원은 자기 몫으로 계산)</div>' : '<div class="sub am">설계안가 조건부 승인 #' + MG.T.s(qv.cond) + ' 때와 달라짐 — 확보 때 그 승인은 풀리고 최종 투자 승인을 다시 요청해야 합니다(아래 견적 = 지금 설계안로 다시 요청할 때)</div>') : '';
-    var per1 = cr.capMinPerSet * (MG.org ? MG.org.crewCapF(c) : 1), def = 0, worst = null;
-    cm.forEach(function (m) { var need = Math.ceil(m.need / per1), d0 = need - m.sets; if (d0 > def) { def = d0; worst = m; } });
+    var per1 = c.crew2 ? 0 : cr.capMinPerSet * (MG.org ? MG.org.crewCapF(c) : 1), def = 0, worst = null;   // 2C: 세트당 가용 = 그 달 가용 ÷ 세트(훈련·대기 몫 반영)
+    cm.forEach(function (m) { var p1 = per1 || m.cap / Math.max(1, m.sets), need = Math.ceil(m.need / p1), d0 = need - m.sets; if (d0 > def) { def = d0; worst = m; } });
+    if (c.crew2 && qv.week) cn += '<div class="sub">' + MG.T.s(qv.week.none ? MG.tx('cr.weekNone') : MG.tx('cr.week', { s: qv.week.short, l: qv.week.legs, n: qv.week.lay, h: Math.round(qv.week.ot / 60) })) + '</div>';   // 207차 N207-06: 표본 0 = 「계산 못 함」(0편 정상과 구분)   // 2C 상세 견적(첫 주 근무표)
     var lead = MG.world.leadM(c), mi = MG.cal.per(c, today(c)).mi, arr = MG.cal.dateOf(c, mi + lead, 1).slice(0, 7);
-    if (!def) return MG.T.s(cn) + '<div class="sub">최종 투자 승인과 같은 계산(효력일 ' + MG.T.s(ref) + ' 기준 3개월 · 이 기체의 기존 회전 대체·채용 중 조 포함)으로는 <b>승무원 부족 없음</b> — 추가 채용 불필요' + (MG.T.s(x.crewAdd != null ? '(위 7번 △는 오늘 기준 단순 합산 — 기존 운항이 빠지는 것을 넣지 않은 값)' : '')) + '</div>';
+    if (!def) return MG.T.s(cn) + '<div class="sub">최종 투자 승인과 같은 계산(효력일 ' + MG.T.s(ref) + (c.crew2 ? MG.T.s(MG.tx('cr.span')) : ' 기준 3개월') + ' · 이 기체의 기존 회전 대체·채용 중 조 포함)으로는 <b>승무원 부족 없음</b> — 추가 채용 불필요' + (MG.T.s(x.crewAdd != null ? '(위 7번 △는 오늘 기준 단순 합산 — 기존 운항이 빠지는 것을 넣지 않은 값)' : '')) + '</div>';
     var q = (c.res ? c.res.pilotQ : []).filter(function (z) { return z.type === ty; }).reduce(function (s0, z) { return s0 + z.n; }, 0), tgt = MG.crew.n(c, ty) + q + def;
     return MG.T.s(cn) + '<div class="sub">효력일 ' + MG.T.s(ref) + ' 기준(최종 투자 승인과 같은 후보 시간표로 계산): ' + MG.T.s(worst.mk.slice(1)) + ' 필요 약 ' + (MG.T.s(worst.sets + def)) + '조 > 가용 ' + MG.T.s(worst.sets) + '조(채용 중 포함) → <b>조 목표 ' + MG.T.s(MG.rp.tyName(ty)) + ' = ' + MG.T.s(tgt) + '</b>(지금 ' + MG.T.s(MG.crew.n(c, ty)) + (MG.T.s(q ? ' + 채용 중 ' + MG.T.s(q) : '')) + ' + ' + MG.T.s(def) + ') · 채용 준비 약 ' + MG.T.s(lead) + '개월 → 오늘 올리면 ' + MG.T.s(arr) + '부터 늘어남' + (MG.T.s(arr > ref.slice(0, 7) ? ' — <b>효력일을 ' + MG.T.s(arr) + ' 이후로 미뤄야</b> 승인 가능' : ' — 효력일 전에 도착(승인 견적에 포함)')) + ' · 운항승무원 예산이 모자라면 조직 화면에 뜨는 「경영관리 예산 증액하고 다시 적용」</div>';
   }
@@ -15968,7 +18321,9 @@ MG.uiOcc = (function () {
     var none = T('occ.none'), list = function (a, f) { return a.length ? MG.T.J(a.map(f), ' · ') : none; };
     var h = '<div class="pn ob" id="occBrief"><h3>' + T('occ.brief.title') + ' <small>' + MG.T.s(B.day.slice(5)) + ' · ' + T('occ.brief.sub') + '</small></h3>';
     h += row(T('occ.brief.wx'), B.wx.length ? MG.T.J(B.wx.map(function (x) { return MG.T.s(x[0]) + ' ' + MG.T.s(MG.M('ops2.evtn.' + x[1])) + ' ' + hm(c, x[2]) + '–' + hm(c, x[3]); }), ' · ') : T('occ.brief.wxNone'));   // 2A-2a: 오늘 공항 사건(예보·진행 중)
-    h += row(T('occ.brief.mx'), list(B.mx, function (x) { return MG.T.s(MG.regView ? MG.regView(x[0]) : x[0]) + ' ' + MG.T.s(x[1]) + ' ' + hm(c, x[2]) + '–' + hm(c, x[3]); }));
+    h += row(T('occ.brief.mx'), list(B.mx, function (x) { return MG.T.s(MG.regView ? MG.regView(x[0]) : x[0]) + ' ' + (MG.uiMx ? MG.uiMx.what(x[1]) : MG.T.s(x[1])) + ' ' + hm(c, x[2]) + '–' + hm(c, x[3]); }));
+    if (MG.uiMx) h += MG.uiMx.briefRow(c, row);   // 2B: MEL 수리 기한
+    if (MG.uiCrew) h += MG.uiCrew.briefRow(c, row);   // 2C: 배정 못 한 편 · 대기 세트
     h += row(T('occ.brief.crew'), list(B.crew, function (x) { return MG.T.s(MG.data.base.types[x[0]] ? MG.data.base.types[x[0]].name : x[0]) + ' ' + MG.T.s(x[1]) + '%'; }));
     h += row(T('occ.brief.slot'), list(B.slot, function (x) { return MG.T.s(x[0]) + '(' + MG.T.s(x[1]) + ')'; }));
     h += row(T('occ.brief.conn'), list(B.conn, function (x) { return MG.T.s(x[0]) + ' ' + T('occ.pax', { n: x[1] }); }));
@@ -15999,6 +18354,428 @@ MG.uiOcc = (function () {
   }
   function init(h) { H = h; }
   return { init: init, brief: brief, meetLine: meetLine, knobs: knobs, apply: apply };
+})();
+
+/* ===== 경영 모드 2단계 · mg_ui_mx.js — 2B 정비(M&E) 화면: 기체별 정비 프로그램 · 작업지시(WO) · 정비 달력 · MEL 유예 목록 · 재고·풀 · 격납고 · 엔진 계약 · SB
+   (경계 계약 v3 6절 · 메모 v4 4-6 · 구현 계획 2B-f) — 라인정비 부서 화면 안에 붙음(2단계 캠페인만)
+   · 화면은 MG.mx2 상태를 그리기만 함(변경 = 부서 화면의 act(커밋) 안에서 MG.mx2 함수 하나)
+   · s2 끔 캠페인 = 빈 문자열(화면 변화 0) · 문구 = 사전 키(MG.tx · mg_data_text.js 「mx.*」) */
+MG.uiMx = (function () {
+  function on(c) { return !!(MG.mx2 && MG.mx2.on(c)); }
+  function T(k, v) { return MG.T.s(MG.tx(k, v)); }
+  function S(v) { return MG.T.s(v); }
+  function y(v) { return S(Math.round(v).toLocaleString()) + T('mx.yen'); }
+  function reg(r) { return S(MG.regView ? MG.regView(r) : r); }
+  function d5(d) { return S(String(d).slice(2)); }
+  function today(c) { return MG.tz.local(c.t, c.hqTz).date; }
+  function sel(id, opts, v) { return '<select class="btn" id="' + id + '">' + MG.T.J(opts.map(function (o) { return '<option value="' + S(o[0]) + '"' + (String(o[0]) === String(v) ? ' selected' : '') + '>' + S(o[1]) + '</option>'; }), '') + '</select>'; }
+  function what(w) {   // 창 종류 표시(OCC 브리핑·WO 목록 공통)
+    if (w === 'A' || w === 'C' || w === 'ENG') return T('mx.what.' + w);
+    if (/^MEL:/.test(w)) return T('mx.what.MEL');
+    if (/^SB:/.test(w)) return T('mx.what.SB', { id: w.slice(3) });
+    if (/^AD:/.test(w)) return S(w);
+    return S(w);
+  }
+  function tails(c) { return Object.keys(c.tails).sort().filter(function (r) { var X = c.tails[r]; return MG.data.mx2.c[X.type] && X.status !== 'returned' && X.status !== 'delivery' && c.mx2.prog[r]; }); }   // 프로그램이 생긴 기체만(만드는 곳 = 엔진 — 화면은 읽기만)
+  // 기체별 프로그램 표: 다음 C 체크(예상일 · 무엇이 먼저) · 남은 일·FH·FC · 엔진 남은 FH·계약 · 신뢰성 · 열린 MEL · 예정 창
+  function progTable(c) {
+    var X = MG.mx2, h = '<div class="tblw mini-w"><table class="mini" id="mxProg"><tr><th>' + T('mx.th.reg') + '</th><th>' + T('mx.th.cDue') + '</th><th>' + T('mx.th.left') + '</th><th>' + T('mx.th.eng') + '</th><th>' + T('mx.th.rel') + '</th><th>' + T('mx.th.mel') + '</th><th>' + T('mx.th.next') + '</th></tr>';
+    tails(c).forEach(function (r) {
+      var d = X.due(c, r), p = X.P(c, r), el = X.engLeft(c, r), mel = X.melOpenOf(c, r).length, wo = (c.mx2.wo || []).filter(function (w) { return w.reg === r && (w.st === 'plan' || w.st === 'on'); }).sort(function (a, b) { return a.start - b.start; })[0];
+      var warn = d.left <= 30 && !(c.mx2.wo || []).some(function (w) { return w.reg === r && w.what === 'C' && w.st !== 'done' && w.st !== 'cnl'; });
+      h += '<tr' + (warn ? ' class="am"' : '') + '><td class="l">' + reg(r) + '</td><td>' + d5(d.date) + ' · ' + T('mx.by.' + d.by) + '</td><td>' + T('mx.left', { d: d.left, fh: Math.max(0, Math.round(d.fhL / 60)), fc: d.fcL == null ? '—' : Math.max(0, d.fcL) }) + '</td>' +
+        '<td>' + T('mx.engLeft', { fh: Math.max(0, Math.round(el / 60)) }) + ' · ' + T('mx.ek.' + p.ek) + (p.ekNext ? ' → ' + T('mx.ek.' + p.ekNext) + (X.inShop(c, r, p) ? ' ' + T('mx.ekShop') : '') : '') + '</td><td>' + S((p.rel || 1).toFixed(2)) + '</td><td>' + (mel ? S(mel) : '—') + '</td><td>' + (wo ? what(wo.what) + ' ' + d5(wo.date) : '—') + '</td></tr>';
+    });
+    return h + '</table></div>';
+  }
+  // 작업지시 목록(예정·진행·완료 최근) — 예정 창은 취소 단추
+  function woList(c) {
+    var ws = (c.mx2.wo || []).slice().sort(function (a, b) { return a.start - b.start; }).filter(function (w) { return w.st !== 'cnl'; }).slice(-14);
+    var h = '<div class="tblw mini-w"><table class="mini" id="mxWo"><tr><th>' + T('mx.th.reg') + '</th><th>' + T('mx.th.what') + '</th><th>' + T('mx.th.at') + '</th><th>' + T('mx.th.when') + '</th><th>' + T('mx.th.cost') + '</th><th>' + T('mx.th.st') + '</th><th></th></tr>';
+    if (!ws.length) return h + '<tr><td colspan="7" class="l">' + T('mx.none') + '</td></tr></table></div>';
+    ws.forEach(function (w) {
+      h += '<tr><td class="l">' + reg(w.reg) + '</td><td>' + what(w.what) + (w.emg ? ' ' + T('mx.emg') : '') + '</td><td>' + S(MG.M('mx2.at.' + w.at)) + '</td><td>' + d5(w.date) + ' · ' + T('mx.days', { n: w.days }) + '</td><td>' + (w.what === 'ENG' && !w.cost ? T('mx.inRate') : y(w.cost)) + '</td><td>' + T('mx.st.' + w.st) + (w.cover ? ' · ' + T('mx.cover', { r: reg(w.cover) }) : w.st !== 'done' ? ' · ' + T('mx.cut') : '') + '</td>' +
+        '<td>' + (w.st === 'plan' && !w.emg ? '<button class="btn sm2" data-mxcnl="' + S(w.id) + '">' + T('mx.cnl') + '</button>' : '') + '</td></tr>';
+    });
+    return h + '</table></div>';
+  }
+  // 정비 달력(기체 × 12개월) — 그달에 시작하는 창 종류 글자
+  function cal(c) {
+    var t0 = today(c), m0 = t0.slice(0, 7), months = [];
+    for (var i = 0; i < 12; i++) months.push(MG.mx2.addMonths(m0 + '-01', i).slice(0, 7));
+    var h = '<div class="tblw mini-w"><table class="mini" id="mxCal"><tr><th>' + T('mx.th.reg') + '</th>' + MG.T.J(months.map(function (m) { return '<th>' + S(+m.slice(5)) + '</th>'; }), '') + '</tr>';
+    tails(c).forEach(function (r) {
+      var d = MG.mx2.due(c, r).date.slice(0, 7);
+      h += '<tr><td class="l">' + reg(r) + '</td>' + MG.T.J(months.map(function (m) {
+        var ws = (c.mx2.wo || []).filter(function (w) { return w.reg === r && w.st !== 'cnl' && w.date.slice(0, 7) === m; }).map(function (w) { return w.what === 'C' ? 'C' : w.what === 'ENG' ? 'E' : 'S'; });
+        var off = MG.mx2.offPeak(c, m + '-15');
+        return '<td' + (off ? ' class="calm"' : '') + '>' + S(ws.join('')) + (m === d && !ws.length ? '!' : '') + '</td>'; }), '') + '</tr>';
+    });
+    return h + '</table></div><div class="sub">' + T('mx.cal.help') + '</div>';
+  }
+  function melList(c) {
+    var ms = (c.mx2.mel || []).filter(function (m) { return m.st === 'open'; });
+    if (!ms.length) return '<div class="sub" id="mxMel">' + T('mx.mel.none') + '</div>';
+    var h = '<div class="tblw mini-w"><table class="mini" id="mxMel"><tr><th>' + T('mx.th.reg') + '</th><th>' + T('mx.th.item') + '</th><th>' + T('mx.th.cat') + '</th><th>' + T('mx.th.due') + '</th><th>' + T('mx.th.lim') + '</th></tr>';
+    ms.forEach(function (m) { var tz = MG.data.base.airports[c.tails[m.reg].base].tz;
+      h += '<tr><td class="l">' + reg(m.reg) + '</td><td class="l">' + S(MG.M('mx2.mel.' + m.item)) + '</td><td>' + S(m.cat) + '</td><td>' + d5(MG.tz.local(m.dueT - 1, tz).date) + ' 24:00</td><td>' + S(MG.M('mx2.lim.' + m.lim)) + '</td></tr>'; });
+    return h + '</table></div>';
+  }
+  // 조작 줄: 직접 배치(수동 · 보조 반려 뒤) · 재고 일수 · 풀 · 격납고 · 엔진 계약 · SB
+  function ctl(c) {
+    var X = MG.mx2, I = X.INV(c), rs = tails(c), H = c.mx2.hangar, D = MG.data.mx2;
+    var ats = Object.keys(D.mro).concat(H && H.open ? ['OWN'] : []).map(function (a) { return [a, MG.M('mx2.at.' + a)]; });
+    var h = '<div class="knobs" id="mxCtl">';
+    h += '<div class="kn"><div class="kl2">' + T('mx.kn.place') + '</div><div>' + sel('mx_reg', rs.map(function (r) { return [r, r]; }), rs[0]) + ' ' + sel('mx_at', ats, 'SKR') + ' <input class="btn" type="date" id="mx_date" value="' + S(MG.tz.addDays(today(c), 95)) + '"> <button class="btn sm2" data-mxdo="place">' + T('mx.kn.placeBtn') + '</button></div><div class="sub">' + T('mx.kn.placeHelp') + '</div></div>';
+    h += '<div class="kn"><div class="kl2">' + T('mx.kn.inv') + '</div><div>' + sel('mx_inv', [0, 5, 10, 15, 20, 30].map(function (n) { return [n, T('mx.daysN', { n: n })]; }), I.days) + ' ' + sel('mx_pool', [['', MG.M('mx2.pool.none')], ['basic', MG.M('mx2.pool.basic')], ['full', MG.M('mx2.pool.full')]], I.pool || '') + ' <button class="btn sm2" data-mxdo="inv">' + T('mx.kn.apply') + '</button></div><div class="sub">' + T('mx.kn.invHelp', { v: y(I.per), b: y(D.inv.fee.basic), f: y(D.inv.fee.full) }) + '</div></div>';
+    h += '<div class="kn"><div class="kl2">' + T('mx.kn.eng') + '</div><div>' + sel('mx_ereg', rs.map(function (r) { return [r, r]; }), rs[0]) + ' ' + sel('mx_ek', [['A', T('mx.ek.A')], ['B', T('mx.ek.B')]], 'A') + ' <button class="btn sm2" data-mxdo="ek">' + T('mx.kn.apply') + '</button></div><div class="sub">' + T('mx.kn.engHelp') + '</div></div>';
+    var sbs = []; rs.forEach(function (r) { (D.sb[c.tails[r].type] || []).forEach(function (x) { if ((X.P(c, r).sb || []).indexOf(x.id) < 0) sbs.push([r + '|' + x.id, r + ' · ' + x.id + ' · ' + Math.round(x.cost / 1e6) + T('mx.mil')]); }); });
+    h += '<div class="kn"><div class="kl2">' + T('mx.kn.sb') + '</div><div>' + (sbs.length ? sel('mx_sb', sbs, sbs[0][0]) + ' <button class="btn sm2" data-mxdo="sb">' + T('mx.kn.sbBtn') + '</button>' : T('mx.none')) + '</div><div class="sub">' + T('mx.kn.sbHelp') + '</div></div>';
+    h += '<div class="kn"><div class="kl2">' + T('mx.kn.hangar') + '</div><div>' + (H && H.open ? T('mx.hangar.open', { n: H.staff, d: d5(H.since) }) : '<button class="btn sm2" data-mxdo="hangar">' + T('mx.kn.hangarBtn') + '</button>') + '</div><div class="sub">' + T('mx.kn.hangarHelp', { n: Math.ceil(D.hangar.base + D.hangar.perTail * rs.length), v: y(Math.ceil(D.hangar.base + D.hangar.perTail * rs.length) * D.hangar.wage) }) + '</div></div>';
+    return h + '</div>';
+  }
+  function panel(c) {
+    if (!on(c)) return MG.mx2 && MG.mx2.can && MG.mx2.can(c) && !c.mx2 ? '<div class="pn" id="mxPanel"><h3>' + T('mx.title') + '</h3><div class="sub" id="mxOld">' + T('mx.old') + '</div></div>' : '';   // 206차 N206-01: 2B 이전 판의 2단계 저장본 = 정비 프로그램 없이 계속(안내만 · 상태를 만들지 않음)
+    var X = MG.mx2, md = c.mx2.mode;
+    return '<div class="pn" id="mxPanel"><h3>' + T('mx.title') + ' <small>' + T('mx.mode.' + md) + '</small></h3><div class="sub">' + T('mx.help') + '</div>' +
+      '<h4>' + T('mx.h.prog') + '</h4>' + progTable(c) + '<h4>' + T('mx.h.wo') + '</h4>' + woList(c) + '<h4>' + T('mx.h.cal') + '</h4>' + cal(c) +
+      '<h4>' + T('mx.h.mel') + '</h4>' + melList(c) + '<h4>' + T('mx.h.ctl') + '</h4>' + ctl(c) + '</div>';
+  }
+  // 부서 화면 bindKnobs가 부름(act = 커밋 래퍼) — 단추 하나 = MG.mx2 함수 하나
+  function bind(c, act) {
+    if (!on(c)) return;
+    var V = function (id) { var e = document.getElementById(id); return e ? e.value : null; };
+    Array.prototype.forEach.call(document.querySelectorAll('#mxPanel [data-mxcnl]'), function (b) { b.onclick = function () { var id = b.dataset.mxcnl; act(function (cc) { return MG.mx2.cancelWo(cc, id); }, MG.tx('mx.cnl')); }; });
+    Array.prototype.forEach.call(document.querySelectorAll('#mxPanel [data-mxdo]'), function (b) {
+      b.onclick = function () {
+        var k = b.dataset.mxdo;
+        if (k === 'place') { var r = V('mx_reg'), at = V('mx_at'), d = V('mx_date'); return act(function (cc) { return MG.mx2.placeC(cc, r, at, d); }, MG.tx('mx.kn.place')); }
+        if (k === 'inv') { var n = parseInt(V('mx_inv'), 10), pl = V('mx_pool') || null; return act(function (cc) { var a = MG.mx2.setInv(cc, n); if (!a.ok) return a; return MG.mx2.setPool(cc, pl); }, MG.tx('mx.kn.inv')); }
+        if (k === 'ek') { var er = V('mx_ereg'), ek = V('mx_ek'); return act(function (cc) { return MG.mx2.setEngK(cc, er, ek); }, MG.tx('mx.kn.eng')); }
+        if (k === 'sb') { var x = (V('mx_sb') || '').split('|'); return act(function (cc) { return MG.mx2.applySB(cc, x[0], x[1]); }, MG.tx('mx.kn.sb')); }
+        if (k === 'hangar') return act(function (cc) { return MG.mx2.openHangar(cc); }, MG.tx('mx.kn.hangar'));
+      };
+    });
+  }
+  // OCC 일일 브리핑 한 줄(MEL 기한 — 오늘·내일)
+  function briefRow(c, row) {
+    if (!on(c) || !c.mx2 || !c.mx2.mel) return '';
+    var t1 = c.t + 2 * 1440, ms = c.mx2.mel.filter(function (m) { return m.st === 'open' && m.dueT <= t1; });
+    return row(T('mx.brief.mel'), ms.length ? MG.T.J(ms.map(function (m) { return reg(m.reg) + ' ' + S(MG.M('mx2.mel.' + m.item)); }), ' · ') : T('mx.none'));
+  }
+  return { panel: panel, bind: bind, what: what, briefRow: briefRow };
+})();
+
+/* ===== 경영 모드 2단계 · mg_ui_crew.js — 2C 승무원 화면: 세트 근무표(오늘·내일) · 대기 세트 · 세트 목록(위치·월/연 누적 막대·피로) · 훈련·심사 달력 · 레이오버 · 채용·승격 · 계속 운항 검사
+   (경계 계약 v3 6절 「CREW」 · 메모 v4 5절 · 구현 계획 2C-f) — 운항승무원 부서 화면 안에 붙음(2단계 캠페인만)
+   · 화면은 MG.crew2 상태를 그리기만 함(쓰기 0 — 변경 = 부서 화면의 act(커밋) 안에서 MG.crew2 함수 하나)
+   · s2 끔 캠페인 = 빈 문자열(화면 변화 0) · 문구 = 사전 키(MG.tx · mg_data_text.js 「cr.*」) */
+MG.uiCrew = (function () {
+  function on(c) { return !!(MG.crew2 && MG.crew2.on(c)); }
+  function T(k, v) { return MG.T.s(MG.tx(k, v)); }
+  function S(v) { return MG.T.s(v); }
+  function y(v) { return S(Math.round(v).toLocaleString()) + T('cr.yen'); }
+  function reg(r) { return S(MG.regView ? MG.regView(r) : r); }
+  function today(c) { return MG.tz.local(c.t, c.hqTz).date; }
+  function hm(c, t) { return S(hhmm(MG.tz.local(t, c.hqTz).hm)); }
+  function hhmm(m) { m = ((m % 1440) + 1440) % 1440; return (m < 600 ? '0' : '') + Math.floor(m / 60) + ':' + (m % 60 < 10 ? '0' : '') + (m % 60); }   // 본사 시각
+  function h1(v) { return S(Math.round(v / 6) / 10); }
+  function sel(id, opts, v) { return '<select class="btn" id="' + id + '">' + MG.T.J(opts.map(function (o) { return '<option value="' + S(o[0]) + '"' + (String(o[0]) === String(v) ? ' selected' : '') + '>' + S(o[1]) + '</option>'; }), '') + '</select>'; }
+  function tyName(t) { return S(MG.data.base.types[t] ? MG.data.base.types[t].name : t); }
+  function bar(v, plan, max) { var w = Math.min(100, Math.round(v / max * 100)), p = Math.round(plan / max * 100); return '<span class="crbar"><i style="width:' + w + '%"' + (v > plan ? ' class="ov"' : '') + '></i><b style="left:' + p + '%"></b></span>'; }
+  // 세트 상태(조회 · 쓰기 없음): 비행 중 · 근무(오늘 배정) · 대기 · 훈련 · 레이오버 · 휴무
+  function stOf(c, s, d) {
+    var X = MG.crew2, A = c.crew2.asg[d];
+    if (s.rsv) return 'air';
+    if (s.sick === d) return 'sick';
+    if (A && A._sby && Object.keys(A._sby).some(function (t) { return A._sby[t].indexOf(s.id) >= 0; })) return 'sby';
+    if (X.dutyOf(c, d, s.id)) return 'duty';
+    if (X.trnOn(c, s, d)) return 'trn';
+    if (s.last && X.metro(s.last.apt) !== s.base) return 'lay';
+    return 'off';
+  }
+  // 근무표(그 영업일): 기체 × 근무 구간 × 세트
+  function roster(c, d, id) {
+    var A = c.crew2.asg[d], X = MG.crew2;
+    if (!A) return '<div class="sub" id="' + id + '">' + T('cr.none') + '</div>';
+    var byT = {};
+    Object.keys(A).forEach(function (fid) { if (fid === '_sby') return; var f = c.fl[fid]; if (!f) return; (byT[f.tail] = byT[f.tail] || []).push(f); });
+    var h = '<div class="tblw mini-w"><table class="mini" id="' + id + '"><tr><th>' + T('cr.th.reg') + '</th><th>' + T('cr.th.legs') + '</th><th>' + T('cr.th.ck') + '</th><th>' + T('cr.th.cb') + '</th></tr>';
+    var regs = Object.keys(byT).sort(); if (!regs.length) return h + '<tr><td colspan="4" class="l">' + T('cr.none') + '</td></tr></table></div>';
+    regs.forEach(function (r) {
+      var fs = byT[r].sort(function (a, b) { return a.std - b.std; }), grp = [];
+      fs.forEach(function (f) { var a = A[f.id], k = (a.ck || '-') + '|' + (a.k2 || '') + '|' + (a.cb || '-'), g = grp[grp.length - 1]; if (g && g.k === k) g.f.push(f); else grp.push({ k: k, a: a, f: [f] }); });
+      grp.forEach(function (g, i) {
+        var lg = g.f.map(function (f) { return S(f.from) + '-' + S(f.to); }), miss = !g.a.ck || !g.a.cb;
+        h += '<tr' + (miss ? ' class="am"' : '') + '>' + (i ? '<td></td>' : '<td class="l" rowspan="1">' + reg(r) + '</td>') + '<td class="l">' + hm(c, g.f[0].std) + ' ' + MG.T.J(lg, ' · ') + '</td><td>' + (g.a.ck ? S(g.a.ck) + (g.a.k2 ? '+' + S(g.a.k2) : '') : T('cr.miss')) + '</td><td>' + (g.a.cb ? S(g.a.cb) : T('cr.miss')) + '</td></tr>';
+      });
+    });
+    return h + '</table></div>';
+  }
+  function sbyList(c, d) {
+    var A = c.crew2.asg[d], y0 = A && A._sby, o = c.crew2;
+    var lst = y0 ? MG.T.J(Object.keys(y0).sort().map(function (t) { return tyName(t) + ' ' + MG.T.J(y0[t].map(S), '·'); }), ' / ') : T('cr.none');
+    return '<div class="sub" id="crSby">' + T('cr.sby.now', { mode: T('cr.sby.' + o.sby.mode), r: Math.round((o.sby.ratio || 0) * 100) }) + ' — ' + lst + '</div>';
+  }
+  // 세트 목록(운항 · 객실은 접어 둠): 상태 · 위치 · 월 누적(회사 계획 시간 표시) · FY 누적 · 피로
+  function setTable(c, kind, id) {
+    var X = MG.crew2, o = c.crew2, d = today(c), p = MG.cal.per(c, d), hp = X.hoursPlan(c), L = MG.data.crew2.lim, src = kind === 'cb' ? o.cab : o.sets;
+    var h = '<div class="tblw mini-w"><table class="mini" id="' + id + '"><tr><th>' + T('cr.th.set') + '</th><th>' + T('cr.th.st') + '</th><th>' + T('cr.th.loc') + '</th><th>' + T('cr.th.m') + '</th><th>' + T('cr.th.fy') + '</th><th>' + T('cr.th.fat') + '</th></tr>';
+    Object.keys(src).sort().forEach(function (ty) { src[ty].forEach(function (s) {
+      var m = s.m[p.mk] || 0, fy = s.fy[p.fy] || 0, st = stOf(c, s, d);
+      h += '<tr' + (st === 'sick' || m > hp ? ' class="am"' : '') + '><td class="l">' + S(s.id) + (s.n >= 3 && kind !== 'cb' ? ' ' + T('cr.aug') : '') + (s.up ? ' ' + T('cr.up') : '') + '</td><td>' + T('cr.st.' + st) + '</td><td>' + S(s.last ? s.last.apt : s.base) + '</td>' +
+        '<td>' + bar(m, hp, L.month) + ' ' + h1(m) + 'h</td><td>' + h1(fy) + 'h</td><td>' + S(Math.round(s.fat || 0)) + '</td></tr>';
+    }); });
+    return h + '</table></div>';
+  }
+  // 훈련·심사 달력(이번 FY · 월별 훈련 세트-일)
+  function trnCal(c) {
+    var X = MG.crew2, o = c.crew2, p = MG.cal.per(c, today(c)), h = '<div class="tblw mini-w"><table class="mini" id="crTrn"><tr><th>' + T('cr.th.type') + '</th>';
+    var mis = []; for (var k = 0; k < 12; k++) { var d0 = MG.cal.dateOf(c, p.mi + k, 1); mis.push(p.mi + k); h += '<th>' + S(+d0.slice(5, 7)) + T('cr.mo') + '</th>'; }
+    h += '</tr>';
+    Object.keys(o.sets).sort().forEach(function (ty) {
+      h += '<tr><td class="l">' + tyName(ty) + '</td>';
+      mis.forEach(function (mi) { var pp = MG.cal.per(c, MG.cal.dateOf(c, mi, 1)), n = 0; o.sets[ty].concat(o.cab[ty] || []).forEach(function (s) { for (var dd = 1; dd <= pp.n; dd++) if (X.trnOn(c, s, MG.cal.dateOf(c, mi, dd))) n++; }); h += '<td>' + S(n) + '</td>'; });
+      h += '</tr>';
+    });
+    return h + '</table></div><div class="sub">' + T('cr.trn.help') + '</div>';
+  }
+  function costLine(c) {
+    var mk = MG.cal.per(c, today(c)).mk, m = (c.crew2.cost || {})[mk] || { ot: 0, lay: 0, sby: 0 };
+    return '<div class="sub" id="crCost">' + T('cr.cost', { v: y(m.ot + m.lay + m.sby), ot: y(m.ot), lay: y(m.lay), sby: y(m.sby) }) + '</div>';
+  }
+  function hirePane(c) {
+    var o = c.crew2, X = MG.crew2, tys = Object.keys(o.sets).sort();
+    var pool = MG.T.J(tys.map(function (t) { var P = o.pool[t] || { cpt: 0, fo: 0 }; return tyName(t) + ' ' + T('cr.pool', { c: P.cpt, f: P.fo }); }), ' · ');
+    var q = o.hire.length ? MG.T.J(o.hire.map(function (hh) { return tyName(hh.type) + ' ' + T('cr.hk.' + hh.k) + ' ' + S(hh.n) + ' → ' + S(hh.at.slice(2)); }), ' · ') : T('cr.none');
+    var pk = Object.keys(o.promo).sort().pop(), pr = pk ? MG.T.J(Object.keys(o.promo[pk]).sort().map(function (t) { var r = o.promo[pk][t]; return tyName(t) + ' ' + T('cr.promo1', { n: r.n, p: r.pass }); }), ' · ') : T('cr.none');
+    var h = '<div class="sub" id="crPool">' + T('cr.pool.h') + ' ' + pool + '</div><div class="sub" id="crHireQ">' + T('cr.hireQ') + ' ' + q + '</div><div class="sub" id="crPromo">' + T('cr.promo.h', { p: Math.round(X.promoP(c) * 100) }) + ' ' + pr + '</div>';
+    h += '<div class="knobs" id="crCtl"><div class="kn"><div class="kl2">' + T('cr.kn.hire') + '</div><div>' + sel('cr_ty', tys.map(function (t) { return [t, MG.data.base.types[t].name]; }), tys[0]) + ' ' +
+      sel('cr_k', ['cpt', 'fo', 'intl', 'cab'].map(function (k) { return [k, MG.tx('cr.hk.' + k) + ' · ' + Math.round(X.hireCost(c, k, tys[0]) / 1e4) + MG.tx('cr.man')]; }), 'cpt') + ' <input class="btn num" type="number" id="cr_n" value="1" min="1" max="20"> <button class="btn sm2" data-crdo="hire">' + T('cr.kn.hireBtn') + '</button></div><div class="sub">' + T('cr.kn.hireHelp') + '</div></div>';
+    var bs = Object.keys(o.bases).filter(function (k) { return o.bases[k].n > 0; }), apts = Object.keys(MG.data.base.airports).filter(function (a) { return X.metro(a) !== MG.data.crew2.home && c.net && c.net.stations && c.net.stations.indexOf(a) >= 0; }).sort();
+    h += '<div class="kn"><div class="kl2">' + T('cr.kn.base') + '</div><div id="crBase">' + (bs.length ? MG.T.J(bs.map(function (k) { var b0 = o.bases[k]; return S(b0.apt) + ' ' + tyName(b0.type) + ' ' + T('cr.baseN', { n: b0.n }); }), ' · ') + ' ' : '') + (apts.length ? sel('cr_ba', apts.map(function (a) { return [a, a]; }), apts[0]) + ' ' + sel('cr_bt', tys.map(function (t) { return [t, MG.data.base.types[t].name]; }), tys[0]) + ' <input class="btn num" type="number" id="cr_bn" value="2" min="2" max="10"> <button class="btn sm2" data-crdo="base">' + T('cr.kn.baseBtn') + '</button>' : T('cr.none')) + '</div><div class="sub">' + T('cr.kn.baseHelp', { o: y(MG.data.crew2.base.open), m: y(MG.data.crew2.base.mon) }) + '</div></div>';
+    h += '<div class="kn"><div class="kl2">' + T('cr.kn.sby') + '</div><div>' + sel('cr_sr', [0, 0.03, 0.05, 0.08, 0.1, 0.15].map(function (r) { return [r, Math.round(r * 100) + '%']; }), o.sby.ratio) + ' ' + sel('cr_sm', [['apt', MG.tx('cr.sby.apt')], ['home', MG.tx('cr.sby.home')]], o.sby.mode) + ' <button class="btn sm2" data-crdo="sby">' + T('cr.kn.apply') + '</button></div><div class="sub">' + T('cr.kn.sbyHelp') + '</div></div></div>';
+    return h;
+  }
+  function shortList(c) {
+    var s = c.crew2.short || {}, ks = Object.keys(s).sort();
+    if (!ks.length) return '<div class="sub" id="crShort">' + T('cr.short.none') + '</div>';
+    return '<div class="sub am" id="crShort">' + MG.T.J(ks.map(function (k) { var b = s[k]; return S(b.mk.slice(1)) + ' ' + tyName(b.type) + ' ' + T('cr.k.' + b.k) + (b.n ? ' ' + T('cr.shortN', { n: b.n }) : ''); }), ' · ') + '</div>';
+  }
+  function panel(c) {
+    if (!on(c)) return MG.crew2 && MG.crew2.can && MG.crew2.can(c) && !c.crew2 ? '<div class="pn" id="crPanel"><h3>' + T('cr.title') + '</h3><div class="sub" id="crOld">' + T('cr.old') + '</div></div>' : '';   // 2C 이전 판의 2단계 저장본 = 안내만(상태 만들지 않음)
+    var d = today(c), d1 = MG.tz.addDays(d, 1);
+    return '<div class="pn" id="crPanel"><h3>' + T('cr.title') + '</h3><div class="sub">' + T('cr.help') + '</div>' +
+      '<h4>' + T('cr.h.today', { d: S(d.slice(5)) }) + '</h4>' + roster(c, d, 'crRoster') + sbyList(c, d) +
+      '<h4>' + T('cr.h.tomorrow', { d: S(d1.slice(5)) }) + '</h4>' + roster(c, d1, 'crRoster1') +
+      '<h4>' + T('cr.h.sets') + '</h4>' + setTable(c, 'ck', 'crSets') +
+      '<details><summary>' + T('cr.h.cab') + '</summary>' + setTable(c, 'cb', 'crCab') + '</details>' +
+      '<h4>' + T('cr.h.trn') + '</h4>' + trnCal(c) + '<h4>' + T('cr.h.cost') + '</h4>' + costLine(c) +
+      '<h4>' + T('cr.h.chk') + '</h4>' + shortList(c) + '<h4>' + T('cr.h.hire') + '</h4>' + hirePane(c) + '</div>';
+  }
+  function bind(c, act) {
+    if (!on(c)) return;
+    var V = function (id) { var e = document.getElementById(id); return e ? e.value : null; };
+    Array.prototype.forEach.call(document.querySelectorAll('#crPanel [data-crdo]'), function (b) {
+      b.onclick = function () {
+        var k = b.dataset.crdo;
+        if (k === 'hire') { var ty = V('cr_ty'), kk = V('cr_k'), n = parseInt(V('cr_n'), 10); return act(function (cc) { return MG.crew2.hire(cc, ty, kk, n); }, MG.tx('cr.kn.hire')); }
+        if (k === 'base') { var ba = V('cr_ba'), bt = V('cr_bt'), bn = parseInt(V('cr_bn'), 10); return act(function (cc) { return MG.crew2.openBase(cc, ba, bt, bn); }, MG.tx('cr.kn.base')); }
+        if (k === 'sby') { var r = parseFloat(V('cr_sr')), m = V('cr_sm'); return act(function (cc) { return MG.crew2.setSby(cc, r, m); }, MG.tx('cr.kn.sby')); }
+      };
+    });
+  }
+  // OCC 일일 브리핑 한 줄(오늘 배정 못 한 편 · 대기 세트)
+  function briefRow(c, row) {
+    if (!on(c)) return '';
+    var d = today(c), A = c.crew2.asg[d] || {}, miss = 0, sb = 0;
+    Object.keys(A).forEach(function (fid) { if (fid === '_sby') { for (var t in A._sby) sb += A._sby[t].length; return; } var f = c.fl[fid]; if (f && f.aobt == null && (!A[fid].ck || !A[fid].cb)) miss++; });
+    return row(T('cr.brief'), T('cr.brief.v', { m: miss, s: sb }));
+  }
+  return { panel: panel, bind: bind, briefRow: briefRow, stOf: stOf };
+})();
+
+/* ===== 경영 모드 2단계 2D · mg_ui_gantt.js — 로테이션 편집기 화면: 간트(행 = 기체 · 연속 시간축 · 06~26시 기본 창 · 창 밖 화살표)
+   · PC = 막대 끌어다 놓기(편 시각 이동 · 다른 기체로 왕복 묶음 이동) · 휴대폰(≤ 600px) = 간트 보기 전용 + 표 편집(Q-S6) — 두 길 모두 MG.skd2.op 하나(G3)
+   · 경고 목록 = MG.skd2.warn 결과 그대로(화면에만 있는 경고 0) · 차이 = 바뀐 기체만 · 견적·승인 요청 = 기존 MG.skd.evaluate·submit
+   (경계 계약 v3 4-4·6 · 메모 v4 6절·15-10 · 구현 계획 2D-c) — 시간표(SKD) 화면 안에 붙음(2단계 캠페인만 · s2 끔 = 빈 문자열)
+   · 그리기는 쓰기 0 — 변경은 시간표 화면의 act(커밋) 안에서 MG.skd2 함수 하나 · 문구 = 사전 키(MG.tx · mg_data_text.js 「gt.*」) */
+MG.uiGantt = (function () {
+  var V = { v: null, d: null, hq: true, wide: false, reg: null, mvI: null, mvTo: null };
+  function on(c) { return !!(MG.skd2 && MG.skd2.on(c)); }
+  function T(k, v) { return MG.T.s(MG.tx(k, v)); }
+  function S(v) { return MG.T.s(v); }
+  function esc(s) { s = MG.T.fmt(s); return String(s == null ? '' : s).replace(/[&<>"]/g, function (x) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[x]; }); }
+  function reg(r) { return S(MG.regView ? MG.regView(r) : r); }
+  function today(c) { return MG.tz.local(c.t, c.hqTz).date; }
+  function mobile() { return !!(window.matchMedia && window.matchMedia('(max-width:600px)').matches); }
+  function hh(m) { m = ((m % 1440) + 1440) % 1440; return (m < 600 ? '0' : '') + Math.floor(m / 60) + ':' + (m % 60 < 10 ? '0' : '') + (m % 60); }
+  function drafts(c) { var D = (c.skd && c.skd.draft) || {}; return Object.keys(D).filter(function (v) { return D[v].gantt; }).map(Number).sort(function (a, b) { return a - b; }); }
+  function range() { var w = MG.data.skd2.view; return V.wide ? [0, 2880] : [w.h0 * 60, w.h1 * 60]; }
+  function pct(m, R) { return ((m - R[0]) / (R[1] - R[0]) * 100).toFixed(3); }
+  function tyName(t) { return S(MG.data.base.types[t] ? MG.data.base.types[t].name : t); }
+
+  /* ---------- 간트 ---------- */
+  function axis(R) {
+    var h = '', step = V.wide ? 240 : 120;
+    for (var m = Math.ceil(R[0] / step) * step; m <= R[1]; m += step) h += '<span style="left:' + pct(m, R) + '%">' + S(hh(m)) + (m >= 1440 ? '<sup>+' + S(Math.floor(m / 1440)) + '</sup>' : '') + '</span>';
+    return '<div class="gth"><div></div><div class="gtx">' + h + '</div></div>';
+  }
+  function row(c, m, r, R) {
+    var turn = MG.data.base.types[r.type].turn, h = '', lo = 0, hi = 0, ed = r.edit && !r.spare;
+    r.mx.forEach(function (w) { var a = Math.max(w.a, R[0]), b = Math.min(w.b, R[1]); if (b > a) h += '<i class="gtm" style="left:' + pct(a, R) + '%;width:' + (pct(b, R) - pct(a, R)).toFixed(3) + '%" title="' + T('gt.mxwin', { what: w.what }) + '"></i>'; });
+    var cf = MG.data.org.curfew && MG.data.org.curfew[r.base]; if (cf && cf > R[0] && cf < R[1]) h += '<i class="gtc" style="left:' + pct(cf, R) + '%" title="' + T('gt.curfew', { base: r.base, hm: hh(cf) }) + '"></i>';
+    r.carry.forEach(function (x) { if (x.b <= R[0]) return; var a = Math.max(x.a, R[0]); h += '<b class="gtb pv" style="left:' + pct(a, R) + '%;width:' + (pct(Math.min(x.b, R[1]), R) - pct(a, R)).toFixed(3) + '%">' + S(x.to) + '</b>'; });
+    r.legs.forEach(function (x, k) {
+      var nx = r.legs[k + 1];
+      if (nx && nx.a > x.b) { var ga = Math.max(x.b, R[0]), gb = Math.min(nx.a, R[1]); if (gb > ga) h += '<i class="gtg' + (nx.a - x.b < turn + 10 ? ' tight' : '') + '" style="left:' + pct(ga, R) + '%;width:' + (pct(gb, R) - pct(ga, R)).toFixed(3) + '%"></i>'; }
+      if (x.b <= R[0]) { lo++; return; } if (x.a >= R[1]) { hi++; return; }
+      var a = Math.max(x.a, R[0]), b = Math.min(x.b, R[1]), tl = V.hq ? x.depH + '–' + x.arrH : x.depL + '–' + x.arrL;
+      h += '<b class="gtb' + (x.w.length ? ' wn' : '') + (ed ? '' : ' ro') + '" data-gtr="' + S(r.reg) + '" data-gti="' + S(x.i) + '" data-gta="' + S(x.a) + '" style="left:' + pct(a, R) + '%;width:' + (pct(b, R) - pct(a, R)).toFixed(3) + '%" title="' +
+        esc(MG.T.s(x.fn) + ' ' + x.from + '→' + x.to + ' ' + tl + (x.gap ? ' +' + x.gap : '') + (x.w.length ? ' · ' + x.w.map(function (k2) { return MG.T.s(MG.M('skd2.k.' + k2)); }).join('·') : '')) + '">' + S(x.to) + ' <small>' + S(tl) + '</small></b>';
+    });
+    if (lo) h += '<em class="gta l">◀' + S(lo) + '</em>'; if (hi) h += '<em class="gta r">' + S(hi) + '▶</em>';
+    var lab = reg(r.reg) + ' <small>' + tyName(r.type) + ' · ' + S(r.base) + (r.spare ? ' · ' + T('gt.spare') : r.idle ? ' · ' + T('gt.idle') : '') + (r.changed ? ' · ' + T('gt.changed') : '') + '</small>';
+    return '<div class="gtr' + (r.changed ? ' ch' : '') + (r.spare || !r.edit ? ' sp' : '') + '" data-gtrow="' + S(r.reg) + '"><div class="gtl"><button class="lnk" data-gtsel="' + S(r.reg) + '">' + lab + '</button></div><div class="gtt">' + h + '</div></div>';
+  }
+  /* ---------- 표 편집(휴대폰 정본 · PC에서도 같은 칸) ---------- */
+  function table(c, m) {
+    var g = c.skd.draft[V.v].gantt, regs = Object.keys(g.rows).sort(); if (!V.reg || regs.indexOf(V.reg) < 0) V.reg = regs[0];
+    var r = g.rows[V.reg], mr = m.rows.filter(function (x) { return x.reg === V.reg; })[0], h = '<div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">' + T('gt.t.reg') + ' <select class="btn" id="gtReg">' +
+      MG.T.J(regs.map(function (k) { return '<option' + (k === V.reg ? ' selected' : '') + ' value="' + S(k) + '">' + reg(k) + '</option>'; }), '') + '</select>';
+    if (!r) return h + ' <span class="sub">' + T('gt.t.idleNow') + '</span>' + (g.base[V.reg] ? ' <button class="btn" data-gtdo="unidle">' + T('gt.b.unidle') + '</button>' : '') + '</div>';
+    h += ' ' + T('gt.t.slack') + ' <input class="btn num" id="gtSlack" type="number" min="0" max="' + S(MG.data.skd2.slackMax) + '" value="' + S(r.slack) + '"> <button class="btn" data-gtdo="slack">' + T('gt.b.apply') + '</button>' +
+      ' <button class="btn" data-gtdo="idle">' + T('gt.b.idle') + '</button> <button class="btn" data-gtdo="reset">' + T('gt.b.reset') + '</button></div>';
+    var ts = MG.skd2.times(c, V.reg, r, g.from);
+    h += '<div class="tblw"><table class="mini" id="gtLegs"><tr><th>#</th><th class="l">' + T('gt.th.leg') + '</th><th>' + T('gt.th.dep') + '</th><th>' + T('gt.th.arr') + '</th><th>' + T('gt.th.gap') + '</th><th>' + T('gt.th.w') + '</th></tr>' +
+      MG.T.J(ts.map(function (x, i) {
+        var lx = mr && mr.legs.filter(function (y) { return y.i === i; })[0], ww = lx ? lx.w : [];
+        var dep = MG.tz.local(x.dep, MG.data.base.airports[x.from].tz), arr = MG.tz.local(x.arr, MG.data.base.airports[x.to].tz);
+        var cell = i === 0 ? '<input class="btn" id="gtFirst" size="5" value="' + S(r.first) + '">' : '<input class="btn num" id="gtGap' + S(i) + '" type="number" min="0" value="' + S(r.legs[i][2] || 0) + '">';
+        return '<tr><td>' + S(i + 1) + '</td><td class="l">' + S(x.from) + '→' + S(x.to) + ' <small>' + S(x.block) + T('gt.min') + '</small></td><td>' + S(hh(dep.hm)) + '</td><td>' + S(hh(arr.hm)) + '</td><td>' + cell + '</td><td class="l">' +
+          (ww.length ? '<b class="am">' + MG.T.J(ww.map(function (k) { return S(MG.M('skd2.k.' + k)); }), '·') + '</b>' : '—') + '</td></tr>';
+      }), '') + '</table></div><div class="row" style="gap:6px;margin-top:4px"><button class="btn pri" data-gtdo="times">' + T('gt.b.times') + '</button><span class="sub">' + T('gt.t.timesHelp') + '</span></div>';
+    // 요일
+    h += '<div class="row" style="flex-wrap:wrap;gap:4px;margin-top:6px"><span class="sub">' + T('gt.t.dow') + '</span><span class="dowbox">' + MG.T.J(['1', '2', '3', '4', '5', '6', '7'].map(function (k, i) { var onD = !r.dow || r.dow.indexOf(i + 1) >= 0; return '<label><input type="checkbox" data-gtdow="' + S(i + 1) + '"' + (onD ? ' checked' : '') + '>' + T('gt.dow.' + k) + '</label>'; }), '') + '</span> <button class="btn" data-gtdo="dow">' + T('gt.b.apply') + '</button></div>';
+    // 묶음 옮기기
+    var loops = []; for (var i = 0; i < r.legs.length; i++) { var lp = MG.skd2.loopOf(r, i); if (lp && lp[0] === i) loops.push(lp); }
+    var T0 = c.tails[V.reg], tos = regs.filter(function (k) { if (k === V.reg) return false; var Tt = c.tails[k], rt = g.rows[k]; return Tt.type === T0.type && (rt ? rt.base : Tt.base) === r.base; });
+    if (V.mvTo == null || tos.indexOf(V.mvTo) < 0) V.mvTo = tos[0] || null; if (V.mvI == null || !loops.some(function (l) { return l[0] === V.mvI; })) V.mvI = loops.length ? loops[0][0] : null;
+    if (loops.length && tos.length) {
+      var rt = g.rows[V.mvTo], bs = MG.skd2.bounds(rt), tt = rt ? MG.skd2.times(c, V.mvTo, rt, g.from) : [];
+      h += '<div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px"><span class="sub">' + T('gt.t.move') + '</span> <select class="btn" id="gtMvI">' + MG.T.J(loops.map(function (l) { return '<option value="' + S(l[0]) + '"' + (l[0] === V.mvI ? ' selected' : '') + '>' + T('gt.t.loop', { a: l[0] + 1, b: l[1] + 1, to: r.legs[l[0]][0] }) + '</option>'; }), '') + '</select> → ' +
+        '<select class="btn" id="gtMvTo">' + MG.T.J(tos.map(function (k) { return '<option value="' + S(k) + '"' + (k === V.mvTo ? ' selected' : '') + '>' + reg(k) + '</option>'; }), '') + '</select> ' +
+        '<select class="btn" id="gtMvAt">' + MG.T.J(bs.map(function (b) { return '<option value="' + S(b) + '">' + (b === 0 ? T('gt.t.atFront') : T('gt.t.atAfter', { n: b, hm: hh(MG.skd2.relMin(c, rt, g.from, tt[b - 1].arr)) })) + '</option>'; }), '') + '</select> ' +
+        T('gt.t.dep') + ' <input class="btn" id="gtMvDep" size="5" placeholder="' + T('gt.t.depPh') + '"> <button class="btn" data-gtdo="move">' + T('gt.b.move') + '</button></div>';
+    }
+    if (tos.length) h += '<div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px"><span class="sub">' + T('gt.t.swap') + '</span> <select class="btn" id="gtSwTo">' + MG.T.J(tos.map(function (k) { return '<option value="' + S(k) + '">' + reg(k) + '</option>'; }), '') + '</select> <button class="btn" data-gtdo="swap">' + T('gt.b.swap') + '</button></div>';
+    return h;
+  }
+  function warnList(c, W) {
+    if (!W.list.length) return '<div class="sub">' + T('gt.w.none') + '</div>';
+    var nNew = W.list.filter(function (x) { return !x.pre; }).length;
+    return '<div class="sub">' + T('gt.w.sum', { n: nNew, pre: W.pre }) + '</div><ul class="gtw" id="gtWarn">' + MG.T.J(W.list.slice().sort(function (a, b) { return (a.pre ? 1 : 0) - (b.pre ? 1 : 0) || MG.skd2.KINDS.indexOf(a.k) - MG.skd2.KINDS.indexOf(b.k); }).map(function (x) {
+      return '<li class="' + (x.pre ? 'pre' : 'new') + '" data-gtk="' + S(x.k) + '"><b>' + S(MG.M('skd2.k.' + x.k)) + '</b> ' + esc(x.txt) + (x.pre ? ' <small>' + T('gt.w.pre') + '</small>' : x.worse ? ' <small>' + T('gt.w.worse') + '</small>' : '') + '</li>';
+    }), '') + '</ul>';
+  }
+  function diffList(c) {
+    var df = MG.skd2.diff(c, V.v); if (!df.length) return '<div class="sub" id="gtDiff">' + T('gt.d.none') + '</div>';
+    var sm = function (s) { return s ? T('gt.d.rot', { n: s.n, first: s.first, slack: s.slack, dow: s.dow ? S(MG.ops.dowStr(s.dow)) : T('gt.d.daily'), legs: s.legs.join(' ') }) : T('gt.idle'); };
+    var cfl = function (x) { if (!x.conf.length) return ''; var vs = MG.T.J(x.conf.map(function (pv) { return '#' + S(pv); }), '·');   // 211차 N211-06: 효력일이 같은 승인 판 교체 = 명시 동의
+      return '<div class="' + (x.rep ? 'ok' : 'am') + '">' + (x.rep ? T('gt.rep.ok', { v: vs }) : T('gt.rep.need', { v: vs })) + ' <button class="btn" data-gtrep="' + S(x.reg) + '" data-on="' + (x.rep ? '0' : '1') + '">' + T(x.rep ? 'gt.b.repOff' : 'gt.b.repOn') + '</button></div>'; };
+    return '<div class="tblw"><table class="mini" id="gtDiff"><tr><th class="l">' + T('gt.t.reg') + '</th><th class="l">' + T('gt.d.a') + '</th><th class="l">' + T('gt.d.b') + '</th></tr>' + MG.T.J(df.map(function (x) { return '<tr><td class="l">' + reg(x.reg) + '</td><td class="l">' + sm(x.a) + '</td><td class="l">' + sm(x.b) + cfl(x) + '</td></tr>'; }), '') + '</table></div>';
+  }
+  function panel(c) {
+    if (!on(c)) return '';
+    var ds = drafts(c); if (V.v == null || ds.indexOf(V.v) < 0) V.v = ds.length ? ds[ds.length - 1] : null;
+    var td = today(c), h = '<div class="pn" id="gtPanel" style="margin:0 14px 12px"><h3>' + T('gt.title') + ' <small>' + T('gt.help') + '</small></h3>' +
+      '<div class="row" style="flex-wrap:wrap;gap:6px">' + T('gt.t.from') + ' <input class="btn" id="gtFrom" type="date" value="' + S(MG.tz.addDays(td, MG.data.fin.sales.pDays + 1)) + '"> <button class="btn" data-gtdo="open">' + T('gt.b.open') + '</button>' +
+      ' <button class="btn" data-gtdo="season">' + T('gt.b.season', { d: MG.skd.nextSeason(c) }) + '</button>' +
+      (ds.length ? ' ' + T('gt.t.draft') + ' <select class="btn" id="gtV">' + MG.T.J(ds.map(function (v) { return '<option value="' + S(v) + '"' + (v === V.v ? ' selected' : '') + '>#' + S(v) + ' ' + esc(c.skd.draft[v].title) + '</option>'; }), '') + '</select>' : '') + '</div>';
+    if (V.v == null) return h + '<div class="empty">' + T('gt.empty') + '</div></div>';
+    var D = c.skd.draft[V.v], g = D.gantt; if (!V.d || V.d < g.from || V.d > MG.tz.addDays(g.from, 6)) V.d = g.from;
+    var m = MG.skd2.model(c, V.v, { d: V.d }), R = range(), days = []; for (var i = 0; i < 7; i++) days.push(MG.tz.addDays(g.from, i));
+    h += '<div class="row" style="flex-wrap:wrap;gap:6px;margin-top:6px">' + T('gt.t.day') + ' <select class="btn" id="gtD">' + MG.T.J(days.map(function (d) { return '<option' + (d === V.d ? ' selected' : '') + '>' + S(d) + '</option>'; }), '') + '</select>' +
+      ' <button class="btn' + (V.hq ? ' on' : '') + '" data-gtdo="hq">' + T('gt.b.hq') + '</button><button class="btn' + (!V.hq ? ' on' : '') + '" data-gtdo="lt">' + T('gt.b.lt') + '</button>' +
+      ' <button class="btn" data-gtdo="wide">' + T(V.wide ? 'gt.b.narrow' : 'gt.b.wide') + '</button> <span class="sub">' + T(mobile() ? 'gt.mob' : 'gt.pc') + '</span></div>';
+    h += '<div class="gt' + (mobile() ? ' ro' : '') + '" id="gtGrid">' + axis(R) + MG.T.J(m.rows.map(function (r) { return row(c, m, r, R); }), '') + '</div>';
+    h += '<div class="mgrid2"><div><h4>' + T('gt.h.edit', { reg: reg(V.reg || '') }) + '</h4>' + table(c, m) + '</div><div><h4>' + T('gt.h.warn') + '</h4>' + warnList(c, m.warn) + '<h4>' + T('gt.h.diff') + '</h4>' + diffList(c) + '</div></div>' +
+      '<div class="row" style="gap:6px;margin-top:6px"><button class="btn" data-skev="' + S(V.v) + '">' + T('gt.b.eval') + '</button><button class="btn pri" data-sksub="' + S(V.v) + '">' + T('gt.b.submit') + '</button><button class="btn" data-skdel="' + S(V.v) + '">' + T('gt.b.drop') + '</button><span class="sub">' + T('gt.t.flow') + '</span></div></div>';
+    return h;
+  }
+
+  /* ---------- 단추·끌기 ---------- */
+  function bind(c, act, rerender) {
+    if (!on(c)) return;
+    var $ = function (id) { return document.getElementById(id); }, all = function (q) { return Array.prototype.slice.call(document.querySelectorAll(q)); };
+    var opV = function (o, msg) { return act(function (cc) { return MG.skd2.op(cc, V.v, o); }, msg); };
+    all('[data-gtdo]').forEach(function (b) { b.onclick = function () {
+      var k = b.dataset.gtdo, cc = c;
+      if (k === 'open') { var r = act(function (x) { return MG.skd2.open(x, { kind: 'ops', from: $('gtFrom').value }); }, T('gt.m.open')); if (r) { V.v = r.v; V.d = null; rerender(); } return; }
+      if (k === 'season') { var r2 = act(function (x) { return MG.skd2.open(x, { kind: 'season' }); }, T('gt.m.season')); if (r2) { V.v = r2.v; V.d = null; rerender(); } return; }
+      if (k === 'hq' || k === 'lt') { V.hq = k === 'hq'; rerender(); return; }
+      if (k === 'wide') { V.wide = !V.wide; rerender(); return; }
+      if (k === 'slack') return opV({ k: 'slack', reg: V.reg, min: +$('gtSlack').value }, T('gt.m.slack', { reg: V.reg }));
+      if (k === 'idle') return opV({ k: 'idle', reg: V.reg, on: true }, T('gt.m.idle', { reg: V.reg }));
+      if (k === 'unidle') return opV({ k: 'idle', reg: V.reg, on: false }, T('gt.m.unidle', { reg: V.reg }));
+      if (k === 'reset') return opV({ k: 'reset', reg: V.reg }, T('gt.m.reset', { reg: V.reg }));
+      if (k === 'dow') { var dw = []; all('[data-gtdow]').forEach(function (x) { if (x.checked) dw.push(+x.dataset.gtdow); }); return opV({ k: 'dow', reg: V.reg, dow: dw }, T('gt.m.dow', { reg: V.reg })); }
+      if (k === 'times') {   // 표 칸 = 끌기와 같은 조작(shift)으로 바꿈: 첫 출발 = 분 차이 · 그 밖 = 새 대기 분 − 지금 대기 분
+        var rg = V.reg, ops = [], r0 = cc.skd.draft[V.v].gantt.rows[rg], fv = $('gtFirst') ? $('gtFirst').value.trim() : r0.first;
+        if (!/^\d{1,2}:\d{2}$/.test(fv)) { act(function () { return { ok: false, why: MG.tx('gt.m.badTime') }; }, ''); return; }
+        var fd = (+fv.split(':')[0]) * 60 + (+fv.split(':')[1]) - ((+r0.first.slice(0, 2)) * 60 + (+r0.first.slice(3, 5))); if (fd) ops.push({ k: 'shift', reg: rg, i: 0, min: fd });
+        for (var i = 1; i < r0.legs.length; i++) { var el = $('gtGap' + i); if (!el) continue; var nv = Math.round(+el.value || 0), d2 = nv - (r0.legs[i][2] || 0); if (d2) ops.push({ k: 'shift', reg: rg, i: i, min: d2 }); }
+        if (!ops.length) return;
+        return act(function (x) { var last = null; ops.forEach(function (o) { last = MG.skd2.op(x, V.v, o); if (!last.ok) throw MG.err(last.why); }); return last; }, T('gt.m.times', { reg: rg, n: ops.length }));
+      }
+      if (k === 'swap') { var to = $('gtSwTo').value; return opV({ k: 'swap', reg: V.reg, to: to }, T('gt.m.swap', { reg: V.reg, to: to })); }
+      if (k === 'move') {
+        var dv = $('gtMvDep').value.trim(), dep = null; if (dv) { if (!/^\d{1,2}:\d{2}$/.test(dv)) { act(function () { return { ok: false, why: MG.tx('gt.m.badTime') }; }, ''); return; } dep = (+dv.split(':')[0]) * 60 + (+dv.split(':')[1]); }
+        var o = { k: 'move', reg: V.reg, i: +$('gtMvI').value, to: $('gtMvTo').value, at: +$('gtMvAt').value }; if (dep != null) o.dep = dep;
+        return opV(o, T('gt.m.move', { reg: o.reg, to: o.to }));
+      }
+    }; });
+    var sv = $('gtV'); if (sv) sv.onchange = function () { V.v = +sv.value; V.d = null; rerender(); };
+    var sd = $('gtD'); if (sd) sd.onchange = function () { V.d = sd.value; rerender(); };
+    var sr = $('gtReg'); if (sr) sr.onchange = function () { V.reg = sr.value; V.mvI = null; V.mvTo = null; rerender(); };
+    var mi = $('gtMvI'); if (mi) mi.onchange = function () { V.mvI = +mi.value; };
+    var mt = $('gtMvTo'); if (mt) mt.onchange = function () { V.mvTo = mt.value; rerender(); };
+    all('[data-gtrep]').forEach(function (b) { b.onclick = function () { var rg = b.dataset.gtrep, onp = b.dataset.on === '1'; opV({ k: 'replace', reg: rg, on: onp }, T(onp ? 'gt.m.repOn' : 'gt.m.repOff', { reg: rg })); }; });
+    all('[data-gtsel]').forEach(function (b) { b.onclick = function () { V.reg = b.dataset.gtsel; V.mvI = null; V.mvTo = null; rerender(); }; });
+    if (!mobile()) drag(c, act, rerender);
+  }
+  // PC 끌기: 가로 = 시각(5분 단위) · 다른 기체 행에 놓으면 왕복 묶음 옮기기(놓은 시각 = 희망 출발 · 넣는 자리 = 그 시각 앞의 가장 늦은 묶음 경계)
+  function drag(c, act, rerender) {
+    var grid = document.getElementById('gtGrid'); if (!grid || !V.v) return;
+    var g = c.skd.draft[V.v].gantt, R = range();
+    Array.prototype.forEach.call(grid.querySelectorAll('.gtb[data-gtr]'), function (b) {
+      if (b.classList.contains('ro')) return;
+      b.onpointerdown = function (e) {
+        e.preventDefault(); var tr = b.parentElement, W = tr.getBoundingClientRect().width, x0 = e.clientX, y0 = e.clientY, tgt = null, moved = false;
+        try { b.setPointerCapture(e.pointerId); } catch (er) { /* 시험 환경 */ }
+        b.classList.add('gtdrag');
+        b.onpointermove = function (ev) {
+          var dx = ev.clientX - x0; if (Math.abs(dx) > 3 || Math.abs(ev.clientY - y0) > 3) moved = true;
+          b.style.transform = 'translate(' + dx + 'px,' + (ev.clientY - y0) + 'px)';
+          var el = document.elementFromPoint(ev.clientX, ev.clientY), rw = el && el.closest ? el.closest('.gtr') : null;
+          Array.prototype.forEach.call(grid.querySelectorAll('.gtr.tgt'), function (x) { x.classList.remove('tgt'); }); if (rw && rw.dataset.gtrow !== b.dataset.gtr) { rw.classList.add('tgt'); tgt = rw.dataset.gtrow; } else tgt = null;
+        };
+        b.onpointerup = function (ev) {
+          b.onpointermove = b.onpointerup = null; b.classList.remove('gtdrag'); b.style.transform = '';
+          var src = b.dataset.gtr, i = +b.dataset.gti, a = +b.dataset.gta;
+          if (!moved) { V.reg = src; V.mvI = null; V.mvTo = null; rerender(); return; }
+          var min = Math.round((ev.clientX - x0) / W * (R[1] - R[0]) / 5) * 5;
+          if (!tgt) { if (min) act(function (cc) { return MG.skd2.op(cc, V.v, { k: 'shift', reg: src, i: i, min: min }); }, T('gt.m.drag', { reg: src, n: i + 1, min: min })); else rerender(); return; }
+          if (!Object.prototype.hasOwnProperty.call(g.rows, tgt)) { rerender(); return; }
+          var m = MG.skd2.model(c, V.v, { d: V.d }), tr2 = m.rows.filter(function (x) { return x.reg === tgt; })[0], drop = a + min, at = 0;
+          var rt = g.rows[tgt], off = MG.tz.dayStart(V.d, MG.data.base.airports[rt ? rt.base : c.tails[tgt].base].tz) - m.t0;
+          if (tr2 && rt) tr2.bounds.forEach(function (bb) { if (bb === 0) return; var lx = tr2.legs.filter(function (y) { return y.i === bb - 1; })[0]; if (lx && lx.b <= drop) at = Math.max(at, bb); });
+          act(function (cc) { return MG.skd2.op(cc, V.v, { k: 'move', reg: src, i: i, to: tgt, at: at, dep: Math.max(0, drop - off) }); }, T('gt.m.move', { reg: src, to: tgt }));
+        };
+      };
+    });
+  }
+  return { panel: panel, bind: bind, _V: V };
 })();
 
 /* ===== 경영 모드 1C-3c-2 · mg_ui_fx.js — 연출 층(컷인 4·사건 카드 그림·결재 도장·부서장 말풍선·업적 토스트·이사회 교체·종료 화면 전면·UI 설정·업적 판·브라우저 기록) =====
@@ -16099,7 +18876,7 @@ MG.uiFx = (function () {
     if (!cur && Q.length) showNext(); else if (!cur && endWant) openEnd();
   }
   // 결정 커밋으로 생긴 종료(채권단 미응답·결정 중 종료 등 — 진행 입구 밖): 같은 종료 트리거로(실행 ID별 1회)
-  function afterDecide(wasEnded) { var c = C(); if (!wasEnded && c.ended) trig([{ id: 'gameover', key: 'end:' + MG.T.ko(c.ended.grade), stop: true, t: c.t }]); else if (goalChanged()) histWrite(); }
+  function afterDecide(wasEnded) { var c = C(); if (!wasEnded && c.ended) trig([{ id: 'gameover', key: 'end:' + MG.T.sig(c.ended.grade), stop: true, t: c.t }]); else if (goalChanged()) histWrite(); }
   function busy() { return !!cur || endOpen; }
 
   /* ---------- 컷인 모달(정지 켬·표시 켬) — 건너뛰기/닫기 뒤 speed 0 유지(자동 재개 0) ---------- */

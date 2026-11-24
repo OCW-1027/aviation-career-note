@@ -7,7 +7,7 @@
 <meta name="description" content="AIRLINE MANAGEMENT(AIRLINE SAGA): 가상의 항공사 Vela Air를 경영하는 교육용 시뮬레이션. 노선 개설·운항·재무·위기 대응을 1년 동안 체험(한국어판 · 日本語・English 準備中).">
 <link rel="icon" href="data:,">
 <script>(function(){var L=["ja","ko","en"],q=(location.search.match(/[?&]lang=(ja|ko|en)\b/)||[])[1],s=null;try{s=localStorage.getItem("art-lang")}catch(e){}var n=(navigator.language||"ja").slice(0,2),l=q||(L.indexOf(s)>=0?s:(L.indexOf(n)>=0?n:"ja"));if(q){try{localStorage.setItem("art-lang",q)}catch(e){}}window.MG_LANG=l;window.MG_LANGS_READY=["ko"];document.documentElement.lang=window.MG_LANGS_READY.indexOf(l)>=0?l:"ko"})();</script>
-<link rel="stylesheet" href="saga/mg/mg.css?v=a72006f8d2">
+<link rel="stylesheet" href="saga/mg/mg.css?v=6d844d2de4">
 </head>
 <body>
 <div id="mgLangNote" style="display:none;position:relative;margin:6px 8px;z-index:1;background:#fff8e6;color:#3b2a00;border:1px solid #e0b450;border-radius:10px;padding:8px 36px 8px 12px;font-size:13px;line-height:1.5;box-shadow:0 4px 16px rgba(0,0,0,.35)"><span id="mgLangNoteT"></span><button type="button" id="mgLangNoteX" aria-label="close" style="position:absolute;right:6px;top:6px;border:0;background:transparent;font-size:18px;cursor:pointer;color:#3b2a00">×</button></div>
@@ -19,6 +19,7 @@
  <button class="btn" id="bNext" title="운항 기록 한 줄 또는 결재·연출이 생길 때까지 진행 — 하루 진행은 「오늘 끝까지」">다음 기록까지</button><button class="btn" id="bDay">오늘 끝까지</button>
  <button class="btn" id="bSave">저장</button><button class="btn" id="bExit" style="display:none" title="저장하고 게임 고르기 화면으로">나가기</button>
  <span class="sp"></span>
+ <button class="btn fsb" id="bFs" type="button" hidden aria-pressed="false">⤢<span class="ml"> 전체화면</span></button>
  <details class="more" id="moreMenu"><summary class="btn" title="게임 메뉴 — 저장본 불러오기·내보내기·처음부터·새 캠페인" aria-label="게임 메뉴">⋯<span class="ml"> 게임 메뉴</span></summary><div class="morebox">
   <button class="btn" id="bLoad">재개(저장본 불러오기)</button><button class="btn" id="bExport">내보내기</button><button class="btn" id="bReset">처음부터</button><button class="btn" id="bNew">새 캠페인</button>
   <div id="devSet"><div class="moresub">시험 설정</div>
@@ -84,6 +85,25 @@
 <div id="stamp"></div>
 <div class="meet" id="meet"></div>
 <div class="fx" id="fx"></div><div id="toasts"></div><div class="endv" id="endv"></div>
+<script>/* 사용자 결정 11-24(세 게임 모두): 「⤢ 전체화면」 단추 — 사이트 현장편 nav.js 「nv-fs」(05a6662)와 같은 글·같은 동작 · 표시 전용(저장 칸 0)
+   · 지원 안 하는 브라우저(아이폰 Safari — fullscreenEnabled false)에서는 숨김 · Esc·뒤로 제스처로 풀려도 fullscreenchange로 글 되돌림
+   · 언어 = <html data-ui|lang>(경영편 지금 = 한국어 · 일·영 단계에서 그대로 따라감) */
+(function(){var DE=document.documentElement,
+ TX={ko:{fs:'전체화면',fsx:'전체화면 끝내기'},ja:{fs:'全画面',fsx:'全画面を終了'},en:{fs:'Full screen',fsx:'Exit full screen'}},
+ OK=!!((DE.requestFullscreen||DE.webkitRequestFullscreen)&&(document.fullscreenEnabled||document.webkitFullscreenEnabled));
+ function el(){return document.fullscreenElement||document.webkitFullscreenElement}
+ function lg(){var l=(DE.getAttribute('data-ui')||DE.lang||'ko').slice(0,2);return TX[l]?l:'ko'}
+ function label(){var b=document.getElementById('bFs');if(!b)return;var on=!!el(),x=TX[lg()][on?'fsx':'fs'];
+  b.firstChild.nodeValue=on?'\u2921':'\u2922';b.querySelector('.ml').textContent=' '+x;b.title=x;b.setAttribute('aria-label',x);b.setAttribute('aria-pressed',on?'true':'false')}
+ function init(){var b=document.getElementById('bFs');if(!b||!OK)return;b.hidden=false;
+  b.onclick=function(){try{if(el()){(document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{var r=(DE.requestFullscreen||DE.webkitRequestFullscreen).call(DE);if(r&&r.catch)r.catch(function(){})}}catch(e){}};
+  ['fullscreenchange','webkitfullscreenchange'].forEach(function(ev){document.addEventListener(ev,label)});
+  try{new MutationObserver(label).observe(DE,{attributes:true,attributeFilter:['lang','data-ui']})}catch(e){}
+  label()}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
 <script>/* 200차: 아래 메뉴 높이 → --railh · 안쪽 스크롤 상자(짧으면 펼침 · 길면 표시) — 820px 이하만, PC로 넓히면 되돌림 */
 (function(){var busy=0,LIM=1400,SEL='#fleet,#ftwrap,.tblw';
  function clear(){var a=document.querySelectorAll('.mgfull,.mgscr');for(var i=0;i<a.length;i++)a[i].classList.remove('mgfull','mgscr');var n=document.querySelectorAll('.mgscrn');for(var j=0;j<n.length;j++)n[j].remove();document.documentElement.style.removeProperty('--railh')}
@@ -121,6 +141,6 @@
 <script src="saga/mg/voices_mg.js?v=748d1327ec"></script>
 <script src="saga/mg/airports_v20261022.js?v=056dad4042"></script>
 <script src="saga/mg/mg_assets.js?v=550a7268e0"></script>
-<script src="saga/mg/mg.js?v=fbe6cc9aaf"></script>
+<script src="saga/mg/mg.js?v=950a24744c"></script>
 </body>
 </html>
