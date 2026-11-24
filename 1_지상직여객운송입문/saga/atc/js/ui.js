@@ -183,7 +183,7 @@
   function crShow() {
     var R0 = app.crRes, el = document.querySelector('.mbody.result .rtop'), xo = app.xo, h = '';
     if (!el) return;
-    if (xo && xo.rtd) { var tq = load(RTD_KEY, {}); if (tq.ds === xo.rtd.ds) h += '<div class="rup daily">' + ATC.T('오늘의 실제 교통 {0} — 최고 {1}점 · 연속 {2}일', String(xo.rtd.ds).replace(/(\d{4})(\d\d)(\d\d)/, '$1.$2.$3'), tq.best, streak(tq, xo.rtd.day)) + '</div>'; }
+    if (xo && xo.rtd) { var tq = load(RTD_KEY, {}), mb = document.querySelector('.mbody.result'); if (tq.ds === xo.rtd.ds && mb) mb.insertAdjacentHTML('afterbegin', '<div class="rup daily">' + ATC.T('오늘의 실제 교통 {0} — 최고 {1}점 · 연속 {2}일', String(xo.rtd.ds).replace(/(\d{4})(\d\d)(\d\d)/, '$1.$2.$3'), tq.best, streak(tq, xo.rtd.day)) + '</div>'); }      /* 오늘의 실제 교통 줄은 결과 맨 위(자격을 새로 딴 줄보다 먼저 — 78차) */
     if (R0 && R0.max >= 3) h += '<div class="rup combo">🔗 ' + ATC.T('최대 연속 무감점 {0}편', R0.max) + '</div>';
     if (R0 && R0.list.length) { var B = {}; ATC.Career.BADGES().forEach(function (b) { B[b[0]] = b; }); h += '<div class="rup badge">' + ATC.T('새 배지') + ' — ' + R0.list.map(function (id) { return '<b>🏅 ' + esc(B[id][1]) + '</b>'; }).join(' · ') + '</div>'; }
     if (h) el.insertAdjacentHTML('beforebegin', h);

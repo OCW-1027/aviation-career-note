@@ -615,6 +615,8 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 #combo.broke span{border-color:#5a2c2c;color:#ffb3b3}
 @keyframes cbPop{0%{transform:scale(1.25);opacity:.4}100%{transform:scale(1);opacity:1}}
 .vd #combo{bottom:calc(var(--vdh) + 24px)}
+.v-del #combo{top:10px;bottom:auto;left:12px;right:auto;flex-direction:row;align-items:center;gap:6px;z-index:2}      /* 비행허가: SID 참조표 · 내용 칸을 가리지 않게 위쪽 띠(「🎤 음성」 단추 왼쪽)에 한 줄로(78차) */
+@media (max-width:1200px){.v-del #combo b{display:none}}@media (max-width:900px){.v-del #combo{top:12px;left:8px}}
 @media (max-width:900px){#combo{font-size:11.5px;bottom:24px;right:6px}#combo span,#combo b{padding:3px 8px}}
 .rup.combo{border-color:#2f7a55}.rup.badge{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.badge b{color:#ffd479;font-weight:700}
 .crm h4{margin:14px 0 6px;font-size:13px}.crm h4 small{color:var(--mut);font-weight:400;margin-left:6px}
