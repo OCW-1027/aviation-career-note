@@ -599,3 +599,33 @@ html.ingame,html.ingame body{overscroll-behavior:none}
 .rtk{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0 6px}.rtk .btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:10px 12px;text-align:left;height:auto}.rtk .btn small{font-size:11px;color:var(--mut);font-weight:400}.rtk .btn:disabled{opacity:.5}
 .rtmsg{min-height:1.3em;margin:4px 0;color:var(--ok)}.rtsrc{font-size:11px;color:var(--mut);margin:6px 0 0}
 .rtpos{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px}.rtpos button{flex:1 1 auto;min-width:0;padding:8px 3px;font-size:12px;letter-spacing:-.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rtpos button b{color:#7fe0ff;margin-right:2px}.rtpos button.on b{color:inherit}.rtpd{font-size:12px;color:var(--mut);margin:2px 0 0;min-height:1.3em}
+/* ===== 관제사 경력(구현메모 71차): 내 관제사 카드 · 연속 무감점 · 배지 · 도감 · 오늘의 실제 교통 ===== */
+.xgrp.me{flex:1 1 100%}
+.mycard{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:11px 14px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(90deg,rgba(79,216,255,.07),rgba(255,212,121,.05)),var(--pan)}
+.mycard .mc-n{display:flex;flex-direction:column;gap:2px;min-width:120px}.mycard .mc-n b{font-size:16px}.mycard .mc-n span{font-size:11.5px;color:var(--mut)}.mycard .mc-n span.r1{color:var(--ok)}.mycard .mc-n span.r2{color:#ffd479}
+.mc-s{display:flex;flex-wrap:wrap;gap:6px 16px;flex:1 1 auto}.mc-s span{display:flex;flex-direction:column;font-size:11px;color:var(--mut);min-width:54px}.mc-s b{font-size:17px;color:var(--txt);font-family:var(--mono)}.mc-s b small{font-size:11px;color:var(--mut)}
+.mc-s.big{margin:4px 0 6px}.mc-s.big b{font-size:20px}
+.mycard .mc-b{display:flex;gap:8px}.xbtn.mini{padding:7px 12px;flex-direction:row;align-items:center;font-size:13px;white-space:nowrap}
+.xbtn.rtd i{color:#7fe0ff}.xbtn.rtd{background:linear-gradient(135deg,rgba(127,224,255,.08),transparent 60%),var(--pan)}
+#combo{position:absolute;right:10px;bottom:26px;z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:3px;pointer-events:none;font-size:12.5px}
+#combo[hidden]{display:none}
+#combo span{background:rgba(9,15,23,.9);border:1px solid #2f7a55;color:#9ff0c4;border-radius:14px;padding:4px 11px;font-weight:700;white-space:nowrap}
+#combo b{background:rgba(255,212,121,.14);border:1px solid #a5822f;color:#ffd479;border-radius:8px;padding:4px 11px;font-size:13.5px;white-space:nowrap}
+#combo.go span{animation:cbPop .45s ease-out}#combo.big.go b{animation:cbPop .6s ease-out}
+#combo.broke span{border-color:#5a2c2c;color:#ffb3b3}
+@keyframes cbPop{0%{transform:scale(1.25);opacity:.4}100%{transform:scale(1);opacity:1}}
+.vd #combo{bottom:calc(var(--vdh) + 24px)}
+@media (max-width:900px){#combo{font-size:11.5px;bottom:24px;right:6px}#combo span,#combo b{padding:3px 8px}}
+.rup.combo{border-color:#2f7a55}.rup.badge{border-color:#a5822f;background:rgba(255,212,121,.08)}.rup.badge b{color:#ffd479;font-weight:700}
+.crm h4{margin:14px 0 6px;font-size:13px}.crm h4 small{color:var(--mut);font-weight:400;margin-left:6px}
+.crname{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.crname input{background:var(--bg,#0b1118);color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 9px;font-size:14px;width:180px;margin-left:6px}
+.crnote{font-size:11.5px;color:var(--mut);margin:6px 0}
+ul.bdg{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px}
+ul.bdg li{display:grid;grid-template-columns:28px 1fr;grid-template-rows:auto auto auto;column-gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;opacity:.5;filter:grayscale(1)}
+ul.bdg li.on{opacity:1;filter:none;border-color:#a5822f;background:rgba(255,212,121,.06)}
+ul.bdg li i{font-style:normal;font-size:20px;grid-row:1/4}ul.bdg li b{font-size:13px}ul.bdg li span{font-size:11px;color:var(--mut)}ul.bdg li time{font-size:10.5px;color:#ffd479}
+.booktab{margin:0 0 4px}
+ul.book{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:7px}
+ul.book li{display:flex;flex-direction:column;gap:1px;padding:7px 9px;border:1px dashed var(--line);border-radius:8px;color:var(--mut);min-width:0}
+ul.book li.on{border-style:solid;border-color:#3a5168;background:rgba(79,216,255,.05);color:var(--txt)}
+ul.book li em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--acc)}ul.book li b{font-size:13px;font-family:var(--mono);letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}ul.book li span{font-size:11px;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}ul.book li small{font-size:10.5px;color:var(--ok)}

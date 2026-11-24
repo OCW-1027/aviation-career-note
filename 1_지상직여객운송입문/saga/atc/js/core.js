@@ -439,7 +439,7 @@
   };
   /* 무한 근무: 안전 감점(S) 3번이면 끝 */
   Sim.prototype.strikes = function () { return this.incs.filter(function (e) { return e.cat === 'S' && e.pts < 0; }).length; };
-  Sim.prototype.remove = function (ac, ok) { ac.gone = true; var i = this.acs.indexOf(ac); if (i >= 0) this.acs.splice(i, 1); if (ok) this.done++; this.emit('gone', ac); };
+  Sim.prototype.remove = function (ac, ok) { ac.gone = true; var i = this.acs.indexOf(ac); if (i >= 0) this.acs.splice(i, 1); if (ok) { this.done++; ac.okOut = true; } this.emit('gone', ac); };      /* okOut = 잘 내보냄(경력 도감 · 연속 무감점, career.js) */
   Sim.prototype.byId = function (id) { for (var i = 0; i < this.acs.length; i++) if (this.acs[i].id === id) return this.acs[i]; return null; };
   Sim.prototype.byCs = function (cs) { cs = cs.toUpperCase(); for (var i = 0; i < this.acs.length; i++) if (this.acs[i].cs === cs || this.acs[i].cs.indexOf(cs) === 0 || this.acs[i].num === cs) return this.acs[i]; return null; };
   Sim.prototype.tick = function (dt) {

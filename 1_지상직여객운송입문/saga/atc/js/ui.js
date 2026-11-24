@@ -4,7 +4,7 @@
   var ATC = window.ATC, D = ATC.D, U = ATC.U, fmt = ATC.fmt, R = ATC.R, POS = ATC.POS, NM = 1852;
   var $ = function (id) { return document.getElementById(id); };
   var app = ATC.app = { sim: null, aq: [], sel: 0, pend: [], speed: 1, paused: false, view: null, voice: true, vmode: 'radio', vfx: 'strong', vrate: 'n', vatc: 'm', ttsEnds: false, coach: true, gloss: true, inst: false, level: 1, flow: 'auto', tab: 'free', scn: null, hit: [], btns: [], mx: 0, my: 0, gt: null, del: {} };
-  var REC_KEY = 'acn_atc_rec_v1' + (ATC.aptId && ATC.aptId !== 'XSRA' ? '_' + ATC.aptId : ''), OPT_KEY = 'acn_atc_opt_v1', SCN_KEY = 'acn_atc_scn_v1', SCN_GO = 'acn_atc_scn_go', DAILY_KEY = 'acn_atc_daily_v1_' + (ATC.aptId || 'XSRA'), ENDLESS_KEY = 'acn_atc_endless_v1_' + (ATC.aptId || 'XSRA'), PILOT_KEY = 'acn_atc_pilot_v1_' + (ATC.aptId || 'XSRA');   /* 근무 기록은 공항별로 따로 */
+  var REC_KEY = 'acn_atc_rec_v1' + (ATC.aptId && ATC.aptId !== 'XSRA' ? '_' + ATC.aptId : ''), OPT_KEY = 'acn_atc_opt_v1', SCN_KEY = 'acn_atc_scn_v1', SCN_GO = 'acn_atc_scn_go', DAILY_KEY = 'acn_atc_daily_v1_' + (ATC.aptId || 'XSRA'), ENDLESS_KEY = 'acn_atc_endless_v1_' + (ATC.aptId || 'XSRA'), PILOT_KEY = 'acn_atc_pilot_v1_' + (ATC.aptId || 'XSRA'), RTD_KEY = 'acn_atc_rtd_v1_' + (ATC.aptId || 'XSRA');   /* 근무 기록은 공항별로 따로 */
   function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function imgUrl(rel) { rel = (ATC.base || '') + rel; try { return new URL(rel, location.href).href.replace(/'/g, '%27'); } catch (e) { return rel; } }   /* 스타일시트 기준이 아니라 문서 기준 주소로 */
   function load(k, d) { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } }
@@ -145,6 +145,7 @@
     var dy = daily(), dr = load(DAILY_KEY, {}), today = dr.ds === dy.ds ? dr : null, er = load(ENDLESS_KEY, {}), op = openPos(), ca = [], cb = [];
     /* 로비 아래 칸: 「도전 근무」(오늘의 과제 · 무한 근무)와 「조종사 체험」(비행 순서대로 출발 → 도착) 두 묶음 */
     ca.push('<button class="xbtn daily" data-x="daily"><i>' + ATC.T('오늘의 과제') + '</i><b>' + POS[dy.pos].nm + ' · ' + ATC.T('중급') + '</b><small>' + (today ? ATC.T('오늘 최고 {0}점 · {1}회 · 연속 {2}일', today.best, today.n, streak(dr, dy.day)) : ATC.T('모두 같은 교통 · 같은 날씨 — 날마다 자리가 바뀝니다')) + '</small></button>');
+    if (ATC.RT && D.realTraffic && D.ll2xy && op.indexOf('APP') >= 0) { var rq = load(RTD_KEY, {}), rtoday = (rq.days || []).indexOf(dayNo(new Date())) >= 0; ca.push('<button class="xbtn rtd" data-x="rtd"><i>' + ATC.T('오늘의 실제 교통') + '</i><b>APP · ' + ATC.T('중급') + ' · ' + ATC.T('아침 기록') + '</b><small>' + (rtoday ? ATC.T('오늘 최고 {0}점 · {1}회 · 연속 {2}일', rq.best, rq.n, streak(rq, dayNo(new Date()))) : ATC.T('모두 같은 실제 아침 교통 — 날마다 새 자료')) + '</small></button>'); }      /* 오늘의 실제 교통 도전(구현메모 71차) */
     ['TWR', 'APP'].forEach(function (k) { if (op.indexOf(k) < 0) return; var b = er[k + app.level]; ca.push('<button class="xbtn endless" data-x="endless" data-pos="' + k + '"><i>' + ATC.T('무한 근무') + '</i><b>' + POS[k].nm + ' · ' + LVNM()[app.level] + '</b><small>' + (b ? ATC.T('최고 {0}대 처리', b.best) : ATC.T('교통이 점점 늘어남 — 안전 감점 3번이면 끝')) + '</small></button>'); });
     if (ATC.RT && D.realTraffic && D.ll2xy && op.indexOf('APP') >= 0) ca.push('<button class="xbtn real" data-x="real"><i>' + ATC.T('실제 교통') + '</i><b>' + ['APP', 'TWR', 'GND'].filter(function (k) { return op.indexOf(k) >= 0; }).join(' · ') + ' · ' + LVNM()[app.level] + '</b><small>' + ATC.T('최근 15분 안의 실제 항공기 위치 · 편명으로 시작 — 그 뒤로는 직접 관제') + '</small></button>');      /* 실제 교통 근무(realtraffic.js) */
     if (ATC.DepPilot && (ATC.aptId === 'RJTT' || D.pilotDep) && op.indexOf('DEL') >= 0) cb.push('<button class="xbtn pilot" data-x="pilotdep"><i>' + ATC.T('출발편') + '</i><b>' + ATC.T('Vela Air {apt} 출발(주기장 → 순항)') + '</b><small>' + ATC.T('비행계획 → Delivery → 푸시백 · 지상 이동 → Tower 이륙 → Departure → {aptEn} Control · 순항 고도까지') + '</small></button>' + (op.indexOf('GND') >= 0 ? '<button class="xbtn pilot" data-x="pilotdep2"><i>' + ATC.T('출발편') + '</i><b>' + ATC.T('푸시백부터 시작(2단계)') + '</b><small>' + ATC.T('허가는 받은 상태 — 푸시백 요청 · 엔진 시동 · 지상 이동 경로 복창 · 활주로 앞 정지') + '</small></button>' : '') + (op.indexOf('TWR') >= 0 ? '<button class="xbtn pilot" data-x="pilotdep3"><i>' + ATC.T('출발편') + '</i><b>' + ATC.T('이륙부터 시작(3단계)') + '</b><small>' + ATC.T('대기 지점에서 — 이륙 준비 보고 · 이륙 허가 복창 · 이륙 추력 · 기어 · 자동조종') + '</small></button>' : ''));
@@ -152,12 +153,69 @@
     function grp(cls, t, sub, x, ex) { var j = x.join(''), n = j.split('<button').length - 1; return n ? '<section class="xgrp ' + cls + '" style="--n:' + n + '"><h5>' + t + ' <small>' + sub + '</small></h5>' + (ex || '') + '<div class="xrow">' + j + '</div></section>' : ''; }
     var WX = [['day', ATC.T('맑은 낮')], ['night', ATC.T('밤')], ['xwind', ATC.T('옆바람')], ['lowvis', ATC.T('저시정')], ['rand', ATC.T('무작위')]], wxv = app.wx || 'day';
     var wxs = '<div class="seg xwx"><span>' + ATC.T('날씨 · 시간') + '</span>' + WX.map(function (w) { return '<button data-wx="' + w[0] + '" class="' + (w[0] === wxv ? 'on' : '') + '">' + w[1] + '</button>'; }).join('') + '</div>';
-    var h = grp('chal', ATC.T('도전 근무'), D.realTraffic ? ATC.T('오늘의 과제 · 무한 근무 · 실제 교통') : ATC.T('오늘의 과제 · 무한 근무'), ca) + grp('pil', ATC.T('조종사 체험'), ATC.T('Vela Air 조종사가 되어 AI 관제사의 지시를 듣고 복창 · 조작'), cb, wxs);
+    var h = myCard(rec) + grp('chal', ATC.T('도전 근무'), D.realTraffic ? ATC.T('오늘의 과제 · 무한 근무 · 실제 교통') : ATC.T('오늘의 과제 · 무한 근무'), ca) + grp('pil', ATC.T('조종사 체험'), ATC.T('Vela Air 조종사가 되어 AI 관제사의 지시를 듣고 복창 · 조작'), cb, wxs);
     var cnt = [0, 0, 0]; op.forEach(function (k) { cnt[rating(rec, k)]++; });
     var nx = op.map(function (k) { var r = rating(rec, k); return '<li class="r' + r + '"><b>' + k + '</b><span>' + RATE_NM()[r] + '</span></li>'; }).join('');
     el.innerHTML = h;
     /* 관제 자격은 자유 근무 / 시나리오 단추 옆의 긴 칸에 한 줄로 */
     var lr = $('lrates'); if (lr) lr.innerHTML = '<h4>' + ATC.T('관제 자격') + ' <small>' + ATC.T('교관 {0} · 자격 {1} · 훈련생 {2}', cnt[2], cnt[1], cnt[0]) + '</small></h4><ul>' + nx + '</ul><p>' + ATC.T('자격 = 중급 이상 85점 · 안전 감점 0 / 교관 = 고급 95점 · 안전 감점 0 (자리마다 따로)') + '</p>';
+  }
+  /* ================= 관제사 경력: 연속 무감점 · 내 관제사 카드 · 배지 · 도감 · 오늘의 실제 교통 (구현메모 71차, career.js) ================= */
+  var comboT = 0;
+  function comboNote(n, word, broke, clear) {
+    var el = $('combo'); if (!el) return; clearTimeout(comboT);
+    if (clear) { el.hidden = true; el.className = ''; return; }
+    if (broke) { el.innerHTML = '<span>' + ATC.T('연속 무감점 {0}편에서 끊김', n) + '</span>'; el.className = 'broke'; el.hidden = false; comboT = setTimeout(function () { el.hidden = true; }, 2600); return; }
+    el.innerHTML = '<span>🔗 ' + ATC.T('연속 무감점 {0}편', n) + '</span>' + (word ? '<b>' + esc(word) + '</b>' : '');
+    el.hidden = false; el.className = 'up' + (word ? ' big' : ''); void el.offsetWidth; el.classList.add('go');
+    if (word) { beep(880, 0.05); setTimeout(function () { beep(1320, 0.07); }, 70); comboT = setTimeout(function () { var w = el.querySelector('b'); if (w) w.remove(); el.classList.remove('big'); }, 2600); }
+  }
+  function crName(c) { return (c && c.name) || ATC.T('관제사'); }
+  function myCard(rec) {
+    if (!ATC.Career) return '';
+    var CR = ATC.Career, c = CR.data(), op = openPos(), best = 0, nb = Object.keys(c.bd).length, NB = CR.BADGES().length, U0 = CR.universe(), na = CR.alCount(c);
+    op.forEach(function (k) { best = Math.max(best, rating(rec, k)); });
+    return '<section class="xgrp me"><h5>' + ATC.T('내 관제사') + ' <small>' + ATC.T('근무할수록 쌓이는 기록 · 배지 · 항공사 도감') + '</small></h5><div class="mycard">' +
+      '<div class="mc-n"><b>' + esc(crName(c)) + '</b><span class="r' + best + '">' + aptName(ATC.aptId) + ' · ' + RATE_NM()[best] + '</span></div>' +
+      '<div class="mc-s"><span><b>' + (c.st.fl || 0) + '</b>' + ATC.T('처리 편') + '</span><span><b>' + (c.st.mx || 0) + '</b>' + ATC.T('최대 연속') + '</span><span><b>' + nb + '<small>/' + NB + '</small></b>' + ATC.T('배지') + '</span><span><b>' + na + '<small>/' + U0.length + '</small></b>' + ATC.T('항공사') + '</span></div>' +
+      '<div class="mc-b"><button class="xbtn mini" data-x="badges">🏅 ' + ATC.T('배지') + '</button><button class="xbtn mini" data-x="book">📖 ' + ATC.T('항공사 도감') + '</button></div></div></section>';
+  }
+  function crShow() {
+    var R0 = app.crRes, el = document.querySelector('.mbody.result .rtop'), xo = app.xo, h = '';
+    if (!el) return;
+    if (xo && xo.rtd) { var tq = load(RTD_KEY, {}); if (tq.ds === xo.rtd.ds) h += '<div class="rup daily">' + ATC.T('오늘의 실제 교통 {0} — 최고 {1}점 · 연속 {2}일', String(xo.rtd.ds).replace(/(\d{4})(\d\d)(\d\d)/, '$1.$2.$3'), tq.best, streak(tq, xo.rtd.day)) + '</div>'; }
+    if (R0 && R0.max >= 3) h += '<div class="rup combo">🔗 ' + ATC.T('최대 연속 무감점 {0}편', R0.max) + '</div>';
+    if (R0 && R0.list.length) { var B = {}; ATC.Career.BADGES().forEach(function (b) { B[b[0]] = b; }); h += '<div class="rup badge">' + ATC.T('새 배지') + ' — ' + R0.list.map(function (id) { return '<b>🏅 ' + esc(B[id][1]) + '</b>'; }).join(' · ') + '</div>'; }
+    if (h) el.insertAdjacentHTML('beforebegin', h);
+  }
+  function openBadges() {
+    var CR = ATC.Career, c = CR.data(), L = CR.BADGES(), nb = Object.keys(c.bd).length;
+    function dstr(dn) { var d = new Date(dn * 864e5); return d.getUTCFullYear() + '.' + (d.getUTCMonth() + 1) + '.' + d.getUTCDate(); }
+    openModal('<div class="mhead"><h2>' + ATC.T('내 관제사 카드') + '</h2></div><div class="mbody crm"><div class="crname"><label>' + ATC.T('이름') + ' <input id="crName" maxlength="20" value="' + esc(c.name || '') + '" placeholder="' + esc(ATC.T('관제사')) + '"></label><button class="btn" data-cr="name">' + ATC.T('저장') + '</button></div>' +
+      '<div class="mc-s big"><span><b>' + (c.st.sh || 0) + '</b>' + ATC.T('근무') + '</span><span><b>' + (c.st.fl || 0) + '</b>' + ATC.T('처리 편') + '</span><span><b>' + (c.st.mx || 0) + '</b>' + ATC.T('최대 연속') + '</span><span><b>' + Object.keys(c.st.apt).length + '</b>' + ATC.T('공항') + '</span></div>' +
+      '<h4>' + ATC.T('배지 {0} / {1}', nb, L.length) + '</h4><ul class="bdg">' + L.map(function (b) { var on = c.bd[b[0]]; return '<li class="' + (on ? 'on' : '') + '"><i>🏅</i><b>' + esc(b[1]) + '</b><span>' + esc(b[2]) + '</span>' + (on ? '<time>' + dstr(on) + '</time>' : '') + '</li>'; }).join('') + '</ul>' +
+      '<p class="crnote">' + ATC.T('기록은 이 기기의 브라우저에만 저장됩니다(다른 기기와 이어지지 않음).') + '</p></div><div class="mfoot"><span class="sp"></span><button class="btn" data-cr="book">📖 ' + ATC.T('항공사 도감') + '</button><button class="btn pri" data-m="close">' + ATC.T('닫기') + '</button></div>');
+    $('modalBox').onclick = function (e) { var b = e.target.closest('[data-cr]'); if (!b) return; if (b.dataset.cr === 'name') { CR.setName($('crName').value); renderX(load(REC_KEY, {})); b.textContent = ATC.T('저장됨'); } else if (b.dataset.cr === 'book') openBook('al'); };
+  }
+  function openBook(tab) {
+    var CR = ATC.Career, c = CR.data(), U0 = CR.universe(), ap = aptName(ATC.aptId), na = CR.alCount(c);
+    var SEC = [['real', ATC.T('실제 항공사 — {0} 근무에서', ap)], ['rt', ATC.T('실제 교통 근무에서만 만나는 항공사')], ['fic', ATC.T('가상 항공사(게임)')]];
+    function tile(x) { var e = c.al[x.code]; return '<li class="' + (e ? 'on' : '') + '"><em>' + esc(x.code) + '</em><b>' + (e ? esc(x.cs || '') : '???') + '</b><span>' + (e ? esc(x.nm || '') : ATC.T('아직 못 만남')) + '</span>' + (e ? '<small>' + ATC.T('{0}편', e.n) + (e.rt ? ' · ' + ATC.T('실제 {0}', e.rt) : '') + '</small>' : '') + '</li>'; }
+    var body = tab === 'ty' ? (function () { var ks = Object.keys(c.ty).sort(function (a, b) { return c.ty[b].n - c.ty[a].n; }); return ks.length ? '<ul class="book ty">' + ks.map(function (t) { var p = D.types && D.types[t]; return '<li class="on"><em>' + esc(t) + '</em><b>' + (p && p.wake ? ATC.T('후류 {0}', p.wake) : '') + '</b><small>' + ATC.T('{0}편', c.ty[t].n) + '</small></li>'; }).join('') + '</ul>' : '<p>' + ATC.T('아직 기록이 없습니다 — 근무에서 항공기를 잘 내보내면 기종이 쌓입니다.') + '</p>'; })()
+      : SEC.map(function (sx) { var L = U0.filter(function (x) { return x.kind === sx[0]; }); if (!L.length) return ''; var got = L.filter(function (x) { return c.al[x.code]; }).length; return '<h4>' + sx[1] + ' <small>' + got + ' / ' + L.length + '</small></h4><ul class="book">' + L.map(tile).join('') + '</ul>'; }).join('');
+    openModal('<div class="mhead"><h2>' + ATC.T('항공사 도감') + ' <small>' + na + ' / ' + U0.length + '</small></h2></div><div class="mbody crm"><div class="seg booktab"><button data-cr="al" class="' + (tab !== 'ty' ? 'on' : '') + '">' + ATC.T('항공사') + '</button><button data-cr="ty" class="' + (tab === 'ty' ? 'on' : '') + '">' + ATC.T('기종') + '</button></div>' +
+      '<p class="crnote">' + ATC.T('근무에서 관할 이양 · 착륙 · 이륙 · 주기까지 잘 마친 항공기가 쌓입니다. 굵은 글자가 무선 호출 이름(telephony)입니다.') + '</p>' + body + '</div><div class="mfoot"><span class="sp"></span><button class="btn" data-cr="badges">🏅 ' + ATC.T('배지') + '</button><button class="btn pri" data-m="close">' + ATC.T('닫기') + '</button></div>');
+    $('modalBox').onclick = function (e) { var b = e.target.closest('[data-cr]'); if (!b) return; var k = b.dataset.cr; if (k === 'al' || k === 'ty') openBook(k); else if (k === 'badges') openBadges(); };
+  }
+  function rtdGo() {
+    openModal('<div class="mhead"><h2>' + ATC.T('오늘의 실제 교통 — {apt}') + '</h2></div><div class="mbody"><p>' + ATC.T('가장 최근 아침(현지 07:30 무렵) 실제 교통으로 모두가 같은 판을 합니다 — 접근관제(APP) · 중급. 자료 날짜마다 기록이 하나 남고, 날마다 하면 연속 일수가 쌓입니다.') + '</p><p class="rtmsg" id="rtmsg">' + ATC.T('불러오는 중…') + '</p><p class="rtsrc">' + ATC.T('교통 데이터: ADSB.lol (ODbL 1.0) · 교육용') + '</p></div><div class="mfoot"><span class="sp"></span><button class="btn" data-m="close">' + ATC.T('닫기') + '</button></div>');
+    ATC.RT.load(ATC.aptId, 'am', function (d, how) {
+      if ($('modal').hidden) return;
+      if (!d || !ATC.RT.parse(d).list.length) { var m = $('rtmsg'); if (m) m.textContent = ATC.T('아침 자료를 받지 못했습니다. 잠시 뒤 다시 해 보세요(평소 근무 · 실제 교통 근무는 그대로 할 수 있습니다).'); return; }
+      var tz = D.tz !== undefined ? D.tz : 9, dn = Math.floor((d.t + tz * 3600) / 86400), lt = new Date(dn * 864e5), ds = lt.getUTCFullYear() * 10000 + (lt.getUTCMonth() + 1) * 100 + lt.getUTCDate(), h = 7, sk = String(ds) + ATC.aptId, i;
+      for (i = 0; i < sk.length; i++) h = (h * 31 + sk.charCodeAt(i)) % 1000003;      /* 같은 자료 날짜 · 같은 공항이면 모두 같은 시드(그 뒤 게임이 만드는 교통도 같게) */
+      closeModal(); start('APP', h % 900000 + 1000, null, { level: 2, real: d, realHow: how, realK: 'am', rtd: { ds: ds, day: dayNo(new Date()) } });
+    });
   }
   function LVNM() { return [null, ATC.T('초급'), ATC.T('중급'), ATC.T('고급')]; }
   /* 실제 교통 근무: 어느 때의 교통으로 할지 고름 → 받아서 접근관제 근무 시작(못 받으면 마지막 자료 · 아니면 평소 교통) */
@@ -213,7 +271,7 @@
     if (xo && xo.pilotDep && ATC.DepPilot) new ATC.DepPilot(sim, { carry: cr, from: xo.from }); else if (xo && xo.pilot) new ATC.Pilot(sim);      /* 조종사 체험: 관제는 AI, 플레이어는 Vela Air 조종사 */
     if (ATC.Cockpit) { if (sim.pilot && ATC.Cockpit.ok && app.ck3d !== false) ATC.Cockpit.open(sim, $('ck3d')); else ATC.Cockpit.close(); }      /* 2단계: 3D 조종석(WebGL이 되면 기본) */
     if (scn) sim.sys(ATC.T('시나리오 {0} 「{1}」 — 목표: {2} · {3}점 이상.', scn.no, scn.title, scn.goal.t, scn.eff), 'info');
-    app.pos = POS[k]; app.sel = 0; app.pend = []; app.aq = []; app.paused = false; app.speed = lv === 1 ? Math.min(app.pos.spd, 2) : app.pos.spd; app.coach = scn ? !!scn.coach : lv === 1;   /* 초급은 ×2까지만으로 시작 */ app.gt = null; app.routePrev = null; app.del = {}; app.cmdSig = ''; app.stripSig = ''; app.logN = 0; app.seed = seed; app.over = false; app.recSaved = false;
+    app.pos = POS[k]; app.sel = 0; app.pend = []; app.aq = []; app.paused = false; app.speed = lv === 1 ? Math.min(app.pos.spd, 2) : app.pos.spd; app.coach = scn ? !!scn.coach : lv === 1;   /* 초급은 ×2까지만으로 시작 */ app.gt = null; app.routePrev = null; app.del = {}; app.cmdSig = ''; app.stripSig = ''; app.logN = 0; app.seed = seed; app.over = false; app.recSaved = false; app.crRes = null; comboNote(0, '', true, true);
     $('lobby').hidden = true; $('game').hidden = false; closeModal();
     $('game').className = 'v-' + app.pos.view + ' m-' + app.pos.id + (app.gloss ? '' : ' nogloss'); $('logList').innerHTML = ''; $('banner').className = '';
     var cv = $('cv'); resize();
@@ -242,6 +300,7 @@
       return est * (app.ttsEnds ? 1.7 : 1.05) * app.speed;
     };
     app.instSeen = {}; app.instT = 0; hideInst();
+    if (ATC.Career) ATC.Career.attach(sim, ATC.aptId, comboNote);      /* 도감 · 연속 무감점(career.js) */
     sim.listeners.push(function (type, d) {
       if (type === 'log') { addLog(d); capPush(d); }
       else if (type === 'inc') { if (d.pts < 0) banner(d.title, d.cat === 'S' ? 'bad' : 'warn'); }
@@ -978,7 +1037,7 @@
     if (aps.length > 1) { $('apts').hidden = false; aps.forEach(function (a) { var b = document.createElement('button'); b.dataset.ap = a.id; b.textContent = a.name + (a.beta ? ' · ' + ATC.T('시험판') : ''); if (a.id === ATC.aptId) b.className = 'on'; $('apts').appendChild(b); }); $('apts').addEventListener('click', function (e) { var b = e.target.closest('[data-ap]'); if (b) ATC.setAirport(b.dataset.ap); }); }
     bindCanvas();
     $('pcards').addEventListener('click', function (e) { var b = e.target.closest('.pcard'); if (b) briefing(b.dataset.pos); });
-    $('xmodes').addEventListener('click', function (e) { var w = e.target.closest('[data-wx]'); if (w) { app.wx = w.dataset.wx; saveOpt(); renderX(load(REC_KEY, {})); return; } var b = e.target.closest('.xbtn'); if (!b) return; if (b.dataset.x === 'daily') { var dy = daily(); start(dy.pos, dy.seed, null, dy); } else if (b.dataset.x === 'real') realPick(); else if (b.dataset.x === 'pilot') start('APP', null, null, { pilot: true, level: app.level }); else if (b.dataset.x === 'pilotdep') start('DEL', null, null, { pilotDep: true, level: app.level, k0: 'DEL' }); else if (b.dataset.x === 'pilotdep2') start('GND', null, null, { pilotDep: true, level: app.level, k0: 'GND', from: 'gnd' }); else if (b.dataset.x === 'pilotdep3') start('TWR', null, null, { pilotDep: true, level: app.level, k0: 'TWR', from: 'twr' }); else start(b.dataset.pos, null, null, { endless: true, level: app.level }); });
+    $('xmodes').addEventListener('click', function (e) { var w = e.target.closest('[data-wx]'); if (w) { app.wx = w.dataset.wx; saveOpt(); renderX(load(REC_KEY, {})); return; } var b = e.target.closest('.xbtn'); if (!b) return; if (b.dataset.x === 'daily') { var dy = daily(); start(dy.pos, dy.seed, null, dy); } else if (b.dataset.x === 'rtd') rtdGo(); else if (b.dataset.x === 'badges') openBadges(); else if (b.dataset.x === 'book') openBook('al'); else if (b.dataset.x === 'real') realPick(); else if (b.dataset.x === 'pilot') start('APP', null, null, { pilot: true, level: app.level }); else if (b.dataset.x === 'pilotdep') start('DEL', null, null, { pilotDep: true, level: app.level, k0: 'DEL' }); else if (b.dataset.x === 'pilotdep2') start('GND', null, null, { pilotDep: true, level: app.level, k0: 'GND', from: 'gnd' }); else if (b.dataset.x === 'pilotdep3') start('TWR', null, null, { pilotDep: true, level: app.level, k0: 'TWR', from: 'twr' }); else start(b.dataset.pos, null, null, { endless: true, level: app.level }); });
     $('scns').addEventListener('click', function (e) { var f = e.target.closest('[data-sapt]'); if (f) { app.scnApt = f.dataset.sapt; renderScns(); return; } var b = e.target.closest('.scard'); if (b) scnBrief(b.dataset.scn); });
     $('tabs').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { app.tab = b.dataset.tab; app.tabSet = true; saveOpt(); showLobby(); } });
     $('lvls').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { app.level = +b.dataset.lv; saveOpt(); showLobby(); } });
@@ -1079,7 +1138,7 @@
     app.paused = true; openModal(h);
     var b = $('hovOk'); if (b) b.onclick = function () { closeModal(); if (!app.packHold) app.paused = false; };
   }
-  function openModal(html) { $('modalBox').innerHTML = html; $('modal').hidden = false; }
+  function openModal(html) { $('modalBox').onclick = null; $('modalBox').innerHTML = html; $('modal').hidden = false; }      /* 앞 창의 전용 누름 처리(실제 교통 · 배지 · 도감)를 지움 */
   function closeModal() { $('modal').hidden = true; }
   function openLearn(id) {
     var s = ATC.LEARN_BY[id] || ATC.LEARN[0];
@@ -1102,9 +1161,12 @@
         if (sim.level.id === 3 && sc.total >= 95 && sc.S === 0 && !sc.fatal) r.ins = 1;
         rec[key] = r; save(REC_KEY, rec);
         var r1 = rating(rec, app.pos.id); if (r1 > r0) xr = ATC.T('<div class="rup r{0}">{1} — <b>{2}</b> 등급을 땄습니다</div>', r1, app.pos.nm, RATE_NM()[r1]);
+        if (xo && xo.rtd) { var tq = load(RTD_KEY, {}); if (tq.ds !== xo.rtd.ds) { tq.ds = xo.rtd.ds; tq.best = 0; tq.n = 0; } tq.n++; tq.best = Math.max(tq.best, sc.total); tq.days = (tq.days || []).filter(function (x) { return x !== xo.rtd.day && x > xo.rtd.day - 60; }).concat([xo.rtd.day]); save(RTD_KEY, tq); }      /* 오늘의 실제 교통 기록(자료 날짜마다 하나) */
         if (xo && xo.daily) { var dr = load(DAILY_KEY, {}); if (dr.ds !== xo.ds) { dr.ds = xo.ds; dr.best = 0; dr.n = 0; } dr.n++; dr.best = Math.max(dr.best, sc.total); dr.days = (dr.days || []).filter(function (x) { return x !== xo.day && x > xo.day - 60; }).concat([xo.day]); save(DAILY_KEY, dr); }
       }
+      if (ATC.Career) { var rtq = load(RTD_KEY, {}); app.crRes = ATC.Career.endShift({ sim: sim, pos: app.pos.id, apt: ATC.aptId, sc: sc, pilot: !!sim.pilot, real: !!(xo && xo.real), rtdStreak: xo && xo.rtd ? streak(rtq, xo.rtd.day) : 0, ins: !scn && !sim.pilot && !sim.endless && rating(load(REC_KEY, {}), app.pos.id) === 2, scn3: !!(scn && sr && sr.st[0] && sr.st[1] && sr.st[2]), land: sim.pilot && sim.pilot.land ? { vs: sim.pilot.land.vs, crash: sim.pilot.crash } : null, mic: sim.mic }); }      /* 경력: 통계 · 배지(career.js) */
     }
+    comboNote(0, '', true, true);
     app.aq = []; if (window.speechSynthesis) speechSynthesis.cancel(); ATC.Radio.stop(); hideInst();
     var neg = sim.incs.filter(function (i) { return i.pts < 0; }), pos = sim.incs.filter(function (i) { return i.pts > 0; }), by = {};
     neg.forEach(function (i) { (by[i.code] = by[i.code] || { def: i, list: [] }).list.push(i); });
@@ -1114,8 +1176,9 @@
     var msg = pl && !early ? ATC.T('조종사 체험 끝 — 복창 {0} / {1}회 정확 · 평균 복창 {2}초{3}.', pl.nRbOk, pl.nRb, prt, app.pxr || '') : sim.endless ? (sc.fatal ? ATC.T('중대 사고로 무한 근무가 끝났습니다 — 처리 {0}대.', sc.handled) : ATC.T('무한 근무 종료 — {0}대 처리 (최고 {1}대){2}.', sc.handled, eb2.best, xr)) : early ? ATC.T('근무를 중도에 종료했습니다(잔여 항공기 {0}대). 기록에는 반영하지 않습니다.', (sim.acs.length + sim.sched.length)) : sc.fatal ? ATC.T('중대 사고로 근무가 중단됐습니다.') : sc.grade === 'S' ? ATC.T('완벽에 가까운 근무였습니다.') : sc.grade === 'A' ? ATC.T('안정적인 근무였습니다.') : sc.grade === 'B' ? ATC.T('큰 문제 없이 마쳤습니다. 아래 항목을 보완해 보세요.') : ATC.T('기준에 미달했습니다. 감점 항목의 학습 노트를 확인하세요.');
     if (scn) { openModal(ATC.T('<div class="mhead"><span class="pen">SCENARIO {1} · {0}</span><h2>{17} <small>시나리오 평가</small></h2></div><div class="mbody result"><div class="rtop"><div class="grade g{2}">{3}</div><div class="rsum"><div class="rscore">{4}<small> / 100</small></div><p>{5}</p><div class="rk"><span class="k s">안전 {6}</span><span class="k e">효율 {7}</span><span class="k p">절차·교신 {8}</span><span class="k b">가점 +{9}</span></div><p class="rmeta">처리 {10}대 · 근무 시간 {11}분 · 최고 기록 {12}점{13}</p></div></div>{18}{14}{15}{19}</div><div class="mfoot"><button class="btn" data-m="learn" data-les="{16}">학습 노트</button><span class="sp"></span><button class="btn" data-m="scnlist">목록</button><button class="btn pri" data-m="scnagain">재도전</button></div>', app.pos.en, scn.no, sc.grade, sc.grade, sc.total, msg, sc.S, sc.E, sc.P, sc.bonus, sc.handled, Math.round(sim.t / 60), Math.max(sr.best, early ? 0 : sc.total), (app.coach ? ATC.T(' · 코치 사용') : ''), (rows ? ATC.T('<h4>감점 항목</h4>{0}', rows) : ATC.T('<p class="clean">감점 없이 마쳤습니다.</p>')), (pos.length ? ATC.T('<h4>잘한 점</h4><ul class="good">{0}</ul>', pos.map(function (x) { return '<li>' + esc(x.text) + ' (+' + x.pts + ')</li>'; }).join('')) : ''), app.pos.les, scn.title,
       ATC.T('<div class="sres"><h4>별 {0} / 3</h4><ul>{1}</ul></div>', st[0] + st[1] + st[2], [[ATC.T('안전'), ATC.T('안전 감점 없음')], [ATC.T('목표'), scn.goal.t], [ATC.T('효율'), ATC.T('{0}점 이상', scn.eff)]].map(function (g, i) { return '<li class="' + (st[i] ? 'on' : '') + '"><i>★</i><b>' + g[0] + '</b> ' + g[1] + '</li>'; }).join('')),
-      ATC.T('<h4>디브리핑 — 핵심 포인트</h4><ul class="stips">{0}</ul>', scn.tips.map(function (t) { return '<li>' + t + '</li>'; }).join('')) + resultExtra(sim))); return; }
+      ATC.T('<h4>디브리핑 — 핵심 포인트</h4><ul class="stips">{0}</ul>', scn.tips.map(function (t) { return '<li>' + t + '</li>'; }).join('')) + resultExtra(sim))); crShow(); return; }
     openModal(ATC.T('<div class="mhead"><span class="pen">{0} · {1}</span><h2>근무 평가</h2></div><div class="mbody result">{17}<div class="rtop"><div class="grade g{2}">{3}</div><div class="rsum"><div class="rscore">{4}<small> / 100</small></div><p>{5}</p><div class="rk"><span class="k s">안전 {6}</span><span class="k e">효율 {7}</span><span class="k p">절차·교신 {8}</span><span class="k b">가점 +{9}</span></div><p class="rmeta">처리 {10}대 · 근무 시간 {11}분 · 최고 기록 {12}점{13}</p></div></div>{14}{15}</div><div class="mfoot"><button class="btn" data-m="learn" data-les="{16}">학습 노트</button><span class="sp"></span><button class="btn" data-m="lobby">로비로</button><button class="btn" data-m="same">같은 조건으로 재도전</button><button class="btn pri" data-m="again">새 근무</button></div>', app.pos.en, sim.level.ko, sc.grade, sc.grade, sc.total, msg, sc.S, sc.E, sc.P, sc.bonus, sc.handled, Math.round(sim.t / 60), r.best, (app.coach ? ATC.T(' · 코치 사용') : ''), (rows ? ATC.T('<h4>감점 항목</h4>{0}', rows) : ATC.T('<p class="clean">감점 없이 마쳤습니다.</p>')), (pos.length ? ATC.T('<h4>잘한 점</h4><ul class="good">{0}</ul>', pos.map(function (x) { return '<li>' + esc(x.text) + ' (+' + x.pts + ')</li>'; }).join('')) + resultExtra(sim) : resultExtra(sim)), app.pos.les, (sim.endless ? '' : xr) + (xo && xo.daily ? ATC.T('<div class="rup daily">오늘의 과제 {0} — 오늘 최고 {1}점 · 연속 {2}일</div>', String(xo.ds).replace(/(\d{4})(\d\d)(\d\d)/, '$1.$2.$3'), (load(DAILY_KEY, {}).best || sc.total), streak(load(DAILY_KEY, {}), xo.day)) : '')));
+    crShow();
     if (pl && pl.land) { var rt0 = document.querySelector('.mbody.result .rtop'), L = pl.land; if (rt0) rt0.insertAdjacentHTML('afterend', '<div class="pland"><h4>' + ATC.T('착륙 평가 — {0}', esc(L.word || '')) + '</h4><ul>' +
       [[ATC.T('접지 순간 강하율'), -L.vs + ' ft/min', -L.vs <= 420 ? 'g' : -L.vs <= 600 ? 'm' : 'b'], [ATC.T('중심선'), Math.abs(L.cl) + ' ft ' + (L.cl > 0 ? ATC.T('오른쪽') : L.cl < 0 ? ATC.T('왼쪽') : ''), Math.abs(L.cl) <= 15 ? 'g' : Math.abs(L.cl) <= 35 ? 'm' : 'b'], [ATC.T('접지 거리(시단부터)'), L.dist + ' ft', L.dist >= 500 && L.dist <= 2500 ? 'g' : L.dist <= 3500 ? 'm' : 'b'], [ATC.T('접지 속도'), L.ias + ' kt (Vref ' + L.vref + ')', L.ias >= L.vref - 5 && L.ias <= L.vref + 20 ? 'g' : 'b'], [ATC.T('기수 각 · 경사'), L.pitch + '° · ' + Math.abs(L.bank) + '°', L.pitch >= 0 && L.pitch <= 9.5 && Math.abs(L.bank) <= 7 ? 'g' : 'b'], [ATC.T('접지 시 기수 정렬각'), Math.abs(L.crab) + '°', Math.abs(L.crab) <= 8 ? 'g' : 'm']].map(function (r) { return '<li class="' + r[2] + '"><b>' + r[0] + '</b><span>' + r[1] + '</span></li>'; }).join('') + '</ul><p>' + ATC.T('이 게임의 착륙 평가 목표: 접지 순간 강하율 100 ~ 400ft/min · 중심선 15ft 안 · 시단에서 1,000 ~ 2,500ft · Vref ~ Vref+10kt · 기수 2 ~ 6°. 등급 숫자는 게임 기준이며 실제 운항 · 정비 기준이 아닙니다.') + '</p></div>'); }      /* 직접 착륙 평가 */
     if (pl && !pl.dep && pl.gaLog && pl.gaLog.length) { var rt3 = document.querySelector('.mbody.result .rtop'), GS = { pilot: ATC.T('조종사 판단'), twr: ATC.T('관제탑 지시'), fo: ATC.T('관제탑 지시 — 부기장이 TO/GA'), sys: ATC.T('접근 계속 불가'), dh: ATC.T('결심 고도에서 판단'), dhfo: ATC.T('결심 고도 — 판단 없어 부기장이 TO/GA'), dhbad: ATC.T('결심 고도 — 보이지 않는데 착륙 선택') }; if (rt3) rt3.insertAdjacentHTML('afterend', '<div class="pland"><h4>' + ATC.T('복행 · 재접근') + ' — ' + ATC.T('{0}회', pl.gaLog.length) + '</h4><ul>' +
