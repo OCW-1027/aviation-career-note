@@ -263,6 +263,27 @@
       if (app.sim && app.view && app.pos && app.pos.view !== 'del' && (app.viewFit || !(app.view.scale > 0))) fitView();
     }
   }
+  /* 전체화면 단추(76차): 로비 · 근무 화면 — 현장편(nav.js nv-fs)과 같은 글. 지원하지 않는 브라우저(아이폰 Safari)에서는 숨김.
+     Esc · 뒤로 제스처로 풀려도 fullscreenchange로 글을 되돌리고, 지도 · 3D 조종석 · 지상 단추 줄을 새 크기에 맞춤 */
+  var DE = document.documentElement;
+  function fsOk() { return !!((DE.requestFullscreen || DE.webkitRequestFullscreen) && (document.fullscreenEnabled || document.webkitFullscreenEnabled)); }
+  function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement; }
+  function fsLabel() {
+    var on = !!fsEl(), t = on ? ATC.T('전체화면 끝내기') : ATC.T('전체화면'), ok = fsOk();
+    ['optFs', 'bFs'].forEach(function (id) { var b = $(id); if (!b) return; b.hidden = !ok; b.innerHTML = (on ? '\u2921' : '\u2922') + '<span> ' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t); b.setAttribute('aria-pressed', on ? 'true' : 'false'); b.classList.toggle('on', on); });
+  }
+  function fsToggle() {
+    try { if (fsEl()) (document.exitFullscreen || document.webkitExitFullscreen).call(document); else { var r = (DE.requestFullscreen || DE.webkitRequestFullscreen).call(DE); if (r && r.catch) r.catch(function () { }); } } catch (e) { }
+  }
+  function fsChange() {
+    fsLabel(); app.topW = -1;
+    [0, 150, 500].forEach(function (ms) { setTimeout(function () { try { window.dispatchEvent(new Event('resize')); } catch (e) { } }, ms); });      /* 브라우저마다 크기가 바뀌는 때가 달라 몇 번 나눠 다시 맞춤 */
+  }
+  function fsInit() {
+    ['optFs', 'bFs'].forEach(function (id) { var b = $(id); if (b) b.addEventListener('click', function () { fsToggle(); this.blur(); }); });      /* 누른 뒤 단추에서 눈길(포커스)을 떼야 Space(일시 정지)가 단추를 다시 누르지 않음 */
+    ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (ev) { document.addEventListener(ev, fsChange); });
+    fsLabel();
+  }
   function fitView() { var cv = $('cv'), W = cv.clientWidth, H = cv.clientHeight; app.viewFit = true; if (!W || !H) return; if (app.pos.view === 'radar') R.fitRadar(app.view, W, H, app.sim.mode); else if (app.pos.view === 'ground') R.fitGround(app.view, W, H); }
 
   /* ================= 주 반복 ================= */
@@ -964,6 +985,7 @@
     $('flows').addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) { app.flow = b.dataset.fl; saveOpt(); showLobby(); } });
     $('optVoice').addEventListener('click', function () { app.voice = !app.voice; saveOpt(); showLobby(); });
     $('optLearn').addEventListener('click', function () { openLearn('flow'); });
+    fsInit();
     /* 로비에서 처음 누르는 순간 음성을 미리 읽어 둠 → 근무 첫 교신부터 무선 음성 */
     ['mousedown', 'keydown', 'touchend'].forEach(function (ev) { document.addEventListener(ev, function pre() { document.removeEventListener(ev, pre); if (app.voice) { ATC.Radio.init(); if (packOn()) ATC.Radio.loadAll(); } }); });
     $('optSound').addEventListener('click', soundTest);

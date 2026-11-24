@@ -66,6 +66,14 @@ a.tog{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .tb{border:1px solid var(--line);background:transparent;border-radius:6px;padding:4px 10px;font-size:12px}
 .tb.on{border-color:var(--ok);color:var(--ok)}
 .tb.quit{border-color:#5a2c2c;color:#ff9d9d}
+/* 전체화면 단추(76차): 지원하지 않는 브라우저에서는 숨김 · 근무 화면에서는 「근무 종료」 바로 앞(1,365px 이하는 ⤢ 기호만 · 이름은 title) */
+#optFs[hidden],#bFs[hidden]{display:none}
+#optFs{position:absolute;top:14px;right:16px;z-index:2;padding:6px 12px;font-size:13px;background:rgba(10,16,24,.78)}      /* 로비: 첫 화면 오른쪽 위(휴대폰에서도 내리지 않고 보임) */
+.tb.fs{font-size:12px}
+#bFs:not([hidden]){margin-left:auto}#bFs:not([hidden])+#bQuit{margin-left:0}
+@media (max-width:1365px){#bFs span{display:none}#top #bFs{font-size:15px;line-height:1;padding-left:9px;padding-right:9px}}      /* 태블릿 가로 조종사 체험에서도 위 막대가 넘치지 않게 */
+@media (max-width:900px) and (orientation:portrait){#top:has(#bFs:not([hidden])) .tb{padding-left:5px;padding-right:5px}#top:has(#bFs:not([hidden])) #bFs{padding-left:6px;padding-right:6px}}      /* 휴대폰 세로: 단추 여백을 조금 줄여 「근무 종료」가 다음 줄로 밀리지 않게(한국어 360 ~ 412px) */
+@media (max-width:380px) and (orientation:portrait){#top:has(#bFs:not([hidden])) .tb{padding-left:4px;padding-right:4px}#top:has(#bFs:not([hidden])) #bFs{padding-left:5px;padding-right:5px}}
 #main{display:grid;grid-template-columns:minmax(0,1fr) 292px;min-height:0}
 #scope{position:relative;min-width:0;min-height:0;background:#05090e;overflow:hidden}
 #cv{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
