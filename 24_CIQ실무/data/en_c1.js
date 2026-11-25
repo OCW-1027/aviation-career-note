@@ -76,7 +76,7 @@ sections:[
 ["United Kingdom: ETA","GBP 20 (since 8 April 2026; GBP 16 before that). Two years, or until the passport expires","Nationals who need no visa"],
 ["Australia: ETA","AUD 20 application service fee. One year","A type of visa (subclass 601). Applied for through the official app"],
 ["New Zealand: NZeTA","NZD 17 to 23 (depending on app or website) plus a visitor levy of NZD 100. Two years","Required even for transit"],
-["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","Some countries and territories, including Japan and the United States, are exempt until 31 December 2026"],
+["Korea: K-ETA","KRW 10,000. Three years, or until the passport expires","Some countries and territories, including Japan and the United States, are exempt until 31 December 2027"],
 ["Europe (Schengen): ETIAS","EUR 20 (free under 18 and over 70). Three years","Not yet accepting applications (as of November 2026). Check the start date and transitional arrangements in the EU’s latest official announcements"],
 ["Japan: JESTA","Not yet set","Targeted for fiscal 2028 (0-4)"]]},
 {t:"note",x:"* Fees, eligibility and validity change."}]},
@@ -87,7 +87,7 @@ sections:[
 {t:"note",x:"* At airports using EES, first-time registration takes time, which affects connection times on arrival."}]},
 {h:"Korea: K-ETA",blocks:[{t:"rows",items:[
 {name:"Since when, and for whom",x:"Introduced in September 2021 for nationals of countries and territories that can enter without a visa. Check eligibility on the official website."},
-{name:"The temporary exemption",x:"Some countries and territories, including Japan, the United States, Canada, the United Kingdom, Singapore, Taiwan and Hong Kong, are exempt until 31 December 2026."},
+{name:"The temporary exemption",x:"Some countries and territories, including Japan, the United States, Canada, the United Kingdom, Singapore, Taiwan and Hong Kong, are exempt until 31 December 2027."},
 {name:"Exempt travellers may still apply",x:"They may apply voluntarily. Holding a K-ETA removes the need to submit an arrival card. The fee then applies."},
 {name:"Check at the end of the year",x:"The exemption has so far been extended a year at a time. Check the authority’s announcement at year-end for 2027 onwards."}]}]},
 {h:"What happens at the counter",blocks:[{t:"check",items:[
@@ -101,7 +101,7 @@ voice:{h:"A Reported Case",x:"In July 2024 the Korea Consumer Agency warned that
 terms:[["Electronic System for Travel Authorization (ESTA)","電子渡航認証システム（米国）","전자여행허가제(미국)"],["European Travel Information and Authorisation System (ETIAS)","欧州渡航情報認証制度","유럽 여행 정보 인증 제도"],["Entry/Exit System (EES)","出入国システム（欧州）","출입국 시스템(유럽)"],["Korea Electronic Travel Authorization (K-ETA)","韓国電子渡航許可","전자여행허가(한국)"]],
 quiz:[{q:"What has the ESTA fee been since 16 October 2026?",opts:["USD 40.62","USD 40","USD 21","Free"],a:0,exp:"Since 16 October 2026 it has been USD 40.62. It was USD 40 from 30 September 2025, and USD 21 before that."},
 {q:"What is the difference between Europe’s EES and ETIAS?",opts:["EES records entries and exits at the border; ETIAS is an authorisation before travel","They are the same","EES has a fee; ETIAS is free","EES is a type of visa"],a:0,exp:"EES needs no application and is free; ETIAS needs an application and a fee."},
-{q:"For Korea’s K-ETA, what applies to Japanese passport holders in 2026?",opts:["They are exempt until 31 December 2026","They must apply","They need a visa","They cannot enter"],a:0,exp:"Some countries and territories, including Japan, are temporarily exempt."}],
+{q:"For Korea’s K-ETA, what applies to Japanese passport holders in 2026?",opts:["They are exempt until 31 December 2027","They must apply","They need a visa","They cannot enter"],a:0,exp:"Some countries and territories, including Japan, are temporarily exempt."}],
 next:"1-4 Refusal of Entry and Removal in Practice"});
 set("1-4",{title:"Refusal of Entry and Removal in Practice",hl:"Refusal of Entry",subtitle:"A passenger refused on arrival is, in principle, taken back by the airline that brought them",
 lead:["However carefully you check, some passengers will still be refused entry. Even with complete documents, a passenger can be refused for answers given at immigration or for past records.","What does the airline do then? This lesson looks at both the station at the destination and the station that sent the passenger."],

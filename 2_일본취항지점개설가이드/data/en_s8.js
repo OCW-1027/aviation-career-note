@@ -117,7 +117,7 @@ sections:[
 ["Who","Those needing a visa (some countries and regions)","Visa-exempt foreigners","Visa-exempt foreigners"],
 ["Started","March 2023","Targeted for FY2028 ★","September 2021"],
 ["Flights involving the station","To Japan (checked at origin)","To Japan (checked at origin)","Japan to Korea"]]},
-{t:"note",x:"* Korea has temporarily exempted travellers from some countries, including Japan, from K-ETA until 31 December 2026 (check whether it is extended) ★."}]},
+{t:"note",x:"* Korea has temporarily exempted travellers from some countries, including Japan, from K-ETA until 31 December 2027 (extended by a year on 23 November 2026; check whether it is extended again) ★."}]},
 {h:"Getting the station ready",blocks:[{t:"check",items:[
 {name:"Keep informed",x:"A named person checks the notices of the Ministry of Foreign Affairs, the Immigration Services Agency and IATA regularly."},
 {name:"Share with head office and airports",x:"Summarise changes briefly and have them reflected in departure airports’ procedures."},
