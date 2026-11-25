@@ -871,7 +871,7 @@
     if (p.prompt) rx = '<h6 class="hmic">' + ATC.T('보낼 교신을 고르세요') + mic + '</h6>' + pEx(p.prompt.opts) + '<div class="popts">' + p.prompt.opts.map(function (o, i) { return B(o.t, function () { p.sendPrompt(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6>' + pEx(c.opts) + '<div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
-    else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (p.freqTo && !p.freqTo.sent) rx = fqTuner(p);
     else if (p.dep && p.sidAsk) rx = '<h6>' + ATC.T('SID 고도 제한을 어떻게 할까요?') + '</h6><div class="pwait">' + ATC.T('방금 복창: 「{0}」 — 이 지시가 SID의 공시 고도 제한을 그대로 두는지, 취소하는지 골라 VNAV에 반영합니다.', esc(p.sidAsk.said || '')) + '</div><div class="popts">' + B(ATC.T('제한 유지 — 공시 제한을 지키며 상승'), function () { p.sidAnswer(true); app.cmdSig = ''; }, { cls: 'popt pdo' }) + B(ATC.T('제한 취소 — 제한 없이 허가 고도까지'), function () { p.sidAnswer(false); app.cmdSig = ''; }, { cls: 'popt pdo' }) + '</div>';
     else if (p.dep && p.todo && p.todo()) { var td = p.todo(); rx = '<h6>' + ATC.T('조종석에서 할 일') + '</h6><div class="pwait">' + esc(td.why) + '</div><div class="popts">' + B(td.t, function () { p.act(td.k); app.cmdSig = ''; }, { cls: 'popt pdo' }) + '</div>'; }
     else if (Object.keys(p.asg).length) {      /* 복창 다음 단계: 받은 지시를 자동조종에 넣어야 항공기가 움직임 */
@@ -901,6 +901,18 @@
     $('cmd').innerHTML = head + '<div class="cbody pilotp"><div class="prx">' + rx + '</div><div class="pmcp">' + ins + mcp + cfgRow + flyRow + vrow + '</div></div>';
   }
   /* 한 편 비행(xc.js): FMC(경로 · 직행) · 진행 · 인천 ATIS · 강하 요청 · 빠르게 */
+  /* 주파수 직접 맞추기(82차): 대기(STBY) 주파수를 MHz · kHz 노브로 맞추고 ⇄로 바꿈 — 실제 무전기처럼. 「보기에서 고르기」로 예전 방식도 */
+  function fqTuner(p) {
+    var opts = p.freqOpts(), now = p.freqNowFq || (D.freq[app.sim.mode] || {}).fq || '118.000', f3 = function (k) { return (k / 1000).toFixed(3); };
+    if (!p.stbyK || p.stbyFor !== p.freqTo) { p.stbyK = Math.round(parseFloat(now) * 1000); p.stbyFor = p.freqTo; p.tuneMiss = null; p.fqEasy = app.level <= 1; }
+    var K = function (d) { return function () { p.stbyK = U.clamp(p.stbyK + d, 118000, 136975); p.tuneMiss = null; app.cmdSig = ''; }; };
+    var nowK = Math.round(parseFloat(now) * 1000), sw = function () { if (Math.abs(p.stbyK - nowK) < 1) { p.tuneMiss = -1; app.cmdSig = ''; return; } var hit = opts.filter(function (o) { return Math.abs(parseFloat(o.fq) * 1000 - p.stbyK) < 1; })[0]; if (hit) p.tune(hit.to); else p.tuneMiss = p.stbyK; app.cmdSig = ''; };
+    return '<h6>' + ATC.T('주파수를 바꾸세요') + ' <small>' + ATC.T('들은 주파수를 대기(STBY)에 맞추고 ⇄') + '</small></h6>' +
+      '<div class="prow ftune"><span class="fqb"><i>ACT</i>' + esc(f3(Math.round(parseFloat(now) * 1000))) + '</span><span class="fqb stb"><i>STBY</i>' + f3(p.stbyK) + '</span>' + B('⇄', sw, { cls: 'pset fsw' }) + '</div>' +
+      '<div class="prow ftune">' + B('MHz −', K(-1000), { cls: 'pstep' }) + B('MHz +', K(1000), { cls: 'pstep' }) + B('kHz −', K(-25), { cls: 'pstep' }) + B('kHz +', K(25), { cls: 'pstep' }) + '</div>' +
+      (p.tuneMiss === -1 ? '<div class="pdue">' + ATC.T('대기 주파수가 지금 주파수와 같습니다 — MHz · kHz로 바꾼 뒤 ⇄') + '</div>' : '') + (p.tuneMiss === p.stbyK ? '<div class="pdue">' + ATC.T('{0} — 응답이 없습니다. 들은 주파수를 다시 확인하세요.', f3(p.stbyK)) + '</div>' : '') +
+      (p.fqEasy ? '<div class="popts">' + opts.map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>' : B(ATC.T('보기에서 고르기(쉬움)'), function () { p.fqEasy = true; app.cmdSig = ''; }, { cls: 'plink' }));
+  }
   function xcPanel(p, sim) {
     var X = ATC.XC, ac = p.ac, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], prev = ac, cum = 0, kr = sim.seg === 'kr';
     var legs = r.slice(0, 6).map(function (n, i) { var d = U.dist(prev, X.F[n]); cum += d; prev = X.F[n]; return '<li class="' + (i ? '' : 'on') + '"><b>' + n + '</b><span>' + (X.AWY[n] || '') + '</span><span>' + Math.round(cum) + ' NM</span><span>' + (ac.gs > 50 ? Math.round(cum / ac.gs * 60) + ATC.T('분') : '') + '</span></li>'; }).join('');
@@ -912,6 +924,8 @@
         '<div class="prow xmode">' + MD.map(function (m) { return B(m[1], function () { fc.set('mode', m[0], ac); app.cmdSig = ''; }, { cls: 'pstep' + (fc.mode === m[0] ? ' on' : '') }); }).join('') + '</div>' +
         (fc.mode === 'VS' ? '<div class="prow"><b>V/S</b>' + [-500, -100].map(function (d) { return B('−' + Math.abs(d), function () { fc.set('vs', d); app.cmdSig = ''; }, { cls: 'pstep' }); }).join('') + '<span class="pval">' + (fc.vsSel > 0 ? '+' : '') + fc.vsSel + '</span>' + [100, 500].map(function (d) { return B('+' + d, function () { fc.set('vs', d); app.cmdSig = ''; }, { cls: 'pstep' }); }).join('') + '</div>' : '') +
         '<div class="prow xthr">' + B(fc.at ? ATC.T('A/T 켜짐') : ATC.T('A/T 꺼짐'), function () { fc.set('at'); app.cmdSig = ''; }, { cls: 'pset' + (fc.at ? ' on' : '') }) + '<b>' + ATC.T('추력') + '</b>' + B('−', function () { fc.set('thr', -0.05); app.cmdSig = ''; }, { cls: 'pstep' }) + '<span class="pval">N1 ' + Math.round(fc.at ? fc.n1 : 25 + fc.thr * 72) + '%</span>' + B('+', function () { fc.set('thr', 0.05); app.cmdSig = ''; }, { cls: 'pstep' }) + '</div>' +
+        '<div class="prow xman">' + (p.fly && p.fly.on ? B(ATC.T('A/P 연결'), function () { ATC.Manual.release(p); app.cmdSig = ''; }, { cls: 'pset on' }) + B(p.fly.at ? ATC.T('A/T 켜짐') : ATC.T('A/T 꺼짐'), function () { ATC.Manual.toggleAT(p); app.cmdSig = ''; }, { cls: 'pset' + (p.fly.at ? ' on' : '') }) + '<small class="pmic">' + ATC.T('손 조종 중 — 방향키 · 화면 조종간 · 게임패드, 허가 고도 ±300ft를 지키세요(Z = 자동조종)') + '</small>'
+          : B(ATC.T('A/P 해제 — 직접 조종'), function () { ATC.Manual.engage(p, 'btn'); app.cmdSig = ''; }, { cls: 'pset' }) + '<small class="pmic">' + ATC.T('Z 키 = 자동조종 연결/해제') + '</small>') + '</div>' +
         '<div class="prow xsb"><b>' + ATC.T('스피드브레이크') + '</b>' + [[0, 'DOWN'], [0.5, '½'], [1, 'FLT']].map(function (s) { return B(s[1], function () { fc.set('sb', s[0]); app.cmdSig = ''; }, { cls: 'pstep' + (fc.sb === s[0] ? ' on' : '') }); }).join('') + '</div>' +
         '<small class="pmic">' + ATC.T('VNAV = 계획대로 고도 창까지 · LVL CHG = 상승 추력/아이들로 속도 유지 · V/S = 정한 상승 · 강하율 · ALT HOLD = 지금 고도. ALT HOLD에서는 고도 창만 바꿔도 움직이지 않습니다. A/T를 끄면 추력을 직접 맞추세요(속도가 모자라면 AIRSPEED LOW).') + '</small>';
     }
@@ -947,7 +961,7 @@
     else if (c && c.opts) rx = '<h6>' + ATC.T('관제 지시') + '</h6><div class="patc">' + esc(c.ph.atc) + (app.gloss ? '<small>' + esc(ATC.gloss(c.ph.atc)) + '</small>' : '') + '</div><h6 class="hmic">' + ATC.T('복창을 고르세요') + mic + '</h6>' + pEx(c.opts) + '<div class="popts">' + c.opts.map(function (o, i) { return B(o.t, function () { p.readback(i); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
     else if (c) rx = '<div class="pwait">' + ATC.T('관제사가 말하는 중 — 잘 들으세요') + '</div>';
     else if (x.want && !x.set) rx = '<h6>' + ATC.T('허가받은 스쿼크를 트랜스폰더에 넣으세요') + '</h6><div class="pwait">' + ATC.T('복창한 허가의 「squawk」 네 자리(숫자 0 ~ 7)') + '</div>';
-    else if (p.freqTo && !p.freqTo.sent) rx = '<h6>' + ATC.T('주파수를 바꾸세요') + '</h6><div class="popts">' + p.freqOpts().map(function (f) { return B(f.n + ' ' + f.fq, function () { p.tune(f.to); app.cmdSig = ''; }, { cls: 'popt' }); }).join('') + '</div>';
+    else if (p.freqTo && !p.freqTo.sent) rx = fqTuner(p);
     else if (p.todo && p.todo()) { var td = p.todo(); rx = '<h6>' + ATC.T('조종석에서 할 일') + '</h6><div class="pwait">' + esc(td.why) + '</div><div class="popts">' + B(td.t, function () { p.act(td.k); app.cmdSig = ''; }, { cls: 'popt pdo' }) + '</div>'; }
     else if (p.done) rx = '<div class="pwait">' + (p.stage === 4 ? (p.endHow === 'ho' ? ATC.T('다음 구역으로 넘어갔습니다 — 조종사 체험 출발편 끝.') : ATC.T('순항 고도에 올랐습니다 — 조종사 체험 출발편 끝.')) : p.stage === 3 ? ATC.T('출발편 3단계 끝.') : p.stage === 2 ? ATC.T('출발편 2단계 끝 — 이륙 · 출발 관제는 다음 판에서 이어집니다.') : ATC.T('출발편 1단계 끝 — 푸시백 · 지상 이동 · 이륙은 다음 판에서 이어집니다.')) + '</div>';
     else if (p.phase === 'relay') rx = '<div class="pwait">' + ATC.T('다음 주파수로 넘어가는 중…') + '</div>';

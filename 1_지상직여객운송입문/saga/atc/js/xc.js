@@ -108,7 +108,7 @@
       x: p.x, y: p.y, alt: alt, hdg: hdg, ias: ias, tAlt: tAlt, normIas: 290, tIas: ias, fpRoute: XC.ROUTE.slice() });
     ac.setRoute(route); ac.pilotMe = true; this.ac = ac; this.cs = ac.cs;
     var me = this, fc = this.fcu = new XC.Fcu(src.fcu); if (!src.fcu) { fc.n1 = alt < tAlt - 100 ? 92 : 84; fc.vs = alt < tAlt - 100 ? 1500 : 0; } ac.fcu = fc;      /* 자동조종 모드 · 추력(81차) */
-    fc.onWarn = function (m) { var k = m === 'OVERSPEED' ? 'p_ovsp' : 'p_lowspd'; if ((me.warnT || {})[k] > sim.t - 90) return; (me.warnT = me.warnT || {})[k] = sim.t; sim.inc(k, [ac], m === 'OVERSPEED' ? ATC.T('{0}: 과속 경고(OVERSPEED) — {1}kt. 추력을 줄이거나 스피드브레이크를 쓰세요.', ac.cs, Math.round(ac.ias)) : ATC.T('{0}: 속도 부족(AIRSPEED LOW) — {1}kt. 추력을 올리거나 기수를 낮추세요(A/T 켜기 · LVL CHG).', ac.cs, Math.round(ac.ias))); me.bump(); };
+    fc.onWarn = function (m) { var k = m === 'OVERSPEED' ? 'p_ovsp' : 'p_lowspd'; if ((me.warnT || {})[k] > sim.t - 90) return; (me.warnT = me.warnT || {})[k] = sim.t; sim.inc(k, [ac], m === 'OVERSPEED' ? ATC.T('{0}: {1}kt — 추력을 줄이거나 스피드브레이크를 쓰세요.', ac.cs, Math.round(ac.ias)) : ATC.T('{0}: {1}kt — 추력을 올리거나 기수를 낮추세요(A/T 켜기 · LVL CHG).', ac.cs, Math.round(ac.ias))); me.bump(); };
     if (this.cur.alt === null || this.cur.alt === undefined) this.cur.alt = tAlt;
     this.mcp.alt = this.cur.alt || tAlt; this.mcp.spd = Math.round(ias / 10) * 10; this.mcp.hdg = Math.round(hdg / 5) * 5 || 360;
     var q = kr ? XC.FQ.DAE : XC.FQ.TOK; this.freqNow = 'XC'; this.freqNowN = q.n; this.freqNowFq = q.fq;
@@ -167,7 +167,18 @@
   XcPilot.prototype.take = function (cmds) { var self = this; cmds.forEach(function (c) { if (c.k === 'ho') self.hoTo = c.to; }); take0.call(this, cmds); if (this.freqTo && this.hoTo) { this.freqTo.n = this.hoTo.n; this.freqTo.fq = this.hoTo.fq; this.freqTo.next = this.hoNext || ''; } };
   XcPilot.prototype.tick = function () {
     var keep = ATC.AI; ATC.AI = null; try { DP.prototype.tick.call(this); } finally { ATC.AI = keep; }      /* 순항은 아래 대본 관제사가 맡음 */
-    this.xcAi();
+    this.xcAi(); this.xcMan();
+  };
+  /* 순항 손 조종(82차): A/P를 풀면 manual.js가 기체를 움직이고, 다시 연결하면 지금 상태(ALT HOLD 또는 V/S)로 이어받음. 허가 고도를 ±300ft 넘게 지나치면 고도 이탈 */
+  XcPilot.prototype.xcMan = function () {
+    var ac = this.ac, fc = this.fcu, sim = this.sim, F = this.fly; if (!ac || !fc || ac.gone) return;
+    if (ac.man) { fc.wasMan = true; fc.vs = ac.vs || 0; if (F) fc.n1 = 25 + (F.thr || 0) * 72; }
+    else if (fc.wasMan) { fc.wasMan = false; if (Math.abs(ac.vs || 0) < 300) { fc.mode = 'ALT'; fc.hold = Math.round(ac.alt / 100) * 100; } else { fc.mode = 'VS'; fc.vsSel = Math.round(ac.vs / 100) * 100; } fc.at = true; fc.ver++;
+      sim.sys(ATC.T('{0}: 자동조종 연결 — 지금 상태({1})로 이어받았습니다. 원하는 고도 모드(VNAV · LVL CHG · V/S)를 누르세요.', ac.cs, fc.mode === 'ALT' ? 'ALT HOLD' : 'V/S ' + fc.vsSel), 'info'); this.bump(); }
+    var ta = ac.tAlt; if (this.bustRef !== ta) { this.bustRef = ta; this.bustDir = Math.abs(ta - ac.alt) < 150 ? 0 : ta > ac.alt ? 1 : -1; }
+    if (this.bustDir && (this.bustDir > 0 ? ac.alt >= ta - 100 : ac.alt <= ta + 100)) this.bustDir = 0;      /* 허가 고도에 닿음 → 이제부터 ±300ft */
+    var bust = this.bustDir > 0 ? ac.alt > ta + 300 : this.bustDir < 0 ? ac.alt < ta - 300 : Math.abs(ac.alt - ta) > 300;
+    if (bust && !(this.bustT > sim.t - 60)) { this.bustT = sim.t; sim.inc('p_alt_bust', [ac], ATC.T('{0}: 허가 고도 {1}에서 {2}ft 벗어났습니다(±300ft 안을 지키세요).', ac.cs, fmt.alt(ta), Math.round(Math.abs(ac.alt - ta)))); this.bump(); }
   };
   XcPilot.prototype.curText = function () { return ATC.Pilot.prototype.curText.call(this); };
   /* 화면이 바뀌어야 할 때(남은 거리 · 강하 시작점) */
@@ -230,6 +241,7 @@
   ATC.INC.p_atis_ok = { cat: 'P', pts: 1, t: ATC.T('ATIS 받음'), les: 'app' };
   ATC.INC.p_desc_ok = { cat: 'P', pts: 1, t: ATC.T('제때 강하 요청'), les: 'acc' };
   ATC.INC.p_dct_ok = { cat: 'P', pts: 1, t: ATC.T('FMC 직행 입력'), les: 'acc' };
+  ATC.INC.p_alt_bust = { cat: 'P', pts: -4, t: ATC.T('고도 이탈(허가 고도 ±300ft 밖)'), les: 'acc' };
   ATC.INC.p_ovsp = { cat: 'P', pts: -2, t: ATC.T('과속(OVERSPEED)'), les: 'acc' };
   ATC.INC.p_lowspd = { cat: 'P', pts: -3, t: ATC.T('속도 부족(AIRSPEED LOW)'), les: 'acc' };
 

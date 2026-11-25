@@ -643,3 +643,10 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .pilotp .xthr b,.pilotp .xsb b{margin-left:6px}
 .pilotp .pdue.xwarn{background:#c8243a;color:#fff;animation:xwarn 1s steps(2) infinite}
 @keyframes xwarn{50%{opacity:.55}}
+/* 주파수 직접 맞추기(82차) */
+.pilotp .ftune{gap:6px;flex-wrap:wrap}
+.pilotp .fqb{display:inline-flex;align-items:baseline;gap:6px;font:600 18px/1.2 ui-monospace,Menlo,Consolas,monospace;background:#05080c;border:1px solid #2b3a48;border-radius:6px;padding:5px 10px;color:#6fe39a;min-width:118px}
+.pilotp .fqb.stb{color:#ffc860}
+.pilotp .fqb i{font:600 10px/1 sans-serif;color:#7d93a6;font-style:normal}
+.pilotp .fsw{min-width:52px;font-size:18px}
+.pilotp .plink{background:none;border:0;color:#7fb6e0;text-decoration:underline;padding:4px 0;cursor:pointer;font-size:12px}
