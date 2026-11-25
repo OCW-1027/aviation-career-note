@@ -16625,11 +16625,17 @@ MG.ui = (function () {
   function stMsg(r) { if (r && r.why === 'unsup') return unsupTxt(); return r.ok ? '저장했습니다(' + (MG.T.s(ST.mode === 'idb' ? 'IndexedDB ' : '')) + MG.T.s(r.slot) + ' 칸, 검증본 ' + (MG.T.s(r.seq || '')) + ', ' + MG.T.s((r.bytes / 1048576).toFixed(2)) + ' MB)' : '저장 실패: ' + MG.T.s(r.why) + (MG.T.s(r.why === 'readonly' || r.why === 'owner' || r.why === 'lost' || r.why === 'stale' ? ' — 다른 탭이 이 캠페인을 소유(읽기 전용). 다시 불러온 뒤 저장하세요' : ' — 내보내기를 권장합니다')); }
   // 같은 탭 새로고침: 탭 잠금(navigator.locks)을 이 탭만 가졌을 때만 sessionStorage의 이전 tok를 다시 씀(복제된 탭은 잠금을 못 얻어 새 tok) — 권한 판정은 그대로 IDB 소유권 검사
   function myTok(id) { try { return ST.lockHeld ? sessionStorage.getItem('acn-saga-mg:tok:' + MG.T.s(id)) || undefined : undefined; } catch (e) { return undefined; } }
+  var LOCK_WAIT = 2500;
+  function reclaim() {   // 읽기 전용(다른 세션이 소유) → 저장 권한 다시 요청: 같은 탭 새로고침 = 잠금을 얻은 뒤 이전 tok · 그 밖 = 옛 세션 heartbeat가 30초 지나 만료되면 소유(메모리 상태의 baseSeq 유지: 그 사이 다른 저장이 있으면 stale 거부)
+    if (!(ST.sess && ST.ro && !ST.lost && !ST.other && !ST.sess.unsup)) return;
+    MG.persist.claim(ST.kv, ST.sess.id, myTok(ST.sess.id)).then(function (x) { if (x.ro || !ST.ro) return; keepTok(x.id, x.tok); x.baseSeq = ST.sess.baseSeq; ST.sess = x; ST.ro = false; note('저장 권한을 얻었습니다'); renderTop(); });
+  }
   function keepTok(id, tok) { try { sessionStorage.setItem('acn-saga-mg:tok:' + MG.T.s(id), tok); } catch (e) { } }
   function sess() {
     if (ST.mode !== 'idb') return Promise.resolve(null);
     var id = C().id; if (ST.sess && ST.sess.id === id) return Promise.resolve(ST.sess);
-    return MG.persist.claim(ST.kv, id, myTok(id)).then(function (x) { if (!x.ro) keepTok(id, x.tok); if (ST.loadedSeq != null) x.baseSeq = ST.loadedSeq; ST.loadedSeq = null; ST.sess = x; ST.ro = x.ro; ST.lost = false; if (x.unsup) note(unsupTxt()); else if (x.ro) note('다른 탭이 이 캠페인을 열고 있어 읽기 전용입니다(저장 안 됨) — 그 탭을 닫으면 30초 뒤 저장 가능'); renderTop(); return x; });
+    // 사이트 46차 알림: 탭 잠금 판정(같은 탭 새로고침 = 이전 tok 다시 씀)을 기다린 뒤 소유권 요청 — 새로고침 직후 「재개」가 다른 탭으로 판정되던 것
+    return (ST.lockP || Promise.resolve()).then(function () { return MG.persist.claim(ST.kv, id, myTok(id)); }).then(function (x) { if (!x.ro) keepTok(id, x.tok); if (ST.loadedSeq != null) x.baseSeq = ST.loadedSeq; ST.loadedSeq = null; ST.sess = x; ST.ro = x.ro; ST.lost = false; if (x.unsup) note(unsupTxt()); else if (x.ro) note('다른 탭이 이 캠페인을 열고 있어 읽기 전용입니다(저장 안 됨) — 그 탭을 닫으면 30초 뒤 저장 가능'); renderTop(); return x; });
   }
   // 저장 상태(106차 권고): 저장 중 / 마지막 검증 저장(seq·게임 시각·걸린 시간) / 실패 — 위 표시줄. 진행 중 자동 저장은 건너뛰고, 진행 중 수동 저장은 끝난 뒤 한 번만 이어서(중복 0)
   function stEnd(r, g, t0) { ST.inflight = null; ST.busy = false; ST.lastMs = Date.now() - t0; ST.last = r; if (r.ok) { ST.okAt = { seq: r.seq || null, g: g, ms: ST.lastMs, mb: r.bytes ? +(r.bytes / 1048576).toFixed(2) : null }; ST.fail = null; } else ST.fail = { why: r.why, g: g }; renderTop(); return r; }
@@ -16666,12 +16672,16 @@ MG.ui = (function () {
       if (b.mode === 'idb') {
         ST.hb = setInterval(function () {
           if (ST.sess && !ST.ro) MG.persist.heartbeat(ST.sess).then(function (r) { if (!r.ok && r.why === 'lost') { ST.ro = true; ST.lost = true; note('다른 탭이 소유권을 가져갔습니다 — 이 탭은 읽기 전용(다시 불러오세요)'); renderTop(); } });
-          else if (ST.sess && ST.ro && !ST.lost && !ST.other && !ST.sess.unsup) MG.persist.claim(ST.kv, ST.sess.id, myTok(ST.sess.id)).then(function (x) {   // 같은 탭 새로고침 직후 등 — 옛 세션 heartbeat가 30초 지나 만료되면 소유(메모리 상태의 baseSeq 유지: 그 사이 다른 저장이 있으면 stale 거부)
-            if (x.ro) return; keepTok(x.id, x.tok); x.baseSeq = ST.sess.baseSeq; ST.sess = x; ST.ro = false; note('저장 권한을 얻었습니다(이전 세션 만료)'); renderTop(); });
+          else reclaim();
         }, MG.persist.HB);
         window.addEventListener('pagehide', function () { if (ST.sess && !ST.ro) MG.persist.release(ST.sess); });   // 탭을 닫거나 새로고침 — 소유권 반납(최선 노력, 실패해도 30초 만료)
-        try { if (navigator.locks) navigator.locks.request('acn-saga-mg:vela-main', { mode: 'exclusive', ifAvailable: true }, function (lk) { if (!lk) { ST.other = true; note('다른 탭이 열려 있습니다(안내) — 실제로 저장할 수 있는지는 저장소가 판단합니다'); return; } ST.lockHeld = true; return new Promise(function () { }); });
+        // 탭 잠금(사이트 46차 알림): 바로 못 얻으면 끝내지 않고 줄 서서 기다림 — 같은 탭 새로고침은 이전 문서가 잠금을 늦게 놓아도 곧 얻음(LOCK_WAIT 안이면 안내 없이) · 다른 탭이 닫히면 그때 얻어 저장 권한 다시 요청
+        //   소유권 요청(sess)은 판정(얻음 또는 LOCK_WAIT 지남)을 기다림 · 권한 판정은 그대로 IDB 소유권 검사
+        var lockRes = null; ST.lockP = new Promise(function (res) { lockRes = res; });
+        try { if (navigator.locks) { var lkT = setTimeout(function () { if (!ST.lockHeld) { ST.other = true; note('다른 탭이 열려 있습니다(안내) — 실제로 저장할 수 있는지는 저장소가 판단합니다'); } lockRes(); }, LOCK_WAIT);
+            navigator.locks.request('acn-saga-mg:vela-main', { mode: 'exclusive' }, function () { clearTimeout(lkT); ST.lockHeld = true; ST.other = false; lockRes(); reclaim(); return new Promise(function () { }); }); }
           else if (typeof BroadcastChannel !== 'undefined') { var bc = new BroadcastChannel('acn-saga-mg'); bc.onmessage = function (e) { if (e.data === 'hello') bc.postMessage('here'); else if (e.data === 'here') { ST.other = true; note('다른 탭이 열려 있습니다(안내)'); } }; bc.postMessage('hello'); } } catch (e) { }
+        if (!navigator.locks) lockRes();
         MG.persist.estimate().then(function (es) { if (es) ST.est = es; });
         try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().then(function (v) { ST.persisted = v; }); } catch (e) { }
       }
