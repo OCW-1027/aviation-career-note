@@ -472,7 +472,7 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 .pilotp .pwait{color:#9fb4c6;padding:10px 4px;font-size:13px}
 .pilotp .pmic{display:block;color:#7f98ad;margin-top:5px}
 .pilotp .pins{display:flex;gap:10px;flex-wrap:wrap;font:12px var(--mono);color:#9fb4c6;margin-bottom:4px}.pilotp .pins b{color:var(--ok)}
-.pilotp .prow{display:flex;align-items:center;gap:4px;margin:4px 0;flex-wrap:wrap}
+.pilotp .prow,#pcard .prow{display:flex;align-items:center;gap:4px;margin:4px 0;flex-wrap:wrap}
 .pilotp .prow>b{width:34px;font:12px var(--mono);color:#cfe0ee}
 .pilotp .prow.due>b{color:#ffd27a}
 .pilotp .pval{min-width:58px;text-align:center;font:14px var(--mono);color:#e8f2fa;background:rgba(5,9,14,.6);border:1px solid var(--line);border-radius:4px;padding:3px 6px}
@@ -644,10 +644,10 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .pilotp .pdue.xwarn{background:#c8243a;color:#fff;animation:xwarn 1s steps(2) infinite}
 @keyframes xwarn{50%{opacity:.55}}
 /* 주파수 직접 맞추기(82차) */
-.pilotp .ftune{gap:6px;flex-wrap:wrap}
-.pilotp .fqb{display:inline-flex;align-items:baseline;gap:6px;font:600 18px/1.2 ui-monospace,Menlo,Consolas,monospace;background:#05080c;border:1px solid #2b3a48;border-radius:6px;padding:5px 10px;color:#6fe39a;min-width:118px}
-.pilotp .fqb.stb{color:#ffc860}
-.pilotp .fqb i{font:600 10px/1 sans-serif;color:#7d93a6;font-style:normal}
+.pilotp .ftune,#pcard .ftune{gap:6px;flex-wrap:wrap}
+.pilotp .fqb,#pcard .fqb{display:inline-flex;align-items:baseline;gap:6px;font:600 18px/1.2 ui-monospace,Menlo,Consolas,monospace;background:#05080c;border:1px solid #2b3a48;border-radius:6px;padding:5px 10px;color:#6fe39a;min-width:118px}
+.pilotp .fqb.stb,#pcard .fqb.stb{color:#ffc860}
+.pilotp .fqb i,#pcard .fqb i{font:600 10px/1 sans-serif;color:#7d93a6;font-style:normal}
 .pilotp .fsw{min-width:52px;font-size:18px}
 .pilotp .plink{background:none;border:0;color:#7fb6e0;text-decoration:underline;padding:4px 0;cursor:pointer;font-size:12px}
 /* 교신 카드 · 패널 탭(83차) */
