@@ -174,12 +174,15 @@
     var ac = this.ac, fc = this.fcu, sim = this.sim, F = this.fly; if (!ac || !fc || ac.gone) return;
     if (ac.man) { fc.wasMan = true; fc.vs = ac.vs || 0; if (F) fc.n1 = 25 + (F.thr || 0) * 72; }
     else if (fc.wasMan) { fc.wasMan = false; if (Math.abs(ac.vs || 0) < 300) { fc.mode = 'ALT'; fc.hold = Math.round(ac.alt / 100) * 100; } else { fc.mode = 'VS'; fc.vsSel = Math.round(ac.vs / 100) * 100; } fc.at = true; fc.ver++;
-      sim.sys(ATC.T('{0}: 자동조종 연결 — 지금 상태({1})로 이어받았습니다. 원하는 고도 모드(VNAV · LVL CHG · V/S)를 누르세요.', ac.cs, fc.mode === 'ALT' ? 'ALT HOLD' : 'V/S ' + fc.vsSel), 'info'); this.bump(); }
+      this.note(ATC.T('{0}: 자동조종 연결 — 지금 상태({1})로 이어받았습니다. 원하는 고도 모드(VNAV · LVL CHG · V/S)를 누르세요.', ac.cs, fc.mode === 'ALT' ? 'ALT HOLD' : 'V/S ' + fc.vsSel)); this.bump(); }
     var ta = ac.tAlt; if (this.bustRef !== ta) { this.bustRef = ta; this.bustDir = Math.abs(ta - ac.alt) < 150 ? 0 : ta > ac.alt ? 1 : -1; }
     if (this.bustDir && (this.bustDir > 0 ? ac.alt >= ta - 100 : ac.alt <= ta + 100)) this.bustDir = 0;      /* 허가 고도에 닿음 → 이제부터 ±300ft */
     var bust = this.bustDir > 0 ? ac.alt > ta + 300 : this.bustDir < 0 ? ac.alt < ta - 300 : Math.abs(ac.alt - ta) > 300;
     if (bust && !(this.bustT > sim.t - 60)) { this.bustT = sim.t; sim.inc('p_alt_bust', [ac], ATC.T('{0}: 허가 고도 {1}에서 {2}ft 벗어났습니다(±300ft 안을 지키세요).', ac.cs, fmt.alt(ta), Math.round(Math.abs(ac.alt - ta)))); this.bump(); }
   };
+  /* 출발편 지상용 키 · 조종간 글을 물려받지 않게(84차): Z = 자동조종 연결/해제, 조종간 = 기수 */
+  XcPilot.prototype.manKey = null; XcPilot.prototype.taxiHint = null;
+  XcPilot.prototype.stickLbl = function () { return ATC.T('↓ 당기면 기수 올림'); };
   XcPilot.prototype.curText = function () { return ATC.Pilot.prototype.curText.call(this); };
   /* 화면이 바뀌어야 할 때(남은 거리 · 강하 시작점) */
   XcPilot.prototype.xcSig = function () { var ac = this.ac, fc = this.fcu; return (fc ? fc.ver + fc.mode : '') + (ac ? Math.round(XC.togo(ac, ac.nav && ac.nav.route ? ac.nav.route[ac.nav.route.length - 1] : 'GUKDO') / 4) + (ac.nav && ac.nav.i) : ''); };

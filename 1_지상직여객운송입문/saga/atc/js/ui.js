@@ -928,7 +928,7 @@
   /* 한 편 비행(xc.js): FMC(경로 · 직행) · 진행 · 인천 ATIS · 강하 요청 · 빠르게 */
   /* 주파수 직접 맞추기(82차): 대기(STBY) 주파수를 MHz · kHz 노브로 맞추고 ⇄로 바꿈 — 실제 무전기처럼. 「보기에서 고르기」로 예전 방식도 */
   function fqTuner(p) {
-    var opts = p.freqOpts(), now = p.freqNowFq || (D.freq[app.sim.mode] || {}).fq || '118.000', f3 = function (k) { return (k / 1000).toFixed(3); };
+    var opts = p.freqOpts(), now = p.freqNowFq || (!p.dep && ATC.fqOf('APP', p.ac) || D.freq[app.sim.mode] || {}).fq || '118.000', f3 = function (k) { return (k / 1000).toFixed(3); };
     if (!p.stbyK || p.stbyFor !== p.freqTo) { p.stbyK = Math.round(parseFloat(now) * 1000); p.stbyFor = p.freqTo; p.tuneMiss = null; p.fqEasy = app.level <= 1; }
     var K = function (d) { return function () { p.stbyK = U.clamp(p.stbyK + d, 118000, 136975); p.tuneMiss = null; app.cmdSig = ''; }; };
     var nowK = Math.round(parseFloat(now) * 1000), sw = function () { if (Math.abs(p.stbyK - nowK) < 1) { p.tuneMiss = -1; app.cmdSig = ''; return; } var hit = opts.filter(function (o) { return Math.abs(parseFloat(o.fq) * 1000 - p.stbyK) < 1; })[0]; if (hit) p.tune(hit.to); else p.tuneMiss = p.stbyK; app.cmdSig = ''; };

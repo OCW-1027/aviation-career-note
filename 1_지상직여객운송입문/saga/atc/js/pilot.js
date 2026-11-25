@@ -203,6 +203,7 @@
   Pilot.prototype.freqOpts = function () { var to = this.freqTo.to, o = [to].concat(['TWR', 'GND', 'APP', 'DEP', 'ACC'].filter(function (x) { return x !== to && D.freq[x]; }).slice(0, 2)); var ac0 = this.ac; return o.sort().map(function (x) { var q = ATC.fqOf(x, ac0); return { to: x, n: q.n, fq: q.fq }; }); };
   Pilot.prototype.tune = function (to) {
     var sim = this.sim, ac = this.ac, f = this.freqTo; if (!f || f.sent) return;
+    if (to === f.to) { var nq = ATC.fqOf(f.to, ac); if (nq) { this.freqNowFq = nq.fq; this.freqNowN = nq.n; } }      /* 지금 주파수(무전기 ACT, 84차 — 복행 뒤 Approach로 돌아갈 때 ACT가 Approach로 보이던 문제) */
     if (to !== f.to) { sim.inc('p_freq_bad', [ac], ATC.T('{0}: 주파수를 잘못 맞췄습니다({1}) — 지시는 {2} {3}', ac.cs, ATC.fqOf(to, ac).fq, ATC.fqOf(f.to, ac).n, ATC.fqOf(f.to, ac).fq)); this.bump(); return; }
     if (f.to === 'APP' && this.gaPh) { f.sent = true; this.onSay(D.freq.APP.n + ', ' + ATC.csSay(ac) + ', going around, ' + (Math.abs(ac.alt - ac.tAlt) < 100 ? 'level ' : 'passing ' + fmt.alt(Math.max(500, Math.round(ac.alt / 100) * 100)) + ', climbing ') + fmt.alt(ac.tAlt) + '.', { ga: 'app' }); this.bump(); return; }      /* 복행 뒤 Approach 첫 호출 */
     f.sent = true; sim.applyAll(ac, [{ k: 'ho', to: f.to }]);
