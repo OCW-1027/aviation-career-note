@@ -55,6 +55,7 @@
     return this.applyAir(ac, c);
   };
   XcSim.prototype.checkIn = function () { };
+  XcSim.prototype.posLabel = function () { var n = (this.pilot && this.pilot.freqNowN) || 'Tokyo Control'; return n.replace(/ Control$/, '').toUpperCase(); };      /* 교신 기록의 관제 이름(TOKYO · FUKUOKA · DAEGU) */
   /* 인천 ATIS(게임 — 인천 운용 방향 · 바람 · QNH는 이 판의 값) */
   XcSim.prototype.atisText = function () {
     var D = ATC.D, kr = this.seg === 'kr', fl = kr && D.flows ? D.flows[this.krFlow || 'N'] : null, arr = this.krFlow === 'S' ? '15L' : '33R';
@@ -200,6 +201,7 @@
       occ.push(r); ctx.textAlign = al || 'left'; ctx.fillText(t, x, y); ctx.textAlign = 'left'; return true; }
     function putAny(t, s, force) { return put(t, s[0] + 7, s[1] - 6, 'left') || put(t, s[0] - 7, s[1] - 6, 'right') || put(t, s[0] + 7, s[1] + 13, 'left') || (force && put(t, s[0] + 7, s[1] - 6, 'left', true)); }
     var sa = ac ? S(ac) : null, laL = sa && sa[0] + 220 > W; if (sa) occ.push([sa[0] - 12, sa[1] - 12, sa[0] + 12, sa[1] + 12], laL ? [sa[0] - 220, sa[1] + 12, sa[0] + 4, sa[1] + 30] : [sa[0] + 12, sa[1] - 24, sa[0] + 210, sa[1] - 8]);      /* 내 항공기 · 글자 자리 먼저 */
+    ctx.font = '10px monospace'; if (ac && sim.seg === 'kr' || (ac && XC.togo(ac, 'GUKDO') < 260)) { var dd = XC.togo(ac, 'GUKDO') - XC.todNM(ac); if (dd > 0) { var pt = along(ac, dd); if (pt) { var st = S(pt); ctx.strokeStyle = '#3fe08a'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(st[0], st[1], 6, 0, 7); ctx.stroke(); occ.push([st[0] - 8, st[1] - 8, st[0] + 8, st[1] + 8]); ctx.fillStyle = '#3fe08a'; put('T/D', st[0] + 9, st[1] + 4, 'left', true); } } }      /* T/D 자리도 먼저(지점 이름이 피함) */
     /* 비행정보구역 경계 */
     ctx.strokeStyle = '#6b5a2a'; ctx.setLineDash([10, 6]); ctx.lineWidth = 1.4; ctx.beginPath(); XC.FIR.forEach(function (q, i) { var s = SL(q[0], q[1]); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); }); ctx.stroke(); ctx.setLineDash([]);
     var fb = SL(36.7, 131.6);
@@ -216,7 +218,6 @@
     ctx.fillStyle = '#8a7640'; put('INCHEON FIR', fb[0] - 8, fb[1], 'right'); put('FUKUOKA FIR', fb[0] + 8, fb[1], 'left');
     if (GX) { ctx.fillStyle = '#4a6578'; ctx.font = '11px sans-serif'; GX.labs.forEach(function (l) { put(l[0], SL(l[1], l[2])[0], SL(l[1], l[2])[1], 'center'); }); ctx.font = '10px monospace'; }      /* 도시 이름은 마지막(겹치면 생략) */
     /* 강하 시작점(TOD) */
-    if (ac && sim.seg === 'kr' || (ac && XC.togo(ac, 'GUKDO') < 260)) { var dd = XC.togo(ac, 'GUKDO') - XC.todNM(ac); if (dd > 0) { var pt = along(ac, dd); if (pt) { var st = S(pt); ctx.strokeStyle = '#3fe08a'; ctx.lineWidth = 1.6; ctx.beginPath(); ctx.arc(st[0], st[1], 6, 0, 7); ctx.stroke(); ctx.fillStyle = '#3fe08a'; ctx.fillText('T/D', st[0] + 9, st[1] + 4); } } }
     /* 내 항공기 */
     if (ac) {
       var h = ac.hdg * D2R; ctx.save(); ctx.translate(sa[0], sa[1]); ctx.rotate(h); ctx.strokeStyle = '#ffd479'; ctx.fillStyle = '#ffd479'; ctx.lineWidth = 2;

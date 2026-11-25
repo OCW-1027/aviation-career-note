@@ -637,3 +637,4 @@ ul.xlegs li{display:grid;grid-template-columns:62px 48px 1fr 46px;gap:6px;paddin
 ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-weight:700}ul.xlegs li span:nth-child(2){color:#6f8fa6}ul.xlegs li span:nth-child(3),ul.xlegs li span:nth-child(4){text-align:right}
 .xprog span{white-space:nowrap}
 .xbtn.xcb i{color:#ff9cf5}
+.pilotp .pfix{flex:1 1 220px;color:#9fb6c6;font-size:12px;line-height:1.4}

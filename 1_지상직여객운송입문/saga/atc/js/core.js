@@ -242,7 +242,7 @@
     var f = rng.pick(free), cs = al.code + f.num; this.usedCs[cs] = 1; rng();
     return { cs: cs, csWord: al.cs, num: String(f.num), al: al, type: f.type, wake: D.types[f.type].wake, perf: D.types[f.type] };
   };
-  Sim.prototype.addLog = function (e) { e.t = this.t; e.utc = this.utc(); this.log.push(e); if (this.log.length > 400) this.log.shift(); this.emit('log', e); return e; };
+  Sim.prototype.addLog = function (e) { if (e.who === 'atc' && !e.pos && this.posLabel) e.pos = this.posLabel(); e.t = this.t; e.utc = this.utc(); this.log.push(e); if (this.log.length > 400) this.log.shift(); this.emit('log', e); return e; };
   /* 무선 채널: 한 번에 한 송신만 */
   Sim.prototype.enq = function (m, front) {
     var w = m.text.split(/\s+/).length; m.dur = m.dur || U.clamp(1.0 + w * (m.who === 'atc' ? 0.26 : 0.24), 1.5, 8);

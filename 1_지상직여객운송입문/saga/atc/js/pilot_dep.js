@@ -68,7 +68,7 @@
   };
   DepPilot.prototype.setFp = function (k, v) {
     if (this.phase !== 'fpl') return; var fp = this.fp;
-    if (this.xc && (k === 'gate' || k === 'dest')) return;      /* 한 편 비행: 출구 · 목적지는 BEKLA · 인천으로 고정 */
+    if (this.xc && (k === 'gate' || k === 'dest' || k === 'rfl')) return;      /* 한 편 비행: 출구 · 목적지 · 순항 고도는 BEKLA · 인천 · FL360으로 고정 */
     if (this.xc && k === 'auto') { this.fp = { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: 36000 }; this.sidR = null; this.mkAc(); this.bump(); return; }
     if (k === 'gate') { fp.gate = v; var d0 = D.gateDest[v][0]; fp.dest = d0[0]; fp.destName = d0[1]; }
     else if (k === 'dest') { var d = D.gateDest[fp.gate].filter(function (x) { return x[0] === v; })[0]; if (d) { fp.dest = d[0]; fp.destName = d[1]; } }

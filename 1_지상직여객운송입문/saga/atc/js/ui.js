@@ -706,7 +706,7 @@
   /* ================= 교신 기록 · 코치 ================= */
   function addLog(e) {
     var el = document.createElement('div'), sim = app.sim; el.className = 'lg ' + e.who + (e.kind ? ' ' + e.kind : '') + (e.wrong ? ' rbw' : '');
-    var who = e.who === 'atc' ? (app.sim && app.sim.apron ? 'APN' : app.pos.id) : e.who === 'pilot' ? e.cs : e.who === 'phone' ? '☎ ' + e.cs : ATC.T('알림');
+    var who = e.who === 'atc' ? (e.pos || (app.sim && app.sim.apron ? 'APN' : app.pos.id)) : e.who === 'pilot' ? e.cs : e.who === 'phone' ? '☎ ' + e.cs : ATC.T('알림');
     var ko = e.who !== 'sys' && e.who !== 'phone' && !e.blocked && ATC.gloss ? ATC.gloss(e.text) : '';
     el.innerHTML = '<time>' + U.hhmm(e.utc) + '</time><b>' + who + '</b><span>' + esc(e.text) + (ko && ko !== e.text ? '<em class="ko">' + esc(ko) + '</em>' : '') + '</span>' + (e.wrong ? ATC.T('<button class="fixb" data-fix="{0}">정정</button>', e.ac) : '');
     if (e.ac) el.dataset.ac = e.ac;
@@ -923,11 +923,11 @@
     var head = '<div class="chead pil"><b style="border-color:' + ac.al.col + '">✈ ' + ac.cs + '</b><span>' + ac.csWord + ' ' + ac.num + ' · B787-9 · ' + ATC.T('조종사 체험 출발') + ' · ' + esc(fq.n + ' ' + fq.fq) + ' · STAND ' + esc(ac.stand) + '</span></div>';
     var rx = '', c = p.clr;
     if (p.phase === 'fpl') {
-      var gs = p.gates(), dl = D.gateDest[fp.gate], fls = p.flOpts(), ck = p.check();
+      var gs = p.gates(), dl = p.xc ? [[fp.dest, fp.destName]] : D.gateDest[fp.gate], fls = p.flOpts(), ck = p.check();
       rx = '<h6>' + ATC.T('비행계획(자동으로 만든 계획 — 그대로 확인하거나 바꾸세요)') + '</h6>' +
         '<div class="pfpl"><div class="prow"><b>SID</b>' + gs.map(function (g) { return B(esc((D.sidName ? D.sidName(g, p.sidK) : g)) + ' <small>RWY ' + p.rwyFor(g) + '</small>', function () { p.setFp('gate', g); app.cmdSig = ''; }, { cls: 'pstep' + (fp.gate === g ? ' on' : '') }); }).join('') + '</div>' +
         '<div class="prow"><b>' + ATC.T('목적지') + '</b>' + dl.map(function (d) { return B(d[0] + ' <small>' + esc(d[1]) + '</small>', function () { p.setFp('dest', d[0]); app.cmdSig = ''; }, { cls: 'pstep' + (fp.dest === d[0] ? ' on' : '') }); }).join('') + '</div>' +
-        '<div class="prow"><b>' + ATC.T('순항 고도') + '</b>' + B('−', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.max(0, i - 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '<span class="pval">FL' + (fp.rfl / 100) + '</span>' + B('+', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.min(fls.length - 1, i + 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '</div>' +
+        '<div class="prow"><b>' + ATC.T('순항 고도') + '</b>' + (p.xc ? '<span class="pval">FL' + (fp.rfl / 100) + '</span><small class="pfix">' + ATC.T('한 편 비행 — SID · 목적지 · 순항 고도는 실제 편처럼 정해져 있습니다(서쪽 방향 짝수 고도)') + '</small></div>' : B('−', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.max(0, i - 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '<span class="pval">FL' + (fp.rfl / 100) + '</span>' + B('+', function () { var i = fls.indexOf(fp.rfl); p.setFp('rfl', fls[Math.min(fls.length - 1, i + 1)]); app.cmdSig = ''; }, { cls: 'pstep' }) + '</div>') +
         '<div class="proute">' + esc(p.route()) + '</div>' +
         '<ul class="pchk">' + ck.map(function (q) { return '<li class="' + (q.ok ? 'ok' : 'ng') + '">' + (q.ok ? '✔ ' : '✖ ') + esc(q.t) + '</li>'; }).join('') + '</ul>' +
         '<div class="prow">' + B(ATC.T('자동 계획으로 되돌리기'), function () { p.setFp('auto'); app.cmdSig = ''; }, { cls: 'pset' }) + B(ATC.T('비행계획 확정 → 허가 요청'), function () { p.confirm(); app.cmdSig = ''; }, { cls: 'pset pdo' }) + '</div></div>' +
