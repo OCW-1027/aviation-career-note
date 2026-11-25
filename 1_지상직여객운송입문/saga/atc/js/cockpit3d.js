@@ -20,7 +20,7 @@
   }
   C.open = function (sim, host) {
     S.sim = sim; S.host = host; C.on = true; host.hidden = false;
-    load(function (e) { if (e) { host.innerHTML = '<div class="ckerr">' + ATC.T('3D를 불러오지 못했습니다') + '</div>'; return; } if (!S.r || S.apt !== ATC.aptId) build(); else resize(); S.host.appendChild(S.r.domElement); buildImg(); S.host.appendChild(S.ci.wrap); bldAttr(); if (S.attr) S.host.appendChild(S.attr); if (ATC.CkSnd) ATC.CkSnd.start(); });
+    load(function (e) { if (e) { host.innerHTML = '<div class="ckerr">' + ATC.T('3D를 불러오지 못했습니다') + '</div>'; return; } if (!S.r || S.apt !== ATC.aptId + (sim.mode === 'XC' ? ':XC' : '')) build(); else resize(); S.host.appendChild(S.r.domElement); buildImg(); S.host.appendChild(S.ci.wrap); bldAttr(); if (S.attr) S.host.appendChild(S.attr); if (ATC.CkSnd) ATC.CkSnd.start(); });
   };
   C.close = function () { C.on = false; if (S.host) S.host.hidden = true; if (ATC.CkSnd) ATC.CkSnd.stop(); };
 
@@ -303,7 +303,7 @@
     el.src = (ATC.base || '') + f + (m ? '?v=' + m[1] : ''); el.onload = function () { if (S.scene && S.apt === ATC.aptId && ATC.BLDG && ATC.BLDG[ATC.aptId]) { buildCity(S.scene); bldAttr(); } };
     document.head.appendChild(el); return null;
   }
-  function bldAttr() { var B = ATC.BLDG && ATC.BLDG[ATC.aptId]; if (!B || !S.attr || S.attr.getAttribute('data-bld')) return; S.attr.setAttribute('data-bld', '1'); S.attr.textContent += ' · ' + ATC.T('건물: 국토교통성 PLATEAU(CC BY 4.0)를 가공'); }
+  function bldAttr() { var B = ATC.BLDG && ATC.BLDG[ATC.aptId]; if (!B || S.xc || !S.attr || S.attr.getAttribute('data-bld')) return; S.attr.setAttribute('data-bld', '1'); S.attr.textContent += ' · ' + ATC.T('건물: 국토교통성 PLATEAU(CC BY 4.0)를 가공'); }
   function bldList(B, skip, cap) {
     if (!B.arr) { var bin = atob(B.d), u8 = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i); B.arr = new Int16Array(u8.buffer); }
     var a = B.arr, out = [], cells = {};
@@ -372,9 +372,73 @@
     fg.setAttribute('color', new T.Float32BufferAttribute(cols, 3));
     S.fuji = at(new T.Mesh(fg, new T.MeshBasicMaterial({ vertexColors: true, fog: false, transparent: true, opacity: 0.92 })), -52.62, -5.06, 0);
   }
+  /* ---------- 한 편 비행 순항(81차): 항로 Sentinel-2 바닥 사진 · 구름 층 · 바다 ---------- */
+  /* 바닥 사진 = tools/xc_sat(코페르니쿠스 Sentinel-2 L2A, 0.0016° ≈ 160m). 전체 축소판(늘 깖) + 1024 타일(가까운 것만 불러옴). 물(바다 · 호수)은 투명 → 아래 바다면 */
+  var XCT = { la1: 38.3, lo0: 126.3, res: 0.0016, T: 1024, W: 8875, H: 2375, tiles: [[0,0,1024,1024],[0,1,1024,1024],[0,2,1024,1024],[0,4,1024,1024],[0,5,1024,1024],[0,6,1024,1024],[0,7,1024,1024],[0,8,683,1024],[1,0,1024,1024],[1,1,1024,1024],[1,2,1024,1024],[1,3,1024,1024],[1,4,1024,1024],[1,5,1024,1024],[1,6,1024,1024],[1,7,1024,1024],[1,8,683,1024],[2,0,1024,327],[2,1,1024,327],[2,2,1024,327],[2,3,1024,327],[2,4,1024,327],[2,5,1024,327],[2,6,1024,327],[2,7,1024,327],[2,8,683,327]] };
+  var XHT = { la1: 38.3, lo0: 126.3, res: 0.0008, T: 1024, tiles: [[1,1],[1,2],[1,3],[2,1],[2,2],[2,3],[2,4],[2,5],[2,6],[2,8],[2,10],[2,11],[2,12],[2,13],[2,14],[2,15],[2,16],[3,3],[3,4],[3,7],[3,8],[3,9],[3,10],[3,11],[3,12],[3,13],[3,14],[3,15],[3,16]] };      /* 항로 띠(±0.3°) 고해상도 0.0008° ≈ 85m */
+  function xcMesh(la0, la1, lo0, lo1, nx, ny, tex, y, over) {
+    var X = ATC.XC, pos = [], uv = [], idx = [], i, j;
+    for (j = 0; j <= ny; j++) for (i = 0; i <= nx; i++) { var la = la1 - (la1 - la0) * j / ny, lo = lo0 + (lo1 - lo0) * i / nx, q = X.xy(la, lo); pos.push(q.x * NM, y, -q.y * NM); uv.push(i / nx, 1 - j / ny); }
+    for (j = 0; j < ny; j++) for (i = 0; i < nx; i++) { var a = j * (nx + 1) + i, b = a + 1, c = a + nx + 1, d = c + 1; idx.push(a, c, b, b, c, d); }
+    var g = new T.BufferGeometry(); g.setAttribute('position', new T.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new T.Float32BufferAttribute(uv, 2)); g.setIndex(idx); g.computeBoundingSphere();
+    var m = new T.MeshBasicMaterial({ map: tex, alphaTest: 0.45, side: T.DoubleSide, fog: true });
+    if (over) { var ds = { value: (lo1 - lo0) / 0.0026 }; S.xcDet = S.xcDet || detailTex(); m.onBeforeCompile = function (sh) { sh.uniforms.dmap = { value: S.xcDet }; sh.uniforms.dsc = ds; sh.fragmentShader = 'uniform sampler2D dmap; uniform float dsc;\n' + sh.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n  diffuseColor.rgb *= mix(0.84, 1.16, texture2D(dmap, vMapUv * dsc).r);'); }; }      /* 가까이서 보면 흐린 사진에 밭 · 숲 결(약 280m 무늬) — 멀면 평균 1 */
+    var o = new T.Mesh(g, m); o.position.y = (over || 0) * 30; o.renderOrder = over || 0;      /* 겹친 층은 높이를 30m씩(대수 깊이 버퍼라 polygonOffset이 듣지 않음) */ S.gsiM.push(m); return o;
+  }
+  function xcTex(name, cb) { new T.TextureLoader().load(BASE + 'assets/img/xc/' + name + '.webp', function (t) { t.colorSpace = T.SRGBColorSpace; t.anisotropy = 8; cb(t); }, undefined, function () { cb(null); }); }
+  function xcInit(sc) {
+    if (S.attr && S.attr.parentNode) S.attr.parentNode.removeChild(S.attr);
+    S.papi = []; S.rabbit = []; S.rwyM = []; S.landRings = []; S.bldMats = []; S.park = null; S.elev = 0; S.ap = new T.Group(); sc.add(S.ap);
+    S.city = lightPoints([], 0xffc98a, 2.2); sc.add(S.city);
+    var pg = new T.BufferGeometry(); pg.setAttribute('position', new T.BufferAttribute(new Float32Array(3), 3)); pg.setAttribute('color', new T.BufferAttribute(new Float32Array(3), 3)); S.papiPts = new T.Points(pg, new T.PointsMaterial({ size: 1 })); S.papiPts.visible = false;
+    S.rabbitPt = new T.Points(pg.clone(), new T.PointsMaterial({ size: 1 })); S.rabbitPt.visible = false;
+    S.satSea = [0.07, 0.17, 0.27];      /* 동해 · 태평양: 위성사진의 바다빛에 맞춤 */
+    var LA0 = XCT.la1 - XCT.H * XCT.res, LO1 = XCT.lo0 + XCT.W * XCT.res;
+    S.xcG = new T.Group(); sc.add(S.xcG); S.xcTiles = {};
+    xcTex('xc_all', function (t) { if (!t || !S.xcG) return; S.xcG.add(xcMesh(LA0, XCT.la1, XCT.lo0, LO1, 96, 26, t, 0, 0)); });
+    var at = document.createElement('a'); at.className = 'ckattr'; at.href = 'https://dataspace.copernicus.eu/'; at.target = '_blank'; at.rel = 'noopener'; at.textContent = (window.innerWidth || 1200) < 700 ? 'Copernicus Sentinel data (mod.)' : 'Contains modified Copernicus Sentinel data (2024–2026)'; S.attr = at;
+    S.xcCl = { cells: {}, list: [], tex: [0, 1, 2].map(function (k) { return puffTex(k); }), mats: null };
+  }
+  function detailTex() {      /* 잘게 섞인 밭 · 숲 · 마을 결(회색, 평균 128) */
+    var t = canvasTex(512, 512, function (c, w, h) { var R = rnd(7); c.fillStyle = '#808080'; c.fillRect(0, 0, w, h); for (var k = 0; k < 2600; k++) { var x = R() * w, y = R() * h, v = Math.floor(80 + R() * 96), a = R() * 3.14; c.save(); c.translate(x, y); c.rotate(a); c.fillStyle = 'rgba(' + v + ',' + v + ',' + v + ',.5)'; c.fillRect(-3 - R() * 9, -2 - R() * 5, 6 + R() * 18, 4 + R() * 10); c.restore(); } });
+    t.wrapS = t.wrapT = T.RepeatWrapping; return t;
+  }
+  function puffTex(seed) {      /* 위에서 내려다본 뭉게구름 한 무리(가장자리는 흐리게) */
+    return canvasTex(256, 256, function (c, w, h) { var R = rnd(91 + seed * 17), n = 26 + seed * 8; for (var k = 0; k < n; k++) { var a = R() * 6.283, d = Math.sqrt(R()) * 78, x = w / 2 + Math.cos(a) * d * (1 + seed * 0.25), y = h / 2 + Math.sin(a) * d * 0.8, rr = 18 + R() * 34, g = c.createRadialGradient(x - rr * 0.2, y - rr * 0.25, 0, x, y, rr);
+      g.addColorStop(0, 'rgba(255,255,255,.95)'); g.addColorStop(0.55, 'rgba(244,246,250,.7)'); g.addColorStop(1, 'rgba(225,230,238,0)'); c.fillStyle = g; c.fillRect(0, 0, w, h); } });
+  }
+  /* 타일 불러오기 · 버리기(1초마다): 내 항공기에서 110NM 안은 불러오고, 170NM 밖은 버림 */
+  function xcStream(ac, now) {
+    if (!S.xcG || S.xcT && now - S.xcT < 1000) return; S.xcT = now;
+    var ll = ATC.XC.ll(ac.x, ac.y), kx = Math.cos(ll[0] * D2R);
+    var L = XCT.tiles.map(function (t) { var la1 = XCT.la1 - t[0] * XCT.T * XCT.res; return { la1: la1, la0: la1 - t[3] * XCT.res, lo0: XCT.lo0 + t[1] * XCT.T * XCT.res, lo1: XCT.lo0 + t[1] * XCT.T * XCT.res + t[2] * XCT.res, key: 'c' + t[0] + '_' + t[1], img: 'xc_r' + t[0] + '_c' + t[1], near: 110, far: 170, ov: 1, ny: Math.max(4, Math.round(24 * t[3] / 1024)) }; })
+      .concat(XHT.tiles.map(function (t) { var D = XHT.res * XHT.T, la1 = XHT.la1 - t[0] * D; return { la1: la1, la0: la1 - D, lo0: XHT.lo0 + t[1] * D, lo1: XHT.lo0 + (t[1] + 1) * D, key: 'h' + t[0] + '_' + t[1], img: 'xh_r' + t[0] + '_c' + t[1], near: 45, far: 80, ov: 2, ny: 24 }; }));      /* 고해상도는 45NM 안만 */
+    L.forEach(function (t) {
+      var la1 = t.la1, la0 = t.la0, lo0 = t.lo0, lo1 = t.lo1, key = t.key;
+      var dla = ll[0] > la1 ? ll[0] - la1 : ll[0] < la0 ? la0 - ll[0] : 0, dlo = ll[1] > lo1 ? ll[1] - lo1 : ll[1] < lo0 ? lo0 - ll[1] : 0, d = Math.hypot(dla * 60, dlo * 60 * kx), have = S.xcTiles[key];
+      if (d < t.near && !have) { S.xcTiles[key] = 'load'; xcTex(t.img, function (tx) { if (!tx || S.xcTiles[key] !== 'load') { if (tx) tx.dispose(); return; } var m = xcMesh(la0, la1, lo0, lo1, 24, t.ny, tx, 0, t.ov); S.xcG.add(m); S.xcTiles[key] = m; }); }
+      else if (d > t.far && have) { if (have !== 'load') { S.xcG.remove(have); have.geometry.dispose(); have.material.map.dispose(); have.material.dispose(); var ix = S.gsiM.indexOf(have.material); if (ix >= 0) S.gsiM.splice(ix, 1); } delete S.xcTiles[key]; }
+    });
+  }
+  /* 구름: 18km 칸마다 같은 씨앗으로 만든 뭉게구름(언제 와도 같은 자리) — 순항 고도 아래 적운 · 층적운, 위에 옅은 권운. 140km 안 칸만 둠 */
+  function xcClouds(pos, now) {
+    var X = S.xcCl; if (!X || X.t && now - X.t < 500) return; X.t = now;
+    if (!X.mats) X.mats = X.tex.map(function (t) { return new T.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, opacity: 0.92, fog: true, side: T.DoubleSide }); }).concat([new T.MeshBasicMaterial({ map: X.tex[2], transparent: true, depthWrite: false, opacity: 0.32, fog: true, side: T.DoubleSide })]);
+    var C = 18000, R = (window.innerWidth || 1200) < 900 ? 95000 : 140000,      /* 휴대폰은 구름 칸을 줄임 */ ci = Math.floor(pos.x / C), cj = Math.floor(pos.z / C), n = Math.ceil(R / C), keep = {};
+    for (var i = ci - n; i <= ci + n; i++) for (var j = cj - n; j <= cj + n; j++) {
+      var cx = (i + 0.5) * C, cz = (j + 0.5) * C; if (Math.hypot(cx - pos.x, cz - pos.z) > R) continue; var key = i + '_' + j; keep[key] = 1; if (X.cells[key]) continue;
+      var rg = rnd(((i * 73856093) ^ (j * 19349663)) >>> 0), list = [], dens = 0.35 + 0.3 * Math.sin(i * 0.37) * Math.cos(j * 0.29);      /* 넓게 보면 구름이 많은 곳 · 적은 곳이 번갈아 */
+      if (rg() < dens) { var k = 1 + Math.floor(rg() * 4), base = (3000 + rg() * 4500) * FT;
+        for (var q = 0; q < k; q++) { var s = 1800 + rg() * 5200, m = new T.Mesh(S.xcPlane || (S.xcPlane = new T.PlaneGeometry(1, 1)), X.mats[Math.floor(rg() * 3)]); m.rotation.x = -Math.PI / 2; m.rotation.z = rg() * 6.283; m.scale.set(s, s * (0.6 + rg() * 0.5), 1); m.position.set(cx + (rg() - 0.5) * C, base + rg() * 900 * FT, cz + (rg() - 0.5) * C); S.clouds.add(m); list.push(m);
+          if (rg() < 0.6) { var sp = new T.Sprite(X.smat || (X.smat = new T.SpriteMaterial({ map: X.tex[0], transparent: true, depthWrite: false, opacity: 0.9, fog: true }))); sp.scale.set(s * 0.55, s * 0.3, 1); sp.position.set(m.position.x, m.position.y + 260 + rg() * 300, m.position.z); S.clouds.add(sp); list.push(sp); } } }      /* 위로 솟은 뭉게 부분(옆에서 보면 부피) */
+      if (rg() < 0.12) { var m2 = new T.Mesh(S.xcPlane || (S.xcPlane = new T.PlaneGeometry(1, 1)), X.mats[3]); m2.rotation.x = -Math.PI / 2; m2.rotation.z = rg() * 6.283; var s2 = 9000 + rg() * 9000; m2.scale.set(s2, s2 * 0.25, 1); m2.position.set(cx, (39000 + rg() * 3000) * FT, cz); S.clouds.add(m2); list.push(m2); }      /* 권운(순항 고도 위) */
+      X.cells[key] = list;
+    }
+    Object.keys(X.cells).forEach(function (key) { if (keep[key]) return; X.cells[key].forEach(function (m) { S.clouds.remove(m); }); delete X.cells[key]; });
+  }
   function build() {
-    var D = ATC.D; S.apt = ATC.aptId;
-    if (S.r) { S.r.dispose(); }
+    var D = ATC.D, XCm = !!(S.sim && S.sim.mode === 'XC'); S.apt = ATC.aptId + (XCm ? ':XC' : ''); S.xc = XCm; S.xcG = null; S.xcCl = null; S.gsiM = [];
+    if (S.r) { if (S.r.domElement.parentNode) S.r.domElement.parentNode.removeChild(S.r.domElement); S.r.dispose(); }      /* 장면을 다시 만들 때(출발 → 순항 → 도착) 옛 화면을 떼어 냄 */
     var r = S.r = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true });
     r.setPixelRatio(Math.min(window.devicePixelRatio || 1, (window.innerWidth || 1200) < 900 ? 1.25 : 1.6)); r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
     var sc = S.scene = new T.Scene(); S.route = null;
@@ -398,6 +462,7 @@
     wave.wrapS = wave.wrapT = T.RepeatWrapping; wave.repeat.set(2500, 2500);      /* 잔물결(햇빛 반짝임) */
     var sea = new T.Mesh(new T.PlaneGeometry(500000, 500000), CM ? CM.seaMat(S.fog.color) : new T.MeshPhongMaterial({ color: 0x1d3f5c, specular: 0x8aa2b8, shininess: 90, bumpMap: wave, bumpScale: 0.6 }));      /* 잔물결 · 비스듬히 볼수록 하늘빛(32차) */
     sea.rotation.x = -Math.PI / 2; sea.position.y = -1; sc.add(sea); S.sea = sea;
+    if (!XCm) {      /* 공항 장면(한 편 비행 순항은 아래 xcInit) */
     /* 육지(해안선) */
     var geo = ATC.GEO && ATC.GEO[ATC.aptId], tc1 = TCF(), landTex = tc1 && !tc1.mask ? fieldTex() : cityTex();      /* 가상 공항: 사진 바깥 먼 땅은 도시 무늬 대신 논밭 빛 */
     landTex.wrapS = landTex.wrapT = T.RepeatWrapping;
@@ -482,10 +547,11 @@
     S.papi.forEach(function (q, i) { pg.attributes.position.setXYZ(i, q.p.x, q.p.y, q.p.z); });
     S.papiPts = new T.Points(pg, new T.PointsMaterial({ size: 9, sizeAttenuation: false, map: S.glow, vertexColors: true, transparent: true, depthWrite: false, blending: T.AdditiveBlending })); ap.add(S.papiPts);
     var rg = new T.BufferGeometry(); rg.setAttribute('position', new T.BufferAttribute(new Float32Array(3), 3)); S.rabbitPt = new T.Points(rg, new T.PointsMaterial({ color: 0xffffff, size: 16, sizeAttenuation: false, map: S.glow, transparent: true, depthWrite: false, blending: T.AdditiveBlending })); ap.add(S.rabbitPt);
+    } else xcInit(sc);
     /* 구름 */
     S.clouds = new T.Group(); sc.add(S.clouds);
     var ctex = canvasTex(256, 128, function (c, w, h) { for (var k = 0; k < 40; k++) { var x = w * (0.15 + Math.random() * 0.7), y = h * (0.35 + Math.random() * 0.35), rr = 18 + Math.random() * 30, g = c.createRadialGradient(x, y, 0, x, y, rr); g.addColorStop(0, 'rgba(255,255,255,.55)'); g.addColorStop(1, 'rgba(255,255,255,0)'); c.fillStyle = g; c.fillRect(0, 0, w, h); } });
-    for (i = 0; i < 70; i++) { var sp = new T.Sprite(new T.SpriteMaterial({ map: ctex, transparent: true, depthWrite: false, opacity: 0.85, fog: true })); var ang = Math.random() * Math.PI * 2, dist = 6000 + Math.random() * 90000; sp.position.set(Math.cos(ang) * dist, (3500 + Math.random() * 5000) * FT, Math.sin(ang) * dist); var s2 = 2500 + Math.random() * 4000; sp.scale.set(s2, s2 * 0.45, 1); S.clouds.add(sp); }
+    for (i = 0; i < (XCm ? 0 : 70); i++) { var sp = new T.Sprite(new T.SpriteMaterial({ map: ctex, transparent: true, depthWrite: false, opacity: 0.85, fog: true })); var ang = Math.random() * Math.PI * 2, dist = 6000 + Math.random() * 90000; sp.position.set(Math.cos(ang) * dist, (3500 + Math.random() * 5000) * FT, Math.sin(ang) * dist); var s2 = 2500 + Math.random() * 4000; sp.scale.set(s2, s2 * 0.45, 1); S.clouds.add(sp); }
     /* 주변 항공기 */
     S.near = null; S.nearT = 0; S.others = {}; S.acGeo = CM ? null : mkAcGeo(); if (S.own) { S.scene.remove(S.own); } S.own = null;
     /* 조종석 */
@@ -653,6 +719,7 @@
       var cw = new T.Vector3(); S.cam.getWorldPosition(cw);
       /* 낮 · 밤 */
       env(st.night, pos); if (sim.pwx && sim.pwx.k === 'lowvis') lowFog(sim, st);
+      if (S.xc) { S.fog.density = 0.0000085 + st.night * 0.000006; S.sea.position.set(S.rig.position.x, -40, S.rig.position.z); xcStream(st.pos, now); xcClouds(S.rig.position, now); }      /* 순항: 시정 약 150km, 바다면 · 사진 타일 · 구름 칸은 항공기를 따라감 */
       /* PAPI 색 · 연속 섬광등 */
       var col = S.papiPts.geometry.attributes.color;
       S.papi.forEach(function (q2, i) { var dx = q2.p.distanceTo(new T.Vector3(cw.x, q2.p.y, cw.z)), ang = Math.atan2(cw.y - q2.p.y, dx) / D2R, white = ang > q2.ang; col.setXYZ(i, 1, white ? 1 : 0.12, white ? 1 : 0.1); });
@@ -669,7 +736,7 @@
       Object.keys(S.others).forEach(function (id) { if (!seen[id]) { S.scene.remove(S.others[id]); delete S.others[id]; } });
       if (S.sea.material.userData.nm) { var nmo = S.sea.material.userData.nm.offset; nmo.x = (now / 1000 * 0.004) % 1; nmo.y = (now / 1000 * 0.0027) % 1; }      /* 물결이 천천히 흐름 */
       if (S.park && (!S.parkT || now - S.parkT > 1000)) { S.parkT = now; var pa = p.ac; ATC.CkModel.parkedHide(S.park, function (it) { if (pa && isFinite(pa.x) && Math.hypot(pa.x - it.x, pa.y - it.y) < 0.045) return true; return sim.acs.some(function (a) { return !a.gone && isFinite(a.x) && Math.hypot(a.x - it.x, a.y - it.y) < 0.04 && AF(a) * FT - S.elev < 30; }); }); }      /* 내 항공기 자리(비행계획 단계 포함)의 주기장 항공기도 숨김 */
-      if (p.ac && isFinite(p.ac.x) && TCF() && (!S.nearT || now - S.nearT > 1500)) { S.nearT = now; var agl = AF(p.ac) * FT - S.elev; if (agl < 450 && (!S.near || Math.hypot(p.ac.x - S.near.x, p.ac.y - S.near.y) > 0.17)) nearGSI(p.ac.x, p.ac.y, S.elev); else if (S.near && agl >= 450) S.near.m.visible = false; }
+      if (!S.xc && p.ac && isFinite(p.ac.x) && TCF() && (!S.nearT || now - S.nearT > 1500)) { S.nearT = now; var agl = AF(p.ac) * FT - S.elev; if (agl < 450 && (!S.near || Math.hypot(p.ac.x - S.near.x, p.ac.y - S.near.y) > 0.17)) nearGSI(p.ac.x, p.ac.y, S.elev); else if (S.near && agl >= 450) S.near.m.visible = false; }
       /* 화면 */
       if (!S.dispT || now - S.dispT > 66) { S.dispT = now; drawDisp(st); }
     }
@@ -752,13 +819,16 @@
     if (gnd) { at = p.toga ? (ias > 80 ? 'HOLD' : 'THR REF') : ''; roll = 'TO/GA'; pitch = 'TO/GA'; }
     else if (p.gaPh && !ro) { at = 'THR'; roll = p.gaPh.vec ? 'HDG SEL' : p.gaPh.turned ? 'LNAV' : 'TO/GA'; pitch = Math.abs(alt - ((p.mcp || {}).alt || alt)) < 300 ? 'ALT' : 'TO/GA'; }      /* 복행: TO/GA → (선회 높이) LNAV · (복행 고도) ALT */
     else if (p.dep && p.phase === 'twr') { at = 'THR REF'; roll = ra < 50 ? 'TO/GA' : 'LNAV'; pitch = ra < 400 ? 'TO/GA' : 'VNAV SPD'; }      /* 이륙 뒤: 이륙 전에 걸어 둔 LNAV는 50ft, VNAV는 400ft에서 들어옴 — 자동조종(A/P)을 켰는지와는 따로(GPT 16차 R16-01) */
+    var FC = p.fcu && !ro ? p.fcu : null;      /* 한 편 비행: 자동조종 고도 모드 · 오토스로틀(81차) */
+    if (FC) { var lvl = FC.mode === 'ALT' || (FC.mode === 'VNAV' && Math.abs((ac.tAlt || alt) - alt) < 80); at = FC.at ? ((FC.mode === 'FLCH' || FC.mode === 'VNAV') && !lvl ? (ac.tAlt > alt ? 'THR REF' : FC.n1 < 30 ? 'IDLE' : 'HOLD') : 'SPD') : ''; pitch = FC.mode === 'VS' ? 'V/S' : FC.mode === 'FLCH' ? 'FLCH SPD' : FC.mode === 'ALT' ? 'ALT' : lvl ? 'VNAV PTH' : 'VNAV SPD'; }
     var fmaNow = at + roll + pitch; if (S.fmaPrev !== fmaNow) { S.fmaChg = { t: performance.now(), roll: S.fmaRoll !== roll, pitch: S.fmaPitch !== pitch }; S.fmaPrev = fmaNow; S.fmaRoll = roll; S.fmaPitch = pitch; }
     var fmaNew = S.fmaChg && performance.now() - S.fmaChg.t < 10000 ? S.fmaChg : null;
     var mins = (D.airport.elev || 0) + 200, mc = p.mcp || {};
     var msgs = []; if (p.cfg.gear !== 'down' && ra < 1600 && ap && ap.loc) msgs.push(['CONFIG GEAR', ra < 1000 ? 'warn' : 'caut']); if (ap && ap.gs && p.cfg.flap < 25 && ra < 2000) msgs.push(['CONFIG FLAPS', 'caut']); if (!p.landOk && ra < 1200 && ap && ap.loc && !ro) msgs.push(['NO LAND CLEARANCE', 'caut']); if (ro) msgs.push(['AUTOBRAKE 2', 'memo']); else if (ap && ap.loc) msgs.push(['AUTOBRAKE 2', 'memo']);
     var n1 = ro ? Math.max(22, 30 - (sim.t - ro.t0) * 0.5) : F ? 21 + F.thr * 76 : Math.max(24, Math.min(95, 52 + vs / 100 + ((p.dep && p.phase === 'air' && ac.tIas ? ac.tIas : mc.spd) - ias) * 0.8 + p.cfg.flapPos * 0.4 + (p.cfg.gear === 'down' ? 6 : 0)));
     if (p.eng) { if (gnd || p.eng.st !== 'on' || p.phase === 'twr') n1 = p.eng.n1; if (p.call && sim.t - p.call.at < 3.5) msgs.push([p.call.t, 'memo']); if (p.pbrake) msgs.push(['PARKING BRAKE SET', 'memo']); if (p.eng.st === 'off') msgs.push(['APU RUNNING', 'memo']); }
-    if (!p.eng && p.call && sim.t - p.call.at < 4) msgs.unshift([p.call.t, 'memo']);      /* 도착편 자동 호출(MINIMUMS · POSITIVE RATE 등) */
+    if (!p.eng && p.call && sim.t - p.call.at < 4) msgs.unshift([p.call.t, 'memo']);
+    if (FC) { n1 = FC.n1; if (FC.msg) msgs.unshift([FC.msg, 'warn']); if (FC.sb > 0) msgs.push(['SPEEDBRAKE EXT', FC.n1 > 60 ? 'caut' : 'memo']); if (!FC.at) msgs.push(['AUTOTHROTTLE OFF', 'memo']); }      /* 도착편 자동 호출(MINIMUMS · POSITIVE RATE 등) */
     var egt0 = p.eng && n1 < 1 ? 18 : p.eng && (gnd || p.phase === 'twr') ? 300 + n1 * 5.5 : 380 + n1 * 5;
     var gpws = !ro && ap && ap.gs && p.cfg.gear !== 'down' && ra < 500 ? 'TOO LOW GEAR' : !ro && ra < 1000 && !(ap && ap.loc) && vs < -1500 ? 'SINK RATE' : '';
     var fd = ATC.Manual && !ro && p.ac ? ATC.Manual.fd(ac, p) : null;
@@ -770,10 +840,10 @@
       pos: { x: x, y: y }, altM: alt * FT, alt: alt, ias: ias, tas: ias * (1 + alt / 1000 * 0.0165), gs: gs, vs: ro ? 0 : vs, hdg: hdg, pitch: v.pitch, bank: v.bank, slip: 0, trend: v.trend,
       sel: { spd: Math.round(mc.spd || ias), hdg: Math.round(mc.hdg || hdg), alt: mc.alt || Math.round(alt) }, ra: ra, mins: 200, minAlert: ra < 300 && ra > 30 && !ro && ap && ap.gs, elev: D.airport.elev, baro: sim.qnh ? (sim.qnh + ' HPA') : 'STD',
       vmax: plc[p.cfg.flap] || 340, vmin: minS[p.cfg.flap] || 150, vref: ac.perf.vapp - 5, flapSpd: flapSpd,
-      fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: p.dep && p.phase === 'twr' ? !!p.apOn : !F && !gnd, at: F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
+      fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: p.dep && p.phase === 'twr' ? !!p.apOn : !F && !gnd, at: FC ? FC.at : F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
       fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? (fd.ver === 'FLARE' ? 'G/S' : fd.ver) : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F || gnd || (p.dep && p.phase === 'twr' && !p.apOn) ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
       ils: { tuned: !!(e && (ap || p.ilsOk)), ident: e && e.ilsId || 'ILS', freq: e && e.ilsFq || '', crs: e ? Math.round(e.crs) : 0, rwy: e ? e.id : '', loc: locDev, gs: gsDev, dme: e ? Math.hypot(e.thr.x - x, e.thr.y - y) : null, thr: e ? e.thr : null },
-      gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, rwys: rwys, range: ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
+      gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, rwys: rwys, range: S.xc ? 80 : ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
       n1: [n1, n1 ? n1 + 0.4 : 0], egt: [egt0, egt0 + (n1 < 1 ? 0 : 4)], tat: Math.round(15 - alt / 1000 * 2), msgs: msgs, gear: p.cfg.gear, flap: p.cfg.flap, flapPos: p.cfg.flapPos, fuel: 14.2 - sim.t / 3600 * 5.4, gw: 196 - sim.t / 3600 * 5.4,
       night: ATC.R && ATC.R.nightK ? ATC.R.nightK(sim) : 0
     };

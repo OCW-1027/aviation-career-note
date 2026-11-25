@@ -107,6 +107,7 @@
       var dir = this.turnDir || (df > 0 ? 1 : -1);
       this.hdg = U.n360(this.hdg + dir * rate);
     }
+    if (!(this.fcu && this.fcu.step(this, dt))) {      /* 한 편 비행: 자동조종 모드 · 추력 · 스피드브레이크가 고도 · 속도를 맡음(xc.js Fcu) */
     /* --- 고도 --- */
     var tA = this.vcap !== undefined && this.vcap < this.tAlt ? this.vcap : this.tAlt, da = tA - this.alt;      /* vcap = SID의 「이하」 · 「그 고도」 제한 때문에 VNAV가 잠깐 멈추는 고도(조종사 체험 출발편) — 허가 고도(tAlt)는 그대로 */
     if (!(ap && ap.gs)) {
@@ -123,6 +124,7 @@
     if (this.alt < 10000 && tgt > 250 && !this.fast) tgt = 250;
     var ds = tgt - this.ias, acc = (ds > 0 ? 1.6 : -1.3) * dt; if (Math.abs(acc) > Math.abs(ds)) acc = ds;
     this.ias += acc;
+    }
     /* --- 이동 --- */
     this.gs = this.tas();
     var mv = this.gs / 3600 * dt;

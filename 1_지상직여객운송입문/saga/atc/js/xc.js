@@ -107,6 +107,8 @@
     var ac = sim.spawnAc({ cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: pf, kind: 'dep', gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', orig: 'RJTT', squawk: this.xpdr.code, owner: 'me', rfl: this.fp.rfl, entT: sim.t,
       x: p.x, y: p.y, alt: alt, hdg: hdg, ias: ias, tAlt: tAlt, normIas: 290, tIas: ias, fpRoute: XC.ROUTE.slice() });
     ac.setRoute(route); ac.pilotMe = true; this.ac = ac; this.cs = ac.cs;
+    var me = this, fc = this.fcu = new XC.Fcu(src.fcu); if (!src.fcu) { fc.n1 = alt < tAlt - 100 ? 92 : 84; fc.vs = alt < tAlt - 100 ? 1500 : 0; } ac.fcu = fc;      /* 자동조종 모드 · 추력(81차) */
+    fc.onWarn = function (m) { var k = m === 'OVERSPEED' ? 'p_ovsp' : 'p_lowspd'; if ((me.warnT || {})[k] > sim.t - 90) return; (me.warnT = me.warnT || {})[k] = sim.t; sim.inc(k, [ac], m === 'OVERSPEED' ? ATC.T('{0}: 과속 경고(OVERSPEED) — {1}kt. 추력을 줄이거나 스피드브레이크를 쓰세요.', ac.cs, Math.round(ac.ias)) : ATC.T('{0}: 속도 부족(AIRSPEED LOW) — {1}kt. 추력을 올리거나 기수를 낮추세요(A/T 켜기 · LVL CHG).', ac.cs, Math.round(ac.ias))); me.bump(); };
     if (this.cur.alt === null || this.cur.alt === undefined) this.cur.alt = tAlt;
     this.mcp.alt = this.cur.alt || tAlt; this.mcp.spd = Math.round(ias / 10) * 10; this.mcp.hdg = Math.round(hdg / 5) * 5 || 360;
     var q = kr ? XC.FQ.DAE : XC.FQ.TOK; this.freqNow = 'XC'; this.freqNowN = q.n; this.freqNowFq = q.fq;
@@ -169,20 +171,67 @@
   };
   XcPilot.prototype.curText = function () { return ATC.Pilot.prototype.curText.call(this); };
   /* 화면이 바뀌어야 할 때(남은 거리 · 강하 시작점) */
-  XcPilot.prototype.xcSig = function () { var ac = this.ac; return ac ? Math.round(XC.togo(ac, ac.nav && ac.nav.route ? ac.nav.route[ac.nav.route.length - 1] : 'GUKDO') / 4) + (ac.nav && ac.nav.i) : ''; };
+  XcPilot.prototype.xcSig = function () { var ac = this.ac, fc = this.fcu; return (fc ? fc.ver + fc.mode : '') + (ac ? Math.round(XC.togo(ac, ac.nav && ac.nav.route ? ac.nav.route[ac.nav.route.length - 1] : 'GUKDO') / 4) + (ac.nav && ac.nav.i) : ''); };
   /* 바쁜 순간(교신 · 설정할 것)이면 빠르게 감기를 멈춤 */
   XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
     var ac = this.ac, ll = XC.ll(ac.x, ac.y), al = ac.al || {}, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
     return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq,
-      ac: { lat: ll[0], lon: ll[1], alt: ac.alt, hdg: ac.hdg, ias: ac.ias, tAlt: ac.tAlt, next: r[0] || 'GUKDO' }, incs: this.sim.incs.slice(), log: this.sim.log.slice(-40), atis: this.sim.atis, utc: this.sim.utc(), seed: this.sim.seed, level: this.sim.level.id, t: Date.now() };
+      fcu: this.fcu ? this.fcu.pack() : null, ac: { lat: ll[0], lon: ll[1], alt: ac.alt, hdg: ac.hdg, ias: ac.ias, tAlt: ac.tAlt, next: r[0] || 'GUKDO' }, incs: this.sim.incs.slice(), log: this.sim.log.slice(-40), atis: this.sim.atis, utc: this.sim.utc(), seed: this.sim.seed, level: this.sim.level.id, t: Date.now() };
+  };
+
+  /* ---------- 자동조종 고도 모드 · 오토스로틀 · 스피드브레이크(81차) ----------
+   * VNAV = FMC가 허가 고도(MCP 고도 창)까지 계획대로 오르내림 · LVL CHG = 속도는 기수로, 추력은 상승(CLB) · 강하(IDLE) · V/S = 정한 분당 상승 · 강하율 · ALT HOLD = 누른 순간의 고도 유지
+   * 추력: A/T 켜짐이면 모드에 맞게 자동, 꺼지면 추력 레버(N1) 그대로 → 속도가 남거나 모자람. 스피드브레이크 = 항력(같은 추력에서 더 빨리 강하 · 감속). 수치는 게임용 단순 모형 */
+  function Fcu(o) { o = o || {}; this.mode = o.mode || 'VNAV'; this.vsSel = o.vsSel || -1000; this.at = o.at !== false; this.thr = o.thr || 0.8; this.sb = o.sb || 0; this.n1 = o.n1 || 85; this.vs = 0; this.hold = o.hold; this.msg = ''; this.ver = 0; }
+  XC.Fcu = Fcu;
+  Fcu.prototype.pack = function () { return { mode: this.mode, vsSel: this.vsSel, at: this.at, thr: this.thr, sb: this.sb, n1: this.n1, hold: this.hold }; };
+  Fcu.prototype.nlev = function (ac) { return Math.min(94, 56 + ac.alt / 1000 * 0.62 + (ac.ias - 250) * 0.16 + this.sb * 16); };      /* 수평 비행에 필요한 N1(%) */
+  Fcu.prototype.cr = function (ac) { var c = (ac.perf && ac.perf.climb) || 2500; return c * (ac.alt > 28000 ? 0.45 : ac.alt > 18000 ? 0.65 : ac.alt > 10000 ? 0.85 : 1); };
+  Fcu.prototype.vmo = function (ac) { return ac.alt > 26000 ? 330 - (ac.alt - 26000) / 1000 * 3.2 : 340; };      /* 마하 한계를 대신하는 높은 고도의 최대 속도(대략 M0.89) */
+  Fcu.prototype.vmin = function (ac) { return ac.alt > 30000 ? 215 + (ac.alt - 30000) / 1000 * 2 : 210; };
+  Fcu.prototype.set = function (k, v, ac) {
+    if (k === 'mode') { if (v === 'ALT' && ac) this.hold = Math.round(ac.alt / 100) * 100; if (v === 'VS' && ac) this.vsSel = Math.round((this.vs || (ac.tAlt > ac.alt ? 1000 : -1000)) / 100) * 100 || (ac.tAlt > ac.alt ? 1000 : -1000); this.mode = v; }
+    else if (k === 'vs') this.vsSel = U.clamp(Math.round((this.vsSel + v) / 100) * 100, -6000, 6000);
+    else if (k === 'at') { this.at = !this.at; if (!this.at) this.thr = U.clamp((this.n1 - 25) / 72, 0, 1); }
+    else if (k === 'thr') { this.at = false; this.thr = U.clamp(this.thr + v, 0, 1); }
+    else if (k === 'sb') this.sb = v;
+    this.ver++;
+  };
+  Fcu.prototype.step = function (ac, dt) {
+    if (!dt) return true;
+    var md = this.mode, lv = this.nlev(ac), cr = this.cr(ac), dr = 2400 + this.sb * 1700, tA = ac.tAlt, da = tA - ac.alt, tgt = U.clamp(ac.tIas || 280, 180, 330);
+    if ((md === 'FLCH' || md === 'VS') && Math.abs(da) < 80 && (md === 'FLCH' || this.vsSel * da >= 0)) { md = this.mode = 'ALT'; this.hold = tA; this.ver++; }      /* 고도 창에 닿으면 ALT로 잡음 */
+    var hold = md === 'ALT' ? (this.hold === undefined ? (this.hold = Math.round(ac.alt / 100) * 100) : this.hold) : md === 'VNAV' && Math.abs(da) < 80 ? tA : null;
+    var avail = function (n1) { return n1 >= lv ? (n1 - lv) / Math.max(4, 97 - lv) * cr * 1.15 : (n1 - lv) / Math.max(4, lv - 27) * dr; };      /* 이 추력으로 낼 수 있는 상승률(속도 그대로일 때, ft/min) */
+    var vsCmd, n1T;
+    if (hold !== null) vsCmd = U.clamp((hold - ac.alt) * 3, -1000, 1000);
+    else if (md === 'VS') vsCmd = this.vsSel;
+    else if (md === 'VNAV' && da > 0) vsCmd = cr * U.clamp(1 - (tgt - ac.ias - 5) / 30, 0, 1);      /* VNAV 상승: 계획 상승률(속도가 많이 모자라면 상승을 줄여 속도 먼저), 속도는 추력이 맞춤 */
+    else {      /* LVL CHG 오르내림 · VNAV 강하: 추력은 상승 · 아이들, 속도는 기수로 */
+      var up = da > 0; n1T = this.at ? (up ? Math.min(97, lv + 15) : 27) : 25 + this.thr * 72;
+      vsCmd = avail(this.n1) + U.clamp((ac.ias - tgt) * 90, -1800, 1800); vsCmd = up ? U.clamp(vsCmd, 0, cr * 1.3) : U.clamp(vsCmd, -dr * 1.6, 0);
+      if (md === 'VNAV' && up) vsCmd = Math.min(vsCmd, cr);
+    }
+    var vmin = this.vmin(ac); if (ac.ias < vmin - 20) vsCmd = Math.min(vsCmd, -1200 - (vmin - 20 - ac.ias) * 60);      /* 너무 느리면 고도를 지키지 못하고 가라앉음 */
+    if (n1T === undefined) n1T = this.at ? U.clamp(lv + (vsCmd >= 0 ? vsCmd / (cr * 1.15) * (97 - lv) : vsCmd / dr * (lv - 27)) + (tgt - ac.ias) * 0.9, 27, 97) : 25 + this.thr * 72;
+    this.n1 += U.clamp(n1T - this.n1, -4 * dt, 4 * dt);      /* 엔진이 따라오는 속도 */
+    this.vs += U.clamp(vsCmd - this.vs, -700 * dt, 700 * dt);      /* 기수가 따라오는 속도 */
+    var st = this.vs / 60 * dt; if (hold !== null && ac.ias >= vmin - 20 && Math.abs(hold - ac.alt) < Math.abs(st)) st = hold - ac.alt;
+    ac.alt += st; ac.vs = Math.round(this.vs);
+    ac.ias = U.clamp(ac.ias + (avail(this.n1) - this.vs) / 1000 * 0.6 * dt, vmin - 45, 380);      /* 남는 힘 → 가속, 모자라면 감속 */
+    var m = ac.ias > this.vmo(ac) + 2 ? 'OVERSPEED' : ac.ias < vmin - 3 ? 'AIRSPEED LOW' : '';
+    if (m !== this.msg) { this.msg = m; this.ver++; if (m && this.onWarn) this.onWarn(m); }
+    return true;
   };
   XC.KEY = 'acn_atc_xc_carry_v1';
   ATC.XcPilot = XcPilot;
   ATC.INC.p_atis_ok = { cat: 'P', pts: 1, t: ATC.T('ATIS 받음'), les: 'app' };
   ATC.INC.p_desc_ok = { cat: 'P', pts: 1, t: ATC.T('제때 강하 요청'), les: 'acc' };
   ATC.INC.p_dct_ok = { cat: 'P', pts: 1, t: ATC.T('FMC 직행 입력'), les: 'acc' };
+  ATC.INC.p_ovsp = { cat: 'P', pts: -2, t: ATC.T('과속(OVERSPEED)'), les: 'acc' };
+  ATC.INC.p_lowspd = { cat: 'P', pts: -3, t: ATC.T('속도 부족(AIRSPEED LOW)'), les: 'acc' };
 
   /* ================= 화면: 순항 지도(ND 같은 넓은 지도) ================= */
   ATC.R.drawXc = function (ctx, W, H, app) {

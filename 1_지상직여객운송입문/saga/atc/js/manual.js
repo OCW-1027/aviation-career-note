@@ -192,7 +192,7 @@
     var g = e ? ATC.ilsGeom(ac, e) : null, nav = ac.nav || {};
     if (ap && g && g.d > -0.5 && (ap.loc || Math.abs(g.xtk) < 1.6 && Math.abs(U.adiff(ac.hdg, e.crs)) < 70)) { tT = U.n360(e.crs - U.clamp(g.xtk * 60, -35, 35)); mode = 'LOC'; }
     else if (p.gaPh && !p.gaPh.vec && !ap) { tT = p.gaHdg(ra); mode = p.gaPh.turned ? 'LNAV' : 'TO/GA'; }      /* 복행: 공시 복행 경로(Approach가 기수를 줄 때까지) */
-    else if (nav.mode === 'route' && ac.nextFix()) { tT = U.brg(ac, D.fix[ac.nextFix()]); mode = 'LNAV'; }
+    else if (nav.mode === 'route' && ac.nextFix() && (ATC.D.fix || D.fix)[ac.nextFix()]) { tT = U.brg(ac, (ATC.D.fix || D.fix)[ac.nextFix()]); mode = 'LNAV'; }      /* 한 편 비행 순항은 지점표가 바뀜(ATC.D.fix) */
     else if (ap && g && !ap.loc && nav.mode !== 'route' && !p.asg.hdg && (!p.cur.hdg || Math.abs(g.xtk) < 6)) {      /* 접근 허가 뒤 경로가 끝났는데 아직 로컬라이저 밖: 최종 접근로로 들어가는 길 안내 */
       var cx = Math.sin(e.crs * D2R), cy = Math.cos(e.crs * D2R), dq = Math.max(6, g.d - 3), q = { x: e.thr.x - cx * dq, y: e.thr.y - cy * dq };
       tT = U.brg(ac, q); if (Math.abs(g.xtk) < 4 && g.d > 3) { var lim = 45, a = U.adiff(e.crs, tT); if (Math.abs(a) > lim) tT = U.n360(e.crs + Math.sign(a) * lim); }

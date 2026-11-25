@@ -638,3 +638,8 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .xprog span{white-space:nowrap}
 .xbtn.xcb i{color:#ff9cf5}
 .pilotp .pfix{flex:1 1 220px;color:#9fb6c6;font-size:12px;line-height:1.4}
+/* 한 편 비행 자동조종 고도 모드 · 추력 · 스피드브레이크(81차) */
+.pilotp .xmode .pstep{min-width:64px}
+.pilotp .xthr b,.pilotp .xsb b{margin-left:6px}
+.pilotp .pdue.xwarn{background:#c8243a;color:#fff;animation:xwarn 1s steps(2) infinite}
+@keyframes xwarn{50%{opacity:.55}}
