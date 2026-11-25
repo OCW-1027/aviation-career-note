@@ -650,3 +650,31 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .pilotp .fqb i{font:600 10px/1 sans-serif;color:#7d93a6;font-style:normal}
 .pilotp .fsw{min-width:52px;font-size:18px}
 .pilotp .plink{background:none;border:0;color:#7fb6e0;text-decoration:underline;padding:4px 0;cursor:pointer;font-size:12px}
+/* 교신 카드 · 패널 탭(83차) */
+#pcard{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:30;width:min(760px,calc(100% - 24px));max-height:58%;overflow:auto;background:rgba(10,16,24,.88);border:1px solid #3b5268;border-radius:10px;box-shadow:0 8px 26px rgba(0,0,0,.45);padding:10px 12px;backdrop-filter:blur(3px)}
+#pcard h6{margin:2px 0 6px;color:#ffd479;font-size:13px}
+#pcard .popts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:6px}
+#pcard .popt{counter-increment:po;text-align:left;font-size:14px;padding:9px 10px 9px 30px;position:relative}
+#pcard .pcin{counter-reset:po}
+#pcard .popt::before{content:counter(po);position:absolute;left:9px;top:9px;font:700 11px/1.4 ui-monospace,monospace;color:#7fb6e0;border:1px solid #3b5268;border-radius:3px;padding:0 4px}
+#pcard .patc{font-size:14px}
+#pcard .pmic,#pcard .pwait{font-size:12px}
+.pilotp.ptabbed{display:flex;flex-direction:column;gap:6px}
+.pilotp .pstatw{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
+.pilotp .pstatw .pwait,.pilotp .pstatw .pstat{flex:1 1 260px;margin:0}
+.pilotp .pstat.due{color:#ffd479;font-weight:600}
+.pilotp .pnev{font-size:12px;color:#9fd0ff;background:#0e1f2e;border:1px solid #27445e;border-radius:12px;padding:2px 9px}
+.pilotp .ptabs{display:flex;gap:4px;border-bottom:1px solid #2b3a48;position:sticky;top:0;background:inherit;z-index:2;flex-wrap:wrap}
+.pilotp .ptab{border-radius:7px 7px 0 0;border-bottom:0;padding:6px 12px;font-size:13px;background:#101a24}
+.pilotp .ptab.on{background:#1f3b55;color:#fff}
+.pilotp .ptab.due{color:#ffd479}
+.pilotp .ptc{min-height:0}
+@media (max-width:700px){#pcard{bottom:8px;max-height:64%;padding:8px}#pcard .popts{grid-template-columns:1fr}#pcard .popt{font-size:13px;padding:8px 8px 8px 28px}}
+.cbody.pilotp.ptabbed{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px}
+.pilotp .ptabs .ptab{width:auto;flex:0 0 auto;display:inline-block;min-height:0;height:auto;margin:0}
+.pilotp .ptc{width:100%}
+#pcard .pcmin{position:absolute;top:6px;right:8px;background:none;border:1px solid #3b5268;border-radius:5px;color:#9fd0ff;font-size:12px;padding:1px 8px;cursor:pointer;z-index:1}
+#pcard.min{width:auto;padding:6px 10px;max-height:none}
+#pcard.min .pcin{display:none}
+#pcard.min .pcmin{position:static;color:#ffd479;border-color:#7a6430}
+@media (max-width:700px){.pilotp .pstatw .pstat.due{display:none}.pilotp .ptab{padding:4px 8px;font-size:12px}.pilotp .pfast{padding:3px 8px;font-size:12px}.pilotp .ptabs{gap:3px}.pilotp .ptab{letter-spacing:-.02em}}

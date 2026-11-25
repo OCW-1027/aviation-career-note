@@ -184,6 +184,23 @@
   /* 화면이 바뀌어야 할 때(남은 거리 · 강하 시작점) */
   XcPilot.prototype.xcSig = function () { var ac = this.ac, fc = this.fcu; return (fc ? fc.ver + fc.mode : '') + (ac ? Math.round(XC.togo(ac, ac.nav && ac.nav.route ? ac.nav.route[ac.nav.route.length - 1] : 'GUKDO') / 4) + (ac.nav && ac.nav.i) : ''); };
   /* 바쁜 순간(교신 · 설정할 것)이면 빠르게 감기를 멈춤 */
+  /* 다음 할 일까지 남은 시간(게임 초) — 「▶▶ 빠르게」가 그 전에 미리 ×1로 돌아오게(83차) */
+  XcPilot.prototype.nextEv = function () {
+    var sim = this.sim, ac = this.ac, x = sim.xs; if (!ac || this.phase !== 'air' || !this.ci) return null;
+    var g = Math.max(150, ac.gs || 400) / 3600, T = function (nm) { return Math.max(0, nm) / g; }, up = function (a) { return ac.vs > 100 ? Math.max(0, a - ac.alt) / ac.vs * 60 : 9e9; }, dn = function (a) { return ac.vs < -100 ? Math.max(0, ac.alt - a) / -ac.vs * 60 : 9e9; };
+    if (sim.seg === 'jp') {
+      if (x.st === 1) return { t: Math.min(up(31500), XC.passed(ac, 'PIGAP') ? 0 : T(XC.togo(ac, 'PIGAP'))), n: 'Fukuoka Control' };
+      if (x.st === 3) return { t: T(XC.togo(ac, 'AKNOM')), n: 'Fukuoka Control (AKNOM)' };
+      if (x.st === 5) return { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' };
+      if (x.st === 7) return { t: T(XC.togo(ac, 'SAPRA') - 25), n: 'Daegu Control' };
+    } else {
+      var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
+      if (x.st === 1) return this.atisGot ? { t: this.descReq ? 0 : T(tod - 6), n: ATC.T('강하 요청(T/D)') } : { t: T(tod - 40), n: ATC.T('인천 ATIS 듣기') };
+      if (x.st === 2) return { t: Math.min(T(XC.togo(ac, 'GUKDO') - 45), dn(27000)), n: ATC.T('STAR 허가') };
+      if (x.st === 3) return { t: Math.max(T(XC.togo(ac, 'GUKDO') - 18), dn(21000) < 9e8 ? dn(21000) : 0), n: 'Seoul Approach' };
+    }
+    return null;
+  };
   XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
