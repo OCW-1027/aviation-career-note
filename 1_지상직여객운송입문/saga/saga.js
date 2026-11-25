@@ -7601,7 +7601,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
     var w = document.createElement('div'); w.className = 'modal rconf'; w.id = 'runconfirm';
     w.innerHTML = '<div class="card" role="dialog" aria-modal="true" tabindex="-1"><h2>' + esc(tx(title)) + '</h2><p>' + esc(tx(body)) + '</p><div class="btns">' +
       (alt ? '<button class="btn pri" id="rc-alt">' + esc(tx(alt.label)) + '</button>' : '') + '<button class="btn' + (alt ? '' : ' pri') + '" id="rc-ok">' + esc(tx(okLabel)) + '</button><button class="btn ghost" id="rc-no">' + esc(tx(L('キャンセル', '취소', 'Cancel'))) + '</button></div></div>';
-    document.body.appendChild(w);
+    (document.fullscreenElement || document.webkitFullscreenElement || document.body).appendChild(w);
     function close() { if (w.parentNode) w.parentNode.removeChild(w); }
     w.querySelector('#rc-ok').onclick = function () { close(); onOk(); };
     w.querySelector('#rc-no').onclick = close;
@@ -8060,7 +8060,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   /* 여권 사진 확대(힌트가 아님 — 감점·제한 없음) */
   function zoomPhoto(p) {
     var z = document.createElement('div'); z.className = 'zoomov'; z.innerHTML = '<div class="zbox">' + STG.portrait(p, 'large') + '<span class="small">' + esc(tx(L('タップで閉じる', '탭하면 닫힘', 'Tap to close'))) + '</span></div>';
-    z.onclick = function () { z.remove(); }; document.body.appendChild(z);
+    z.onclick = function () { z.remove(); }; (document.fullscreenElement || document.webkitFullscreenElement || document.body).appendChild(z);
   }
   /* 발권 전이라면 판정을 다시 할 수 있음(Day 2~). 처음 판단이 틀렸다가 발권 전에 바로잡으면 안전 누락이 아니라 「자가 수정」으로 기록 */
   function reBtn(k) { var c = S.cur; return S.adv && !c.bp && !c.flags.denied && !(k === 'ticketName' && c.flags.nameFixed) ? ' <button class="btn ghost rebtn" data-re="' + k + '">' + esc(tx(L('もう一度確認', '다시 확인', 'Check again'))) + '</button>' : ''; }
@@ -11007,7 +11007,7 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   function wbChartZoom() {   /* 53차 권장: 좁은 화면에서 차트를 눌러 크게 보기(가로로 넘치는 부분은 창 안에서만 스크롤) */
     var el = document.querySelector('.wbchart svg'); if (!el) return;
     var ov = document.createElement('div'); ov.className = 'wbzoom'; ov.innerHTML = '<div class="wbzoomin">' + el.outerHTML + '</div><button class="btn" type="button">✕ ' + esc(tx(L('閉じる', '닫기', 'Close'))) + '</button>';
-    ov.onclick = function () { ov.remove(); }; document.body.appendChild(ov);
+    ov.onclick = function () { ov.remove(); }; (document.fullscreenElement || document.webkitFullscreenElement || document.body).appendChild(ov);
   }
   function wbChart(r) { var mc = function (lab, p, e) { var ok = p >= e[0] && p <= e[1]; return '<span class="' + (ok ? 'ok' : 'ng') + '">' + lab + ' ' + p.toFixed(1) + ' <small>(' + e[0].toFixed(1) + '–' + e[1].toFixed(1) + ')</small></span>'; };
     return '<div class="wbchart" onclick="AS_wbZoom()" title="' + esc(tx(L('タップで拡大', '눌러서 크게 보기', 'Tap to enlarge'))) + '">' + WB.chartSVG(wbA(), r) + '<div class="wbmacv">%MAC ' + mc('ZFW', r.mz, r.ez) + mc('TOW', r.mt, r.et) + mc('LAW', r.ml, r.el) + '</div><p class="small">' + esc(tx(L('バランスチャート（指数–重量）：ZFW・TOW・LAWの3点が枠の中にあるか見ます。', '밸런스 차트(지수–중량): ZFW·TOW·LAW 세 점이 틀 안에 있는지 봅니다.', 'Balance chart (index vs weight): check that ZFW, TOW and LAW sit inside the envelope.'))) + '</p></div>'; }
@@ -17511,4 +17511,29 @@ window.LESSON_DAYS={"ci": {"passenger/1-1": [1, 2, 3, 4, 5], "passenger/1-3": [1
   if (window.SAGA_TEST) AS._t = { flush: flushStore, hasLocks: hasLocks, startMission: function () { startMission(); }, beginMission: function () { beginMission(); }, nextPax: nextUnit, showTab: showTab, renderTabs: renderTabs, saveRun: saveRun, readRun: readRun, checkRun: checkRun, resumeRun: resumeRun, runInfo: runInfo, finish: function () { finish(); }, setStage: function (id) { setStage(id); save(); renderTitle(); }, stage: function () { return ST.id; }, stageAllowed: stageAllowed };   /* 23차: 화면 겹침 전수 점검(test/ui_sweep.py)용 — 시험 때만 */
   boot();
   if (window.SAGA_TEST && ST.testHooks) Object.assign(AS._t, ST.testHooks());
+})();
+
+/* 현장편 「⤢ 전체화면」(사용자 11-25 「경영편·관제편과 같은 방식으로」): 게임 위 막대(음성 왼쪽)·첫 화면(⚙ 설정 왼쪽)에 단추 · 게임 칸(.wrap)만 전체화면
+   — 사이트 머리·경로·강좌 카드·바닥글·오른쪽 아래 단추는 전체화면 밖이라 보이지 않음 · 지원하지 않는 브라우저(아이폰 Safari) = 단추 없음 · 글은 경영편·관제편·nav.js와 같음 · 저장·진행 변화 0 */
+(function () {
+  var D = document;
+  function host() { return D.querySelector('.wrap') || D.documentElement; }
+  var h0 = host(); if (!((h0.requestFullscreen || h0.webkitRequestFullscreen) && (D.fullscreenEnabled || D.webkitFullscreenEnabled))) return;
+  function fsEl() { return D.fullscreenElement || D.webkitFullscreenElement; }
+  var TX = { ja: ['全画面', '全画面を終了'], ko: ['전체화면', '전체화면 끝내기'], en: ['Full screen', 'Exit full screen'] };
+  function lg() { var l = (D.documentElement.getAttribute('data-ui') || D.documentElement.lang || 'ja').slice(0, 2); return TX[l] ? l : 'ja'; }
+  function paint(b) { var on = !!fsEl(), t = TX[lg()][on ? 1 : 0]; b.innerHTML = (on ? '⤡' : '⤢') + ' <span class="ml">' + t + '</span>'; b.title = t; b.setAttribute('aria-label', t); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+  function toggle(e) { if (e) e.stopPropagation(); try { if (fsEl()) (D.exitFullscreen || D.webkitExitFullscreen).call(D); else { var h = host(), r = (h.requestFullscreen || h.webkitRequestFullscreen).call(h); if (r && r.catch) r.catch(function () {}); } } catch (x) {} }
+  function mk(cls, id) { var b = D.createElement('button'); b.type = 'button'; b.className = cls; b.id = id; b.onclick = toggle; paint(b); return b; }
+  function posT() { var kv = D.getElementById('kvset'), b = D.getElementById('sgFsT'); if (kv && b) b.style.right = (kv.offsetWidth + 16) + 'px'; }
+  function place() {
+    var vo = D.getElementById('vo'); if (vo && !D.getElementById('sgFs')) vo.parentNode.insertBefore(mk('iconbtn sgfs', 'sgFs'), vo);
+    var kv = D.getElementById('kvset'); if (kv && !D.getElementById('sgFsT')) { kv.parentNode.insertBefore(mk('kvset sgfs', 'sgFsT'), kv); posT(); }
+  }
+  function all() { ['sgFs', 'sgFsT'].forEach(function (id) { var b = D.getElementById(id); if (b) paint(b); }); posT(); }
+  function moveIn() { var h = fsEl(); if (!h || h === D.documentElement) return; [].forEach.call(D.querySelectorAll('body > .zoomov, body > .wbzoom, body > .modal'), function (x) { h.appendChild(x); }); }   /* 전체화면 전에 열려 있던 확대·확인 창도 게임 칸 안으로 */
+  function bg() { var h = host(); if (fsEl() === h) { var c = getComputedStyle(D.body).backgroundColor; if (!c || c === 'transparent' || c === 'rgba(0, 0, 0, 0)') c = getComputedStyle(D.documentElement).backgroundColor; h.style.backgroundColor = (!c || c === 'transparent' || c === 'rgba(0, 0, 0, 0)') ? '#f4f6f9' : c; } else h.style.backgroundColor = ''; }   /* 전체화면 바탕 = 지금 페이지 바탕색 그대로 */
+  ['fullscreenchange', 'webkitfullscreenchange'].forEach(function (ev) { D.addEventListener(ev, function () { bg(); all(); moveIn(); }); });
+  function start() { var app = D.getElementById('app'); place(); if (app) new MutationObserver(place).observe(app, { childList: true, subtree: true }); new MutationObserver(all).observe(D.documentElement, { attributes: true, attributeFilter: ['lang', 'data-ui'] }); window.addEventListener('resize', posT); }
+  if (D.readyState === 'loading') D.addEventListener('DOMContentLoaded', start); else start();
 })();

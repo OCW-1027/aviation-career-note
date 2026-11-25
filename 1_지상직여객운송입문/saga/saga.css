@@ -711,3 +711,12 @@ html.sh-saga .t48 .langrow{display:none}
 /* 2026-11-06 STAGE 08 항공화물편(.cg*) — AWB 목록 표(좁은 화면에서 표만 옆으로) */
 .tblwrap{max-width:100%;overflow-x:auto}
 .cgawb-sw{display:none;margin:2px 0}@media(max-width:480px){.cgawb-sw{display:block}}.cgawb{font-size:12.5px}.cgawb td,.cgawb th{white-space:nowrap}
+/* 현장편 전체화면(11-25): 게임 칸(.wrap)만 화면 가득 — 사이트 머리·바닥(shell)·오른쪽 아래 「전체화면」 단추(nav.js)는 숨김(단추는 게임 위 막대·첫 화면으로) */
+.wrap:fullscreen{max-width:none;width:100%;height:100%;box-sizing:border-box;overflow-y:auto}
+.wrap:-webkit-full-screen{max-width:none;width:100%;height:100%;box-sizing:border-box;overflow-y:auto}
+.wrap:fullscreen>.shbar,.wrap:fullscreen>.shfoot{display:none}
+.wrap:-webkit-full-screen>.shbar,.wrap:-webkit-full-screen>.shfoot{display:none}
+.wrap::backdrop{background:#f4f6f9}
+.nv-fab .nv-fs{display:none}
+.iconbtn.sgfs{white-space:nowrap}
+@media (max-width:480px){.sgfs .ml{display:none}}
