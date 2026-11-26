@@ -648,6 +648,8 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .pilotp .fqb,#pcard .fqb{display:inline-flex;align-items:baseline;gap:6px;font:600 18px/1.2 ui-monospace,Menlo,Consolas,monospace;background:#05080c;border:1px solid #2b3a48;border-radius:6px;padding:5px 10px;color:#6fe39a;min-width:118px}
 .pilotp .fqb.stb,#pcard .fqb.stb{color:#ffc860}
 .pilotp .fqb i,#pcard .fqb i{font:600 10px/1 sans-serif;color:#7d93a6;font-style:normal}
+.fqb .fqin{font:inherit;color:inherit;background:transparent;border:0;border-bottom:1px dashed rgba(255,212,121,.45);width:7.2ch;padding:0;margin:0;outline:none;cursor:text}.fqb .fqin:focus{border-bottom:1px solid #ffd479;background:rgba(255,212,121,.08)}      /* 88차: STBY 숫자 입력 */
+.fqb.stb{cursor:ns-resize}.ftune .fqd{touch-action:none;user-select:none;-webkit-user-select:none}.ftune .fqhint{flex:1 1 100%;margin-top:2px}
 .pilotp .fsw{min-width:52px;font-size:18px}
 .pilotp .plink{background:none;border:0;color:#7fb6e0;text-decoration:underline;padding:4px 0;cursor:pointer;font-size:12px}
 /* 교신 카드 · 패널 탭(83차) */
@@ -677,7 +679,7 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 .pilotp .ptab.on{background:#1f3b55;color:#fff}
 .pilotp .ptab.due{color:#ffd479}
 .pilotp .ptc{min-height:0}
-@media (max-width:700px){#pcard h6.hmic .pmicw{width:100%}#pcard h6.hmic .pmicb{flex:1 1 auto;justify-content:center}}
+@media (max-width:700px){#pcard h6.hmic{padding-right:0}#pcard h6.hmic .pmicw{width:100%}#pcard h6.hmic .pmicb{flex:1 1 auto;justify-content:center}}      /* 88차: 폰 — 마이크 줄이 보기 단추와 같은 폭 */
 @media (max-width:700px){#pcard{bottom:8px;max-height:64%;padding:8px}#pcard .popts{grid-template-columns:1fr}#pcard .popt{font-size:13px;padding:8px 8px 8px 28px}}
 .cbody.pilotp.ptabbed{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px}
 .pilotp .ptabs .ptab{width:auto;flex:0 0 auto;display:inline-block;min-height:0;height:auto;margin:0}
@@ -687,3 +689,60 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 #pcard.min .pcin{display:none}
 #pcard.min .pcmin{position:static;color:#ffd479;border-color:#7a6430}
 @media (max-width:700px){.pilotp .pstatw .pstat.due{display:none}.pilotp .ptab{padding:4px 8px;font-size:12px}.pilotp .pfast{padding:3px 8px;font-size:12px}.pilotp .ptabs{gap:3px}.pilotp .ptab{letter-spacing:-.02em}}
+/* ===== 88차: 3D 조종석 위 조종석식 패널(MCP · 추력 · FMC CDU) ===== */
+#ckpop{position:absolute;inset:0;pointer-events:none;z-index:24}
+#ckpop .cqp{position:absolute;pointer-events:auto;background:linear-gradient(180deg,#454b52,#2b3036 60%,#24282d);border:1px solid #5a626a;border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08);color:#e8edf2;font:12px/1.3 system-ui,sans-serif;padding:8px 10px 10px}
+#ckpop .cqph{display:flex;align-items:center;gap:8px;font:700 12px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em;color:#cfd6dd;margin-bottom:7px;padding-right:26px;position:relative}
+#ckpop .cqph small{font:400 11px/1.25 system-ui,sans-serif;letter-spacing:0;color:#9aa6b2}
+#ckpop .cqx{position:absolute;right:-4px;top:-4px;width:24px;height:24px;padding:0;border-radius:50%;background:#1b1f23;border:1px solid #59616a;color:#cfd6dd;font-size:12px;line-height:1}
+#ckpop .cqp.mcp{top:10px;right:10px;width:min(690px,60%)}
+#ckpop .cqp.cdu{top:10px;right:10px;width:372px}
+#ckpop .cqp.thr{left:10px;bottom:12px;width:250px}
+#ckpop .cqmcp{display:flex;gap:6px;flex-wrap:nowrap}
+#ckpop .cqu{flex:1 1 0;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:7px;padding:6px 4px}
+#ckpop .cqlcd{width:100%;background:#050607;border:2px solid #15191d;border-radius:4px;padding:3px 6px;display:flex;flex-direction:column;align-items:center;box-shadow:inset 0 0 8px rgba(0,0,0,.9)}
+#ckpop .cqlcd i{font:600 9px/1 system-ui,sans-serif;color:#8d98a3;letter-spacing:.08em;font-style:normal;align-self:flex-start}
+#ckpop .cqlcd b{font:700 20px/1.1 ui-monospace,Menlo,Consolas,monospace;color:#ffb347;text-shadow:0 0 6px rgba(255,160,40,.45);letter-spacing:.06em}
+#ckpop .cqlcd.due{border-color:#d9a400;box-shadow:inset 0 0 8px rgba(0,0,0,.9),0 0 0 1px #d9a400}
+#ckpop .cqkn{display:flex;gap:4px;align-items:center}
+#ckpop .cqk{width:30px;height:30px;padding:0;border-radius:50%;background:radial-gradient(circle at 35% 30%,#6d757e,#2a2f34 70%);border:1px solid #11151a;color:#f2f5f7;font:700 16px/1 system-ui;box-shadow:0 2px 4px rgba(0,0,0,.6);touch-action:none;user-select:none;-webkit-user-select:none}
+#ckpop .cqk.sm{width:22px;height:22px;font-size:12px}
+#ckpop .cqkn{flex-wrap:nowrap}
+#ckpop .cqk:active{transform:translateY(1px)}
+#ckpop .cqpush{min-width:76px;height:28px;padding:0 8px;border-radius:5px;background:linear-gradient(#5a616a,#3a4047);border:1px solid #1a1e22;color:#eef2f5;font:700 11px/1 system-ui;letter-spacing:.04em}
+#ckpop .cqpush.on{box-shadow:inset 0 -3px 0 #3ddc84}
+#ckpop .cqpush.due,#ckpop .cqmb.due{outline:2px solid #e3b000;outline-offset:1px}
+#ckpop .cqpush.ghost{visibility:hidden;display:inline-block}
+#ckpop .cqmodes{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+#ckpop .cqmb{display:inline-flex;flex-direction:column;align-items:center;gap:3px;min-width:62px;padding:5px 8px 6px;border-radius:5px;background:linear-gradient(#59606a,#363c43);border:1px solid #15191d;color:#eef2f5;font:700 11px/1 system-ui;letter-spacing:.04em}
+#ckpop .cqled{display:block;width:26px;height:4px;border-radius:2px;background:#1c2125;box-shadow:inset 0 0 2px #000}
+#ckpop .cqled.on{background:#3ddc84;box-shadow:0 0 6px #3ddc84}
+#ckpop .cqmsg{margin-top:6px;color:#ffcf6b;font-size:11.5px}
+#ckpop .cqthr{display:flex;gap:10px;align-items:stretch}
+#ckpop .cqlev{display:flex;gap:6px;align-items:flex-end;position:relative;padding-bottom:16px}
+#ckpop .cqslot{position:relative;width:16px;height:110px;background:#121518;border:1px solid #000;border-radius:3px}
+#ckpop .cqslot b{position:absolute;left:-7px;width:28px;height:12px;border-radius:3px;background:linear-gradient(#e9edf0,#9aa3ab);box-shadow:0 2px 3px rgba(0,0,0,.7);transform:translateY(50%)}
+#ckpop .cqlev i{position:absolute;bottom:0;left:0;font:700 11px/1 ui-monospace,Menlo,monospace;color:#7fe0a2;font-style:normal;white-space:nowrap}
+#ckpop .cqthc{display:flex;flex-direction:column;gap:6px;flex:1}
+#ckpop .cqthc small{color:#9aa6b2;font-size:11px}
+#ckpop .cqsb{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+#ckpop .cqsb i{flex:1 1 100%;font:600 9px/1 system-ui;color:#8d98a3;letter-spacing:.08em;font-style:normal}
+#ckpop .cqmb.sbk{min-width:44px;padding:6px}
+#ckpop .cqmb.sbk.on{box-shadow:inset 0 -3px 0 #3ddc84}
+#ckpop .cqcdu{display:flex;gap:4px;align-items:stretch}
+#ckpop .cqlsk{display:flex;flex-direction:column;justify-content:space-around;padding:22px 0 26px}
+#ckpop .cqls{width:22px;height:14px;padding:0;border-radius:2px;background:linear-gradient(#cfd5da,#8d959c);border:1px solid #1a1e22}
+#ckpop .cqls.off{display:block;background:#4a5057;opacity:.6}
+#ckpop .cqscr{flex:1;background:#020403;border:3px solid #15191d;border-radius:4px;padding:5px 8px;font:13px/1.55 ui-monospace,Menlo,Consolas,monospace;color:#e9f3ec;box-shadow:inset 0 0 10px #000;min-height:190px}
+#ckpop .cqt{text-align:center;color:#e9f3ec;margin-bottom:2px}
+#ckpop .cql{display:flex;justify-content:space-between;gap:8px;white-space:nowrap}
+#ckpop .cql span:first-child{color:#57e389}
+#ckpop .cql span.sel{color:#ff6ad5}
+#ckpop .cql span:last-child{color:#e9f3ec}
+#ckpop .cqsp{border-top:1px solid #20302a;margin-top:4px;padding-top:2px;color:#ffd479;min-height:20px;white-space:normal;font-size:12px}
+#ckpop .cqkeys{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+#ckpop .cqfk{flex:1 1 60px;height:28px;padding:0 6px;border-radius:4px;background:linear-gradient(#5a616a,#3a4047);border:1px solid #15191d;color:#eef2f5;font:700 11px/1 system-ui}
+#ckpop .cqfk.on{box-shadow:inset 0 -3px 0 #57e389}
+#ckpop .cqfk.exec{flex:0 0 70px}
+#ckpop .cqfk.exec.lit{background:linear-gradient(#6a5a2a,#3e3518);box-shadow:inset 0 -3px 0 #ffd23a,0 0 6px rgba(255,210,58,.5);color:#ffe9a6}
+@media (max-width:1180px){#ckpop .cqp.mcp{width:min(560px,58%)}}

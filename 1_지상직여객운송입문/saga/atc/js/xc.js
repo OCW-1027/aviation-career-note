@@ -36,7 +36,14 @@
   /* 경로를 따라 지점 n까지 남은 거리(NM) */
   XC.togo = function (ac, n) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], d = 0, p = ac, i; if (r.indexOf(n) < 0) return U.dist(ac, F(n)); for (i = 0; i < r.length; i++) { d += U.dist(p, F(r[i])); p = F(r[i]); if (r[i] === n) break; } return d; };
   XC.passed = function (ac, n) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : null; return !!r && r.indexOf(n) < 0 && XC.ROUTE.indexOf(n) < XC.ROUTE.indexOf(r[0] || 'GUKDO'); };
-  XC.along = function (ac, d) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], p = { x: ac.x, y: ac.y }, i; for (i = 0; i < r.length; i++) { var q = F(r[i]), l = U.dist(p, q); if (l >= d) { var k = d / l; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k }; } d -= l; p = q; } return null; };      /* 87차: 기상 · 교통 배치 */
+  XC.along = function (ac, d) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], p = { x: ac.x, y: ac.y }, i; for (i = 0; i < r.length; i++) { var q = F(r[i]); if (!q) continue; var l = U.dist(p, q); if (l >= d) { var k = d / l; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k }; } d -= l; p = q; } return null; };      /* 87차: 기상 · 교통 배치 */
+  /* 88차: 한 편 비행 비정상 상황 고르기 — 시드 · 난이도(초급 1 · 1 / 중급 2 · 2 / 고급 3 · 2 + 세기). 일본 구간: 난기류 · TCAS · 고도 변경 · 응급 환자 / 인천 구간: 뇌우 · 고도 변경 · 응급 환자(한 번만) */
+  XC.pickEvs = function (sim) {
+    var lv = ATC.app && ATC.app.level || 2, r = ATC.rng((sim.seed || 1) * 31 + lv * 7 + 3), sh = function (a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = a[i]; a[i] = a[j]; a[j] = t; } return a; };
+    var nj = lv <= 1 ? 1 : lv === 2 ? 2 : 3, nk = lv <= 1 ? 1 : 2, jp = sh(['turb', 'tcas', 'rrt', 'med', 'turb', 'tcas']).filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, nj), e = { lv: lv };
+    jp.forEach(function (k) { e[k] = 'jp'; }); var kr = sh(['cb', 'rrtK', e.med ? 'cb' : 'med', 'cb']).filter(function (v, i, a) { return a.indexOf(v) === i; }).slice(0, nk); kr.forEach(function (k) { if (k === 'med') e.med = 'kr'; else e[k] = 'kr'; });
+    e.medT = 60 + Math.floor(r() * 150); e.rrtT = 40 + Math.floor(r() * 90); return e;
+  };
   XC.todNM = function (ac) { return (Math.max(0, ac.alt - XC.STAR_ALT) / 1000) * 3 + 8; };      /* 강하 시작: 1,000ft에 3NM + 감속 여유 8NM(게임 계산) */
 
   /* ================= 순항 시뮬레이션 ================= */
@@ -89,6 +96,7 @@
     sim.isFinished = function () { return this.pilot.done; };
     var sys0 = sim.sys; sim.sys = function (t, k) { if (me.own) sys0.call(this, t, k); }; sim.phone = function () { };
     this.mkAc(src, o);
+    this.evs = src.evs || XC.pickEvs(sim); if (src.med) this.med = src.med;      /* 88차: 이번 비행의 비정상 상황(매번 다르게 · 난이도에 따라 개수) */
   }
   XcPilot.prototype = Object.create(DP.prototype);
   XcPilot.prototype.constructor = XcPilot;
@@ -152,8 +160,10 @@
       if (x.st === 2 && this.freqNowFq === XC.FQ.FUK1.fq) { x.st = 3; say([{ k: 'alt', v: this.fp.rfl }]); return; }
       if (x.st === 3 && XC.passed(ac, 'AKNOM')) { x.st = 4; ho(XC.FQ.FUK2); return; }
       if (x.st === 4 && this.freqNowFq === XC.FQ.FUK2.fq) { x.st = 5; say([{ k: 'roger' }]); return; }
-      if (x.st >= 5 && !this.turb && XC.togo(ac, 'ADGOM') < 35) { this.turb = { fl: Math.round(ac.tAlt / 100), lo: Math.round(ac.tAlt / 100) - 20, t: sim.t }; say([{ k: 'stby', text: 'moderate turbulence reported at ' + fmt.alt(ac.tAlt) + ' between ADGOM and SUGNO, by a Boeing 777' }]); this.note(ATC.T('{0}: 앞 구간(ADGOM ~ SUGNO) {1}에 중간 정도 난기류 보고 — 좌석벨트 사인을 켜고, 고도를 바꿀지 정하세요.', ac.cs, fmt.alt(ac.tAlt)), 'info'); return; }      /* 겨울 제트기류 — 규슈 · 대한해협 상공(게임 설정) */
+      if (x.st >= 5 && !this.turb && this.evs.turb && XC.togo(ac, 'ADGOM') < 35) { this.turb = { fl: Math.round(ac.tAlt / 100), lo: Math.round(ac.tAlt / 100) - 20, t: sim.t }; say([{ k: 'stby', text: 'moderate turbulence reported at ' + fmt.alt(ac.tAlt) + ' between ADGOM and SUGNO, by a Boeing 777' }]); this.note(ATC.T('{0}: 앞 구간(ADGOM ~ SUGNO) {1}에 중간 정도 난기류 보고 — 좌석벨트 사인을 켜고, 고도를 바꿀지 정하세요.', ac.cs, fmt.alt(ac.tAlt)), 'info'); return; }      /* 겨울 제트기류 — 규슈 · 대한해협 상공(게임 설정) */
       var tf = this.tfc; if (tf && !tf.info && !tf.gone && tf.rng < 22) { tf.info = true; say([{ k: 'stby', text: 'traffic, 12 o\'clock, 20 miles, opposite direction, Boeing 767, descending to ' + fmt.alt(tf.tAlt) }]); return; }      /* 87차: 맞은편 교통 정보 */
+      var md = this.med; if (md && md.ans === 'pan' && !md.ack) { md.ack = true; say([{ k: 'stby', text: 'roger PAN PAN, priority approved, I will advise Daegu' }]); return; }      /* 88차: 응급 환자 — 우선권 */
+      if (this.evs.rrt && !this.rrt && x.st >= 6 && x.st <= 7 && this.freqNowFq === XC.FQ.FUK3.fq && sim.t > (this.st6T || (this.st6T = sim.t)) + this.evs.rrtT && !(this.turb && !this.turb.outT && this.turb.inT) && !(tf && !tf.gone && tf.info)) { this.rrt = { v: ac.tAlt < 36000 ? 36000 : 38000 }; this.note(ATC.T('{0}: 관제가 다른 교통 때문에 순항 고도를 바꿉니다 — 복창하고 MCP 고도 · 모드를 맞추세요.', ac.cs), 'info'); say([{ k: 'alt', v: this.rrt.v }]); return; }      /* 88차: 고도 변경(교통) */
       if (this.turb && this.turb.req && !this.turb.clr) { this.turb.clr = true; say([{ k: 'alt', v: this.turb.req }]); return; }
       if (x.st === 5 && XC.passed(ac, 'ADGOM')) { x.st = 6; ho(XC.FQ.FUK3); return; }
       if (x.st === 6 && this.freqNowFq === XC.FQ.FUK3.fq) { x.st = 7; say([{ k: 'dct', fix: 'SUGNO' }], 20); return; }      /* 「proceed direct SUGNO」 — FMC에서 DIRECT TO */
@@ -162,6 +172,8 @@
       if (x.st === 0) { x.st = 1; say([{ k: 'radar' }], 4); return; }
       var wx = this.wx; if (wx && wx.req && !wx.appr) { wx.appr = true; var sd = wx.req, cs0 = ac.csWord + ' ' + ac.num; say([{ k: 'rmk', dev: sd, text: 'deviation ' + sd + ' of track approved, report clear of weather', rb: 'deviation ' + sd + ' of track approved, wilco', alts: ['Deviation ' + (sd === 'left' ? 'right' : 'left') + ' of track approved, wilco, ' + cs0 + '.', 'Roger, proceeding direct GUKDO, ' + cs0 + '.'] }]); return; }      /* 87차: 기상 회피 허가 */
       if (wx && wx.clrReq && !wx.clrOk) { wx.clrOk = true; say([{ k: 'dct', fix: 'GUKDO' }]); return; }
+      var md = this.med; if (md && (md.ans === 'pan' || md.ans === 'dct') && !md.dct && x.st <= 2 && !(wx && wx.appr && !wx.clrOk)) { md.dct = true; var r0 = ac.nav && ac.nav.route ? ac.nav.route[ac.nav.i || 0] : null; if (r0 === 'GUKDO') return; if (md.ans === 'pan' && md.seg === 'jp') this.note(ATC.T('{0}: 후쿠오카 관제가 응급 환자(PAN PAN)를 대구에 알렸습니다 — 우선권 · 직선 경로.', ac.cs), 'info'); say([{ k: 'dct', fix: 'GUKDO' }]); return; }      /* 응급 환자: GUKDO 직행 */
+      if (this.evs.rrtK && !this.rrt && x.st === 1 && sim.t > (this.krT || (this.krT = sim.t)) + this.evs.rrtT && XC.togo(ac, 'GUKDO') - XC.todNM(ac) > (wx ? 15 : 35) && !(wx && !wx.clrReq && !(wx.past && wx.ans === 'cont') && !(wx.d > 48 && !wx.ans)) && ac.tAlt >= 34000) { this.rrt = { v: ac.tAlt - 2000 }; this.note(ATC.T('{0}: 관제가 다른 교통 때문에 순항 고도를 바꿉니다 — 복창하고 MCP 고도 · 모드를 맞추세요.', ac.cs), 'info'); say([{ k: 'alt', v: this.rrt.v }]); return; }
       var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
       if (x.st === 1 && (this.descReq || tod < -2)) { x.st = 2; if (!this.descReq) this.lateDesc = true; say([{ k: 'alt', v: 24000 }]); return; }      /* 강하 요청(또는 강하 시작점을 지나면 관제가 먼저) */
       if (x.st === 2 && (ac.alt < 27000 || XC.togo(ac, 'GUKDO') < 45)) { x.st = 3; if (!this.belt) sim.inc('p_belt_desc', [ac], ATC.T('{0}: 강하 중인데 좌석벨트 사인이 꺼져 있습니다 — 강하 전에 켜세요.', ac.cs)); say([{ k: 'star', name: this.starName() }, { k: 'alt', v: XC.STAR_ALT }]); return; }
@@ -178,12 +190,12 @@
   };
   XcPilot.prototype.tick = function () {
     var keep = ATC.AI; ATC.AI = null; try { DP.prototype.tick.call(this); } finally { ATC.AI = keep; }      /* 순항은 아래 대본 관제사가 맡음 */
-    this.xcTfc(); this.xcWx(); this.xcAi(); this.xcMan(); this.xcTurb();
+    this.xcTfc(); this.xcWx(); this.xcMed(); this.xcAi(); this.xcMan(); this.xcTurb();
   };
   /* ---- 87차: 맞은편 교통(TCAS) — 일본 구간 SUGNO를 지나 45NM 앞, 1.2NM 왼쪽 · 우리보다 3,300ft 위에서 1,000fpm으로 1,000ft 위 고도까지 강하(서쪽 짝수 · 동쪽 홀수). 강하 중에 가까워져 TA(교통 주의)가 울림 — TA만으로는 기동하지 않음 ---- */
   XcPilot.prototype.xcTfc = function () {
     var sim = this.sim, ac = this.ac, tf = this.tfc; if (!ac || sim.seg !== 'jp' || this.phase !== 'air') return;
-    if (!tf) { if (!XC.passed(ac, 'SUGNO') || !this.ci) return; var p = XC.along(ac, 45); if (!p) return; var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, own = Math.round(ac.tAlt / 1000) * 1000;
+    if (!tf) { if (!this.evs.tcas || !XC.passed(ac, 'SUGNO') || !this.ci) return; var p = XC.along(ac, 45); if (!p) return; var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, own = Math.round(ac.tAlt / 1000) * 1000;
       tf = this.tfc = { x: p.x - uy * 1.2, y: p.y + ux * 1.2, ux: -ux, uy: -uy, alt: own + 3300, tAlt: own + 1000, vs: -1000, t: sim.t, rng: 45, info: false, ta: false }; return; }
     if (tf.gone) return; var dt = Math.max(0, sim.t - tf.t); tf.t = sim.t; if (!dt) return;
     tf.x += tf.ux * 480 / 3600 * dt; tf.y += tf.uy * 480 / 3600 * dt; if (tf.alt > tf.tAlt) { tf.alt = Math.max(tf.tAlt, tf.alt - 1000 / 60 * dt); tf.vs = tf.alt > tf.tAlt ? -1000 : 0; } else tf.vs = 0;
@@ -193,6 +205,18 @@
     if (tf.ta && cl < 0 && r > 2) { tf.ta = false; tf.taEnd = sim.t; this.bump(); }
     if (cl < 0 && r > 30) { tf.gone = true; this.bump(); }
   };
+  /* ---- 88차: 응급 환자(승객) — 객실 승무원 보고 → PAN PAN(긴급)으로 알리고 우선권 · 직선 경로를 받음(의료 지원은 회사 · 지상 의료 상담과 함께 — 게임은 교신만) ---- */
+  XcPilot.prototype.xcMed = function () {
+    var sim = this.sim, ac = this.ac, x = sim.xs, e = this.evs; if (!ac || this.med || !e || e.med !== sim.seg || this.phase !== 'air' || !this.ci) return;
+    if (sim.seg === 'jp' ? x.st < 5 : x.st < 1) return; this.medT0 = this.medT0 || sim.t; if (sim.t < this.medT0 + e.medT || sim.cur || this.clr || this.prompt) return;
+    this.med = { seg: sim.seg, t: sim.t }; this.note(ATC.T('{0}: 객실 승무원 — 승객 한 명이 가슴 통증을 호소합니다. 승객 중 의사를 찾고 있습니다. 관제에 알릴지 정하세요.', ac.cs), 'warn'); this.bump();
+  };
+  XcPilot.prototype.medDue = function () { var m = this.med; return !!(m && !m.ans && !this.sim.cur && !this.clr); };
+  XcPilot.prototype.medAns = function (k) { var m = this.med, ac = this.ac, sim = this.sim; if (!m || m.ans) return; m.ans = k; var jp = sim.seg === 'jp';
+    if (k === 'pan') { this.onSay('PAN PAN, PAN PAN, PAN PAN, ' + this.freqNowN + ', ' + ATC.csSay(ac) + ', medical emergency on board, request priority' + (jp ? '' : ' and direct GUKDO') + '.'); sim.inc('p_med_ok', [ac], ATC.T('{0}: 응급 환자를 PAN PAN(긴급)으로 알렸습니다 — 우선권 · 지상 구급차 준비.', ac.cs)); }
+    else if (k === 'dct') { this.onSay(this.freqNowN + ', ' + ATC.csSay(ac) + ', request direct GUKDO.'); this.note(ATC.T('{0}: 응급 상황은 「PAN PAN」(생명이 위태로우면 「MAYDAY」)으로 알려야 우선권과 지상 지원(구급차)을 받습니다.', ac.cs), 'info'); }
+    else sim.inc('p_med_none', [ac], ATC.T('{0}: 응급 환자를 관제에 알리지 않았습니다 — 우선권 · 도착 뒤 구급차를 준비할 수 없습니다.', ac.cs));
+    this.bump(); };
   XcPilot.prototype.tfcDue = function () { var tf = this.tfc; return !!(tf && tf.info && !tf.ans && !tf.gone && !this.sim.cur); };
   XcPilot.prototype.taDue = function () { var tf = this.tfc; return !!(tf && tf.taT && !tf.taAns && !tf.gone); };
   XcPilot.prototype.tfcAns = function (k) { var tf = this.tfc, ac = this.ac; if (!tf || tf.ans) return; tf.ans = k; this.onSay((k === 'see' ? 'Traffic in sight, ' : 'Looking out, ') + ATC.csSay(ac) + '.'); this.bump(); };
@@ -202,7 +226,7 @@
   /* ---- 87차: 뇌우(적란운) 기상 회피 — 인천 구간 처음에 경로 60NM 앞 · 4NM 오른쪽. 기상 레이더(ND)에 보임. 회피 요청 → 허가 → MCP 기수(HDG SEL) → 지나면 「clear of weather」 → direct GUKDO ---- */
   XcPilot.prototype.xcWx = function () {
     var sim = this.sim, ac = this.ac, wx = this.wx; if (!ac || sim.seg !== 'kr' || this.phase !== 'air') return;
-    if (!wx) { if (this.noWx || !this.ci) return; if (XC.togo(ac, 'GUKDO') < 125) { this.noWx = true; return; } var p = XC.along(ac, 60); if (!p) { this.noWx = true; return; } var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
+    if (!wx) { if (this.noWx || !this.ci || !this.evs.cb) return; if (XC.togo(ac, 'GUKDO') < 125) { this.noWx = true; return; } var p = XC.along(ac, 55); if (!p) { this.noWx = true; return; } var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
       wx = this.wx = { x: p.x + uy * 4, y: p.y - ux * 4, seed: (sim.seed || 1) % 997 }; this.bump(); }
     var d = Math.hypot(wx.x - ac.x, wx.y - ac.y), h = ac.hdg * Math.PI / 180, fw = (wx.x - ac.x) * Math.sin(h) + (wx.y - ac.y) * Math.cos(h); wx.d = d; wx.fw = fw;
     wx.k = d < 6 ? 1.6 : d < 11 ? 1 : d < 15 ? 0.35 : 0;      /* 가운데(빨강) · 노랑 · 초록 */
@@ -210,7 +234,7 @@
     if (d < 11 && !this.belt && !wx.hurt) { wx.hurt = true; sim.inc('p_belt_turb', [ac], ATC.T('{0}: 좌석벨트 사인이 꺼진 채 뇌우 구름 가까이의 난기류에 들어갔습니다.', ac.cs)); }
     if (!wx.past && fw < -8) { wx.past = true; this.bump(); }
   };
-  XcPilot.prototype.wxDue = function () { var wx = this.wx; return !!(wx && !wx.ans && !wx.past && wx.d < 48 && wx.fw > 10 && !this.sim.cur); };
+  XcPilot.prototype.wxDue = function () { var wx = this.wx; return !!(wx && !wx.ans && !wx.past && wx.d < 40 && wx.fw > 10 && !this.sim.cur); };      /* 88차: ND 「40」 원 안에 들어오면 */
   XcPilot.prototype.wxClrDue = function () { var wx = this.wx; return !!(wx && wx.appr && wx.past && !wx.clrReq && !this.clr && !this.sim.cur); };
   XcPilot.prototype.wxAns = function (k) { var wx = this.wx, ac = this.ac, sim = this.sim; if (!wx || wx.ans) return; wx.ans = k;
     if (k === 'left' || k === 'right') { wx.req = k; this.onSay(this.freqNowN + ', ' + ATC.csSay(ac) + ', request deviation ' + k + ' of track due weather.'); if (k === 'left') sim.inc('p_wx_ok', [ac], ATC.T('{0}: 뇌우 구름에서 먼 쪽(왼쪽)으로 비켜 가기로 했습니다.', ac.cs)); }
@@ -242,7 +266,7 @@
     else this.onSay('Roger, maintaining ' + fmt.alt(ac.tAlt) + ', ' + ATC.csSay(ac) + '.');
     this.bump();
   };
-  XcPilot.prototype.beltOffDue = function () { var s = this.sim, ac = this.ac, t = this.turb; var wx = this.wx, tf = this.tfc; return !!(this.belt && this.lvlT && s.t - this.lvlT > 40 && (!t || t.outT) && !(wx && !wx.past) && !(tf && !tf.gone && tf.info) && !this.prompt && !this.clr && !(s.seg === 'kr' && XC.togo(ac, 'GUKDO') - XC.todNM(ac) < 40)); };
+  XcPilot.prototype.beltOffDue = function () { var s = this.sim, ac = this.ac, t = this.turb; var wx = this.wx, tf = this.tfc; return !!(this.belt && this.lvlT && s.t - this.lvlT > 40 && (!t || t.outT) && !(wx && !(wx.clrOk || (wx.past && !wx.appr))) && !(tf && !tf.gone && tf.info) && !this.prompt && !this.clr && !(s.seg === 'kr' && XC.togo(ac, 'GUKDO') - XC.todNM(ac) < 70)); };      /* 88차: 강하 70NM 앞부터는 끄라고 하지 않음 */
   XcPilot.prototype.turbDue = function () { var t = this.turb; return !!(t && !t.ans && !t.inT); };
   /* 순항 손 조종(82차): A/P를 풀면 manual.js가 기체를 움직이고, 다시 연결하면 지금 상태(ALT HOLD 또는 V/S)로 이어받음. 허가 고도를 ±300ft 넘게 지나치면 고도 이탈 */
   XcPilot.prototype.xcMan = function () {
@@ -266,26 +290,32 @@
   XcPilot.prototype.nextEv = function () {
     var sim = this.sim, ac = this.ac, x = sim.xs; if (!ac || this.phase !== 'air' || !this.ci) return null;
     var g = Math.max(150, ac.gs || 400) / 3600, T = function (nm) { return Math.max(0, nm) / g; }, up = function (a) { return ac.vs > 100 ? Math.max(0, a - ac.alt) / ac.vs * 60 : 9e9; }, dn = function (a) { return ac.vs < -100 ? Math.max(0, ac.alt - a) / -ac.vs * 60 : 9e9; };
+    var e = this.evs || {}, ev0 = null; if (e.med === sim.seg && !this.med && this.medT0) ev0 = { t: this.medT0 + e.medT - sim.t, n: ATC.T('객실 보고') };      /* 88차 */
+    var ev1 = this.nextEv0(); return ev0 && (!ev1 || ev0.t < ev1.t) ? ev0 : ev1;
+  };
+  XcPilot.prototype.nextEv0 = function () {
+    var sim = this.sim, ac = this.ac, x = sim.xs;
+    var g = Math.max(150, ac.gs || 400) / 3600, T = function (nm) { return Math.max(0, nm) / g; }, up = function (a) { return ac.vs > 100 ? Math.max(0, a - ac.alt) / ac.vs * 60 : 9e9; }, dn = function (a) { return ac.vs < -100 ? Math.max(0, ac.alt - a) / -ac.vs * 60 : 9e9; };
     if (sim.seg === 'jp') {
       if (x.st === 1) return { t: Math.min(up(31500), XC.passed(ac, 'PIGAP') ? 0 : T(XC.togo(ac, 'PIGAP'))), n: 'Fukuoka Control' };
       if (x.st === 3) return { t: T(XC.togo(ac, 'AKNOM')), n: 'Fukuoka Control (AKNOM)' };
-      if (x.st === 5) return this.turb ? { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' } : { t: T(XC.togo(ac, 'ADGOM') - 35), n: ATC.T('난기류 정보') };
-      var tf = this.tfc; if (x.st === 7 && !tf) return { t: T(XC.togo(ac, 'SUGNO')) + 60, n: ATC.T('교통 정보') }; if (tf && !tf.info && tf.cl > 0) return { t: Math.max(0, tf.rng - 22) / tf.cl * 3600, n: ATC.T('교통 정보') }; if (tf && tf.info && !tf.taT && !tf.gone && tf.cl > 0) return { t: Math.max(0, tf.rng - 13) / tf.cl * 3600, n: 'TCAS' };
+      if (x.st === 5) return this.turb || !this.evs.turb ? { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' } : { t: T(XC.togo(ac, 'ADGOM') - 35), n: ATC.T('난기류 정보') };
+      var tf = this.tfc; if (x.st === 7 && !tf && this.evs.tcas) return { t: T(XC.togo(ac, 'SUGNO')) + 60, n: ATC.T('교통 정보') }; if (tf && !tf.info && tf.cl > 0) return { t: Math.max(0, tf.rng - 22) / tf.cl * 3600, n: ATC.T('교통 정보') }; if (tf && tf.info && !tf.taT && !tf.gone && tf.cl > 0) return { t: Math.max(0, tf.rng - 13) / tf.cl * 3600, n: 'TCAS' };
       if (x.st === 7) return { t: T(XC.togo(ac, 'SAPRA') - 25), n: 'Daegu Control' };
     } else {
       var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac), wx = this.wx;
-      if (wx && !wx.ans && !wx.past && wx.fw > 10) return { t: T(wx.d - 48), n: ATC.T('기상 회피') }; if (wx && wx.appr && !wx.past) return { t: T(wx.fw + 8), n: 'clear of weather' };
+      if (wx && !wx.ans && !wx.past && wx.fw > 10) return { t: T(wx.d - 40), n: ATC.T('기상 회피') }; if (wx && wx.appr && !wx.past) return { t: T(wx.fw + 8), n: 'clear of weather' };
       if (x.st === 1) return this.atisGot ? (this.belt ? { t: this.descReq ? 0 : T(tod - 6), n: ATC.T('강하 요청(T/D)') } : { t: T(tod - 15), n: ATC.T('좌석벨트 사인(강하 전)') }) : { t: T(tod - 40), n: ATC.T('인천 ATIS 듣기') };
       if (x.st === 2) return { t: Math.min(T(XC.togo(ac, 'GUKDO') - 45), dn(27000)), n: ATC.T('STAR 허가') };
       if (x.st === 3) return { t: Math.max(T(XC.togo(ac, 'GUKDO') - 18), dn(21000) < 9e8 ? dn(21000) : 0), n: 'Seoul Approach' };
     }
     return null;
   };
-  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.turbDue() || this.tfcDue() || this.taDue() || this.wxDue() || this.wxClrDue() || this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
+  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.medDue() || this.turbDue() || this.tfcDue() || this.taDue() || this.wxDue() || this.wxClrDue() || this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
     var ac = this.ac, ll = XC.ll(ac.x, ac.y), al = ac.al || {}, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
-    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq, belt: this.belt, turb: this.turb,
+    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq, belt: this.belt, turb: this.turb, evs: this.evs, med: this.med,
       fcu: this.fcu ? this.fcu.pack() : null, ac: { lat: ll[0], lon: ll[1], alt: ac.alt, hdg: ac.hdg, ias: ac.ias, tAlt: ac.tAlt, next: r[0] || 'GUKDO' }, incs: this.sim.incs.slice(), log: this.sim.log.slice(-40), atis: this.sim.atis, utc: this.sim.utc(), seed: this.sim.seed, level: this.sim.level.id, t: Date.now() };
   };
 
@@ -343,6 +373,8 @@
   ATC.INC.p_lowspd = { cat: 'P', pts: -3, t: ATC.T('속도 부족(AIRSPEED LOW)'), les: 'acc' };
   ATC.INC.p_belt_ok = { cat: 'P', pts: 1, t: ATC.T('제때 좌석벨트 사인'), les: 'acc' };
   ATC.INC.p_belt_turb = { cat: 'P', pts: -3, t: ATC.T('난기류 중 좌석벨트 사인 꺼짐'), les: 'acc' };
+  ATC.INC.p_med_ok = { cat: 'P', pts: 2, t: ATC.T('응급 환자를 PAN PAN으로 알림'), les: 'acc' };
+  ATC.INC.p_med_none = { cat: 'P', pts: -3, t: ATC.T('응급 환자를 알리지 않음'), les: 'acc' };
   ATC.INC.p_ta_ok = { cat: 'P', pts: 1, t: ATC.T('TA에 바르게 대응'), les: 'acc' };
   ATC.INC.p_ta_man = { cat: 'P', pts: -3, t: ATC.T('TA만으로 기동'), les: 'acc' };
   ATC.INC.p_wx_ok = { cat: 'P', pts: 1, t: ATC.T('뇌우를 먼 쪽으로 회피'), les: 'acc' };
@@ -398,6 +430,6 @@
     if (ctx.measureText(cr1 + ' · ' + cr2).width < W - 200) ctx.fillText(cr1 + ' · ' + cr2, W - 8, H - 8); else { ctx.fillText(cr1, W - 8, H - 20); ctx.fillText(cr2, W - 8, H - 8); } ctx.textAlign = 'left';
   };
   /* 경로를 따라 d NM 앞의 위치 */
-  function along(ac, d) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], p = { x: ac.x, y: ac.y }, i; for (i = 0; i < r.length; i++) { var q = F(r[i]), l = U.dist(p, q); if (l >= d) { var k = d / l; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k }; } d -= l; p = q; } return null; }
+  function along(ac, d) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], p = { x: ac.x, y: ac.y }, i; for (i = 0; i < r.length; i++) { var q = F(r[i]); if (!q) continue; var l = U.dist(p, q); if (l >= d) { var k = d / l; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k }; } d -= l; p = q; } return null; }
   XC.along = along;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

@@ -153,7 +153,7 @@
   function nd(c, W, H, st) {
     c.fillStyle = '#000'; c.fillRect(0, 0, W, H);
     var cx = W * 0.5, cy = H * 0.82, R = H * 0.66, rng = st.range, ppn = R / rng, hd = st.hdg;
-    function sc(p) { var dx = p.x - st.pos.x, dy = p.y - st.pos.y, a = -hd * Math.PI / 180; return { x: cx + (dx * Math.cos(a) - dy * Math.sin(a)) * ppn, y: cy - (dx * Math.sin(a) + dy * Math.cos(a)) * ppn }; }
+    function sc(p) { var dx = p.x - st.pos.x, dy = p.y - st.pos.y, a = hd * Math.PI / 180; return { x: cx + (dx * Math.cos(a) - dy * Math.sin(a)) * ppn, y: cy - (dx * Math.sin(a) + dy * Math.cos(a)) * ppn }; }
     c.save(); c.beginPath(); c.arc(cx, cy, R + 4, Math.PI, 0); c.lineTo(W, H); c.lineTo(0, H); c.closePath(); c.clip();
     /* 거리 원 */
     c.strokeStyle = 'rgba(242,244,246,.5)'; c.lineWidth = 1; c.setLineDash([4, 6]); c.beginPath(); c.arc(cx, cy, R / 2, Math.PI, 0); c.stroke(); c.setLineDash([]);

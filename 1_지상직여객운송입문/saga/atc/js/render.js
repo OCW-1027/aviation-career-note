@@ -434,7 +434,7 @@
     var ids = Object.keys(D.ends).filter(function (id) { return sim.finals && sim.finals(id).length; }), key = [Math.round(v.cu), Math.round(v.cv), v.scale.toFixed(4), W, H].concat(ids.map(function (id) { return id + sim.finals(id).length; })).join('|');
     if (R._flK === key && R._flP) { ids.forEach(function (id) { var q = R._flP[id]; if (q) out.push({ id: id, x: q.x, y: q.y, w: 188, h: q.h, list: sim.finals(id), wt: 3 }); }); return out; }
     var segs = [], mPx = v.scale;
-    Object.keys(D.ends).forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU + e.du * e.len, e.thrV + e.dv * e.len); segs.push([a, b, Math.max(5, 35 * mPx) + 6]); });      /* 활주로(폭 약 60m) */
+    Object.keys(D.ends).forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU + e.du * e.len, e.thrV + e.dv * e.len); segs.push([a, b, Math.max(12, 170 * mPx) + 6]); });      /* 활주로 + 옆 유도로 · 연결로(88차: 활주로 가장자리 · 유도로까지 피함) */
     ids.forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU - e.du * 14000, e.thrV - e.dv * 14000); segs.push([a, b, 10]); });      /* 최종 접근로(약 7.5NM) — 들어오는 항공기 */
     function hitN(x, y, w, h) { var n = 0; segs.forEach(function (sg) { var a = sg[0], b = sg[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]), k = Math.max(1, Math.ceil(L / 6)), r = sg[2]; for (var i = 0; i <= k; i++) { var px = a[0] + (b[0] - a[0]) * i / k, py = a[1] + (b[1] - a[1]) * i / k; if (px > x - r && px < x + w + r && py > y - r && py < y + h + r) n++; } }); return n; }
     var mr = Math.min(78, W * 0.11), mcx = sim.flow && sim.flow.mini !== 'L' ? W - mr - 12 : mr + 12, avoid = [[0, 0, W, 92]];      /* 위쪽 단추 줄 */
@@ -444,15 +444,19 @@
     var placed = [], P = {};
     ids.forEach(function (id) {
       var fl = sim.finals(id), e = D.ends[id], hh = fl.length * 17 + 20, w = 188, best = null;
-      [330, 1300, 2600, 4200].forEach(function (dist, di) {
+      [330, 1300, 2600, 4200, 6500].forEach(function (dist, di) {
         var p = gs(v, W, H, e.thrU - e.du * dist, e.thrV - e.dv * dist);
         [[-w - 14, -hh / 2], [14, -hh / 2], [-w / 2, -hh - 16], [-w / 2, 16], [-w - 14, -hh - 10], [14, -hh - 10], [-w - 14, 10], [14, 10]].forEach(function (o) {
           var x = p[0] + o[0], y = p[1] + o[1], off = (x < 6 || y < 6 || x + w > W - 6 || y + hh > H - 6) ? 1 : 0; x = Math.max(6, Math.min(x, W - w - 6)); y = Math.max(6, Math.min(y, H - hh - 6));
           var av = avoid.some(function (q) { return x < q[0] + q[2] && x + w > q[0] && y < q[1] + q[3] && y + hh > q[1]; }) ? 1 : 0;
           var ov = placed.some(function (q) { return x < q.x + q.w + 6 && x + w + 6 > q.x && y < q.y + q.h + 6 && y + hh + 6 > q.y; }) ? 1 : 0;
-          var sc = hitN(x, y, w, hh) * 40 + ov * 5000 + av * 3000 + off * 120 + di * 25 + Math.hypot(x + w / 2 - p[0], y + hh / 2 - p[1]) * 0.05;
+          var sc = hitN(x, y, w, hh) * 40 + ov * 100000 + av * 100000 + off * 120 + di * 25 + Math.hypot(x + w / 2 - p[0], y + hh / 2 - p[1]) * 0.05;
           if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
         });
+      });
+      [[8, 98], [W - w - 8, 98 + (sim.mode === 'TWR' ? 2 * mr + 34 : 0)], [8, H - 38 - hh], [W - w - 8, H - 38 - hh]].forEach(function (q) {      /* 마땅한 곳이 없으면 화면 구석(88차) */
+        var x = Math.max(6, Math.min(q[0], W - w - 6)), y = Math.max(6, Math.min(q[1], H - hh - 6)), av = avoid.some(function (r) { return x < r[0] + r[2] && x + w > r[0] && y < r[1] + r[3] && y + hh > r[1]; }) ? 1 : 0, ov = placed.some(function (r) { return x < r.x + r.w + 6 && x + w + 6 > r.x && y < r.y + r.h + 6 && y + hh + 6 > r.y; }) ? 1 : 0;
+        var sc = hitN(x, y, w, hh) * 40 + ov * 100000 + av * 100000 + 400; if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
       });
       placed.push({ x: best.x, y: best.y, w: w, h: hh }); P[id] = { x: best.x, y: best.y - 3, h: hh }; out.push({ id: id, x: best.x, y: best.y - 3, w: w, h: hh, list: fl, wt: 3 });
     });

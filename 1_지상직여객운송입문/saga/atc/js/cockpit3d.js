@@ -386,10 +386,17 @@
     var o = new T.Mesh(g, m); o.position.y = (over || 0) * 30; o.renderOrder = over || 0;      /* 겹친 층은 높이를 30m씩(대수 깊이 버퍼라 polygonOffset이 듣지 않음) */ S.gsiM.push(m); return o;
   }
   function xcTex(name, cb) { new T.TextureLoader().load(BASE + 'assets/img/xc/' + name + '.webp', function (t) { t.colorSpace = T.SRGBColorSpace; t.anisotropy = 8; cb(t); }, undefined, function () { cb(null); }); }
+  /* 88차: 한 편 비행 밤 도시 불빛 — 도시 가운데 · 반경(도) · 불빛 수(대략 인구 비례, 게임값). 가운데가 촘촘한 정규분포 */
+  var XCITY = [[35.69,139.69,.32,2600],[35.44,139.62,.13,800],[35.53,139.70,.07,300],[35.52,139.40,.1,350],[35.26,139.15,.04,90],[35.33,139.40,.05,150],[34.98,138.39,.06,260],[35.16,138.68,.05,140],[34.71,137.73,.08,320],[34.77,137.39,.05,160],[35.18,136.91,.2,1300],[34.97,136.62,.05,170],[34.72,136.51,.04,100],[34.69,135.50,.24,1800],[34.69,135.19,.09,520],[35.01,135.77,.08,420],[34.82,134.69,.05,170],[34.66,133.93,.07,260],[34.59,133.77,.04,150],[34.49,133.36,.05,150],[34.39,132.46,.09,420],[34.25,132.57,.03,80],[33.84,132.77,.06,210],[34.34,134.05,.05,160],[33.56,133.53,.04,120],[33.96,130.94,.04,140],[33.88,130.85,.09,380],[33.59,130.40,.12,650],[33.32,130.51,.04,100],[33.25,130.30,.03,80],[32.75,129.88,.04,150],[33.16,129.72,.03,80],[33.24,131.61,.05,160],[32.80,130.71,.07,260],[33.95,131.25,.03,70],[34.17,131.47,.03,70],[35.16,129.06,.13,850],[35.23,128.88,.05,160],[35.23,128.66,.07,260],[35.54,129.31,.08,320],[36.02,129.36,.05,160],[35.84,129.21,.03,60],[35.87,128.60,.12,650],[36.12,128.34,.05,150],[36.57,128.73,.03,60],[36.35,127.38,.09,420],[36.64,127.49,.06,210],[36.81,127.15,.05,160],[37.26,127.03,.07,320],[37.56,126.98,.24,2200],[37.46,126.70,.09,520],[37.42,127.13,.05,210],[37.66,126.83,.06,210],[36.99,127.09,.04,120],[35.82,127.15,.05,160],[35.16,126.85,.08,320],[35.18,128.11,.04,100],[34.94,127.49,.03,80],[34.76,127.66,.03,90],[36.80,127.00,.04,100],[37.39,126.95,.05,200],[37.74,127.05,.04,120]];
+  function xcCityLights() {
+    var X = ATC.XC, out = [], rg = rnd(4242); if (!X || !X.xy) return out;
+    XCITY.forEach(function (c) { var n = c[3]; for (var i = 0; i < n; i++) { var u = Math.max(1e-6, rg()), r = Math.sqrt(-2 * Math.log(u)) * c[2] * 0.42, an = rg() * 6.283, la = c[0] + Math.sin(an) * r, lo = c[1] + Math.cos(an) * r / Math.cos(c[0] * D2R), q = X.xy(la, lo); out.push(new T.Vector3(q.x * NM, 80, -q.y * NM)); } });
+    return out;
+  }
   function xcInit(sc) {
     if (S.attr && S.attr.parentNode) S.attr.parentNode.removeChild(S.attr);
     S.papi = []; S.rabbit = []; S.rwyM = []; S.landRings = []; S.bldMats = []; S.park = null; S.elev = 0; S.ap = new T.Group(); sc.add(S.ap);
-    S.city = lightPoints([], 0xffc98a, 2.2); sc.add(S.city);
+    S.city = lightPoints(xcCityLights(), 0xffc98a, 2); sc.add(S.city);      /* 88차: 밤 순항 — 항로 둘레 도시 불빛 */
     var pg = new T.BufferGeometry(); pg.setAttribute('position', new T.BufferAttribute(new Float32Array(3), 3)); pg.setAttribute('color', new T.BufferAttribute(new Float32Array(3), 3)); S.papiPts = new T.Points(pg, new T.PointsMaterial({ size: 1 })); S.papiPts.visible = false;
     S.rabbitPt = new T.Points(pg.clone(), new T.PointsMaterial({ size: 1 })); S.rabbitPt.visible = false;
     S.satSea = [0.07, 0.17, 0.27];      /* 동해 · 태평양: 위성사진의 바다빛에 맞춤 */
@@ -765,7 +772,7 @@
     S.sun.intensity = 1.6 * day; S.hemi.intensity = 0.25 + 0.75 * day;
     S.fog.color.setRGB(0.72 * day + 0.04, 0.80 * day + 0.05, 0.88 * day + 0.08); S.fog.density = 0.000024 + k * 0.00002;      /* 맑은 낮 시정 약 50km */ S.skyU.hor.value.copy(S.fog.color); var sw = S.satSea || (ATC.aptId === 'RJTT' ? [0.21, 0.31, 0.33] : [0.13, 0.27, 0.38]); S.sea.material.color.setRGB(sw[0] * 0.92 * day + 0.02, sw[1] * 0.92 * day + 0.03, sw[2] * 0.92 * day + 0.05);      /* 바다색 = 공항 사진의 바다색에 맞춤 */
     (S.bldMats || []).concat(S.cityMats || []).forEach(function (m) { m.emissiveIntensity = k * 0.95; });
-    (S.gsiM || []).forEach(function (m) { var b = 0.12 + 0.88 * day; m.color.setRGB(b, b, b * (0.92 + 0.08 * day)); });
+    var gb = S.xc ? 0.035 + 0.965 * day : 0.12 + 0.88 * day; (S.gsiM || []).forEach(function (m) { m.color.setRGB(gb, gb * (0.98 + 0.02 * day), gb * (1.08 - 0.08 * day)); });      /* 88차: 밤 순항은 땅을 훨씬 어둡게(달빛 정도) */
     if (S.rwyHide && S.rwyM && S.rwyM.length && S.rwyM[0].visible && day > 0.4) S.rwyM.forEach(function (m) { m.visible = false; });      /* 실제 사진의 활주로(표시 포함)를 그대로 보여 줌 */
     else if (S.rwyM && S.rwyM.length && !S.rwyM[0].visible && day <= 0.4) S.rwyM.forEach(function (m) { m.visible = true; });
     if (S.fuji) { S.fuji.visible = day > 0.25; S.fuji.material.opacity = 0.92 * day; }
@@ -774,7 +781,8 @@
     var li = 0.05 + k * 0.95; [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = li; }); if (S.alsL) S.alsL.material.opacity = 0.3 + k * 0.7;      /* 낮에는 활주로 등이 거의 안 보임(진입등은 조금) */
     if (S.alsL && S.alsL.material.userData.s0 !== undefined) S.alsL.material.size = S.alsL.material.userData.s0;
     S.sky.visible = true;
-    S.clouds.visible = true; S.clouds.children.forEach(function (c) { var b = c.userData.tone || 1; c.material.color.setRGB((0.35 + day * 0.65) * b, (0.37 + day * 0.63) * b, (0.42 + day * 0.58) * b * (c.userData.tone ? 1.04 : 1)); });
+    var cn = S.xc ? 0.05 : 0.35; S.clouds.visible = true; S.clouds.children.forEach(function (c) { var b = c.userData.tone || 1; c.material.color.setRGB((cn + day * (1 - cn)) * b, (cn + 0.02 + day * (0.98 - cn)) * b, (cn + 0.07 + day * (0.93 - cn)) * b * (c.userData.tone ? 1.04 : 1)); });
+    if (S.xc && k > 0) { var kk = Math.min(1, k * 1.2); S.fog.color.multiplyScalar(1 - 0.72 * kk); S.skyU.hor.value.copy(S.fog.color); S.sea.material.color.multiplyScalar(1 - 0.6 * kk); }      /* 88차: 밤 순항 — 지평선 · 바다 · 구름을 더 어둡게(달빛 정도), 도시 불빛만 밝게 */
   }
   /* 저시정(조종사 체험 날씨): 구름 밑(게임 300ft) 위는 구름 속(시정 약 110m), 밑은 RVR 약 950m — 결심 고도에서 이번 접근이 「보이지 않음」이면 약 260m(진입등이 안 보임). 게임 연출값 */
   function lowFog(sim, st) {
