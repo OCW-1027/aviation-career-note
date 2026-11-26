@@ -702,7 +702,9 @@
       /* 내 항공기 자리 · 자세 */
       var pos = P(st.pos.x, st.pos.y, st.altM), q = new T.Euler(st.pitch * D2R, -st.hdg * D2R, -st.bank * D2R, 'YXZ');
       var qa = new T.Quaternion().setFromEuler(q), ql = new T.Quaternion().setFromEuler(new T.Euler(S.look.pitch, S.look.yaw, 0, 'YXZ'));
-      S.rig.position.copy(pos); S.rig.position.y += 3; S.rig.quaternion.copy(qa); S.rig.updateMatrixWorld(true);
+      S.rig.position.copy(pos); S.rig.position.y += 3; S.rig.quaternion.copy(qa);
+      var tb = p.ac && p.ac.turb; if (tb && !(ATC.app && ATC.app.paused)) { var tt = now / 1000; S.rig.position.y += tb * (Math.sin(tt * 7.3) + Math.sin(tt * 12.1 + 1.3) * 0.6) * 0.9; S.rig.rotateZ(tb * 0.007 * Math.sin(tt * 5.3)); S.rig.rotateX(tb * 0.004 * Math.sin(tt * 8.7 + 0.5)); }      /* 난기류 흔들림(86차) */
+      S.rig.updateMatrixWorld(true);
       if (S.view === 'out') {
         var orb = new T.Vector3(0, 0, 80).applyEuler(new T.Euler(-0.18 + S.look.pitch * 0.5, S.look.yaw, 0, 'YXZ'));
         S.cam.position.copy(orb); S.cam.lookAt(pos); S.ck.visible = false; ownMesh(pos, qa, true);

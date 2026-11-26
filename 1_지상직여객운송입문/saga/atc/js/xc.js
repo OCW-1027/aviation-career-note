@@ -51,7 +51,7 @@
   XcSim.prototype.update = function (dt) { this.moveAll(dt); };
   XcSim.prototype.apply = function (ac, c) {
     if (c.k === 'star') { if (this.pilot) this.pilot.star = c.name; return true; }      /* STAR는 FMC에 들어감(GUKDO에서 시작 — 순항 화면에서는 GUKDO까지만 그림) */
-    if (c.k === 'radar' || c.k === 'roger' || c.k === 'ho') return true;
+    if (c.k === 'radar' || c.k === 'roger' || c.k === 'ho' || c.k === 'stby') return true;
     return this.applyAir(ac, c);
   };
   XcSim.prototype.checkIn = function () { };
@@ -76,11 +76,11 @@
     this.fly = ATC.Manual ? ATC.Manual.newFly() : { mode: 'auto', on: false }; this.eng = { st: 'on', t0: 0, n1: 90 }; this.apOn = true; this.pbrake = false;
     var src = c || j || {}, f;
     if (src.f) { f = this.f = src.f; if (!f.perf && ATC.D.types) f.perf = ATC.D.types.B789; if (ATC.D.alBy && f.al && ATC.D.alBy[f.al.code]) f.al = ATC.D.alBy[f.al.code];      /* 다른 페이지에서 넘어온 편: 성능 · 항공사 자료는 이 페이지 것으로 */
- this.fp = src.fp; this.sid = src.sid; this.sidK = src.sidK || 'A'; this.cur = src.cur || { hdg: null, alt: null, spd: null }; this.mcp = src.mcp || { hdg: 270, alt: 32000, spd: 290 }; this.nRb = src.nRb || 0; this.nRbOk = src.nRbOk || 0; this.rt = src.rt || []; this.xpdr = src.xpdr || { code: '2000', set: '2000' }; this.vs = src.vs; this.cfg = src.cfg || { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = (src.tAcc || 0) + (c && c.sim ? c.sim.t : 0); this.star = src.star || null; this.atisGot = src.atisGot || null; this.descReq = !!src.descReq; }
+ this.fp = src.fp; this.sid = src.sid; this.sidK = src.sidK || 'A'; this.cur = src.cur || { hdg: null, alt: null, spd: null }; this.mcp = src.mcp || { hdg: 270, alt: 32000, spd: 290 }; this.nRb = src.nRb || 0; this.nRbOk = src.nRbOk || 0; this.rt = src.rt || []; this.xpdr = src.xpdr || { code: '2000', set: '2000' }; this.vs = src.vs; this.cfg = src.cfg || { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = (src.tAcc || 0) + (c && c.sim ? c.sim.t : 0); this.star = src.star || null; this.atisGot = src.atisGot || null; this.descReq = !!src.descReq; this.belt = src.belt !== false; this.turb = src.turb || null; }
     else {      /* 「순항부터」 · 「강하부터」: 새로 만든 Vela Air 787 편 */
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep'); f.type = 'B789'; if (ATC.D.types && ATC.D.types.B789) f.perf = ATC.D.types.B789; f.wake = 'H';
       this.f = f; this.fp = { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: XC.CRZ }; this.sid = 'BEKLA 3A'; this.sidK = 'A'; this.cur = { hdg: null, alt: null, spd: null }; this.mcp = { hdg: 270, alt: 32000, spd: 290 };
-      this.nRb = 0; this.nRbOk = 0; this.rt = []; this.xpdr = { code: sim.squawk(), set: null }; this.xpdr.set = this.xpdr.code; this.cfg = { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = 0;
+      this.belt = true; this.nRb = 0; this.nRbOk = 0; this.rt = []; this.xpdr = { code: sim.squawk(), set: null }; this.xpdr.set = this.xpdr.code; this.cfg = { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = 0;
     }
     if (f.perf && f.perf.vr && !this.vs) { var KT = ATC.KT || 0.5144; this.vs = { v1: Math.round(f.perf.vr / KT) - 5, vr: Math.round(f.perf.vr / KT), v2: Math.round(f.perf.vr / KT) + 5 }; }
     if (j) { if (j.incs) sim.incs = j.incs.slice(); if (j.log) sim.log = j.log.slice(); if (j.atis) sim.atis = j.atis; if (j.utc) sim.t0 = j.utc - sim.t; }
@@ -151,6 +151,8 @@
       if (x.st === 2 && this.freqNowFq === XC.FQ.FUK1.fq) { x.st = 3; say([{ k: 'alt', v: this.fp.rfl }]); return; }
       if (x.st === 3 && XC.passed(ac, 'AKNOM')) { x.st = 4; ho(XC.FQ.FUK2); return; }
       if (x.st === 4 && this.freqNowFq === XC.FQ.FUK2.fq) { x.st = 5; say([{ k: 'roger' }]); return; }
+      if (x.st >= 5 && !this.turb && XC.togo(ac, 'ADGOM') < 35) { this.turb = { fl: Math.round(ac.tAlt / 100), lo: Math.round(ac.tAlt / 100) - 20, t: sim.t }; say([{ k: 'stby', text: 'moderate turbulence reported at ' + fmt.alt(ac.tAlt) + ' between ADGOM and SUGNO, by a Boeing 777' }]); this.note(ATC.T('{0}: 앞 구간(ADGOM ~ SUGNO) {1}에 중간 정도 난기류 보고 — 좌석벨트 사인을 켜고, 고도를 바꿀지 정하세요.', ac.cs, fmt.alt(ac.tAlt)), 'info'); return; }      /* 겨울 제트기류 — 규슈 · 대한해협 상공(게임 설정) */
+      if (this.turb && this.turb.req && !this.turb.clr) { this.turb.clr = true; say([{ k: 'alt', v: this.turb.req }]); return; }
       if (x.st === 5 && XC.passed(ac, 'ADGOM')) { x.st = 6; ho(XC.FQ.FUK3); return; }
       if (x.st === 6 && this.freqNowFq === XC.FQ.FUK3.fq) { x.st = 7; say([{ k: 'dct', fix: 'SUGNO' }], 20); return; }      /* 「proceed direct SUGNO」 — FMC에서 DIRECT TO */
       if (x.st === 7 && XC.togo(ac, 'SAPRA') < 25) { x.st = 8; ho(XC.FQ.DAE, 'kr'); return; }      /* 경계 앞에서 대구 관제로 */
@@ -158,7 +160,7 @@
       if (x.st === 0) { x.st = 1; say([{ k: 'radar' }], 4); return; }
       var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
       if (x.st === 1 && (this.descReq || tod < -2)) { x.st = 2; if (!this.descReq) this.lateDesc = true; say([{ k: 'alt', v: 24000 }]); return; }      /* 강하 요청(또는 강하 시작점을 지나면 관제가 먼저) */
-      if (x.st === 2 && (ac.alt < 27000 || XC.togo(ac, 'GUKDO') < 45)) { x.st = 3; say([{ k: 'star', name: this.starName() }, { k: 'alt', v: XC.STAR_ALT }]); return; }
+      if (x.st === 2 && (ac.alt < 27000 || XC.togo(ac, 'GUKDO') < 45)) { x.st = 3; if (!this.belt) sim.inc('p_belt_desc', [ac], ATC.T('{0}: 강하 중인데 좌석벨트 사인이 꺼져 있습니다 — 강하 전에 켜세요.', ac.cs)); say([{ k: 'star', name: this.starName() }, { k: 'alt', v: XC.STAR_ALT }]); return; }
       if (x.st === 3 && XC.togo(ac, 'GUKDO') < 18 && ac.alt < 21000) { x.st = 4; var D = ATC.D; ho(D.freq && D.freq.APP ? D.freq.APP : { n: 'Seoul Approach', fq: '119.75' }, 'app'); return; }
     }
   };
@@ -167,8 +169,35 @@
   XcPilot.prototype.take = function (cmds) { var self = this; cmds.forEach(function (c) { if (c.k === 'ho') self.hoTo = c.to; }); take0.call(this, cmds); if (this.freqTo && this.hoTo) { this.freqTo.n = this.hoTo.n; this.freqTo.fq = this.hoTo.fq; this.freqTo.next = this.hoNext || ''; } };
   XcPilot.prototype.tick = function () {
     var keep = ATC.AI; ATC.AI = null; try { DP.prototype.tick.call(this); } finally { ATC.AI = keep; }      /* 순항은 아래 대본 관제사가 맡음 */
-    this.xcAi(); this.xcMan();
+    this.xcAi(); this.xcMan(); this.xcTurb();
   };
+  /* 난기류(86차): 보고된 구간(ADGOM ~ SUGNO)의 보고 고도 ±1,500ft = 중간(MOD), 그 밖의 같은 구간 = 약함(LGT). 속도 · 고도가 조금씩 흔들림(3D 화면도) */
+  XcPilot.prototype.turbZone = function () { var ac = this.ac, t = this.turb; if (!t || !ac) return 0; if (!(XC.passed(ac, 'ADGOM') || XC.togo(ac, 'ADGOM') < 1) || XC.passed(ac, 'SUGNO') || this.sim.seg !== 'jp') return 0; return Math.abs(ac.alt - t.fl * 100) < 1500 ? 2 : 1; };
+  XcPilot.prototype.xcTurb = function () {
+    var ac = this.ac, sim = this.sim, z = this.turbZone(); if (!ac) return; ac.turb = z === 2 ? 1 : z === 1 ? 0.35 : 0;
+    this.lvlT = ac.alt > 28000 && Math.abs(ac.alt - ac.tAlt) < 200 && !z ? this.lvlT || sim.t : 0;      /* 순항 고도에서 안정된 때부터(좌석벨트 끄기 알림) */
+    if (z) { var r = this.trng || (this.trng = ATC.rng((sim.seed || 1) + 77)), k = ac.turb; ac.ias += (r() - 0.5) * 3 * k; if (!ac.man && Math.abs(ac.alt - ac.tAlt) < 150) ac.alt = Math.max(ac.tAlt - 100, Math.min(ac.tAlt + 100, ac.alt + (r() - 0.5) * 40 * k)); }      /* 수평 비행 중만 ±100ft 안에서 흔들림 */
+    if (z === 2 && !this.belt && !this.turb.hurt) { this.turb.hurt = true; sim.inc('p_belt_turb', [ac], ATC.T('{0}: 좌석벨트 사인이 꺼진 채 중간 정도 난기류에 들어갔습니다 — 객실에서 다칠 수 있습니다.', ac.cs)); this.bump(); }
+    if (z && !this.turb.inT) { this.turb.inT = sim.t; this.note(z === 2 ? ATC.T('{0}: 난기류(중간) — 흔들림이 큽니다.', ac.cs) : ATC.T('{0}: 난기류(약함) — 고도를 바꿔 흔들림이 줄었습니다.', ac.cs), z === 2 ? 'warn' : 'info'); this.bump(); }
+    if (!z && this.turb && this.turb.inT && !this.turb.outT) { this.turb.outT = sim.t; this.note(ATC.T('{0}: 난기류 구간을 벗어났습니다 — 안정되면 좌석벨트 사인을 꺼도 됩니다.', ac.cs), 'info'); this.bump(); }
+  };
+  /* 좌석벨트 사인(86차) — 켜기 · 끄기는 객실 방송과 함께(게임은 방송 생략) */
+  XcPilot.prototype.setBelt = function (on) {
+    var sim = this.sim, ac = this.ac, t = this.turb; if (this.belt === on) return; this.belt = on;
+    this.note(on ? ATC.T('{0}: 좌석벨트 사인 켬', ac.cs) : ATC.T('{0}: 좌석벨트 사인 끔', ac.cs), 'info');
+    if (on && t && !t.inT && !t.beltOk) { t.beltOk = true; sim.inc('p_belt_ok', [ac], ATC.T('{0}: 난기류 구간 전에 좌석벨트 사인을 켰습니다.', ac.cs)); }
+    if (on && sim.seg === 'kr' && !this.beltDescOk && sim.xs.st <= 2) { this.beltDescOk = true; sim.inc('p_belt_ok', [ac], ATC.T('{0}: 강하 전에 좌석벨트 사인을 켰습니다.', ac.cs)); }
+    this.bump();
+  };
+  /* 난기류 정보에 대한 응답: 고도 변경 요청(서쪽 방향 짝수 — 보고 고도 −2,000ft) 또는 그대로 */
+  XcPilot.prototype.turbAns = function (k) {
+    var t = this.turb, ac = this.ac; if (!t || t.ans) return; t.ans = k;
+    if (k === 'req') { t.req = t.lo * 100; this.onSay(this.freqNowN + ', ' + ATC.csSay(ac) + ', request ' + fmt.alt(t.req) + ' due turbulence.'); }
+    else this.onSay('Roger, maintaining ' + fmt.alt(ac.tAlt) + ', ' + ATC.csSay(ac) + '.');
+    this.bump();
+  };
+  XcPilot.prototype.beltOffDue = function () { var s = this.sim, ac = this.ac, t = this.turb; return !!(this.belt && this.lvlT && s.t - this.lvlT > 40 && (!t || t.outT) && !(s.seg === 'kr' && XC.togo(ac, 'GUKDO') - XC.todNM(ac) < 40)); };
+  XcPilot.prototype.turbDue = function () { var t = this.turb; return !!(t && !t.ans && !t.inT); };
   /* 순항 손 조종(82차): A/P를 풀면 manual.js가 기체를 움직이고, 다시 연결하면 지금 상태(ALT HOLD 또는 V/S)로 이어받음. 허가 고도를 ±300ft 넘게 지나치면 고도 이탈 */
   XcPilot.prototype.xcMan = function () {
     var ac = this.ac, fc = this.fcu, sim = this.sim, F = this.fly; if (!ac || !fc || ac.gone) return;
@@ -194,21 +223,21 @@
     if (sim.seg === 'jp') {
       if (x.st === 1) return { t: Math.min(up(31500), XC.passed(ac, 'PIGAP') ? 0 : T(XC.togo(ac, 'PIGAP'))), n: 'Fukuoka Control' };
       if (x.st === 3) return { t: T(XC.togo(ac, 'AKNOM')), n: 'Fukuoka Control (AKNOM)' };
-      if (x.st === 5) return { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' };
+      if (x.st === 5) return this.turb ? { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' } : { t: T(XC.togo(ac, 'ADGOM') - 35), n: ATC.T('난기류 정보') };
       if (x.st === 7) return { t: T(XC.togo(ac, 'SAPRA') - 25), n: 'Daegu Control' };
     } else {
       var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
-      if (x.st === 1) return this.atisGot ? { t: this.descReq ? 0 : T(tod - 6), n: ATC.T('강하 요청(T/D)') } : { t: T(tod - 40), n: ATC.T('인천 ATIS 듣기') };
+      if (x.st === 1) return this.atisGot ? (this.belt ? { t: this.descReq ? 0 : T(tod - 6), n: ATC.T('강하 요청(T/D)') } : { t: T(tod - 15), n: ATC.T('좌석벨트 사인(강하 전)') }) : { t: T(tod - 40), n: ATC.T('인천 ATIS 듣기') };
       if (x.st === 2) return { t: Math.min(T(XC.togo(ac, 'GUKDO') - 45), dn(27000)), n: ATC.T('STAR 허가') };
       if (x.st === 3) return { t: Math.max(T(XC.togo(ac, 'GUKDO') - 18), dn(21000) < 9e8 ? dn(21000) : 0), n: 'Seoul Approach' };
     }
     return null;
   };
-  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
+  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.turbDue() || this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
     var ac = this.ac, ll = XC.ll(ac.x, ac.y), al = ac.al || {}, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
-    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq,
+    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq, belt: this.belt, turb: this.turb,
       fcu: this.fcu ? this.fcu.pack() : null, ac: { lat: ll[0], lon: ll[1], alt: ac.alt, hdg: ac.hdg, ias: ac.ias, tAlt: ac.tAlt, next: r[0] || 'GUKDO' }, incs: this.sim.incs.slice(), log: this.sim.log.slice(-40), atis: this.sim.atis, utc: this.sim.utc(), seed: this.sim.seed, level: this.sim.level.id, t: Date.now() };
   };
 
@@ -264,6 +293,9 @@
   ATC.INC.p_alt_bust = { cat: 'P', pts: -4, t: ATC.T('고도 이탈(허가 고도 ±300ft 밖)'), les: 'acc' };
   ATC.INC.p_ovsp = { cat: 'P', pts: -2, t: ATC.T('과속(OVERSPEED)'), les: 'acc' };
   ATC.INC.p_lowspd = { cat: 'P', pts: -3, t: ATC.T('속도 부족(AIRSPEED LOW)'), les: 'acc' };
+  ATC.INC.p_belt_ok = { cat: 'P', pts: 1, t: ATC.T('제때 좌석벨트 사인'), les: 'acc' };
+  ATC.INC.p_belt_turb = { cat: 'P', pts: -3, t: ATC.T('난기류 중 좌석벨트 사인 꺼짐'), les: 'acc' };
+  ATC.INC.p_belt_desc = { cat: 'P', pts: -1, t: ATC.T('강하 중 좌석벨트 사인 꺼짐'), les: 'acc' };
 
   /* ================= 화면: 순항 지도(ND 같은 넓은 지도) ================= */
   ATC.R.drawXc = function (ctx, W, H, app) {
