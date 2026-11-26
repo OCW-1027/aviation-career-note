@@ -436,8 +436,17 @@
     }
     Object.keys(X.cells).forEach(function (key) { if (keep[key]) return; X.cells[key].forEach(function (m) { S.clouds.remove(m); }); delete X.cells[key]; });
   }
+  /* 87차: 뇌우 구름(적란운) — 한 편 비행 인천 구간. 아래는 어둡고 위(약 40,000ft)는 모루처럼 넓게 */
+  function xcCb(p) {
+    var X = S.xcCl, w = p && p.wx; function clr() { if (S.cbG) S.cbG.list.forEach(function (m) { S.clouds.remove(m); }); S.cbG = null; } if (!X || !w) { clr(); return; } if (S.cbG && S.cbG.wx === w) return; clr();
+    var g = { wx: w, list: [], add: function (m) { this.list.push(m); S.clouds.add(m); } }, rg = rnd(77 + (w.seed || 0)), cx = w.x * NM, cz = -w.y * NM;      /* 구름 묶음(S.clouds에 하나씩 — 낮밤 색 맞춤이 children을 돎) */
+    for (var i = 0; i < 46; i++) { var h = i / 45, y = (2500 + h * 36000) * FT, rad = (5200 + 2600 * Math.sin(h * 3)) * (0.35 + rg() * 0.65), an = rg() * 6.283, sz = 6500 + rg() * 5000, c = 0.42 + h * 0.55;
+      var sp = new T.Sprite(new T.SpriteMaterial({ map: X.tex[Math.floor(rg() * 2)], transparent: true, depthWrite: false, opacity: 0.95, fog: true, color: new T.Color(c, c, c * 1.04) })); sp.userData.tone = c; sp.scale.set(sz, sz * 0.85, 1); sp.position.set(cx + Math.cos(an) * rad, y, cz + Math.sin(an) * rad); g.add(sp); }
+    for (var j = 0; j < 7; j++) { var m = new T.Mesh(S.xcPlane || (S.xcPlane = new T.PlaneGeometry(1, 1)), new T.MeshBasicMaterial({ map: X.tex[2], transparent: true, depthWrite: false, opacity: 0.85, fog: true, side: T.DoubleSide })); m.rotation.x = -Math.PI / 2; m.rotation.z = rg() * 6.283; var s2 = 22000 + rg() * 14000; m.scale.set(s2, s2 * 0.55, 1); m.position.set(cx + (rg() - 0.3) * 9000, (38500 + rg() * 2500) * FT, cz + (rg() - 0.5) * 9000); g.add(m); }      /* 모루 */
+    S.cbG = g;
+  }
   function build() {
-    var D = ATC.D, XCm = !!(S.sim && S.sim.mode === 'XC'); S.apt = ATC.aptId + (XCm ? ':XC' : ''); S.xc = XCm; S.xcG = null; S.xcCl = null; S.gsiM = [];
+    var D = ATC.D, XCm = !!(S.sim && S.sim.mode === 'XC'); S.apt = ATC.aptId + (XCm ? ':XC' : ''); S.xc = XCm; S.xcG = null; S.xcCl = null; S.cbG = null; S.gsiM = [];
     if (S.r) { if (S.r.domElement.parentNode) S.r.domElement.parentNode.removeChild(S.r.domElement); S.r.dispose(); }      /* 장면을 다시 만들 때(출발 → 순항 → 도착) 옛 화면을 떼어 냄 */
     var r = S.r = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true });
     r.setPixelRatio(Math.min(window.devicePixelRatio || 1, (window.innerWidth || 1200) < 900 ? 1.25 : 1.6)); r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
@@ -721,7 +730,7 @@
       var cw = new T.Vector3(); S.cam.getWorldPosition(cw);
       /* 낮 · 밤 */
       env(st.night, pos); if (sim.pwx && sim.pwx.k === 'lowvis') lowFog(sim, st);
-      if (S.xc) { S.fog.density = 0.0000085 + st.night * 0.000006; S.sea.position.set(S.rig.position.x, -40, S.rig.position.z); xcStream(st.pos, now); xcClouds(S.rig.position, now); }      /* 순항: 시정 약 150km, 바다면 · 사진 타일 · 구름 칸은 항공기를 따라감 */
+      if (S.xc) { S.fog.density = 0.0000085 + st.night * 0.000006; S.sea.position.set(S.rig.position.x, -40, S.rig.position.z); xcStream(st.pos, now); xcClouds(S.rig.position, now); xcCb(p); }      /* 순항: 시정 약 150km, 바다면 · 사진 타일 · 구름 칸은 항공기를 따라감 */
       /* PAPI 색 · 연속 섬광등 */
       var col = S.papiPts.geometry.attributes.color;
       S.papi.forEach(function (q2, i) { var dx = q2.p.distanceTo(new T.Vector3(cw.x, q2.p.y, cw.z)), ang = Math.atan2(cw.y - q2.p.y, dx) / D2R, white = ang > q2.ang; col.setXYZ(i, 1, white ? 1 : 0.12, white ? 1 : 0.1); });
@@ -765,7 +774,7 @@
     var li = 0.05 + k * 0.95; [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = li; }); if (S.alsL) S.alsL.material.opacity = 0.3 + k * 0.7;      /* 낮에는 활주로 등이 거의 안 보임(진입등은 조금) */
     if (S.alsL && S.alsL.material.userData.s0 !== undefined) S.alsL.material.size = S.alsL.material.userData.s0;
     S.sky.visible = true;
-    S.clouds.visible = true; S.clouds.children.forEach(function (c) { c.material.color.setRGB(0.35 + day * 0.65, 0.37 + day * 0.63, 0.42 + day * 0.58); });
+    S.clouds.visible = true; S.clouds.children.forEach(function (c) { var b = c.userData.tone || 1; c.material.color.setRGB((0.35 + day * 0.65) * b, (0.37 + day * 0.63) * b, (0.42 + day * 0.58) * b * (c.userData.tone ? 1.04 : 1)); });
   }
   /* 저시정(조종사 체험 날씨): 구름 밑(게임 300ft) 위는 구름 속(시정 약 110m), 밑은 RVR 약 950m — 결심 고도에서 이번 접근이 「보이지 않음」이면 약 260m(진입등이 안 보임). 게임 연출값 */
   function lowFog(sim, st) {
@@ -814,6 +823,8 @@
     if (nf) { var secs = nf.d / Math.max(60, gs) * 3600, ut = sim.utc() + secs, h = Math.floor(ut / 3600) % 24, mi = (ut / 60) % 60; nf.eta = (h < 10 ? '0' : '') + h + (mi < 10 ? '0' : '') + mi.toFixed(1) + 'z'; }
     var fixes = []; Object.keys(D.fix).forEach(function (k) { var f = D.fix[k]; if (/^[A-Z]{5}$/.test(k) && Math.hypot(f.x - x, f.y - y) < 40 && !route.some(function (r) { return r.id === k; })) fixes.push({ id: k, x: f.x, y: f.y }); });
     var traffic = sim.acs.filter(function (a) { return a !== ac && !a.gone && !a.onGround && isFinite(a.x) && !(a.agl && (a.alt || 0) < 100); }).map(function (a) { return { x: a.x, y: a.y, alt: AF(a), vs: a.vs || 0 }; });
+    if (p.tfc && !p.tfc.gone) traffic.push({ x: p.tfc.x, y: p.tfc.y, alt: p.tfc.alt, vs: p.tfc.vs, ta: !!p.tfc.ta });      /* 87차: 한 편 비행 맞은편 교통 */
+    var wxS = p.wx && Math.hypot(p.wx.x - x, p.wx.y - y) < 90 ? [{ x: p.wx.x, y: p.wx.y, seed: p.wx.seed }] : null;
     var rwys = Object.keys(D.rw || {}).map(function (k) { var r = D.rw[k], a = D.ends[r.a], b = D.ends[r.b]; return a && b ? { a: a.thr, b: b.thr } : null; }).filter(Boolean);
     var flapSpd = [['UP', 230], ['1', 210], ['5', 190], ['15', 170], ['20', 160]].filter(function (f) { return f[1] > ac.perf.vapp + 15; });
     var plc = { 0: 340, 1: 255, 5: 235, 15: 205, 20: 195, 25: 185, 30: 180 }, minS = { 0: 210, 1: 190, 5: 170, 15: 155, 20: 150, 25: 145, 30: ac.perf.vapp - 8 };
@@ -845,7 +856,7 @@
       fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: p.dep && p.phase === 'twr' ? !!p.apOn : !F && !gnd, at: FC ? FC.at : F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
       fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? (fd.ver === 'FLARE' ? 'G/S' : fd.ver) : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F || gnd || (p.dep && p.phase === 'twr' && !p.apOn) ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
       ils: { tuned: !!(e && (ap || p.ilsOk)), ident: e && e.ilsId || 'ILS', freq: e && e.ilsFq || '', crs: e ? Math.round(e.crs) : 0, rwy: e ? e.id : '', loc: locDev, gs: gsDev, dme: e ? Math.hypot(e.thr.x - x, e.thr.y - y) : null, thr: e ? e.thr : null },
-      gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, rwys: rwys, range: S.xc ? 80 : ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
+      gpws: gpws, route: route, next: nf, fixes: fixes, traffic: traffic, wx: wxS, rwys: rwys, range: S.xc ? 80 : ra < 3000 ? 10 : ra < 9000 ? 20 : 40, wind: sim.wind || { dir: 0, spd: 0 },
       n1: [n1, n1 ? n1 + 0.4 : 0], egt: [egt0, egt0 + (n1 < 1 ? 0 : 4)], tat: Math.round(15 - alt / 1000 * 2), msgs: msgs, gear: p.cfg.gear, flap: p.cfg.flap, flapPos: p.cfg.flapPos, fuel: 14.2 - sim.t / 3600 * 5.4, gw: 196 - sim.t / 3600 * 5.4,
       night: ATC.R && ATC.R.nightK ? ATC.R.nightK(sim) : 0
     };

@@ -36,6 +36,7 @@
   /* 경로를 따라 지점 n까지 남은 거리(NM) */
   XC.togo = function (ac, n) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], d = 0, p = ac, i; if (r.indexOf(n) < 0) return U.dist(ac, F(n)); for (i = 0; i < r.length; i++) { d += U.dist(p, F(r[i])); p = F(r[i]); if (r[i] === n) break; } return d; };
   XC.passed = function (ac, n) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : null; return !!r && r.indexOf(n) < 0 && XC.ROUTE.indexOf(n) < XC.ROUTE.indexOf(r[0] || 'GUKDO'); };
+  XC.along = function (ac, d) { var r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [], p = { x: ac.x, y: ac.y }, i; for (i = 0; i < r.length; i++) { var q = F(r[i]), l = U.dist(p, q); if (l >= d) { var k = d / l; return { x: p.x + (q.x - p.x) * k, y: p.y + (q.y - p.y) * k }; } d -= l; p = q; } return null; };      /* 87차: 기상 · 교통 배치 */
   XC.todNM = function (ac) { return (Math.max(0, ac.alt - XC.STAR_ALT) / 1000) * 3 + 8; };      /* 강하 시작: 1,000ft에 3NM + 감속 여유 8NM(게임 계산) */
 
   /* ================= 순항 시뮬레이션 ================= */
@@ -51,7 +52,7 @@
   XcSim.prototype.update = function (dt) { this.moveAll(dt); };
   XcSim.prototype.apply = function (ac, c) {
     if (c.k === 'star') { if (this.pilot) this.pilot.star = c.name; return true; }      /* STAR는 FMC에 들어감(GUKDO에서 시작 — 순항 화면에서는 GUKDO까지만 그림) */
-    if (c.k === 'radar' || c.k === 'roger' || c.k === 'ho' || c.k === 'stby') return true;
+    if (c.k === 'radar' || c.k === 'roger' || c.k === 'ho' || c.k === 'stby' || c.k === 'rmk') return true;
     return this.applyAir(ac, c);
   };
   XcSim.prototype.checkIn = function () { };
@@ -152,12 +153,15 @@
       if (x.st === 3 && XC.passed(ac, 'AKNOM')) { x.st = 4; ho(XC.FQ.FUK2); return; }
       if (x.st === 4 && this.freqNowFq === XC.FQ.FUK2.fq) { x.st = 5; say([{ k: 'roger' }]); return; }
       if (x.st >= 5 && !this.turb && XC.togo(ac, 'ADGOM') < 35) { this.turb = { fl: Math.round(ac.tAlt / 100), lo: Math.round(ac.tAlt / 100) - 20, t: sim.t }; say([{ k: 'stby', text: 'moderate turbulence reported at ' + fmt.alt(ac.tAlt) + ' between ADGOM and SUGNO, by a Boeing 777' }]); this.note(ATC.T('{0}: 앞 구간(ADGOM ~ SUGNO) {1}에 중간 정도 난기류 보고 — 좌석벨트 사인을 켜고, 고도를 바꿀지 정하세요.', ac.cs, fmt.alt(ac.tAlt)), 'info'); return; }      /* 겨울 제트기류 — 규슈 · 대한해협 상공(게임 설정) */
+      var tf = this.tfc; if (tf && !tf.info && !tf.gone && tf.rng < 22) { tf.info = true; say([{ k: 'stby', text: 'traffic, 12 o\'clock, 20 miles, opposite direction, Boeing 767, descending to ' + fmt.alt(tf.tAlt) }]); return; }      /* 87차: 맞은편 교통 정보 */
       if (this.turb && this.turb.req && !this.turb.clr) { this.turb.clr = true; say([{ k: 'alt', v: this.turb.req }]); return; }
       if (x.st === 5 && XC.passed(ac, 'ADGOM')) { x.st = 6; ho(XC.FQ.FUK3); return; }
       if (x.st === 6 && this.freqNowFq === XC.FQ.FUK3.fq) { x.st = 7; say([{ k: 'dct', fix: 'SUGNO' }], 20); return; }      /* 「proceed direct SUGNO」 — FMC에서 DIRECT TO */
       if (x.st === 7 && XC.togo(ac, 'SAPRA') < 25) { x.st = 8; ho(XC.FQ.DAE, 'kr'); return; }      /* 경계 앞에서 대구 관제로 */
     } else {
       if (x.st === 0) { x.st = 1; say([{ k: 'radar' }], 4); return; }
+      var wx = this.wx; if (wx && wx.req && !wx.appr) { wx.appr = true; var sd = wx.req, cs0 = ac.csWord + ' ' + ac.num; say([{ k: 'rmk', dev: sd, text: 'deviation ' + sd + ' of track approved, report clear of weather', rb: 'deviation ' + sd + ' of track approved, wilco', alts: ['Deviation ' + (sd === 'left' ? 'right' : 'left') + ' of track approved, wilco, ' + cs0 + '.', 'Roger, proceeding direct GUKDO, ' + cs0 + '.'] }]); return; }      /* 87차: 기상 회피 허가 */
+      if (wx && wx.clrReq && !wx.clrOk) { wx.clrOk = true; say([{ k: 'dct', fix: 'GUKDO' }]); return; }
       var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
       if (x.st === 1 && (this.descReq || tod < -2)) { x.st = 2; if (!this.descReq) this.lateDesc = true; say([{ k: 'alt', v: 24000 }]); return; }      /* 강하 요청(또는 강하 시작점을 지나면 관제가 먼저) */
       if (x.st === 2 && (ac.alt < 27000 || XC.togo(ac, 'GUKDO') < 45)) { x.st = 3; if (!this.belt) sim.inc('p_belt_desc', [ac], ATC.T('{0}: 강하 중인데 좌석벨트 사인이 꺼져 있습니다 — 강하 전에 켜세요.', ac.cs)); say([{ k: 'star', name: this.starName() }, { k: 'alt', v: XC.STAR_ALT }]); return; }
@@ -166,16 +170,58 @@
   };
   XcPilot.prototype.starName = function () { var D = ATC.D; return (D.starName && D.starName[this.sim.krFlow || 'N'] && D.starName[this.sim.krFlow || 'N'].GUKDO) || 'GUKDO 2E'; };
   var take0 = DP.prototype.take;
-  XcPilot.prototype.take = function (cmds) { var self = this; cmds.forEach(function (c) { if (c.k === 'ho') self.hoTo = c.to; }); take0.call(this, cmds); if (this.freqTo && this.hoTo) { this.freqTo.n = this.hoTo.n; this.freqTo.fq = this.hoTo.fq; this.freqTo.next = this.hoNext || ''; } };
+  XcPilot.prototype.take = function (cmds) { var self = this; cmds.forEach(function (c) { if (c.k === 'ho') self.hoTo = c.to; if (c.k === 'rmk' && c.dev && self.wx) { var h = Math.round(U.n360(self.ac.hdg + (c.dev === 'left' ? -20 : 20)) / 5) * 5 || 360; self.wx.hdg = h; self.asg.hdg = { c: { k: 'hdg', v: h, dir: c.dev === 'left' ? 'L' : 'R' }, t: self.sim.t, auto: true }; self.mcp.hdg = h; self.note(ATC.T('{0}: 기상 회피 — MCP 기수 {1}(HDG SEL)로 비켜 가고, 지나면 「clear of weather」를 보고하세요.', self.ac.cs, fmt.hdg(h)), 'info'); } }); take0.call(this, cmds); if (this.freqTo && this.hoTo) { this.freqTo.n = this.hoTo.n; this.freqTo.fq = this.hoTo.fq; this.freqTo.next = this.hoNext || ''; } };
+  XcPilot.prototype.rbOpts = function (cmds, ph) {
+    var c0 = cmds[0]; if (!(c0 && c0.k === 'rmk' && c0.alts)) return DP.prototype.rbOpts.call(this, cmds, ph);
+    var ok = ph.rb.charAt(0).toUpperCase() + ph.rb.slice(1), o = [{ t: ok, ok: true }].concat(c0.alts.map(function (t) { return { t: t, ok: false }; })), r = this.sim.rng;
+    for (var i = o.length - 1; i > 0; i--) { var j = Math.floor(r() * (i + 1)), t = o[i]; o[i] = o[j]; o[j] = t; } return o;
+  };
   XcPilot.prototype.tick = function () {
     var keep = ATC.AI; ATC.AI = null; try { DP.prototype.tick.call(this); } finally { ATC.AI = keep; }      /* 순항은 아래 대본 관제사가 맡음 */
-    this.xcAi(); this.xcMan(); this.xcTurb();
+    this.xcTfc(); this.xcWx(); this.xcAi(); this.xcMan(); this.xcTurb();
   };
+  /* ---- 87차: 맞은편 교통(TCAS) — 일본 구간 SUGNO를 지나 45NM 앞, 1.2NM 왼쪽 · 우리보다 3,300ft 위에서 1,000fpm으로 1,000ft 위 고도까지 강하(서쪽 짝수 · 동쪽 홀수). 강하 중에 가까워져 TA(교통 주의)가 울림 — TA만으로는 기동하지 않음 ---- */
+  XcPilot.prototype.xcTfc = function () {
+    var sim = this.sim, ac = this.ac, tf = this.tfc; if (!ac || sim.seg !== 'jp' || this.phase !== 'air') return;
+    if (!tf) { if (!XC.passed(ac, 'SUGNO') || !this.ci) return; var p = XC.along(ac, 45); if (!p) return; var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L, own = Math.round(ac.tAlt / 1000) * 1000;
+      tf = this.tfc = { x: p.x - uy * 1.2, y: p.y + ux * 1.2, ux: -ux, uy: -uy, alt: own + 3300, tAlt: own + 1000, vs: -1000, t: sim.t, rng: 45, info: false, ta: false }; return; }
+    if (tf.gone) return; var dt = Math.max(0, sim.t - tf.t); tf.t = sim.t; if (!dt) return;
+    tf.x += tf.ux * 480 / 3600 * dt; tf.y += tf.uy * 480 / 3600 * dt; if (tf.alt > tf.tAlt) { tf.alt = Math.max(tf.tAlt, tf.alt - 1000 / 60 * dt); tf.vs = tf.alt > tf.tAlt ? -1000 : 0; } else tf.vs = 0;
+    var r = Math.hypot(tf.x - ac.x, tf.y - ac.y), cl = (tf.rng - r) / dt * 3600; tf.cl = cl; tf.rng = r;      /* 다가오는 빠르기(kt) */
+    var tau = cl > 50 ? r / cl * 3600 : 9e9, dz = tf.alt - ac.alt, dzP = dz + (tf.vs - (ac.vs || 0)) / 60 * Math.min(tau, 60);
+    if (!tf.ta && !tf.taEnd && tau < 48 && Math.abs(dzP) < 850 && r < 14) { tf.ta = true; tf.taT = sim.t; this.call = { t: 'TRAFFIC', at: sim.t }; this.note(ATC.T('{0}: TCAS 「TRAFFIC, TRAFFIC」 — 교통 주의(TA). 피하라는 지시(RA)가 아니므로 기동하지 않고, 허가 고도를 지키며 지켜봅니다.', ac.cs), 'warn'); this.bump(); }
+    if (tf.ta && cl < 0 && r > 2) { tf.ta = false; tf.taEnd = sim.t; this.bump(); }
+    if (cl < 0 && r > 30) { tf.gone = true; this.bump(); }
+  };
+  XcPilot.prototype.tfcDue = function () { var tf = this.tfc; return !!(tf && tf.info && !tf.ans && !tf.gone && !this.sim.cur); };
+  XcPilot.prototype.taDue = function () { var tf = this.tfc; return !!(tf && tf.taT && !tf.taAns && !tf.gone); };
+  XcPilot.prototype.tfcAns = function (k) { var tf = this.tfc, ac = this.ac; if (!tf || tf.ans) return; tf.ans = k; this.onSay((k === 'see' ? 'Traffic in sight, ' : 'Looking out, ') + ATC.csSay(ac) + '.'); this.bump(); };
+  XcPilot.prototype.taAns = function (k) { var tf = this.tfc, ac = this.ac, sim = this.sim; if (!tf || tf.taAns) return; tf.taAns = k;
+    if (k === 'hold') sim.inc('p_ta_ok', [ac], ATC.T('{0}: TA에 기동하지 않고 허가 고도를 지켰습니다.', ac.cs)); else sim.inc('p_ta_man', [ac], ATC.T('{0}: TA(교통 주의)만으로 고도를 바꾸려 했습니다 — TA에서는 기동하지 않고, 피하는 기동은 RA(회피 지시)일 때만 합니다.', ac.cs));
+    this.bump(); };
+  /* ---- 87차: 뇌우(적란운) 기상 회피 — 인천 구간 처음에 경로 60NM 앞 · 4NM 오른쪽. 기상 레이더(ND)에 보임. 회피 요청 → 허가 → MCP 기수(HDG SEL) → 지나면 「clear of weather」 → direct GUKDO ---- */
+  XcPilot.prototype.xcWx = function () {
+    var sim = this.sim, ac = this.ac, wx = this.wx; if (!ac || sim.seg !== 'kr' || this.phase !== 'air') return;
+    if (!wx) { if (this.noWx || !this.ci) return; if (XC.togo(ac, 'GUKDO') < 125) { this.noWx = true; return; } var p = XC.along(ac, 60); if (!p) { this.noWx = true; return; } var dx = p.x - ac.x, dy = p.y - ac.y, L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
+      wx = this.wx = { x: p.x + uy * 4, y: p.y - ux * 4, seed: (sim.seed || 1) % 997 }; this.bump(); }
+    var d = Math.hypot(wx.x - ac.x, wx.y - ac.y), h = ac.hdg * Math.PI / 180, fw = (wx.x - ac.x) * Math.sin(h) + (wx.y - ac.y) * Math.cos(h); wx.d = d; wx.fw = fw;
+    wx.k = d < 6 ? 1.6 : d < 11 ? 1 : d < 15 ? 0.35 : 0;      /* 가운데(빨강) · 노랑 · 초록 */
+    if (d < 6 && !wx.core) { wx.core = true; sim.inc('p_cb', [ac], ATC.T('{0}: 뇌우 구름(적란운) 한가운데를 지났습니다 — 심한 난기류 · 우박 · 번개 위험. 기상 레이더에서 빨간 곳은 20NM 넘게 떨어져 비켜 갑니다.', ac.cs)); this.note(ATC.T('{0}: 심한 난기류 — 뇌우 구름 속입니다.', ac.cs), 'warn'); this.bump(); }
+    if (d < 11 && !this.belt && !wx.hurt) { wx.hurt = true; sim.inc('p_belt_turb', [ac], ATC.T('{0}: 좌석벨트 사인이 꺼진 채 뇌우 구름 가까이의 난기류에 들어갔습니다.', ac.cs)); }
+    if (!wx.past && fw < -8) { wx.past = true; this.bump(); }
+  };
+  XcPilot.prototype.wxDue = function () { var wx = this.wx; return !!(wx && !wx.ans && !wx.past && wx.d < 48 && wx.fw > 10 && !this.sim.cur); };
+  XcPilot.prototype.wxClrDue = function () { var wx = this.wx; return !!(wx && wx.appr && wx.past && !wx.clrReq && !this.clr && !this.sim.cur); };
+  XcPilot.prototype.wxAns = function (k) { var wx = this.wx, ac = this.ac, sim = this.sim; if (!wx || wx.ans) return; wx.ans = k;
+    if (k === 'left' || k === 'right') { wx.req = k; this.onSay(this.freqNowN + ', ' + ATC.csSay(ac) + ', request deviation ' + k + ' of track due weather.'); if (k === 'left') sim.inc('p_wx_ok', [ac], ATC.T('{0}: 뇌우 구름에서 먼 쪽(왼쪽)으로 비켜 가기로 했습니다.', ac.cs)); }
+    this.bump(); };
+  XcPilot.prototype.wxClr = function () { var wx = this.wx, ac = this.ac; if (!wx || wx.clrReq) return; wx.clrReq = true; this.onSay(this.freqNowN + ', ' + ATC.csSay(ac) + ', clear of weather, request direct GUKDO.'); this.bump(); };
   /* 난기류(86차): 보고된 구간(ADGOM ~ SUGNO)의 보고 고도 ±1,500ft = 중간(MOD), 그 밖의 같은 구간 = 약함(LGT). 속도 · 고도가 조금씩 흔들림(3D 화면도) */
   XcPilot.prototype.turbZone = function () { var ac = this.ac, t = this.turb; if (!t || !ac) return 0; if (!(XC.passed(ac, 'ADGOM') || XC.togo(ac, 'ADGOM') < 1) || XC.passed(ac, 'SUGNO') || this.sim.seg !== 'jp') return 0; return Math.abs(ac.alt - t.fl * 100) < 1500 ? 2 : 1; };
   XcPilot.prototype.xcTurb = function () {
-    var ac = this.ac, sim = this.sim, z = this.turbZone(); if (!ac) return; ac.turb = z === 2 ? 1 : z === 1 ? 0.35 : 0;
+    var ac = this.ac, sim = this.sim, z = this.turbZone(); if (!ac) return; ac.turb = Math.max(z === 2 ? 1 : z === 1 ? 0.35 : 0, this.wx && this.wx.k || 0);
     this.lvlT = ac.alt > 28000 && Math.abs(ac.alt - ac.tAlt) < 200 && !z ? this.lvlT || sim.t : 0;      /* 순항 고도에서 안정된 때부터(좌석벨트 끄기 알림) */
+    if (!z && this.wx && this.wx.k) { var r0 = this.trng || (this.trng = ATC.rng((sim.seed || 1) + 77)), k0 = ac.turb; ac.ias += (r0() - 0.5) * 3 * k0; if (!ac.man && Math.abs(ac.alt - ac.tAlt) < 150) ac.alt = Math.max(ac.tAlt - 100, Math.min(ac.tAlt + 100, ac.alt + (r0() - 0.5) * 40 * k0)); }
     if (z) { var r = this.trng || (this.trng = ATC.rng((sim.seed || 1) + 77)), k = ac.turb; ac.ias += (r() - 0.5) * 3 * k; if (!ac.man && Math.abs(ac.alt - ac.tAlt) < 150) ac.alt = Math.max(ac.tAlt - 100, Math.min(ac.tAlt + 100, ac.alt + (r() - 0.5) * 40 * k)); }      /* 수평 비행 중만 ±100ft 안에서 흔들림 */
     if (z === 2 && !this.belt && !this.turb.hurt) { this.turb.hurt = true; sim.inc('p_belt_turb', [ac], ATC.T('{0}: 좌석벨트 사인이 꺼진 채 중간 정도 난기류에 들어갔습니다 — 객실에서 다칠 수 있습니다.', ac.cs)); this.bump(); }
     if (z && !this.turb.inT) { this.turb.inT = sim.t; this.note(z === 2 ? ATC.T('{0}: 난기류(중간) — 흔들림이 큽니다.', ac.cs) : ATC.T('{0}: 난기류(약함) — 고도를 바꿔 흔들림이 줄었습니다.', ac.cs), z === 2 ? 'warn' : 'info'); this.bump(); }
@@ -196,7 +242,7 @@
     else this.onSay('Roger, maintaining ' + fmt.alt(ac.tAlt) + ', ' + ATC.csSay(ac) + '.');
     this.bump();
   };
-  XcPilot.prototype.beltOffDue = function () { var s = this.sim, ac = this.ac, t = this.turb; return !!(this.belt && this.lvlT && s.t - this.lvlT > 40 && (!t || t.outT) && !(s.seg === 'kr' && XC.togo(ac, 'GUKDO') - XC.todNM(ac) < 40)); };
+  XcPilot.prototype.beltOffDue = function () { var s = this.sim, ac = this.ac, t = this.turb; var wx = this.wx, tf = this.tfc; return !!(this.belt && this.lvlT && s.t - this.lvlT > 40 && (!t || t.outT) && !(wx && !wx.past) && !(tf && !tf.gone && tf.info) && !this.prompt && !this.clr && !(s.seg === 'kr' && XC.togo(ac, 'GUKDO') - XC.todNM(ac) < 40)); };
   XcPilot.prototype.turbDue = function () { var t = this.turb; return !!(t && !t.ans && !t.inT); };
   /* 순항 손 조종(82차): A/P를 풀면 manual.js가 기체를 움직이고, 다시 연결하면 지금 상태(ALT HOLD 또는 V/S)로 이어받음. 허가 고도를 ±300ft 넘게 지나치면 고도 이탈 */
   XcPilot.prototype.xcMan = function () {
@@ -224,16 +270,18 @@
       if (x.st === 1) return { t: Math.min(up(31500), XC.passed(ac, 'PIGAP') ? 0 : T(XC.togo(ac, 'PIGAP'))), n: 'Fukuoka Control' };
       if (x.st === 3) return { t: T(XC.togo(ac, 'AKNOM')), n: 'Fukuoka Control (AKNOM)' };
       if (x.st === 5) return this.turb ? { t: T(XC.togo(ac, 'ADGOM')), n: 'Fukuoka Control (ADGOM)' } : { t: T(XC.togo(ac, 'ADGOM') - 35), n: ATC.T('난기류 정보') };
+      var tf = this.tfc; if (x.st === 7 && !tf) return { t: T(XC.togo(ac, 'SUGNO')) + 60, n: ATC.T('교통 정보') }; if (tf && !tf.info && tf.cl > 0) return { t: Math.max(0, tf.rng - 22) / tf.cl * 3600, n: ATC.T('교통 정보') }; if (tf && tf.info && !tf.taT && !tf.gone && tf.cl > 0) return { t: Math.max(0, tf.rng - 13) / tf.cl * 3600, n: 'TCAS' };
       if (x.st === 7) return { t: T(XC.togo(ac, 'SAPRA') - 25), n: 'Daegu Control' };
     } else {
-      var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac);
+      var tod = XC.togo(ac, 'GUKDO') - XC.todNM(ac), wx = this.wx;
+      if (wx && !wx.ans && !wx.past && wx.fw > 10) return { t: T(wx.d - 48), n: ATC.T('기상 회피') }; if (wx && wx.appr && !wx.past) return { t: T(wx.fw + 8), n: 'clear of weather' };
       if (x.st === 1) return this.atisGot ? (this.belt ? { t: this.descReq ? 0 : T(tod - 6), n: ATC.T('강하 요청(T/D)') } : { t: T(tod - 15), n: ATC.T('좌석벨트 사인(강하 전)') }) : { t: T(tod - 40), n: ATC.T('인천 ATIS 듣기') };
       if (x.st === 2) return { t: Math.min(T(XC.togo(ac, 'GUKDO') - 45), dn(27000)), n: ATC.T('STAR 허가') };
       if (x.st === 3) return { t: Math.max(T(XC.togo(ac, 'GUKDO') - 18), dn(21000) < 9e8 ? dn(21000) : 0), n: 'Seoul Approach' };
     }
     return null;
   };
-  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.turbDue() || this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
+  XcPilot.prototype.busy = function () { var s = this.sim; return !!(this.turbDue() || this.tfcDue() || this.taDue() || this.wxDue() || this.wxClrDue() || this.prompt || this.clr || (this.freqTo && !this.freqTo.sent) || Object.keys(this.asg).length || s.cur || s.q.length || this.phase !== 'air' || (s.seg === 'kr' && this.ac && !this.descReq && XC.togo(this.ac, 'GUKDO') - XC.todNM(this.ac) < 6 && s.xs.st === 1)); };
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
     var ac = this.ac, ll = XC.ll(ac.x, ac.y), al = ac.al || {}, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
@@ -295,6 +343,10 @@
   ATC.INC.p_lowspd = { cat: 'P', pts: -3, t: ATC.T('속도 부족(AIRSPEED LOW)'), les: 'acc' };
   ATC.INC.p_belt_ok = { cat: 'P', pts: 1, t: ATC.T('제때 좌석벨트 사인'), les: 'acc' };
   ATC.INC.p_belt_turb = { cat: 'P', pts: -3, t: ATC.T('난기류 중 좌석벨트 사인 꺼짐'), les: 'acc' };
+  ATC.INC.p_ta_ok = { cat: 'P', pts: 1, t: ATC.T('TA에 바르게 대응'), les: 'acc' };
+  ATC.INC.p_ta_man = { cat: 'P', pts: -3, t: ATC.T('TA만으로 기동'), les: 'acc' };
+  ATC.INC.p_wx_ok = { cat: 'P', pts: 1, t: ATC.T('뇌우를 먼 쪽으로 회피'), les: 'acc' };
+  ATC.INC.p_cb = { cat: 'P', pts: -4, t: ATC.T('뇌우 구름 속 통과'), les: 'acc' };
   ATC.INC.p_belt_desc = { cat: 'P', pts: -1, t: ATC.T('강하 중 좌석벨트 사인 꺼짐'), les: 'acc' };
 
   /* ================= 화면: 순항 지도(ND 같은 넓은 지도) ================= */
@@ -322,6 +374,8 @@
     var R0 = XC.ROUTE, act = ac && ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
     ctx.lineWidth = 2; ctx.strokeStyle = '#3a6f90'; ctx.beginPath(); R0.forEach(function (n, i) { var s = S(F(n)); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); }); ctx.stroke();
     if (ac && act.length) { ctx.strokeStyle = '#e04bd6'; ctx.lineWidth = 2.4; ctx.beginPath(); var s0 = S(ac); ctx.moveTo(s0[0], s0[1]); act.forEach(function (n) { var s = S(F(n)); ctx.lineTo(s[0], s[1]); }); ctx.stroke(); }      /* 지금 따라가는 경로(자홍색 — FMC 경로) */
+    var pl = sim.pilot; if (pl && pl.wx) { var w0 = S(pl.wx), w1 = S({ x: pl.wx.x + 10, y: pl.wx.y }), pr = Math.max(0.3, Math.abs(w1[0] - w0[0]) / 10); [[15, 'rgba(40,200,80,.45)'], [11, 'rgba(240,210,40,.6)'], [6, 'rgba(230,40,40,.75)']].forEach(function (lv) { ctx.fillStyle = lv[1]; ctx.beginPath(); ctx.arc(w0[0], w0[1], lv[0] * pr, 0, 7); ctx.fill(); }); }      /* 87차: 뇌우(기상 레이더) */
+    if (pl && pl.tfc && !pl.tfc.gone) { var t0 = S(pl.tfc); ctx.fillStyle = pl.tfc.ta ? '#ffb000' : '#e8eef4'; ctx.beginPath(); ctx.moveTo(t0[0], t0[1] - 5); ctx.lineTo(t0[0] + 5, t0[1]); ctx.lineTo(t0[0], t0[1] + 5); ctx.lineTo(t0[0] - 5, t0[1]); ctx.closePath(); ctx.fill(); }      /* 맞은편 교통 */
     ctx.font = '10px monospace'; ctx.textAlign = 'left';
     R0.forEach(function (n) { var s = S(F(n)), on = act[0] === n; ctx.strokeStyle = on ? '#e04bd6' : '#7fb0cf'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(s[0], s[1] - 5); ctx.lineTo(s[0] + 5, s[1]); ctx.lineTo(s[0], s[1] + 5); ctx.lineTo(s[0] - 5, s[1]); ctx.closePath(); ctx.stroke(); });
     ['RJTT', 'RKSI'].forEach(function (n) { var s = S(F(n)); ctx.strokeStyle = '#9fd0ff'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s[0], s[1], 5, 0, 7); ctx.stroke(); ctx.fillStyle = '#9fd0ff'; put(n, s[0] + 8, s[1] + 4, 'left', true); });

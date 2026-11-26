@@ -94,7 +94,7 @@
     var pu = /PULL/.test(st.gpws || '');
     if (st.gpws && (st.gpws !== st0.gpws || st.man && A.currentTime - lastG > 2.6) && (pu || A.currentTime > lastSay - 0.1)) { lastG = A.currentTime; if (pu) { say('pullup', true); } else say(/GEAR/.test(st.gpws) ? 'gear' : /FLAP/.test(st.gpws) ? 'flaps' : /SINK/.test(st.gpws) ? 'sink' : /GLIDE/.test(st.gpws) ? 'gs' : /PULL/.test(st.gpws) ? 'pullup' : /BANK/.test(st.gpws) ? 'bank' : ''); }      /* 직접 조종 중에는 조건이 이어지는 동안 되풀이 */
     if (st.man && st.alpha > 13 && !ro) { if (!g.shk) { g.shk = gain(A, 0, g.master); loop(A, g.bn).connect(filt(A, 'bandpass', 32, 2, g.shk)); } set(g.shk.gain, 0.5, 0.05); } else if (g.shk) set(g.shk.gain, 0, 0.1);      /* 실속 경고: 조종간 떨림(스틱 셰이커) */
-    if (p.call && p.call !== lastCall) { lastCall = p.call; var ck = { '80 KNOTS': '80', 'V1': 'v1', 'ROTATE': 'rotate', 'POSITIVE RATE': 'posrate' }[p.call.t]; if (ck) say(ck, true); }      /* 출발편 이륙 호출 */
+    if (p.call && p.call !== lastCall) { lastCall = p.call; var ck = { '80 KNOTS': '80', 'V1': 'v1', 'ROTATE': 'rotate', 'POSITIVE RATE': 'posrate', 'TRAFFIC': 'traffic' }[p.call.t]; if (ck) say(ck, true); }      /* 출발편 이륙 호출 */
     st0 = { ra: ra, ro: !!ro, gear: cf.gear, gpws: st.gpws };
   };
 })();

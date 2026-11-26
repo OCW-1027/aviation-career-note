@@ -161,6 +161,8 @@
     /* 활주로 · 최종 접근로 */
     (st.rwys || []).forEach(function (r) { var a = sc(r.a), b = sc(r.b); line(c, a.x, a.y, b.x, b.y, WHT, 4); });
     if (st.ils && st.ils.tuned && st.ils.thr) { var t1 = sc(st.ils.thr), far = { x: st.ils.thr.x - Math.sin(st.ils.crs * Math.PI / 180) * 15, y: st.ils.thr.y - Math.cos(st.ils.crs * Math.PI / 180) * 15 }, t2 = sc(far); c.setLineDash([10, 6]); line(c, t1.x, t1.y, t2.x, t2.y, WHT, 1.5); c.setLineDash([]); }
+    /* 기상 레이더(87차): 초록 · 노랑 · 빨강(가운데) — 울퉁불퉁한 덩어리 */
+    (st.wx || []).forEach(function (w) { var p = sc(w); [[15, 'rgba(40,200,80,.55)'], [11, 'rgba(240,210,40,.7)'], [6, 'rgba(230,40,40,.8)']].forEach(function (lv, li) { c.fillStyle = lv[1]; c.beginPath(); for (var k = 0; k <= 24; k++) { var an = k / 24 * Math.PI * 2, rr = lv[0] * (0.82 + 0.18 * Math.sin(an * 3 + w.seed + li) + 0.08 * Math.cos(an * 5 + w.seed * 2)) * ppn, px = p.x + Math.cos(an) * rr * 1.15, py = p.y + Math.sin(an) * rr; if (k) c.lineTo(px, py); else c.moveTo(px, py); } c.closePath(); c.fill(); }); });
     /* 주변 지점 */
     (st.fixes || []).forEach(function (f) { var p = sc(f); if (Math.hypot(p.x - cx, p.y - cy) > R) return; c.strokeStyle = CYN; c.lineWidth = 1.5; c.beginPath(); c.moveTo(p.x, p.y - 6); c.lineTo(p.x + 5, p.y + 4); c.lineTo(p.x - 5, p.y + 4); c.closePath(); c.stroke(); txt(c, f.id, p.x + 8, p.y, CYN, H * 0.026); });
     /* 경로(자홍) */
@@ -174,12 +176,13 @@
     /* 주변 항공기(TCAS) */
     (st.traffic || []).forEach(function (t) {
       var p = sc(t), dalt = Math.round((t.alt - st.alt) / 100); if (Math.hypot(p.x - cx, p.y - cy) > R) return;
-      var near = Math.abs(dalt) < 12 && Math.hypot(t.x - st.pos.x, t.y - st.pos.y) < 6, col = near ? CYN : WHT;
-      diamond(c, p.x, p.y, 7, col, !near);
+      var near = Math.abs(dalt) < 12 && Math.hypot(t.x - st.pos.x, t.y - st.pos.y) < 6, col = t.ta ? '#ffb000' : near ? CYN : WHT;
+      if (t.ta) { c.fillStyle = col; c.beginPath(); c.arc(p.x, p.y, 7, 0, 7); c.fill(); } else diamond(c, p.x, p.y, 7, col, !near);      /* TA = 노란 동그라미(87차) */
       txt(c, (dalt >= 0 ? '+' : '-') + pad(Math.abs(dalt), 2), p.x, dalt >= 0 ? p.y - 15 : p.y + 15, col, H * 0.028, 'center');
       if (Math.abs(t.vs) > 500) txt(c, t.vs > 0 ? '↑' : '↓', p.x + 12, p.y, col, H * 0.03);
     });
     c.restore();
+    if ((st.traffic || []).some(function (t) { return t.ta; })) txt(c, 'TRAFFIC', W * 0.5, H * 0.95, '#ffb000', H * 0.05, 'center', true);      /* TCAS TA(87차) */
     /* 나침반 원호 */
     c.strokeStyle = WHT; c.lineWidth = 2; c.beginPath(); c.arc(cx, cy, R, Math.PI * 1.08, Math.PI * 1.92); c.stroke();
     for (var h = 0; h < 360; h += 5) {

@@ -432,7 +432,7 @@ html[lang=ja] .pcard .psum,html[lang=ja] .scard b,html[lang=ja] .scard .ssum,htm
 @keyframes sayag{50%{background:#5a1f19}}
 .lg.phone b{color:#ffd27a}.lg.phone span{color:#f3dfb5}
 .sayag.phoneb{border-color:#e0b04a;background:#3a2c10;color:#ffe7b0;animation:none}
-table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{text-align:left;color:var(--mut);font-weight:400;padding:3px 10px 3px 0;white-space:nowrap}table.hov td{padding:3px 0}
+table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{text-align:center;color:var(--mut);font-weight:400;padding:3px 10px;white-space:nowrap}table.hov td{padding:3px 8px}
 /* ===== 자격 등급 · 오늘의 과제 · 끝없는 근무 · 결과 보강 ===== */
 .prate{margin-top:8px;font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
 .prate.r1{color:#7fd6a6;border-color:#2f7a55}.prate.r2{color:#ffd479;border-color:#a5822f;background:rgba(255,212,121,.08)}
@@ -505,9 +505,9 @@ table.hov{border-collapse:collapse;margin:6px 0 10px;width:100%}table.hov th{tex
 #ck3d .ckgear{font:700 10px/1 ui-monospace,Menlo,Consolas,monospace;display:flex!important;align-items:center;justify-content:center;border-radius:2px;background:#0b0d10}
 #ck3d .ckgear.dn{color:#3ee07a;text-shadow:0 0 5px rgba(62,224,122,.7)}#ck3d .ckgear.up{color:#d8dde3}#ck3d .ckgear.tr{color:#ffb43c}
 .pilotp .cb.popt.pdo{border-color:#ffd479;color:#ffe3a3;background:rgba(255,212,121,.08)}
-#ck3d .ckattr{position:absolute;right:6px;bottom:4px;z-index:3;font:10px/1.3 system-ui,sans-serif;color:rgba(255,255,255,.85);background:rgba(0,0,0,.38);padding:2px 6px;border-radius:3px;text-decoration:none;max-width:70%;pointer-events:auto}
-@media (max-width:700px){#ck3d .ckattr{top:4px;bottom:auto;right:4px;font-size:9px;max-width:62%}}
-@media (max-height:500px){#ck3d .ckattr{top:4px;bottom:auto;right:4px;font-size:9px;max-width:62%}}
+#ck3d .ckattr{position:absolute;right:6px;bottom:3px;z-index:3;font:9px/1.25 system-ui,sans-serif;color:rgba(255,255,255,.5);background:none;text-shadow:0 0 3px rgba(0,0,0,.7);padding:0 2px;text-decoration:none;max-width:45%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:auto}      /* 88차: 출처는 오른쪽 아래 구석에 작고 흐리게(누르면 원문) */
+#ck3d .ckattr:hover,#ck3d .ckattr:focus{color:rgba(255,255,255,.9);max-width:70%;white-space:normal}
+@media (max-width:900px),(max-height:500px){#ck3d .ckattr{top:50%;bottom:auto;right:1px;max-width:none;max-height:70%;transform:translateY(-50%);writing-mode:vertical-rl;text-orientation:sideways;font-size:8.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#ck3d .ckattr:hover,#ck3d .ckattr:focus{white-space:nowrap}}      /* 좁은 화면: 오른쪽 끝에 세로로(교신 카드 · 단추에 안 가림) */
 /* 2-B 직접 조종: 화면 조종간 · 추력 레버 · 조종 방식 · 착륙 평가 */
 .ckman{position:absolute;inset:0;pointer-events:none;z-index:6}
 .ckstick{position:absolute;left:2.5%;bottom:5%;width:min(26vmin,150px);height:min(26vmin,150px);border-radius:50%;background:rgba(10,14,20,.38);border:2px solid rgba(255,255,255,.55);pointer-events:auto;touch-action:none;display:flex;align-items:center;justify-content:center}
@@ -659,16 +659,25 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 #pcard .popt::before{content:counter(po);position:absolute;left:9px;top:9px;font:700 11px/1.4 ui-monospace,monospace;color:#7fb6e0;border:1px solid #3b5268;border-radius:3px;padding:0 4px}
 #pcard .patc{font-size:14px}
 #pcard .pmic,#pcard .pwait{font-size:12px}
+#pcard h6.hmic{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;padding-right:34px}      /* 87차: 교신 카드 제목 줄 — 제목 왼쪽 · 예시 · 마이크 오른쪽 한 줄 */
+#pcard h6.hmic .pmicw{margin-left:auto}
+#pcard h6.hmic .pmicb{width:auto;margin:0;padding:6px 14px;font-size:15px;min-height:36px;touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;border-style:solid;flex:0 0 auto}
+#pcard h6.hmic .pmicb span{font-size:12px;font-weight:400}
+#pcard h6.hmic .pexb{min-height:36px}
+#pcard h6:not(.hmic){padding-right:34px}
+#pcard .popt small{display:block;margin-top:3px;font-size:11.5px;color:#9fb6c8;font-weight:400;line-height:1.35}      /* 보기 아래 설명은 줄을 바꿔 */
 .pilotp.ptabbed{display:flex;flex-direction:column;gap:6px}
 .pilotp .pstatw{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px}
 .pilotp .pstatw .pwait,.pilotp .pstatw .pstat{flex:1 1 260px;margin:0}
 .pilotp .pstat.due{color:#ffd479;font-weight:600}
+.pilotp .pstatw .pstat.due{flex:1 1 100%;font-size:13px}      /* 87차: 「지금 할 일」 안내는 한 줄을 다 씀(옆 단추와 두 줄로 끼지 않게) */
 .pilotp .pnev{font-size:12px;color:#9fd0ff;background:#0e1f2e;border:1px solid #27445e;border-radius:12px;padding:2px 9px}
 .pilotp .ptabs{display:flex;gap:4px;border-bottom:1px solid #2b3a48;position:sticky;top:0;background:inherit;z-index:2;flex-wrap:wrap}
 .pilotp .ptab{border-radius:7px 7px 0 0;border-bottom:0;padding:6px 12px;font-size:13px;background:#101a24}
 .pilotp .ptab.on{background:#1f3b55;color:#fff}
 .pilotp .ptab.due{color:#ffd479}
 .pilotp .ptc{min-height:0}
+@media (max-width:700px){#pcard h6.hmic .pmicw{width:100%}#pcard h6.hmic .pmicb{flex:1 1 auto;justify-content:center}}
 @media (max-width:700px){#pcard{bottom:8px;max-height:64%;padding:8px}#pcard .popts{grid-template-columns:1fr}#pcard .popt{font-size:13px;padding:8px 8px 8px 28px}}
 .cbody.pilotp.ptabbed{flex-direction:column;align-items:stretch;flex-wrap:nowrap;gap:6px}
 .pilotp .ptabs .ptab{width:auto;flex:0 0 auto;display:inline-block;min-height:0;height:auto;margin:0}

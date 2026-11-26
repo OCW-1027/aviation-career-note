@@ -430,10 +430,33 @@
       all.sort(function (a, b) { return a.d - b.d; });
       return [{ compact: true, x: hd.fx, y: hd.fy, w: hd.fw, h: hd.h - hd.fy, list: all.slice(0, hd.lines), more: Math.max(0, all.length - hd.lines), wt: 0 }];
     }
-    Object.keys(D.ends).forEach(function (id) {
-      var fl = sim.finals ? sim.finals(id) : []; if (!fl.length) return; var e = D.ends[id], p = gs(v, W, H, e.thrU - e.du * 330, e.thrV - e.dv * 330), hh = fl.length * 17 + 20, x = e.du > 0 ? Math.max(8, p[0] - 196) : Math.min(W - 196, p[0] + 10), y = p[1] + (e.thrV > 0 ? -18 - hh : 20);
-      y = Math.max(6, Math.min(y, H - hh - 6)); out.push({ id: id, x: x, y: y - 3, w: 188, h: hh, list: fl, wt: 3 });
+    /* 87차: 최종 접근 목록 상자가 다른 활주로 · 최종 접근로를 가리지 않게 — 접근로 바깥쪽 여러 자리 중 겹침이 가장 적고 가까운 곳(보기가 바뀔 때만 다시 계산) */
+    var ids = Object.keys(D.ends).filter(function (id) { return sim.finals && sim.finals(id).length; }), key = [Math.round(v.cu), Math.round(v.cv), v.scale.toFixed(4), W, H].concat(ids.map(function (id) { return id + sim.finals(id).length; })).join('|');
+    if (R._flK === key && R._flP) { ids.forEach(function (id) { var q = R._flP[id]; if (q) out.push({ id: id, x: q.x, y: q.y, w: 188, h: q.h, list: sim.finals(id), wt: 3 }); }); return out; }
+    var segs = [], mPx = v.scale;
+    Object.keys(D.ends).forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU + e.du * e.len, e.thrV + e.dv * e.len); segs.push([a, b, Math.max(5, 35 * mPx) + 6]); });      /* 활주로(폭 약 60m) */
+    ids.forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU - e.du * 14000, e.thrV - e.dv * 14000); segs.push([a, b, 10]); });      /* 최종 접근로(약 7.5NM) — 들어오는 항공기 */
+    function hitN(x, y, w, h) { var n = 0; segs.forEach(function (sg) { var a = sg[0], b = sg[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]), k = Math.max(1, Math.ceil(L / 6)), r = sg[2]; for (var i = 0; i <= k; i++) { var px = a[0] + (b[0] - a[0]) * i / k, py = a[1] + (b[1] - a[1]) * i / k; if (px > x - r && px < x + w + r && py > y - r && py < y + h + r) n++; } }); return n; }
+    var mr = Math.min(78, W * 0.11), mcx = sim.flow && sim.flow.mini !== 'L' ? W - mr - 12 : mr + 12, avoid = [[0, 0, W, 92]];      /* 위쪽 단추 줄 */
+    if (sim.mode === 'TWR') avoid.push([mcx - mr - 10, 0, 2 * mr + 20, 2 * mr + 30]);      /* 오른쪽 위 작은 레이더 */
+    if (R.miniBox) avoid.push([R.miniBox.x - 6, R.miniBox.y - 6, R.miniBox.w + 12, R.miniBox.h + 12]);      /* 작은 전체 지도 */
+    avoid.push([0, H - 30, W, 30]);      /* 아래 출처 글 */
+    var placed = [], P = {};
+    ids.forEach(function (id) {
+      var fl = sim.finals(id), e = D.ends[id], hh = fl.length * 17 + 20, w = 188, best = null;
+      [330, 1300, 2600, 4200].forEach(function (dist, di) {
+        var p = gs(v, W, H, e.thrU - e.du * dist, e.thrV - e.dv * dist);
+        [[-w - 14, -hh / 2], [14, -hh / 2], [-w / 2, -hh - 16], [-w / 2, 16], [-w - 14, -hh - 10], [14, -hh - 10], [-w - 14, 10], [14, 10]].forEach(function (o) {
+          var x = p[0] + o[0], y = p[1] + o[1], off = (x < 6 || y < 6 || x + w > W - 6 || y + hh > H - 6) ? 1 : 0; x = Math.max(6, Math.min(x, W - w - 6)); y = Math.max(6, Math.min(y, H - hh - 6));
+          var av = avoid.some(function (q) { return x < q[0] + q[2] && x + w > q[0] && y < q[1] + q[3] && y + hh > q[1]; }) ? 1 : 0;
+          var ov = placed.some(function (q) { return x < q.x + q.w + 6 && x + w + 6 > q.x && y < q.y + q.h + 6 && y + hh + 6 > q.y; }) ? 1 : 0;
+          var sc = hitN(x, y, w, hh) * 40 + ov * 5000 + av * 3000 + off * 120 + di * 25 + Math.hypot(x + w / 2 - p[0], y + hh / 2 - p[1]) * 0.05;
+          if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
+        });
+      });
+      placed.push({ x: best.x, y: best.y, w: w, h: hh }); P[id] = { x: best.x, y: best.y - 3, h: hh }; out.push({ id: id, x: best.x, y: best.y - 3, w: w, h: hh, list: fl, wt: 3 });
     });
+    R._flK = key; R._flP = P;
     return out;
   };
   R.finalBars = function (ctx, W, H, app) {
@@ -461,12 +484,12 @@
   /* 작은 전체 지도: 확대해 있을 때 왼쪽 아래에 공항 전체와 지금 보는 범위를 보여 줌(눌러서 이동) */
   /* 실제 항공사진 출처 — 작은 지도 오른쪽(없으면 왼쪽 아래), 좁으면 두 줄 · 작은 글씨. CC BY 4.0(아스테라)은 늘 보여야 함(30차 결과) */
   R.tileCredit = function (ctx, W, H) {
-    var tc = R.tOk && ATC.Tiles ? ATC.Tiles.cfg() : null, t = tc ? tc.attr() : satOk && D.sat && D.sat.credit && !ATC.dbgNoSat ? D.sat.credit : null; if (!t) return; var mb = R.miniBox, x = mb ? mb.x + mb.w + 10 : 8, avail = W - x - 64, fs = 10, lines = [t];
+    var tc = R.tOk && ATC.Tiles ? ATC.Tiles.cfg() : null, t = tc ? tc.attr() : satOk && D.sat && D.sat.credit && !ATC.dbgNoSat ? D.sat.credit : null; if (!t) return; var mb = R.miniBox, x = mb ? mb.x + mb.w + 10 : 8, avail = W - x - 64, fs = 9, lines = [t];
     ctx.save(); ctx.font = fs + 'px ' + MONO;
     if (ctx.measureText(t).width > avail) { var i = t.indexOf('('), a = i > 0 ? t.slice(0, i) : t, b = i > 0 ? t.slice(i) : ''; lines = b ? [a, b] : [t]; while (fs > 8 && Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail) { fs--; ctx.font = fs + 'px ' + MONO; } if (Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })) > avail && mb) x = 8; }
     var lh = fs + 3, wmax = Math.max.apply(null, lines.map(function (l) { return ctx.measureText(l).width; })), y0 = H - 6 - (lines.length - 1) * lh, by = mb && x === 8 ? mb.y - 6 - (lines.length - 1) * lh : y0;
-    ctx.fillStyle = 'rgba(4,8,12,.55)'; ctx.fillRect(x - 4, by - fs - 2, wmax + 8, lines.length * lh + 3);
-    ctx.fillStyle = 'rgba(236,240,244,.9)'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; lines.forEach(function (l, k) { ctx.fillText(l, x, by + k * lh); }); ctx.restore();
+    ctx.shadowColor = 'rgba(0,0,0,.8)'; ctx.shadowBlur = 3;      /* 88차: 바탕 상자 없이 흐린 글씨(눈에 덜 띄게) */
+    ctx.fillStyle = 'rgba(236,240,244,.55)'; ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic'; lines.forEach(function (l, k) { ctx.fillText(l, x, by + k * lh); }); ctx.restore();
   };
   R.miniBox = null;
   R.miniMap = function (ctx, W, H, app) {
