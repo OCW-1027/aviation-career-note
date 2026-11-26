@@ -81,7 +81,7 @@ deep:[
 {h:"From the books to the accounts",blocks:[
 {t:"ladder",steps:[{name:"Vouchers",sub:"Invoices, receipts, bank book"},{name:"Journal",sub:"Split into debit and credit"},{name:"General ledger",sub:"Gather by account"},{name:"Trial balance",sub:"Do debits equal credits?"},{name:"Closing entries",sub:"Depreciation, accruals, prepayments"},{name:"Statements",sub:"Balance sheet, income statement"}]},
 {t:"link",href:"../23_재무3표실무/取引と財務諸表の練習.html",x:"[Practice page] Transactions & Statements Practice: the “From journal entries to the statements” level follows one month from entries to accounts"},
-{t:"link",href:"決算の練習.html",x:"[Practice page] Year-End Closing Practice: a small company’s year of entries through the ledger, trial balance, statements and an income tax estimate"}]}],
+{t:"link",href:"決算の練習.html",x:"[Practice page] Year-End Closing Practice: a small company’s year of entries through the ledger, trial balance, statements and an income tax estimate (Japanese or Korean rules)"}]}],
 voice:"Rather than memorising entries, first explain in words where the money came from and where it went. Once you can say it, left and right fall into place.",
 terms:[["Journal Entry","仕訳","분개"],["Debit","借方","차변"],["Credit","貸方","대변"],["Account Title","勘定科目","계정과목"],["Trial Balance","試算表","시산표"]],
 quiz:[{q:"Stationery is bought with cash. What goes on the debit (left)?",opts:["Cash","Supplies expense","Sales","Loans"],a:1,exp:"An expense increased, so it is a debit; cash decreased, so it is a credit."},

@@ -37,6 +37,8 @@ table.v td.n,table.v th.n{text-align:right;font-variant-numeric:tabular-nums;whi
 .paper hr{border:0;border-top:1px dashed #999;margin:24px 0}
 .paper td,.paper th,table.v td,table.v th{text-align:left}.paper td.n,.paper th.n,table.v td.n,table.v th.n{text-align:right}.paper th{text-align:center}
 button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+.rgsw{display:inline-flex;align-items:center;gap:0;margin-right:6px}.rgsw .rgq{font-size:13px;font-weight:700;color:var(--muted);margin-right:8px}.rgsw button{min-height:44px;border:1.5px solid var(--line);background:#fff;padding:6px 16px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);cursor:pointer}.rgsw button:first-of-type{border-radius:10px 0 0 10px}.rgsw button:last-of-type{border-radius:0 10px 10px 0;border-left:0}.rgsw button.on{background:var(--pl);border-color:var(--pl);color:#fff}
+.paper:lang(ko){font-family:"Noto Serif KR","Batang","Nanum Myeongjo",serif}
 @media(max-width:700px){.paper{padding:16px 12px}.card{padding:14px 12px}}
 @media print{body{background:#fff}.shbar,header,.bar,.privacy,#note,.shfoot,.nv-fab,#nv-copy,#app>.card:not(#outsec),#outsec>*:not(.paper){display:none!important}.paper hr{border:0;margin:0;break-after:page;page-break-after:always}.wrap{padding:0;max-width:none}#outsec{border:0;padding:0;margin:0}.paper{border:0;padding:0;margin:0}}
 </style>
@@ -58,10 +60,14 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid 
 /* 年次決算の練習（2026.10）。決算書（#paper）は、科目を左・金額を右にそろえる日本の様式に合わせるため、shell.js の中央ぞろえから外す（data-noalign）
    小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書（貸借対照表・損益計算書）・法人税等の見積もりまでを作り、決算書を日本語で出力する。
    勘定科目は accounts.js（window.ACCTS）、法人の税率は rates_jp.js（window.RATES.corp）から読む。入っている会社と数字はすべて架空。
-   入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: close）にも保存する。 */
-var KEY='acn-close-v1',LS=['ja','ko','en'];
+   入力はこのブラウザに保存し、ログイン中は会員の記録（user_docs: close）にも保存する。
+   2026.11：制度の基準（日本／韓国）の切り替えを追加。韓国は12月決算の架空の会社・ウォン・法人税＋地方所得税（rates_jp.js の RATES.corp.kr）・中間予納（先納税金）で計算し、
+   決算書は韓国の非上場中小企業の様式（特別損益なし）の韓国語で出力する。基準はレッスンと同じ art-region を使い、入力は基準ごとに別に保存する（acn-close-kr-v1 / user_docs: close_kr）。 */
+var LS=['ja','ko','en'];
 var L=(function(){var m=location.search.match(/lang=(ja|ko|en)/);if(m)return m[1];try{var s=localStorage.getItem('art-lang');if(LS.indexOf(s)>=0)return s}catch(e){}return 'ja'})();
 var LI=LS.indexOf(L),SEL=null;
+var RG=(function(){var m=location.search.match(/[?&]rg=(jp|kr)/);if(m)return m[1];try{var r=localStorage.getItem('art-region');if(r==='jp'||r==='kr')return r}catch(e){}return 'jp'})();
+function KR(){return RG==='kr'}function key(){return KR()?'acn-close-kr-v1':'acn-close-v1'}function kind(){return KR()?'close_kr':'close'}
 var X={
 ttl:['年次決算の練習','연간 결산 연습','Year-End Closing Practice'],
 lead:['小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書を作り、法人税等を見積もって、決算書を日本語で出力します。入っているのは架空の会社「さくらグランドサービス」（東京23区、資本金1,000万円、3月決算）の例です。仕訳を直したり足したりすると、すべての表がその場で変わります。','작은 회사의 1년 치 분개를 바탕으로 총계정원장·시산표·결산서를 만들고, 법인세 등을 추정해 결산서를 일본어로 출력합니다. 예시로 넣은 것은 가상의 회사 「사쿠라 그라운드 서비스」(도쿄 23구, 자본금 1,000만 엔, 3월 결산)의 자료입니다. 분개를 수정하거나 추가하면 모든 표가 바로 바뀝니다.','Build the general ledger, trial balance and financial statements from a small company’s year of journal entries, estimate its income taxes, and output the statements in Japanese. The example is a fictional company, Sakura Ground Services (Tokyo 23 wards, capital 10 million yen, March year-end). Edit or add entries and every table updates at once.'],
@@ -100,14 +106,36 @@ c:{obOk:['期首残高の借方と貸方が一致しています','기초 잔액
  dep:['固定資産があるのに減価償却費がありません。忘れていませんか','고정자산이 있는데 감가상각비가 없습니다. 누락되지 않았습니까?','There are fixed assets but no depreciation. Has it been forgotten?'],
  pre:['仮払法人税が残っています。法人税等を計上すると、ここに振り替わります','선납법인세가 남아 있습니다. 법인세 등을 계상하면 이 잔액이 대체됩니다','Prepaid tax remains. Booking income taxes clears it'],
  loss:['当期は赤字です。それでも法人住民税の均等割はかかります','이번 기는 적자입니다. 그래도 법인주민세 균등할은 부과됩니다','The year is a loss. The per-capita inhabitant tax is still due']},
+rgq:['制度の基準','제도 기준','Rules'],rgjp:['日本','일본','Japan'],rgkr:['韓国','한국','Korea'],
+rgn:['基準を「日本」にすると3月決算の日本の会社・円・日本の法人税等で、「韓国」にすると12月決算の韓国の会社・ウォン・韓国の法人税と地方所得税で計算し、決算書をその国の言葉と様式で出力します。入力は基準ごとに別々に保存されます。','기준을 「일본」으로 하면 3월 결산 일본 회사·엔화·일본 법인세 등으로, 「한국」으로 하면 12월 결산 한국 회사·원화·한국 법인세와 지방소득세로 계산하고, 결산서를 그 나라 말과 양식으로 출력합니다. 입력은 기준별로 따로 저장됩니다.','Choose “Japan” for a Japanese company with a March year-end, yen and Japanese corporate taxes, or “Korea” for a Korean company with a December year-end, won, and Korean corporate tax plus local income tax. The statements come out in that country’s language and format. Entries are saved separately for each.'],
+lead_k:['小さな会社の1年分の仕訳から、総勘定元帳・試算表・決算書を作り、韓国の法人税と地方所得税を見積もって、決算書を韓国語で出力します。入っているのは架空の会社「株式会社ヌリグラウンドサービス」（仁川、資本金1億ウォン、12月決算）の例です。仕訳を直したり足したりすると、すべての表がその場で変わります。','작은 회사의 1년 치 분개를 바탕으로 총계정원장·시산표·결산서를 만들고, 한국의 법인세와 지방소득세를 추정해 결산서를 한국어로 출력합니다. 예시로 넣은 것은 가상의 회사 「(주)누리그라운드서비스」(인천, 자본금 1억 원, 12월 결산)의 자료입니다. 분개를 수정하거나 추가하면 모든 표가 바로 바뀝니다.','Build the general ledger, trial balance and financial statements from a small company’s year of journal entries, estimate its Korean corporate tax and local income tax, and output the statements in Korean. The example is a fictional company, Nuri Ground Services (Incheon, capital 100 million won, December year-end). Edit or add entries and every table updates at once.'],
+scope_k:['このツールの範囲（韓国の基準）：付加価値税の計算と申告、税務調整の細かい項目（合計だけを入れます）、繰越欠損金・税額控除・減免・最低限税は扱いません。地方所得税（法人税分）は、法人税と同じ課税標準の区分に法人税率の10分の1をかけて計算します。出力する決算書は財務状態表・損益計算書と決算整理後の残高試算表で、資本変動表・利益剰余金処分計算書・注記は含みません。会社の規模や会計基準（一般企業会計基準・中小企業会計基準など）によって表示が変わることがあります。','이 도구의 범위(한국 기준): 부가가치세 계산과 신고, 세무조정의 세부 항목(합계만 입력), 이월결손금·세액공제·감면·최저한세는 다루지 않습니다. 지방소득세(법인세분)는 법인세와 같은 과세표준 구간에 법인세율의 10분의 1을 적용해 계산합니다. 출력하는 결산서는 재무상태표·손익계산서와 결산 정리 후 잔액시산표이며, 자본변동표·이익잉여금처분계산서·주석은 포함하지 않습니다. 회사 규모와 회계기준(일반기업회계기준·중소기업회계기준 등)에 따라 표시가 달라질 수 있습니다.','Scope (Korea): VAT calculation and returns, the individual tax adjustments (enter the net figure only), loss carry-forwards, tax credits and reliefs, and the minimum tax are not covered. Local income tax is calculated on the same tax base and brackets at one tenth of the corporate tax rates. The statements produced are the statement of financial position, the income statement and the adjusted trial balance; the statement of changes in equity, the appropriation of retained earnings and the notes are not included. Presentation can differ with company size and the accounting standard used.'],
+s6n_k:['韓国では、国の法人税と、法人税と同じ課税標準にかかる地方所得税（法人税分）を納めます。2026年1月1日以後に始まる事業年度の法人税率は、課税標準2億ウォン以下10%、200億ウォン以下20%、3,000億ウォン以下22%、それを超える部分25%で、地方所得税は各区分でその10分の1（1〜2.5%）です。事業年度が1年より短いときは、課税標準を1年分に換算して税率をかけ、月数で割り戻します。税率はレッスン「外国法人の支店にかかる税金」の韓国の法人税の計算と同じものを使います。中間予納（上半期分、12月決算なら8月末まで）は「先納税金」として仕訳に入れます。★','한국은 국세인 법인세와, 법인세와 같은 과세표준에 매기는 지방소득세(법인세분)를 냅니다. 2026년 1월 1일 이후 시작하는 사업연도의 법인세율은 과세표준 2억 원 이하 10%, 200억 원 이하 20%, 3,000억 원 이하 22%, 그 초과분 25%이고, 지방소득세는 각 구간에서 그 10분의 1(1~2.5%)입니다. 사업연도가 1년보다 짧으면 과세표준을 1년분으로 환산해 세율을 적용한 뒤 월수로 되돌립니다. 세율은 레슨 「외국 법인 지점의 세금 개요」의 한국 법인세 계산과 같은 것을 씁니다. 중간예납(상반기분, 12월 결산이면 8월 말까지)은 「선납세금」으로 분개에 넣습니다. ★','Korea levies national corporate income tax and a local income tax on the same tax base. For financial years beginning on or after 1 January 2026 the corporate tax rates are 10% up to 200 million won, 20% up to 20 billion won, 22% up to 300 billion won and 25% above that; local income tax is one tenth of each rate (1–2.5%). If the financial year is shorter than 12 months, the tax base is annualised, taxed, and scaled back by the number of months. The rates are the same as in the Korean corporate tax calculation in the lessons. Enter the interim prepayment (first half, due by the end of August for a December year-end) as “prepaid tax”. ★'],
+adjn_k:['企業業務推進費（旧・接待費）の限度を超えた分などを足し、受取配当金の益金不算入などを引きます。ここでは合計だけを入れます。','기업업무추진비(옛 접대비) 한도초과액 등을 더하고, 수입배당금 익금불산입 등을 뺍니다. 여기서는 합계만 넣습니다.','Add items that are not deductible (such as business promotion expenses above the limit) and subtract exempt income (such as some dividends). Enter the net figure only.'],
+taxn_k:['※ 繰越欠損金、税額控除・減免、最低限税、農漁村特別税などを反映していない概算です。法人税の申告は事業年度が終わる日の属する月の末日から3か月以内（12月決算なら3月31日、誠実申告確認の対象は4か月以内）、地方所得税は4か月以内（4月30日）です。実際の申告は税理士に確認してください。★','※ 이월결손금, 세액공제·감면, 최저한세, 농어촌특별세 등을 반영하지 않은 개략 계산입니다. 법인세 신고는 사업연도 종료일이 속하는 달의 말일부터 3개월 이내(12월 결산이면 3월 31일, 성실신고확인 대상은 4개월 이내), 지방소득세는 4개월 이내(4월 30일)입니다. 실제 신고는 세무사에게 확인하세요. ★','* An estimate that ignores loss carry-forwards, tax credits and reliefs, the minimum tax and special rural development tax. Corporate tax is filed within three months of the end of the month in which the year ends (31 March for a December year-end; four months for companies under the faithful-filing review), and local income tax within four months (30 April). Confirm actual filings with a tax accountant. ★'],
+manualTax_k:['仕訳に「法人税費用」が入っているので、自動の計上はしていません。','분개에 「법인세비용」이 들어 있으므로 자동 계상은 하지 않았습니다.','An income-tax entry already exists in the journal, so nothing is booked automatically.'],
+cj_k:[['法人税','地方所得税（法人税分）'],['법인세','지방소득세(법인세분)'],['Corporate income tax','Local income tax (corporate)']],
+interim_k:['中間予納（先納税金）','중간예납(선납세금)','Interim prepayment (prepaid tax)'],pay_k:['申告で納める額（未払法人税）','신고 때 낼 금액(미지급법인세)','Payable on filing (income taxes payable)'],
+taxl_k:['法人税費用の計上（自動）','법인세비용 계상(자동)','Income tax expense (automatic)'],
+s7_k:['決算書（韓国語で出力）','결산서(한국어로 출력)','Financial statements (output in Korean)'],s7n_k:['下の決算書は、韓国の非上場の中小企業がよく使う様式（中断事業がない場合）に合わせて韓国語で作ります。韓国の基準には特別損益がないので、特別利益・特別損失の科目は営業外収益・営業外費用として表示します。印刷・PDF、Word、試算表のCSV（エクセルで開ける）で保存できます。','아래 결산서는 한국 비상장 중소기업이 흔히 쓰는 양식(중단사업이 없는 경우)에 맞춰 한국어로 만듭니다. 한국 기준에는 특별손익이 없으므로, 특별이익·특별손실 계정은 영업외수익·영업외비용으로 표시합니다. 인쇄·PDF, Word, 시산표 CSV(엑셀에서 열 수 있음)로 저장할 수 있습니다.','The statements below follow the format commonly used by non-listed Korean SMEs (with no discontinued operations) and are produced in Korean. Korean GAAP has no extraordinary items, so extraordinary gains and losses are shown as non-operating income and expenses. You can print or save them as PDF or Word, and save the trial balance as CSV (opens in Excel).'],
+k_k:[['売上高','営業利益','法人税費用差引前当期純利益','法人税費用','当期純利益','資産合計','負債合計','資本合計','自己資本比率'],['매출액','영업이익','법인세비용차감전순이익','법인세비용','당기순이익','자산총계','부채총계','자본총계','자기자본비율'],['Revenue','Operating profit','Profit before income tax','Income tax expense','Net profit','Total assets','Total liabilities','Total equity','Equity ratio']],
+adj_k:['申告調整（加算 − 減算、ウォン）','세무조정(가산 − 감산, 원)','Tax adjustments (add − deduct, won)'],pre_k:['法人税費用差引前当期純利益','법인세비용차감전순이익','Profit before income tax'],tinc_k:['課税標準','과세표준','Tax base'],
+amt_k:['金額（ウォン）','금액(원)','Amount (won)'],yen_k:['ウォン','원','won'],
+twk:{per:['事業年度が12か月ではないので、課税標準を1年分に換算して税率をかけ、月数で割り戻して計算しました（1か月未満は1か月として数えます）★','사업연도가 12개월이 아니어서, 과세표준을 1년분으로 환산해 세율을 적용하고 월수로 되돌려 계산했습니다(1개월 미만은 1개월로 셉니다) ★','The financial year is not 12 months, so the tax base was annualised, taxed and scaled back by the number of months (part of a month counts as one) ★']},
+ck:{obNg:['期首残高の借方と貸方が {d} ウォン違います。前の期の財務状態表と見比べてください','기초 잔액의 차변과 대변이 {d}원 다릅니다. 전기 재무상태표와 비교해 보세요','Opening debits and credits differ by {d} won. Compare with last year’s statement of financial position'],
+ tbNg:['試算表の借方合計と貸方合計が {d} ウォン合いません','시산표의 차변 합계와 대변 합계에 {d}원의 차이가 있습니다','Trial balance debits and credits differ by {d} won'],bsOk:['財務状態表の資産総計と、負債と資本の総計が一致しています','재무상태표의 자산총계와 부채와자본총계가 일치합니다','Total assets equal total liabilities and equity'],bsNg:['財務状態表が {d} ウォン合いません','재무상태표에 {d}원의 차이가 있습니다','The statement of financial position is out by {d} won'],
+ pre:['先納税金（中間予納）が残っています。法人税費用を計上すると、ここに振り替わります','선납세금(중간예납)이 남아 있습니다. 법인세비용을 계상하면 이 잔액이 대체됩니다','Prepaid tax (interim prepayment) remains. Booking income tax expense clears it'],
+ loss:['当期は赤字です。法人税はかかりませんが、住民税（事業所分）などは租税公課として処理します','이번 기는 적자입니다. 법인세는 없지만, 주민세(사업소분) 등은 세금과공과로 처리합니다','The year is a loss. No corporate tax is due, but resident tax on business premises and similar levies are booked as taxes and dues']},
 note:['※ 会社名・数字はすべて架空の例です。決算の流れを学ぶためのもので、実際の決算書や申告の内容を保証するものではありません。','※ 회사명·숫자는 모두 가상의 예시입니다. 결산의 흐름을 익히기 위한 것으로, 실제 결산서나 신고 내용을 보증하지 않습니다.','* The company and figures are fictional, for learning the closing process; they do not guarantee any real accounts or filing.'],
 swipe:['← 横にスクロールできます →','← 옆으로 밀어서 보기 →','← Scroll sideways →'],yen:['円','엔','yen']};
 var M={o1:['前の期の未払金を払った','전기 미지급금을 지급했다','Paid last year’s other payables'],o2:['パソコンと机を買った','컴퓨터와 책상을 샀다','Bought computers and desks'],o3:['借入金の返済（1年分）','차입금 상환(1년 치)','Loan repayments (year)'],o4:['法人税等の中間納付','법인세 등 중간납부','Interim income tax payment'],
  s1:['売上（1年分の合計、掛け）','매출(1년 치 합계, 외상)','Sales for the year (on credit)'],s2:['売掛金の回収（1年分の合計）','외상매출금 회수(1년 치 합계)','Receivables collected (year)'],s3:['外注費（1年分）','외주용역비(1년 치)','Outsourcing costs (year)'],s4:['役員報酬（1年分）','임원급여(1년 치)','Directors’ remuneration (year)'],
  s5:['給料の支払い（手取り、11か月分）','급여 지급(실수령, 11개월 치)','Salaries paid (net, 11 months)'],s6:['給料から引いた税金・社会保険料','급여에서 공제한 세금·사회보험료','Tax and insurance withheld from salaries'],s7:['預り金の納付','예수금 납부','Withholdings paid over'],s8:['社会保険料の会社負担（1年分）','사회보험료 회사 부담(1년 치)','Employer social insurance (year)'],
  s9:['事務所の家賃（1年分）','사무실 임차료(1년 치)','Office rent (year)'],s10:['交通費（1年分）','교통비(1년 치)','Travel (year)'],s11:['電話・インターネット（1年分）','전화·인터넷(1년 치)','Phone and internet (year)'],s12:['電気・水道（1年分）','전기·수도(1년 치)','Utilities (year)'],s13:['消耗品（1年分）','소모품(1년 치)','Consumables (year)'],s14:['取引先の接待（1年分）','거래처 접대(1년 치)','Entertainment (year)'],s15:['振込手数料など（1年分）','이체 수수료 등(1년 치)','Bank charges and fees (year)'],s16:['印紙税など','인지세 등','Stamp duty and similar'],s17:['借入金の利息（1年分）','차입금 이자(1년 치)','Loan interest (year)'],s18:['預金の利息','예금 이자','Deposit interest'],
+ ko4:['法人税の中間予納','법인세 중간예납','Interim corporate tax prepayment'],ks16:['税金と公課（住民税の事業所分・印紙税など）','세금과공과(주민세 사업소분·인지세 등)','Taxes and dues (resident tax on premises, stamp duty, etc.)'],
+ ka2:['12月分の給料（1月払い、決算整理）','12월분 급여(1월 지급, 결산 정리)','December salaries paid in January (closing entry)'],ka3:['1月分の家賃を12月に払った分（決算整理）','12월에 지급한 1월분 임차료(결산 정리)','January rent paid in December (closing entry)'],
  a1:['減価償却（決算整理）','감가상각(결산 정리)','Depreciation (closing entry)'],a2:['3月分の給料（4月払い、決算整理）','3월분 급여(4월 지급, 결산 정리)','March salaries paid in April (closing entry)'],a3:['4月分の家賃を3月に払った分（決算整理）','3월에 지급한 4월분 임차료(결산 정리)','April rent paid in March (closing entry)']};
-function t(k){return X[k][LI]}
+function t(k){var v=KR()&&X[k+'_k']?X[k+'_k']:X[k];return v[LI]}
 function $(i){return document.getElementById(i)}
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function num(v){var s=String(v==null?'':v).replace(/[０-９．－]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/[,，\s円]/g,'');var n=parseFloat(s);return isNaN(n)?0:n}
@@ -115,7 +143,11 @@ function fy(n){return isFinite(n)?(n<0?'△':'')+Math.round(Math.abs(n)).toLocal
 function fs(n){return isFinite(n)?(n<0?'−':'')+Math.round(Math.abs(n)).toLocaleString('ja-JP'):'—'}
 function jd(s){if(!s)return '';var p=s.split('-');return +p[0]+'年'+(+p[1])+'月'+(+p[2])+'日'}
 var A=window.ACCTS;
-function an(c){var a=A&&A.by[c];if(!a)return c;return LI===0?a.n[0]:a.n[LI]+' ('+a.n[0]+')'}
+var KN={'121':'외상매출금','201':'외상매입금','155':'선납세금','532':'기업업무추진비','205':'미지급법인세','550':'법인세비용','301':'주식발행초과금','130':'단기매매증권'};
+function kn(c){var a=A&&A.by[c];if(!a)return c;return KN[c]||a.n[1]}
+function an(c){var a=A&&A.by[c];if(!a)return c;if(KR())return LI===1?kn(c):a.n[LI]+' ('+kn(c)+')';return LI===0?a.n[0]:a.n[LI]+' ('+a.n[0]+')'}
+var SECK={si:['特別利益（韓国の決算書では営業外収益）','영업외수익(유형자산처분이익 등)','Non-operating income (gains on disposal etc.)'],sx:['特別損失（韓国の決算書では営業外費用）','영업외비용(유형자산처분손실 등)','Non-operating expenses (losses on disposal etc.)'],tx:['法人税費用','법인세비용','Income tax expense'],eq:['資本','자본','Equity'],fa:['有形資産','유형자산','Property, plant and equipment'],ia:['無形資産','무형자산','Intangible assets']};
+function secName(s){return (KR()&&SECK[s]?SECK[s]:A.SEC[s])[LI]}
 function jn(c){return A&&A.by[c]?A.by[c].n[0]:c}
 function g(c){return A&&A.by[c]?A.by[c].g:''}
 function debitNormal(c){var a=A.by[c];if(!a)return true;var d=a.g==='a'||a.g==='x';return a.ctr?!d:d}
@@ -125,15 +157,22 @@ function EX(){function m(k){return M[k][LI]}var E='2027-03-31';return{t:0,co:{na
   [E,'s1','121','400',60000000],[E,'s2','110','121',58000000],[E,'s3','539','110',12000000],[E,'s4','510','110',9600000],[E,'s5','511','110',15500000],[E,'s6','511','218',2500000],[E,'s7','218','110',2400000],[E,'s8','513','110',2900000],
   [E,'s9','526','110',4800000],[E,'s10','520','110',1200000],[E,'s11','522','110',600000],[E,'s12','525','110',360000],[E,'s13','523','110',480000],[E,'s14','532','110',400000],[E,'s15','536','110',300000],[E,'s16','530','110',150000],[E,'s17','540','110',90000],[E,'s18','110','401',5000],
   [E,'a1','529','165',900000],[E,'a2','511','204',1500000],[E,'a3','150','526',400000]].map(function(r){return{d:r[0],m:m(r[1]),dr:r[2],cr:r[3],a:r[4]}}),adj:0,auto:true}}
+function EXK(){function m(k){return M[k][LI]}var E='2026-12-31';return{t:0,co:{name:'(주)누리그라운드서비스(가상)',start:'2026-01-01',end:E},
+ ob:[['110',180000000],['121',60000000],['165',30000000],['169',6000000],['180',15000000],['203',12000000],['220',50000000],['300',100000000],['311',117000000]].map(function(r){return{c:r[0],a:r[1]}}),
+ je:[['2026-01-31','o1','203','110',12000000],['2026-02-28','o2','165','110',12000000],['2026-06-30','o3','220','110',10000000],['2026-08-31','ko4','155','110',3500000],
+  [E,'s1','121','400',600000000],[E,'s2','110','121',580000000],[E,'s3','539','110',120000000],[E,'s4','510','110',96000000],[E,'s5','511','110',155000000],[E,'s6','511','218',25000000],[E,'s7','218','110',24000000],[E,'s8','513','110',29000000],
+  [E,'s9','526','110',48000000],[E,'s10','520','110',12000000],[E,'s11','522','110',6000000],[E,'s12','525','110',3600000],[E,'s13','523','110',4800000],[E,'s14','532','110',4000000],[E,'s15','536','110',3000000],[E,'ks16','530','110',1500000],[E,'s17','540','110',900000],[E,'s18','110','401',50000],
+  [E,'a1','529','169',9000000],[E,'ka2','511','204',15000000],[E,'ka3','150','526',4000000]].map(function(r){return{d:r[0],m:m(r[1]),dr:r[2],cr:r[3],a:r[4]}}),adj:0,auto:true}}
+function EXR(){return KR()?EXK():EX()}
 function BLANK(){return{t:0,co:{name:'',start:'',end:''},ob:[{c:'',a:0}],je:[{d:'',m:'',dr:'',cr:'',a:0}],adj:0,auto:true}}
 function valid(o){return o&&o.co&&Array.isArray(o.ob)&&Array.isArray(o.je)}
-var D=null;try{var o0=JSON.parse(localStorage.getItem(KEY)||'null');if(valid(o0))D=o0}catch(e){}
-if(!D)D=EX();
+var D=null;function load(){var d=null;try{var o0=JSON.parse(localStorage.getItem(key())||'null');if(valid(o0))d=o0}catch(e){}return d||EXR()}
+D=load();
 function getp(p){var o=D;p.split('.').forEach(function(k){o=o==null?o:o[k]});return o}
 function setp(p,v){var a=p.split('.'),o=D;for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v}
 var tm2=null;
-function save(){try{D.t=Date.now();localStorage.setItem(KEY,JSON.stringify(D));
- if(window.Member&&window.Member.user()){clearTimeout(tm2);tm2=setTimeout(function(){window.Member.saveDoc('close',D).catch(function(){})},1200)}
+function save(){try{D.t=Date.now();localStorage.setItem(key(),JSON.stringify(D));
+ if(window.Member&&window.Member.user()){clearTimeout(tm2);var k0=kind(),D0=D;tm2=setTimeout(function(){window.Member.saveDoc(k0,D0).catch(function(){})},1200)}
  if($('sv'))$('sv').textContent=t('saved')+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(e){}}
 
 /* ---- 計算 ---- */
@@ -142,6 +181,10 @@ function prog(tb,v){var s=0,p=0;for(var i=0;i<tb.length;i++){var u=Math.min(v,tb
 function corpTax(I){var C=window.RATES&&window.RATES.corp;if(!C)return null;var J=C.jp;I=Math.max(0,I);
  var h=Math.floor((Math.min(I,J.lowTo)*J.low/100+Math.max(0,I-J.lowTo)*J.high/100)),ch=Math.floor(h*J.chiho/100),bo=Math.floor(Math.max(0,h-J.boeiDed)*J.boei/100),jr=h>J.juminLim?J.juminHi:J.jumin,ju=Math.floor(h*jr/100)+J.kinto,ov=I>J.jigLim,jg=Math.floor(prog(ov?J.jigHi:J.jig,I)),tk=Math.floor(prog(J.jig,I)*J.toku/100);
  var v=[h,ch,bo,ju,jg,tk];return{v:v,sum:v.reduce(function(a,b){return a+b},0)}}
+/* 韓国の法人税（2026.11）：課税標準に区分ごとの率をかける。地方所得税は同じ区分で率の10分の1。1年未満の事業年度は年換算して月数で割り戻す（1か月未満は1か月） */
+function months(a,b){var p=String(a).split('-').map(Number),q=String(b).split('-').map(Number);if(p.length<3||q.length<3||!p[0]||!q[0])return 12;var e=new Date(Date.UTC(q[0],q[1]-1,q[2]+1));var n=(e.getUTCFullYear()-p[0])*12+(e.getUTCMonth()+1-p[1])+(e.getUTCDate()>p[2]?1:0);return n>0?Math.min(n,12):12}
+function corpTaxKr(I){var C=window.RATES&&window.RATES.corp;if(!C||!C.kr)return null;var K=C.kr,mo=months(D.co.start,D.co.end);I=Math.max(0,I);var base=I*12/mo,loc=K.br.map(function(r){return [r[0],r[1]*K.local/100]});
+ var h=Math.floor(prog(K.br,base)*mo/12+1e-6),lc=Math.floor(prog(loc,base)*mo/12+1e-6);return{v:[h,lc],sum:h+lc,mo:mo}}
 function balances(posts){var B={};function add(c,d,cr){(B[c]=B[c]||{d:0,c:0});B[c].d+=d;B[c].c+=cr}
  D.ob.forEach(function(r){if(!A.by[r.c]||!num(r.a))return;if(debitNormal(r.c))add(r.c,num(r.a),0);else add(r.c,0,num(r.a))});
  posts.forEach(function(p){add(p.dr,p.a,0);add(p.cr,0,p.a)});return B}
@@ -151,9 +194,9 @@ function pl(B){var S={};Object.keys(B).forEach(function(c){var a=A.by[c];if(!a)r
  R.gp=R.sl-R.cs;R.op=R.gp-R.ga;R.ord=R.op+R.ni-R.ne;R.pre=R.ord+R.si-R.sx;R.net=R.pre-R.tx;return R}
 function calc(){var R={bad:0},posts=[];D.je.forEach(function(r,i){if(okRow(r))posts.push({d:r.d||'',m:r.m||'',dr:r.dr,cr:r.cr,a:num(r.a),i:i});else if(r.dr||r.cr||num(r.a))R.bad++});
  R.manual=posts.some(function(p){return g(p.dr)==='x'&&A.by[p.dr].s==='tx'||g(p.cr)==='x'&&A.by[p.cr].s==='tx'});
- var B0=balances(posts),P0=pl(B0);R.pre=P0.pre;R.tinc=P0.pre+num(D.adj);R.tax=corpTax(R.tinc);
+ var B0=balances(posts),P0=pl(B0);R.pre=P0.pre;R.tinc=P0.pre+num(D.adj);R.tax=KR()?corpTaxKr(R.tinc):corpTax(R.tinc);
  var b155=B0['155']?nbal('155',B0['155']):0;R.interim=b155;R.virt=[];
- if(D.auto&&!R.manual&&R.tax){var T=R.tax.sum,end=D.co.end||'',m=X.taxl[LI],fromPre=Math.min(Math.max(b155,0),T);if(fromPre>0)R.virt.push({d:end,m:m,dr:'550',cr:'155',a:fromPre,v:1});
+ if(D.auto&&!R.manual&&R.tax){var T=R.tax.sum,end=D.co.end||'',m=t('taxl'),fromPre=Math.min(Math.max(b155,0),T);if(fromPre>0)R.virt.push({d:end,m:m,dr:'550',cr:'155',a:fromPre,v:1});
   if(T-fromPre>0)R.virt.push({d:end,m:m,dr:'550',cr:'205',a:T-fromPre,v:1});if(b155-fromPre>0)R.virt.push({d:end,m:m,dr:'122',cr:'155',a:b155-fromPre,v:1});R.payable=T-fromPre;R.refund=b155-fromPre}
  R.posts=posts.concat(R.virt);R.B=balances(R.posts);R.P=pl(R.B);
  var td=0,tc=0;R.tb=Object.keys(R.B).sort().map(function(c){var b=R.B[c],v=b.d-b.c;if(v>0)td+=v;else tc-=v;return{c:c,d:v>0?v:0,cr:v<0?-v:0}}).filter(function(r){return r.d||r.cr});R.td=td;R.tc=tc;
@@ -185,8 +228,44 @@ function paper(R){var B=R.B,c=D.co,h='<h3>決算報告書</h3><p class="c">'+esc
  h+='<h3>決算整理後残高試算表</h3><p class="r">'+jd(c.end)+'現在　（単位：円）</p><table><tr><th class="n">借方</th><th>勘定科目</th><th class="n">貸方</th></tr>'+R.tb.map(function(r){return '<tr><td class="n">'+(r.d?fy(r.d):'')+'</td><td>'+esc(r.c+' '+jn(r.c))+'</td><td class="n">'+(r.cr?fy(r.cr):'')+'</td></tr>'}).join('')+'<tr class="sum"><td class="n">'+fy(R.td)+'</td><td style="text-align:center">合計</td><td class="n">'+fy(R.tc)+'</td></tr></table>';
  return h}
 
+/* ---- 決算書（韓国語・韓国の様式、2026.11） ---- */
+function fk(n){return isFinite(n)?(n<0?'(':'')+Math.round(Math.abs(n)).toLocaleString('ko-KR')+(n<0?')':''):'—'}
+function kd(s){if(!s)return '';var p=s.split('-');return +p[0]+'년 '+(+p[1])+'월 '+(+p[2])+'일'}
+var INV={'131':1,'132':1,'182':1,'183':1,'185':1};
+function kv(c,B){var a=A.by[c];return a.g==='a'?B[c].d-B[c].c:a.g==='l'||a.g==='e'?B[c].c-B[c].d:a.g==='x'?B[c].d-B[c].c:B[c].c-B[c].d}
+function kl(B,f){var o=[];Object.keys(B).sort().forEach(function(c){var a=A.by[c];if(!a||!f(c,a))return;var v=kv(c,B);if(Math.round(v))o.push([kn(c),v,c])});return o}
+function ksum(ls){return ls.reduce(function(s,l){return s+l[1]},0)}
+function krows(ls,cls,g){if(g&&ls.length===1&&ls[0][0]===g)return '';return ls.map(function(l){return '<tr><td class="'+(cls||'i2')+'">'+esc(l[0])+'</td><td class="n">'+fk(l[1])+'</td><td></td></tr>'}).join('')}
+var RN=['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ','Ⅵ','Ⅶ','Ⅷ','Ⅸ','Ⅹ'];
+function paperKr(R){var B=R.B,c=D.co,P=R.P,h='<h3>결 산 보 고 서</h3><p class="c">'+esc(c.name)+'</p><p class="c">'+kd(c.start)+'부터　'+kd(c.end)+'까지</p><hr>';
+ function sec(s){return function(cd,a){return a.s===s}}
+ var ca=kl(B,sec('ca')),inv=kl(B,function(cd,a){return a.s==='oa'&&INV[cd]}),fa=kl(B,sec('fa')),ia=kl(B,sec('ia')),oth=kl(B,function(cd,a){return a.s==='oa'&&!INV[cd]});
+ h+='<h3>재 무 상 태 표</h3><p class="r">'+kd(c.end)+' 현재　(단위: 원)</p><table><tr><th>과목</th><th class="n">금액</th><th class="n">합계</th></tr>';
+ h+='<tr class="sec"><td>자산</td><td></td><td></td></tr><tr><td class="i1">Ⅰ. 유동자산</td><td></td><td class="n">'+fk(ksum(ca))+'</td></tr>'+krows(ca);
+ h+='<tr><td class="i1">Ⅱ. 비유동자산</td><td></td><td class="n">'+fk(ksum(inv)+ksum(fa)+ksum(ia)+ksum(oth))+'</td></tr>';
+ var gi=0;[['투자자산',inv],['유형자산',fa],['무형자산',ia],['기타비유동자산',oth]].forEach(function(g){if(g[1].length){gi++;h+='<tr><td class="i1">　('+gi+') '+g[0]+'</td><td></td><td class="n">'+fk(ksum(g[1]))+'</td></tr>'+krows(g[1])}});
+ h+='<tr class="sum"><td>자산총계</td><td></td><td class="n">'+fk(R.ta)+'</td></tr>';
+ var cl=kl(B,sec('cl')),ll=kl(B,sec('ll'));
+ h+='<tr class="sec"><td>부채</td><td></td><td></td></tr><tr><td class="i1">Ⅰ. 유동부채</td><td></td><td class="n">'+fk(ksum(cl))+'</td></tr>'+krows(cl);
+ if(ll.length)h+='<tr><td class="i1">Ⅱ. 비유동부채</td><td></td><td class="n">'+fk(ksum(ll))+'</td></tr>'+krows(ll);
+ h+='<tr class="sum"><td>부채총계</td><td></td><td class="n">'+fk(R.tl)+'</td></tr>';
+ function eq(set){return kl(B,function(cd,a){return a.s==='eq'&&set[cd]})}
+ var reOpen=B['311']?B['311'].c-B['311'].d:0,ure=reOpen+P.net,re=eq({'310':1,'312':1}),known={'300':1,'301':1,'302':1,'320':1,'330':1,'310':1,'312':1,'311':1};
+ var groups=[['자본금',eq({'300':1})],['자본잉여금',eq({'301':1,'302':1})],['자본조정',kl(B,function(cd,a){return a.s==='eq'&&(cd==='320'||!known[cd])})],['기타포괄손익누계액',eq({'330':1})]];
+ h+='<tr class="sec"><td>자본</td><td></td><td></td></tr>';var ri=0;
+ groups.forEach(function(g,i){if(i===0||g[1].length){h+='<tr><td class="i1">'+RN[ri++]+'. '+g[0]+'</td><td></td><td class="n">'+fk(ksum(g[1]))+'</td></tr>'+krows(g[1],0,g[0])}});
+ h+='<tr><td class="i1">'+RN[ri++]+'. 이익잉여금</td><td></td><td class="n">'+fk(ksum(re)+ure)+'</td></tr>'+krows(re)+'<tr><td class="i2">'+(ure<0?'미처리결손금':'미처분이익잉여금')+'</td><td class="n">'+fk(ure)+'</td><td></td></tr><tr><td class="i2">　(당기순'+(P.net<0?'손실':'이익')+'　'+fk(Math.abs(P.net))+')</td><td></td><td></td></tr>';
+ h+='<tr class="sum"><td>자본총계</td><td></td><td class="n">'+fk(R.te)+'</td></tr><tr class="sum"><td>부채와자본총계</td><td></td><td class="n">'+fk(R.tl+R.te)+'</td></tr></table><hr>';
+ h+='<h3>손 익 계 산 서</h3><p class="r">'+kd(c.start)+'부터　'+kd(c.end)+'까지　(단위: 원)</p><table><tr><th>과목</th><th class="n">금액</th><th class="n">합계</th></tr>';
+ function blk(n,t,ls,tot){return '<tr><td class="i1">'+n+'. '+t+'</td><td></td><td class="n">'+fk(tot)+'</td></tr>'+krows(ls)}
+ function st(n,t,v){return '<tr class="sum"><td>'+n+'. '+t+(v<0?'손실':'이익')+'</td><td></td><td class="n">'+fk(v)+'</td></tr>'}
+ var cs=kl(B,sec('cs')),ga=kl(B,sec('ga')),ni=kl(B,function(cd,a){return a.s==='ni'||a.s==='si'}),ne=kl(B,function(cd,a){return a.s==='ne'||a.s==='sx'}),tx=kl(B,sec('tx'));
+ h+=blk('Ⅰ','매출액',[],P.sl)+blk('Ⅱ','매출원가',cs,P.cs)+st('Ⅲ','매출총',P.gp)+blk('Ⅳ','판매비와관리비',ga,P.ga)+st('Ⅴ','영업',P.op)+blk('Ⅵ','영업외수익',ni,P.ni+P.si)+blk('Ⅶ','영업외비용',ne,P.ne+P.sx)+st('Ⅷ','법인세비용차감전순',P.pre)+blk('Ⅸ','법인세비용',tx.length>1?tx:[],P.tx)+st('Ⅹ','당기순',P.net)+'</table><hr>';
+ h+='<h3>결산 정리 후 잔액시산표</h3><p class="r">'+kd(c.end)+' 현재　(단위: 원)</p><table><tr><th class="n">차변</th><th>계정과목</th><th class="n">대변</th></tr>'+R.tb.map(function(r){return '<tr><td class="n">'+(r.d?fk(r.d):'')+'</td><td>'+esc(r.c+' '+kn(r.c))+'</td><td class="n">'+(r.cr?fk(r.cr):'')+'</td></tr>'}).join('')+'<tr class="sum"><td class="n">'+fk(R.td)+'</td><td style="text-align:center">합계</td><td class="n">'+fk(R.tc)+'</td></tr></table>';
+ return h}
+
 /* ---- 画面 ---- */
-function opts(v){var h='<option value="">'+esc(t('pick'))+'</option>';Object.keys(A.SEC).forEach(function(s){h+='<optgroup label="'+esc(A.SEC[s][LI])+'">'+A.list.filter(function(r){return r[1]===s}).map(function(r){return '<option value="'+r[0]+'"'+(r[0]===v?' selected':'')+'>'+esc(r[0]+' '+an(r[0]))+'</option>'}).join('')+'</optgroup>'});return h}
+function opts(v){var h='<option value="">'+esc(t('pick'))+'</option>';Object.keys(A.SEC).forEach(function(s){h+='<optgroup label="'+esc(secName(s))+'">'+A.list.filter(function(r){return r[1]===s}).map(function(r){return '<option value="'+r[0]+'"'+(r[0]===v?' selected':'')+'>'+esc(r[0]+' '+an(r[0]))+'</option>'}).join('')+'</optgroup>'});return h}
 function inp(p,o){o=o||{};var v=getp(p);return '<input data-p="'+p+'"'+(o.n?' data-n="1" inputmode="decimal"':'')+' type="'+(o.t||'text')+'" value="'+esc(o.n?(num(v)?Math.round(num(v)).toLocaleString('ja-JP'):''):(v==null?'':v))+'"'+(o.lab?' aria-label="'+esc(o.lab)+'"':'')+'>'}
 function card(n,b,id){return '<section class="card"'+(id?' id="'+id+'"':'')+'><h2><span class="n">'+n+'</span>'+esc(t('s'+n))+'</h2>'+b+'</section>'}
 function xb(a,i){return '<button type="button" class="xb" data-act="'+a+'" data-i="'+i+'" aria-label="'+esc(t('del'))+'">×</button>'}
@@ -195,11 +274,12 @@ function langBar(){var gEl=$('lang');gEl.innerHTML=LS.map(function(l){return '<b
  Array.prototype.forEach.call(gEl.querySelectorAll('button'),function(b){b.onclick=function(){L=b.getAttribute('data-l');LI=LS.indexOf(L);try{localStorage.setItem('art-lang',L)}catch(e){}render()}})}
 /* 例の摘要は、保存したときの言語のまま残らないよう、いま選んでいる言語に合わせて言いかえる（自分で書いた摘要はそのまま）（2026.10） */
 function relabel(){var map={};for(var k in M)M[k].forEach(function(x){map[x]=k});(D.je||[]).forEach(function(r){var k=map[r.m];if(k)r.m=M[k][LI]})}
-function render(){relabel();document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('scope').textContent=t('scope');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
- $('bar').innerHTML='<button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
- $('bEx').onclick=function(){if(confirm(t('exC'))){D=EX();save();render()}};
+function render(){relabel();document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('scope').textContent=t('scope')+' '+t('rgn');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();
+ $('bar').innerHTML='<span class="rgsw" role="group" aria-label="'+esc(t('rgq'))+'"><span class="rgq">'+esc(t('rgq'))+'</span>'+['jp','kr'].map(function(r){return '<button type="button" data-rg="'+r+'" class="'+(RG===r?'on':'')+'" aria-pressed="'+(RG===r)+'">'+esc(t('rg'+r))+'</button>'}).join('')+'</span><button class="btn" id="bEx" type="button">'+esc(t('ex'))+'</button><button class="btn" id="bExp" type="button">'+esc(t('exp'))+'</button><label class="btn" for="fImp">'+esc(t('imp'))+'</label><input type="file" id="fImp" accept=".json,application/json" style="display:none"><button class="btn del" id="bCl" type="button">'+esc(t('clr'))+'</button><span class="saved" id="sv"></span>';
+ Array.prototype.forEach.call($('bar').querySelectorAll('[data-rg]'),function(b){b.onclick=function(){var r=b.getAttribute('data-rg');if(r===RG)return;RG=r;try{localStorage.setItem('art-region',r)}catch(e){}D=load();SEL=null;render();syncMember()}});
+ $('bEx').onclick=function(){if(confirm(t('exC'))){D=EXR();save();render()}};
  $('bCl').onclick=function(){if(confirm(t('clrC'))){D=BLANK();save();render()}};
- $('bExp').onclick=function(){dl(JSON.stringify(D,null,1),'year-end-closing.json','application/json')};
+ $('bExp').onclick=function(){dl(JSON.stringify(D,null,1),KR()?'year-end-closing-kr.json':'year-end-closing.json','application/json')};
  $('fImp').onchange=function(e){var f=e.target.files[0];if(!f)return;var rd=new FileReader();rd.onload=function(){try{var o=JSON.parse(rd.result);if(!valid(o))throw 0;D=o;save();render()}catch(x){alert(t('impE'))}};rd.readAsText(f)};
  var h='';
  h+=card(1,'<div class="g3">'+'<label class="f">'+esc(t('name'))+inp('co.name')+'</label><label class="f">'+esc(t('start'))+inp('co.start',{t:'date'})+'</label><label class="f">'+esc(t('end'))+inp('co.end',{t:'date'})+'</label></div>');
@@ -212,7 +292,7 @@ function render(){relabel();document.documentElement.lang=L;document.title=t('tt
  h+=card(4,'<p class="note">'+t('s4n')+'</p><div class="g3"><label class="f">'+esc(t('acc'))+'<select id="lsel" aria-label="'+esc(t('acc'))+'"></select></label></div>'+sw()+'<div class="tw" id="led"></div>');
  h+=card(5,'<p class="note">'+t('s5n')+'</p><ul class="chk" id="chk"></ul><div class="tw" id="tb"></div>');
  h+=card(6,'<p class="note">'+t('s6n')+'</p><div class="g3"><label class="f">'+esc(t('adj'))+inp('adj',{n:1,lab:t('adj')})+'</label><label class="f" style="flex-direction:row;align-items:center;gap:8px;grid-column:span 2"><input type="checkbox" id="auto" style="width:22px;min-height:22px"'+(D.auto?' checked':'')+'>'+esc(t('auto'))+'</label></div><p class="note">'+t('adjn')+'</p><div class="tw" id="tax"></div><ul class="chk" id="taxchk"></ul><p class="note">'+t('taxn')+'</p>');
- h+=card(7,'<p class="note">'+t('s7n')+'</p><div class="kpis" id="kp"></div><div class="bar"><button type="button" class="btn pri" data-act="prt">'+esc(t('prt'))+'</button><button type="button" class="btn" data-act="wrd">'+esc(t('wrd'))+'</button><button type="button" class="btn" data-act="csv">'+esc(t('csv'))+'</button></div><div class="paper" id="paper" lang="ja" data-noalign="1"></div>','outsec');
+ h+=card(7,'<p class="note">'+t('s7n')+'</p><div class="kpis" id="kp"></div><div class="bar"><button type="button" class="btn pri" data-act="prt">'+esc(t('prt'))+'</button><button type="button" class="btn" data-act="wrd">'+esc(t('wrd'))+'</button><button type="button" class="btn" data-act="csv">'+esc(t('csv'))+'</button></div><div class="paper" id="paper" lang="'+(KR()?'ko':'ja')+'" data-noalign="1"></div>','outsec');
  $('app').innerHTML=h;$('auto').onchange=function(){D.auto=this.checked;save();out()};$('lsel').onchange=function(){SEL=this.value;out()};out()}
 function out(){var R=calc(),y=t('yen');
  D.ob.forEach(function(r,i){var e=$('obs'+i);if(e)e.textContent=A.by[r.c]?(debitNormal(r.c)?t('dr'):t('cr')):''});
@@ -225,7 +305,7 @@ function out(){var R=calc(),y=t('yen');
   R.posts.filter(function(p){return p.dr===SEL||p.cr===SEL}).sort(function(a,b){return (a.d||'')<(b.d||'')?-1:(a.d||'')>(b.d||'')?1:(a.i||999)-(b.i||999)}).forEach(function(p){var d=p.dr===SEL?p.a:0,c=p.cr===SEL?p.a:0;run+=dn?d-c:c-d;rows+='<tr><td>'+esc(p.d)+'</td><td>'+esc(p.m)+'</td><td>'+esc(an(p.dr===SEL?p.cr:p.dr))+'</td><td class="n">'+(d?fs(d):'')+'</td><td class="n">'+(c?fs(c):'')+'</td><td class="n">'+fs(run)+'</td></tr>'});
   $('led').innerHTML='<table class="v" style="min-width:720px"><thead><tr><th>'+esc(t('date'))+'</th><th>'+esc(t('memo'))+'</th><th>'+esc(t('other'))+'</th><th class="n">'+esc(t('dr'))+'</th><th class="n">'+esc(t('cr'))+'</th><th class="n">'+esc(t('bal'))+'</th></tr></thead><tbody>'+rows+'</tbody></table>'}else $('led').innerHTML='';
  /* チェック */
- var C=X.c,ck=[],L2=function(k){return C[k][LI]};
+ var C=X.c,ck=[],L2=function(k){return (KR()&&X.ck[k]?X.ck[k]:C[k])[LI]};
  ck.push(Math.round(R.od-R.oc)===0?['ok',L2('obOk')]:['ng',L2('obNg').replace('{d}',fs(Math.abs(R.od-R.oc)))]);
  if(R.bad)ck.push(['ng',L2('bad').replace('{n}',R.bad)]);
  ck.push(Math.round(R.td-R.tc)===0?['ok',L2('tbOk')]:['ng',L2('tbNg').replace('{d}',fs(Math.abs(R.td-R.tc)))]);
@@ -237,24 +317,24 @@ function out(){var R=calc(),y=t('yen');
  $('tb').innerHTML='<table class="v" style="min-width:520px"><thead><tr><th class="n">'+esc(t('dr'))+'</th><th>'+esc(t('acc'))+'</th><th class="n">'+esc(t('cr'))+'</th></tr></thead><tbody>'+R.tb.map(function(r){return '<tr><td class="n">'+(r.d?fs(r.d):'')+'</td><td>'+esc(r.c+' '+an(r.c))+'</td><td class="n">'+(r.cr?fs(r.cr):'')+'</td></tr>'}).join('')+'<tr class="sum"><td class="n">'+fs(R.td)+'</td><td style="text-align:center">'+esc(t('tot'))+'</td><td class="n">'+fs(R.tc)+'</td></tr></tbody></table>';
  /* 税金 */
  var tx='<table class="v" style="min-width:480px"><tbody><tr><td>'+esc(t('pre'))+'</td><td class="n">'+fs(R.pre)+'</td></tr><tr><td>'+esc(t('adj'))+'</td><td class="n">'+fs(num(D.adj))+'</td></tr><tr class="sum"><td>'+esc(t('tinc'))+'</td><td class="n">'+fs(Math.max(0,R.tinc))+'</td></tr>';
- if(R.tax){X.cj[LI].forEach(function(n,i){tx+='<tr><td>　'+esc(n)+'</td><td class="n">'+(R.tax.v[i]?fs(R.tax.v[i]):'—')+'</td></tr>'});tx+='<tr class="sum"><td>'+esc(t('tot'))+'</td><td class="n">'+fs(R.tax.sum)+'</td></tr><tr><td>'+esc(t('interim'))+'</td><td class="n">'+fs(R.interim)+'</td></tr>';
+ if(R.tax){t('cj').forEach(function(n,i){tx+='<tr><td>　'+esc(n)+'</td><td class="n">'+(R.tax.v[i]?fs(R.tax.v[i]):'—')+'</td></tr>'});tx+='<tr class="sum"><td>'+esc(t('tot'))+'</td><td class="n">'+fs(R.tax.sum)+'</td></tr><tr><td>'+esc(t('interim'))+'</td><td class="n">'+fs(R.interim)+'</td></tr>';
   if(R.virt.length)tx+=R.refund>0?'<tr class="sum"><td>'+esc(t('refund'))+'</td><td class="n">'+fs(R.refund)+'</td></tr>':'<tr class="sum"><td>'+esc(t('pay'))+'</td><td class="n">'+fs(R.payable)+'</td></tr>'}
- var tw=[],cap=nb('300'),pe=D.co.start&&D.co.end&&!fullYear(D.co.start,D.co.end);if(cap>10000000)tw.push(X.tw.cap1[LI]);if(cap>100000000)tw.push(X.tw.cap2[LI]);if(pe)tw.push(X.tw.per[LI]);
+ var tw=[],cap=nb('300'),pe=D.co.start&&D.co.end&&!fullYear(D.co.start,D.co.end);if(KR()){if(R.tax&&R.tax.mo<12)tw.push(X.twk.per[LI])}else{if(cap>10000000)tw.push(X.tw.cap1[LI]);if(cap>100000000)tw.push(X.tw.cap2[LI]);if(pe)tw.push(X.tw.per[LI])}
  $('taxchk').innerHTML=tw.map(function(m){return '<li class="wa">'+(LI===0?'！ ':'! ')+esc(m)+'</li>'}).join('');
  tx+='</tbody></table>'+(R.manual?'<p class="note">'+esc(t('manualTax'))+'</p>':'');$('tax').innerHTML=tx;
  /* 指標と決算書 */
- var P=R.P,K=X.k[LI],kv=[P.sl,P.op,P.ord,P.pre,P.tx,P.net,R.ta,R.te];
- $('kp').innerHTML=kv.map(function(v,i){return '<div class="kpi"><span>'+esc(K[i])+'</span><b>'+fs(v)+'</b> '+esc(y)+'</div>'}).join('')+'<div class="kpi"><span>'+esc(K[8])+'</span><b>'+(R.ta>0?(R.te/R.ta*100).toFixed(1):'—')+'</b> %</div>';
- $('paper').innerHTML=paper(R);
+ var P=R.P,K=t('k'),kvs=KR()?[P.sl,P.op,P.pre,P.tx,P.net,R.ta,R.tl,R.te]:[P.sl,P.op,P.ord,P.pre,P.tx,P.net,R.ta,R.te];
+ $('kp').innerHTML=kvs.map(function(v,i){return '<div class="kpi"><span>'+esc(K[i])+'</span><b>'+fs(v)+'</b> '+esc(y)+'</div>'}).join('')+'<div class="kpi"><span>'+esc(K[8])+'</span><b>'+(R.ta>0?(R.te/R.ta*100).toFixed(1):'—')+'</b> %</div>';
+ $('paper').innerHTML=KR()?paperKr(R):paper(R);
  Array.prototype.forEach.call(document.querySelectorAll('#app select'),function(el){var o=el.options[el.selectedIndex];el.title=o&&o.value?o.text:''})}
 /* 期首から期末までがちょうど12か月か（均等割などの前提の確認、2026.10） */
 function fullYear(a,b){var p=String(a).split('-').map(Number);if(p.length<3||!p[0])return true;var e=new Date(Date.UTC(p[0]+1,p[1]-1,p[2]-1));return e.toISOString().slice(0,10)===b}
 function dl(txt,name,type){var b=new Blob([txt],{type:type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();a.remove()}
 function word(){var b=$('paper').innerHTML.replace(/<hr>/g,'<br clear="all" style="page-break-before:always">').replace(/<table>/g,'<table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;border:1px solid #000;width:100%">').replace(/<h3>/g,'<h3 align="center" style="text-align:center">').replace(/ class="r"/g,' align="right" style="text-align:right"').replace(/ class="c"/g,' align="center" style="text-align:center"').replace(/ class="n"/g,' align="right" style="text-align:right"').replace(/ class="i1"/g,' style="padding-left:18pt"').replace(/ class="i2"/g,' style="padding-left:32pt"');
- var h='<html><head><meta charset="utf-8"><style>body{font-family:"MS Mincho","Yu Mincho",serif;font-size:10.5pt;line-height:1.6}td,th{border:1px solid #000;padding:2pt 6pt}tr.sec td,tr.sum td{font-weight:bold}</style></head><body>'+b+'</body></html>';
- dl(String.fromCharCode(65279)+h,'決算報告書.doc','application/msword')}
-function csv(){var R=calc(),rows=[['借方','勘定科目番号','勘定科目','貸方']];R.tb.forEach(function(r){rows.push([r.d||'',r.c,jn(r.c),r.cr||''])});rows.push([R.td,'','合計',R.tc]);
- dl(String.fromCharCode(65279)+rows.map(function(r){return r.map(function(v){v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(',')}).join('\r\n'),'試算表.csv','text/csv')}
+ var h='<html><head><meta charset="utf-8"><style>body{font-family:'+(KR()?'"Batang","Malgun Gothic",serif':'"MS Mincho","Yu Mincho",serif')+';font-size:10.5pt;line-height:1.6}td,th{border:1px solid #000;padding:2pt 6pt}tr.sec td,tr.sum td{font-weight:bold}</style></head><body>'+b+'</body></html>';
+ dl(String.fromCharCode(65279)+h,KR()?'결산보고서.doc':'決算報告書.doc','application/msword')}
+function csv(){var R=calc(),k=KR(),rows=[k?['차변','계정코드','계정과목','대변']:['借方','勘定科目番号','勘定科目','貸方']];R.tb.forEach(function(r){rows.push([r.d||'',r.c,k?kn(r.c):jn(r.c),r.cr||''])});rows.push([R.td,'',k?'합계':'合計',R.tc]);
+ dl(String.fromCharCode(65279)+rows.map(function(r){return r.map(function(v){v=String(v);return /[",\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v}).join(',')}).join('\r\n'),k?'시산표.csv':'試算表.csv','text/csv')}
 
 /* ---- 入力の受け取り ---- */
 var app=$('app');
@@ -267,7 +347,8 @@ app.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if
  else if(a==='addJ')D.je.push({d:D.co.end||'',m:'',dr:'',cr:'',a:0});else if(a==='delJ'){if(D.je.length<2)return;D.je.splice(i,1)}else return;
  save();render()});
 render();
-if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('close').then(function(d){if(!d||!valid(d.data))return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(D.t||0)){D=d.data;try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}render()}}).catch(function(){})});
+function syncMember(){if(!window.Member||!window.Member.user())return;var k0=kind(),r0=RG;window.Member.loadDoc(k0).then(function(d){if(!d||!valid(d.data)||r0!==RG)return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(D.t||0)){D=d.data;try{localStorage.setItem(key(),JSON.stringify(D))}catch(e){}render()}}).catch(function(){})}
+if(window.Member)window.Member.onChange(function(u){if(!u)return;syncMember()});
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>

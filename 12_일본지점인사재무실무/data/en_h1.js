@@ -301,11 +301,20 @@ sections:[
 {h:"How a remittance travels, and how long it takes",blocks:[{"t":"ladder","rise":10,"steps":[{"name":"Request","sub":"To head office in writing"},{"name":"Head office’s bank","sub":"Sends the payment"},{"name":"Intermediary bank","sub":"May deduct a fee"},{"name":"Bank in Japan","sub":"Credits and checks it"},{"name":"Branch records","sub":"Daily report, FX difference"}]},
 {"t":"table","cols":["When","What to watch"],"rows":[["January–February","Korea’s Lunar New Year holiday"],["Late April–early May","Japan’s Golden Week"],["September–October","Korea’s Chuseok holiday"],["Late December–early January","New Year in both countries"]]},
 {"t":"note","x":"* The table assumes a head office in Korea. Holiday dates change from year to year. Before a holiday, request remittances at least two weeks ahead."}]},
-{h:"How reporting works",blocks:[{t:"rows",items:[
+{h:"How reporting works",blocks:[{t:"region",jp:[{t:"rows",items:[
 {name:"Payment reports",x:"A single payment or receipt between Japan and abroad (or between a resident and a non-resident) exceeding the equivalent of ¥30 million must be reported to the Minister of Finance via the Bank of Japan under the Foreign Exchange Act. Even for remittances through a bank, a paper report goes to the bank, while an online report can be filed directly with the Bank of Japan. Some items, such as payment for exported and imported goods, are exempt. ★"},
 {name:"Bank checks",x:"When you remit, the bank may check the purpose and counterparty and ask you to complete the report form."},
 {name:"Sanctions checks",x:"Depending on the country and purpose, checks against economic sanctions and other controls are made."}]},
-{t:"note",x:"* Confirm the thresholds and forms in current Bank of Japan and Ministry of Finance guidance. ★"}]},
+{t:"note",x:"* Confirm the thresholds and forms in current Bank of Japan and Ministry of Finance guidance. ★"}],
+kr:[{t:"p",x:"When a Korean head office sends money to its Japan branch, it follows the procedures of Korea’s Foreign Exchange Transactions Act. Before opening its first overseas branch it files a report on establishing an overseas branch with its designated foreign exchange bank, and remits set-up costs, the branch’s operating fund and running costs through that bank after it checks the supporting documents. ★"},
+{"t":"ladder","rise":10,"steps":[{"name":"Establishment report","sub":"To the designated FX bank"},{"name":"Set-up costs and operating fund","sub":"Remitted after document checks"},{"name":"Confirmation report","sub":"Within 6 months of the report"},{"name":"Business activity report","sub":"Within 5 months of the year-end"},{"name":"Changes and closure","sub":"When things change or the branch closes"}]},
+{t:"rows",items:[
+{name:"Where to report",x:"A non-financial company reports to its designated foreign exchange bank; a financial institution reports to the Financial Supervisory Service. ★"},
+{name:"Remitting before the report",x:"Up to USD 100,000 can be sent through the designated bank before the report is completed, provided the report is completed within one year of establishment. ★"},
+{name:"How the branch may use funds",x:"If the overseas branch buys property or securities locally, or lends to a non-resident for more than a year, it must report to the Bank of Korea (exceptions include an office or staff housing needed for the business, within the operating fund and retained profits). ★"},
+{name:"Closure",x:"Report immediately on closing the branch (inventory of assets, financial statements, details of disposals) and bring the remaining assets home."}]},
+{t:"note",x:"* Confirm the procedures, documents and deadlines with the designated foreign exchange bank and the current Foreign Exchange Transaction Regulation. ★"},
+{t:"point",x:"The same remittance involves two sets of rules: the Korean head office follows Korea’s Foreign Exchange Transactions Act, and the Japan branch handles Japan’s Foreign Exchange Act reporting (payments or receipts above the equivalent of ¥30 million and so on)."}]}]},
 {h:"Rules for moving funds with head office",blocks:[{t:"table",cols:["Rule","Content"],rows:[
 ["Remittance request deadline","Request next month’s funds by a set day each month"],
 ["When funds run short","The procedure for urgent top-ups, and approval for temporary use of the revenue account"],
@@ -313,10 +322,11 @@ sections:[
 ["Records","Requests, receipts and fees recorded in the daily cash report"]]},
 {t:"point",x:"Plan remittances with a margin, on the assumption that they will arrive late and be reduced by fees."}]}],
 voice:"If a Lunar New Year holiday delays head office’s remittance, you can miss the rent due date. Put both countries’ holidays on the calendar at the start of the year, and request remittances two weeks ahead before a holiday.",
-terms:[["International Remittance","海外送金","해외 송금"],["Foreign Exchange and Foreign Trade Act","外為法","외환법"],["Foreign Exchange Gain / Loss","為替差損益","환차손익"],["Report on Payments","支払等報告","지급 등 보고"]],
+terms:[["International Remittance","海外送金","해외 송금"],["Foreign Exchange and Foreign Trade Act","外為法","외환법"],["Foreign Exchange Gain / Loss","為替差損益","환차손익"],["Report on Payments","支払等報告","지급 등 보고"],["Report on Establishing an Overseas Branch","海外支社の設置申告","해외지사 설치 신고"]],
 quiz:[{q:"When should you request an international remittance?",opts:["About a week before the deadline","On the deadline","The day after","Any time"],a:0,exp:"Allow for holidays in both countries."},
 {q:"What may a cross-border payment above a certain amount require?",opts:["A report under the Foreign Exchange Act","Nothing","Only the president’s permission","A police notification"],a:0,exp:"On paper via the bank, or online directly to the Bank of Japan. ★"},
-{q:"What should be decided about remittance fees?",opts:["Who bears them","The colour","The language","Business cards"],a:0,exp:"Sender or recipient."}],
+{q:"What should be decided about remittance fees?",opts:["Who bears them","The colour","The language","Business cards"],a:0,exp:"Sender or recipient."},
+{q:"By when must a Korean head office report on its overseas branch’s business activity?",opts:["Within 5 months of the financial year-end","At the end of every month","Within a week of opening","No report is needed"],a:0,exp:"It goes to the designated foreign exchange bank. The confirmation report is due within 6 months of the establishment report. ★"}],
 next:"5-1 The Tax Picture for a Foreign Company’s Branch"});
 
 set("5-1",{title:"The Tax Picture for a Foreign Company’s Branch",hl:"branch taxes",subtitle:"Corporate tax, consumption tax, withholding, local taxes, stamp duty, depreciable assets. One list so nothing is missed ★",
@@ -497,7 +507,7 @@ deep:[
 {name:"Clear suspense within the month",x:"Keeping suspense payments and receipts near zero each month saves re-investigating them at the year-end."},
 {name:"A fixed asset register",x:"Recording purchase date, cost and useful life makes depreciation quick to calculate."},
 {name:"Balance confirmations",x:"Obtain year-end balance certificates for deposits and loans from the banks and agree them to the books."}]},
-{t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: from closing adjustments to the tax estimate and Japanese accounts"}]}],
+{t:"link",href:"決算の練習.html",x:"[Practice] Year-End Closing Practice: from closing adjustments to the tax estimate and the accounts (Japanese rules in Japanese, Korean rules in Korean)"}]}],
 voice:"To close the month faster, prepare a table of estimated costs for invoices not yet received in the same format every month. It shortens the close and cuts queries from head office.",
 terms:[["Monthly Closing","月次決算","월차 결산"],["Accrual","見積計上","추정 계상"],["Prepaid Expense","前払費用","선급 비용"],["Budget vs. Actual","予実比較","예산 대비 실적 비교"]],
 quiz:[{q:"How are costs not yet invoiced handled?",opts:["Accrued on an estimate and adjusted later","Not booked","Booked next year","Left to head office"],a:0,exp:"So the close is not delayed."},

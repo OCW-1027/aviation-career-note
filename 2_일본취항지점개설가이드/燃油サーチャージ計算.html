@@ -68,6 +68,8 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 /* 入力の表：路線グループの名前は折り返さない、選択欄は中身が見える幅に（2026.10） */
 table.ed tbody tr>:first-child{white-space:nowrap}
 table.ed select,html.sh table.ed select{min-width:132px}
+
+@media print{#orgbar,#krapp>.card:not(:last-child),#krapp>.card:last-child>*:not(.paper){display:none!important}#krapp>.card:last-child{border:0;padding:0;margin:0}}
 </style>
 <script src="../1_지상직여객운송입문/assets/shell.js" data-page="fsc"></script>
 <script src="../8_사이트/assets/member_config.js"></script>
@@ -76,9 +78,11 @@ table.ed select,html.sh table.ed select{min-width:132px}
 <body>
 <div class="wrap">
 <header><span class="langs" id="lang" role="group" aria-label="Language"></span><h1 id="ttl"></h1><p id="lead"></p></header>
+<div id="orgbar"></div>
 <div class="bar" id="bar"></div>
 <p class="privacy" id="privacy"></p>
 <div id="app"></div>
+<div id="krapp" style="display:none"></div>
 <p class="note" id="note"></p>
 </div>
 <script>
@@ -400,6 +404,119 @@ app.addEventListener('click',function(e){var b=e.target.closest('[data-act]');if
 render();
 /* 会員の記録：ログインしていれば、会員に保存した内容の方が新しいときはそれを使う */
 if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('fsc').then(function(d){if(!d||!valid(d.data))return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(D.t||0)){D=norm(d.data);try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}render()}}).catch(function(){})});
+</script>
+<script>
+/* 韓国発 燃油サーチャージ（2026.11）：出発地「韓国発」を選ぶと、この下の画面に切り替える。
+   シンガポール航空燃料（ケロシン）の1か月平均（前々月16日〜前月15日、セント/ガロン）から段階を出し（150セントから10セントごとに1段階、最高33段階）、
+   自社の距離区間表（1段階あたりのドル）× 同じ期間の平均為替で、区間ごとのウォン額を出して、韓国語のお客様向け案内文の下書きを作る。
+   入っている数字・区間表は Vela Air（架空）の例。段階の決まり（150・10・33）は2016年の距離比例制の枠組みで、金額表は各社が定める。★
+   入力はこのブラウザ（acn-fsc-kr-v1）とログイン中は会員の記録（user_docs: fsc_kr）に保存。 */
+(function(){
+var ORG=(function(){var m=location.search.match(/[?&]org=(jp|kr)/);if(m)return m[1];try{var r=localStorage.getItem('acn-fsc-origin');if(r==='jp'||r==='kr')return r}catch(e){}return 'jp'})();
+var KK='acn-fsc-kr-v1';
+function $(i){return document.getElementById(i)}
+function e(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function n(v){var s=String(v==null?'':v).replace(/[０-９．－]/g,function(c){return String.fromCharCode(c.charCodeAt(0)-0xFEE0)}).replace(/[,，\s원¢]/g,'');var x=parseFloat(s);return isNaN(x)?0:x}
+function w(x){return Math.round(x).toLocaleString('ko-KR')}
+var T={
+org:['出発地','출발지','Origin'],jp:['日本発','일본발','From Japan'],kr:['韓国発','한국발','From Korea'],
+ttl:['韓国発 燃油サーチャージの計算 ― 案内文の下書きまで','한국발 유류할증료 계산 — 고객 안내문 초안까지','Korea-Origin Fuel Surcharge Calculator'],
+lead:['シンガポール航空燃料の1か月平均から段階を出し、自社の距離区間表と平均為替で区間ごとのウォン額を決めて、お客様向けの案内文（韓国語）の下書きまで作ります。入っている数字と区間表は Vela Air（架空の航空会社）の例です。自社の数字に書きかえて使ってください。','싱가포르 항공유 1개월 평균으로 단계를 구하고, 자사 거리 구간표와 평균 환율로 구간별 원화 금액을 정해, 고객 안내문(한국어) 초안까지 만듭니다. 입력되어 있는 숫자와 구간표는 Vela Air(가상 항공사)의 예시입니다. 자사 숫자로 바꿔 사용하세요.','Work out the surcharge level from the one-month average Singapore jet fuel price, turn your own distance-band table into won amounts with the average exchange rate, and produce a customer notice draft in Korean. The figures and band table are an example for Vela Air, a fictional airline: replace them with your own.'],
+orgn:['日本発は、国土交通省への申請に使う円換算と路線グループの表で計算します。韓国発は、毎月決まる段階と距離区間の表で計算します。入力は出発地ごとに別々に保存されます。','일본발은 일본 국토교통성 신청에 쓰는 엔화 환산액과 노선 그룹 표로 계산합니다. 한국발은 매월 정해지는 단계와 거리 구간표로 계산합니다. 입력은 출발지별로 따로 저장됩니다.','From Japan uses the yen-per-barrel brackets and route groups filed with Japan’s transport ministry. From Korea uses a monthly level and a distance-band table. Entries are saved separately for each origin.'],
+s1:['会社と適用する月','회사와 적용 월','Airline and month of application'],s2:['燃料価格と為替（算定期間の平均）','유가와 환율(산정 기간 평균)','Fuel price and exchange rate (averages for the calculation period)'],s3:['段階の決まり','단계 규칙','How the level is set'],s4:['距離区間表と金額','거리 구간표와 금액','Distance bands and amounts'],s5:['この金額になる理由','이 금액이 나오는 이유','Why the numbers come out this way'],s6:['お客様向け案内文の下書き（韓国語）','고객 안내문 초안(한국어)','Customer notice draft (in Korean)'],
+name:['航空会社名','항공사 이름','Airline'],month:['適用する月（発券日）','적용 월(발권일 기준)','Month of application (by ticketing date)'],
+per:['算定期間','산정 기간','Calculation period'],pern:['適用する月の前々月16日から前月15日までの平均を使います（例：12月の発券 → 10月16日〜11月15日）。毎月、適用する月の前に案内します。★','적용 월의 전전월 16일부터 전월 15일까지의 평균을 씁니다(예: 12월 발권 → 10월 16일~11월 15일). 매월 적용 월 전에 미리 안내합니다. ★','The average from the 16th of the month before last to the 15th of last month is used (for example, December ticketing → 16 October to 15 November). Each month’s amounts are announced before that month begins. ★'],
+md1:['日別の数字を貼り付ける','일별 숫자 붙여넣기','Paste daily figures'],md2:['平均を直接入れる','평균을 직접 입력','Enter the averages directly'],
+rows:['1行に「日付・航空燃料（セント/ガロン）・為替（ウォン/USD）」。エクセルからそのまま貼り付けられます。','한 줄에 「날짜·항공유(센트/갤런)·환율(원/USD)」. 엑셀에서 그대로 붙여 넣을 수 있습니다.','One line per day: date, jet fuel (US cents/gallon), exchange rate (KRW/USD). Paste straight from Excel.'],exd:['例の数字を入れる（架空）','예시 숫자 넣기(가상)','Fill with sample figures (fictional)'],
+pNow:['今月の平均燃料価格（セント/ガロン）','이번 달 평균 항공유(센트/갤런)','This month: average jet fuel (¢/gal)'],fNow:['今月の平均為替（ウォン/USD）','이번 달 평균 환율(원/USD)','This month: average rate (KRW/USD)'],pPrev:['前月の平均燃料価格（セント/ガロン）','전월 평균 항공유(센트/갤런)','Last month: average jet fuel (¢/gal)'],fPrev:['前月の平均為替（ウォン/USD）','전월 평균 환율(원/USD)','Last month: average rate (KRW/USD)'],
+bbl:['1バレルあたり','배럴당','per barrel'],lvl:['段階','단계','Level'],none:['課さない','부과 안 함','none'],days:['日','일','days'],
+st:['1段階が始まる価格（セント/ガロン）','1단계 시작 가격(센트/갤런)','Level 1 starts at (¢/gal)'],sp:['1段階の幅（セント）','단계 폭(센트)','Step (cents)'],mx:['最高の段階','최고 단계','Top level'],
+s3n:['2016年からの距離比例制では、平均価格が1ガロン150セント以上160セント未満で1段階、その後10セントごとに1段階ずつ上がり、最高は33段階です。150セント未満なら課しません。各社が国土交通部の認可を受けた基準で決めるので、自社の基準で確かめてください。★','2016년부터의 거리비례제에서는 평균 가격이 갤런당 150센트 이상 160센트 미만이면 1단계이고, 이후 10센트마다 1단계씩 올라가며 최고 33단계입니다. 150센트 미만이면 부과하지 않습니다. 각사가 국토교통부 인가를 받은 기준으로 정하므로 자사 기준으로 확인하세요. ★','Under the distance-based system in place since 2016, an average of 150 to under 160 cents a gallon is level 1, each further 10 cents adds a level, and level 33 is the cap; below 150 cents nothing is charged. Each airline sets its standard with the transport ministry’s approval, so check your own. ★'],
+dist:['大圏距離（マイル）','대권거리(마일)','Great-circle distance (miles)'],rt:['主な路線','주요 노선','Main routes'],usd:['1段階あたり（USD）','단계당(USD)','Per level (USD)'],prev:['前月','전월','Last month'],now:['今月','이번 달','This month'],dif:['差','차이','Change'],add:['区間を足す','구간 추가','Add band'],del:['消す','삭제','Remove'],
+rnd:['ウォンの端数','원 단위 처리','Rounding'],r1:['100ウォン未満を切り捨て','100원 미만 버림','Round down to 100 won'],r2:['100ウォン単位で四捨五入','100원 단위 반올림','Round to nearest 100 won'],r3:['10ウォン単位で四捨五入','10원 단위 반올림','Round to nearest 10 won'],rndn:['金額はドルで決めた額を算定期間の平均為替でウォンに換算します。端数の処理は自社の決まりに合わせます。★','금액은 달러로 정한 금액을 산정 기간 평균 환율로 원화 환산합니다. 끝자리 처리는 자사 규칙에 맞춥니다. ★','Amounts are set in US dollars and converted to won at the period’s average rate. Follow your own rounding rule. ★'],
+prt:['印刷・PDFに保存','인쇄·PDF 저장','Print / save as PDF'],wrd:['Wordで保存','Word로 저장','Save as Word'],cp:['文をコピー','글 복사','Copy text'],cpd:['コピーしました','복사했습니다','Copied'],
+s6n:['下の案内文は韓国語で作ります。注意書きは一般的な例なので、自社の運送約款と最新の案内に合わせて直してください。','아래 안내문은 한국어로 만듭니다. 유의 사항은 일반적인 예시이므로 자사 운송약관과 최신 안내에 맞춰 고치세요.','The notice below is produced in Korean. The notes are typical examples: adjust them to your own conditions of carriage and current guidance.'],
+ex:['例に戻す','예시로 되돌리기','Reset to example'],exC:['今の内容を例で置き換えます。よろしいですか？','현재 내용을 예시로 바꿉니다. 계속하시겠습니까?','Replace everything with the example?'],clr:['すべて消す','모두 지우기','Clear all'],clrC:['入力した内容をすべて消します。元に戻せません。よろしいですか？','입력한 내용을 모두 지웁니다. 되돌릴 수 없습니다. 계속하시겠습니까?','Clear everything? This cannot be undone.'],saved:['保存しました','저장했습니다','Saved'],
+privacy:['入力した内容は、このブラウザ（この端末）に自動で保存されます。ログインしているときは会員の記録にも保存されます。共用のパソコンでは、使い終わったら「すべて消す」を押してください。','입력한 내용은 이 브라우저(이 기기)에 자동으로 저장됩니다. 로그인한 상태에서는 회원 기록에도 저장됩니다. 공용 컴퓨터에서는 다 쓴 뒤 「모두 지우기」를 눌러 주세요.','What you enter is saved automatically in this browser. When you are logged in it is also saved to your member record. On a shared computer, press “Clear all” when you finish.'],
+note:['※ 航空会社名・数字・区間表はすべて架空の例です。実際の金額は各社の案内で確認してください。','※ 항공사 이름·숫자·구간표는 모두 가상의 예시입니다. 실제 금액은 각사 안내로 확인하세요.','* The airline, figures and band table are fictional. Check each airline’s own notices for real amounts.'],
+why:[['平均価格 {p} セント → （{p} − {s}）÷ {w} の整数部分 ＋ 1 ＝ <b>{l} 段階</b>（最高 {m}）','평균 가격 {p}센트 → ({p} − {s}) ÷ {w}의 정수 부분 + 1 = <b>{l}단계</b>(최고 {m})','Average {p}¢ → integer part of ({p} − {s}) ÷ {w}, plus 1 = <b>level {l}</b> (cap {m})'],
+ ['区間の額 ＝ 段階 × 1段階あたりのドル × 平均為替。例：最初の区間 {l} × {u} ドル × {f} ウォン ＝ {k} ウォン → 端数処理で <b>{r} ウォン</b>','구간 금액 = 단계 × 단계당 달러 × 평균 환율. 예: 첫 구간 {l} × {u}달러 × {f}원 = {k}원 → 끝자리 처리로 <b>{r}원</b>','Band amount = level × dollars per level × average rate. First band: {l} × USD {u} × {f} = {k} won → rounded to <b>{r} won</b>'],
+ ['前月は {lp} 段階だったので、段階の差は {dl} です。為替の変化も金額に効きます。','전월은 {lp}단계였으므로 단계 차이는 {dl}입니다. 환율 변화도 금액에 영향을 줍니다.','Last month was level {lp}, a change of {dl}. Exchange-rate movements also affect the amounts.']],
+cmp:['日本発と韓国発の違い','일본발과 한국발의 차이','Japan-origin and Korea-origin compared'],
+cmpT:[['','日本発','韓国発'],['','일본발','한국발'],['','From Japan','From Korea']],
+cmpR:[[['基準の燃料','シンガポールケロシン（USD/バレル）を円に換算','シンガポール航空燃料（セント/ガロン）'],['算定期間','各社の認可による（例：2か月平均）','前々月16日〜前月15日の1か月平均'],['額の決め方','円換算額の区分と路線グループの表','段階（150セントから10セントごと）×距離区間'],['変わる周期','各社の認可による','毎月（発券日で適用）'],['政府の手続き','国土交通省への申請（J-MAT）','国土交通部の認可を受けた基準で、各社が毎月あらかじめ案内 ★']],
+ [['기준 연료','싱가포르 케로신(USD/배럴)을 엔화로 환산','싱가포르 항공유(센트/갤런)'],['산정 기간','각사 인가에 따름(예: 2개월 평균)','전전월 16일~전월 15일 1개월 평균'],['금액 정하는 법','엔화 환산액 구간과 노선 그룹 표','단계(150센트부터 10센트마다) × 거리 구간'],['바뀌는 주기','각사 인가에 따름','매월(발권일 기준 적용)'],['정부 절차','일본 국토교통성에 신청(J-MAT)','국토교통부 인가를 받은 기준으로 각사가 매월 미리 안내 ★']],
+ [['Fuel benchmark','Singapore kerosene (USD/bbl) converted to yen','Singapore jet fuel (US cents/gallon)'],['Period','Set by each airline’s approval (e.g. two-month average)','One-month average, 16th of the month before last to 15th of last month'],['How amounts are set','Yen-per-barrel brackets and route groups','Level (from 150¢, every 10¢) × distance band'],['How often it changes','Set by each airline’s approval','Every month (applied by ticketing date)'],['Government process','Filing with Japan’s transport ministry (J-MAT)','Each airline announces monthly amounts under a standard approved by Korea’s transport ministry ★']]]
+};
+function t(k){return T[k][LI]}
+function EXK(){return{name:'Vela Air(가상)',month:'2026-12',mode:'avg',now:{p:380.5,fx:1452.3},prev:{p:410.2,fx:1448.1},rows:'',start:150,step:10,max:33,rnd:'f100',
+ bands:[['~ 499','인천–후쿠오카, 칭다오 / 부산–후쿠오카',1.5],['500 ~ 999','인천–나리타, 오사카, 나고야, 타이베이 / 김포–하네다',2.0],['1,000 ~ 1,499','인천–홍콩, 광저우, 마카오',2.8],['1,500 ~ 1,999','인천–마닐라, 하노이, 다낭',3.5],['2,000 ~ 2,999','인천–방콕, 싱가포르, 호찌민, 괌',4.9],['3,000 ~ 3,999','인천–자카르타, 덴파사르',5.0],['4,000 ~ 4,999','인천–두바이, 호놀룰루, 이스탄불',6.7],['5,000 ~ 6,499','인천–로스앤젤레스, 파리, 런던, 시드니',9.7],['6,500 ~ 9,999','인천–뉴욕, 시카고, 토론토',10.9]].map(function(r){return{d:r[0],r:r[1],u:r[2]}})}}
+var DK=null;try{var o=JSON.parse(localStorage.getItem(KK)||'null');if(o&&o.bands)DK=o}catch(x){}if(!DK)DK=EXK();
+var tmk=null;function saveK(){try{DK.t=Date.now();localStorage.setItem(KK,JSON.stringify(DK));if(window.Member&&window.Member.user()){clearTimeout(tmk);tmk=setTimeout(function(){window.Member.saveDoc('fsc_kr',DK).catch(function(){})},1200)}if($('svk'))$('svk').textContent=t('saved')+' '+new Date().toLocaleTimeString(L==='en'?'en-GB':L,{hour:'2-digit',minute:'2-digit'})}catch(x){}}
+function ym(s){var p=String(s||'').split('-').map(Number);return p[0]&&p[1]?p:null}
+function period(s){var p=ym(s);if(!p)return null;var a=new Date(Date.UTC(p[0],p[1]-3,16)),b=new Date(Date.UTC(p[0],p[1]-2,15));return [a,b]}
+function kd(d){return d.getUTCFullYear()+'년 '+(d.getUTCMonth()+1)+'월 '+d.getUTCDate()+'일'}
+function ld(d){return LI===0?d.getUTCFullYear()+'年'+(d.getUTCMonth()+1)+'月'+d.getUTCDate()+'日':LI===1?kd(d):d.toISOString().slice(0,10)}
+function level(p){if(p<n(DK.start))return 0;var st=n(DK.step)||10;return Math.min(n(DK.max)||33,Math.floor((p-n(DK.start))/st+1e-9)+1)}
+function rk(x){var r=DK.rnd;return r==='r100'?Math.round(x/100)*100:r==='r10'?Math.round(x/10)*10:Math.floor(x/100+1e-9)*100}
+function daily(){var a=[];String(DK.rows||'').split(/\r?\n/).forEach(function(l){var c=l.split(/\t|,(?=\s*\d)|\s{2,}|\s+(?=[\d.]+\s+[\d.,]+$)/).map(function(x){return x.trim()}).filter(Boolean);if(c.length>=3&&n(c[1])&&n(c[2]))a.push([c[0],n(c[1]),n(c[2])])});return a}
+function cur(){if(DK.mode==='daily'){var a=daily();if(a.length)return{p:a.reduce(function(s,r){return s+r[1]},0)/a.length,fx:a.reduce(function(s,r){return s+r[2]},0)/a.length,n:a.length}}return{p:n(DK.now.p),fx:n(DK.now.fx),n:0}}
+function sample(){var pr=period(DK.month);if(!pr)return;var out=[],d=new Date(pr[0]),i=0;while(d<=pr[1]){var wd=d.getUTCDay();if(wd&&wd<6){var p=380.5+Math.sin(i*0.9)*6.2+(i%3-1)*1.1,f=1452.3+Math.cos(i*0.7)*5.4;out.push(d.toISOString().slice(0,10)+'\t'+p.toFixed(2)+'\t'+f.toFixed(2));i++}d.setUTCDate(d.getUTCDate()+1)}DK.rows=out.join('\n')}
+function gp(path){var o=DK;path.split('.').forEach(function(k){o=o==null?o:o[k]});return o}
+function spth(path,v){var a=path.split('.'),o=DK;for(var i=0;i<a.length-1;i++)o=o[a[i]];o[a[a.length-1]]=v}
+function ip(path,o){o=o||{};var v=gp(path);return '<input data-k="'+path+'"'+(o.nn?' data-kn="1" inputmode="decimal"':'')+(o.r?' data-kr="1"':'')+' type="'+(o.t||'text')+'" value="'+e(v==null?'':v)+'">'}
+function lb(a,b){return '<label class="f">'+e(a)+b+'</label>'}
+function cd(no,b){return '<section class="card"><h2><span class="n">'+no+'</span>'+e(t('s'+no))+'</h2>'+b+'</section>'}
+function orgBar(){var el=$('orgbar');if(!el)return;el.innerHTML='<div class="bar" role="group" aria-label="'+e(t('org'))+'"><span style="font-size:13px;font-weight:700;color:var(--muted)">'+e(t('org'))+'</span>'+['jp','kr'].map(function(o){return '<button type="button" class="btn'+(ORG===o?' on':'')+'" data-org="'+o+'" aria-pressed="'+(ORG===o)+'">'+e(t(o))+'</button>'}).join('')+'</div><p class="note" style="margin:0 0 4px">'+e(t('orgn'))+'</p>';
+ Array.prototype.forEach.call(el.querySelectorAll('[data-org]'),function(b){b.onclick=function(){var o=b.getAttribute('data-org');if(o===ORG)return;ORG=o;try{localStorage.setItem('acn-fsc-origin',o)}catch(x){}render()}})}
+function show(kr){$('bar').style.display=kr?'none':'';$('app').style.display=kr?'none':'';$('krapp').style.display=kr?'':'none'}
+function krRender(){document.documentElement.lang=L;document.title=t('ttl');$('ttl').textContent=t('ttl');$('lead').textContent=t('lead');$('privacy').textContent=t('privacy');$('note').textContent=t('note');langBar();orgBar();show(true);
+ var pr=period(DK.month),h='';
+ h+='<div class="bar"><button class="btn" type="button" data-ka="ex">'+e(t('ex'))+'</button><button class="btn del" type="button" data-ka="clr">'+e(t('clr'))+'</button><span class="saved" id="svk"></span></div>';
+ h+=cd(1,'<div class="g3">'+lb(t('name'),ip('name'))+lb(t('month'),ip('month',{t:'month',r:1}))+lb(t('per'),'<input type="text" readonly value="'+e(pr?ld(pr[0])+' 〜 '+ld(pr[1]):'')+'">')+'</div><p class="note">'+e(t('pern'))+'</p>');
+ var s='<div class="seg">'+['daily','avg'].map(function(m,i){return '<label><input type="radio" name="mdk" data-k="mode" data-kr="1" value="'+m+'"'+(DK.mode===m?' checked':'')+'>'+e(t(i?'md2':'md1'))+'</label>'}).join('')+'</div>';
+ if(DK.mode==='daily')s+='<p class="note">'+e(t('rows'))+'</p><textarea data-k="rows" rows="8" spellcheck="false">'+e(DK.rows)+'</textarea><div class="bar"><button type="button" class="btn" data-ka="exd">'+e(t('exd'))+'</button></div>';
+ else s+='<div class="g3">'+lb(t('pNow'),ip('now.p',{nn:1}))+lb(t('fNow'),ip('now.fx',{nn:1}))+'</div>';
+ s+='<div class="g3">'+lb(t('pPrev'),ip('prev.p',{nn:1}))+lb(t('fPrev'),ip('prev.fx',{nn:1}))+'</div><div class="kpis" id="k_ref"></div>';
+ h+=cd(2,s);
+ h+=cd(3,'<p class="note">'+e(t('s3n'))+'</p><div class="g3">'+lb(t('st'),ip('start',{nn:1}))+lb(t('sp'),ip('step',{nn:1}))+lb(t('mx'),ip('max',{nn:1}))+'</div><div class="tw" id="k_lv"></div>');
+ s='<div class="g3">'+lb(t('rnd'),'<select data-k="rnd">'+[['f100','r1'],['r100','r2'],['r10','r3']].map(function(r){return '<option value="'+r[0]+'"'+(DK.rnd===r[0]?' selected':'')+'>'+e(t(r[1]))+'</option>'}).join('')+'</select>')+'</div><p class="note">'+e(t('rndn'))+'</p>';
+ s+='<div class="tw"><table class="ed" style="min-width:860px"><thead><tr><th>'+e(t('dist'))+'</th><th style="min-width:260px">'+e(t('rt'))+'</th><th>'+e(t('usd'))+'</th><th>'+e(t('prev'))+'</th><th>'+e(t('now'))+'</th><th>'+e(t('dif'))+'</th><th class="x"></th></tr></thead><tbody>';
+ DK.bands.forEach(function(b,i){s+='<tr><td>'+ip('bands.'+i+'.d')+'</td><td>'+ip('bands.'+i+'.r')+'</td><td>'+ip('bands.'+i+'.u',{nn:1})+'</td><td class="n" id="kp'+i+'"></td><td class="n" id="kn'+i+'"></td><td class="n" id="kd'+i+'"></td><td class="x"><button type="button" class="xb" data-ka="del" data-i="'+i+'" aria-label="'+e(t('del'))+'">×</button></td></tr>'});
+ s+='</tbody></table></div><div class="bar"><button type="button" class="btn" data-ka="add">＋ '+e(t('add'))+'</button></div>';
+ h+=cd(4,s);
+ h+=cd(5,'<ol class="why" id="k_why"></ol><h3>'+e(t('cmp'))+'</h3><div class="tw"><table><thead><tr>'+T.cmpT[LI].map(function(x){return '<th>'+e(x)+'</th>'}).join('')+'</tr></thead><tbody>'+T.cmpR[LI].map(function(r){return '<tr><th>'+e(r[0])+'</th><td>'+e(r[1])+'</td><td>'+e(r[2])+'</td></tr>'}).join('')+'</tbody></table></div>');
+ h+=cd(6,'<p class="note">'+e(t('s6n'))+'</p><div class="bar"><button type="button" class="btn pri" data-ka="prt">'+e(t('prt'))+'</button><button type="button" class="btn" data-ka="wrd">'+e(t('wrd'))+'</button><button type="button" class="btn" data-ka="cp">'+e(t('cp'))+'</button></div><div class="paper" id="k_paper" lang="ko"></div>');
+ $('krapp').innerHTML=h;krOut()}
+function krOut(){var c=cur(),lp=level(n(DK.prev.p)),ln=level(c.p),fxp=n(DK.prev.fx);
+ $('k_ref').innerHTML=[[t('now'),c.p,c.fx,ln,c.n],[t('prev'),n(DK.prev.p),fxp,lp,0]].map(function(r){return '<div class="kpi"><span>'+e(r[0])+(r[4]?' · '+r[4]+t('days'):'')+'</span><b>'+r[1].toFixed(2)+'</b><em>¢/gal</em><span>'+e(t('bbl'))+' '+(r[1]*0.42).toFixed(2)+' USD · '+w(r[2])+' KRW/USD</span><span><b style="font-size:17px">'+(r[3]?e(t('lvl'))+' '+r[3]:e(t('none')))+'</b></span></div>'}).join('');
+ var st=n(DK.start),sp=n(DK.step)||10,mx=n(DK.max)||33,rows='';for(var k=Math.max(1,ln-2);k<=Math.min(mx,ln+2);k++){var lo=st+(k-1)*sp;rows+='<tr class="'+(k===ln?'hit':'')+'"><td>'+k+'</td><td>'+lo.toFixed(0)+' ≤ ¢ '+(k===mx?'':'< '+(lo+sp).toFixed(0))+'</td></tr>'}
+ $('k_lv').innerHTML='<table style="max-width:420px"><thead><tr><th>'+e(t('lvl'))+'</th><th>¢/gal</th></tr></thead><tbody>'+rows+'</tbody></table>';
+ var am=DK.bands.map(function(b){var u=n(b.u);return{p:rk(lp*u*fxp),n:rk(ln*u*c.fx)}});
+ am.forEach(function(a,i){if($('kp'+i))$('kp'+i).textContent=w(a.p);if($('kn'+i))$('kn'+i).textContent=w(a.n);if($('kd'+i))$('kd'+i).textContent=(a.n-a.p>0?'+':a.n-a.p<0?'−':'±')+w(Math.abs(a.n-a.p))});
+ var W=T.why,u0=DK.bands[0]?n(DK.bands[0].u):0,f=function(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k]})};
+ $('k_why').innerHTML=(ln?'<li>'+f(W[0][LI],{p:c.p.toFixed(2),s:st,w:sp,l:ln,m:mx})+'</li><li>'+f(W[1][LI],{l:ln,u:u0,f:c.fx.toFixed(2),k:w(ln*u0*c.fx),r:w(am[0]?am[0].n:0)})+'</li>':'<li>'+e(t('none'))+' (&lt; '+st+'¢)</li>')+'<li>'+f(W[2][LI],{lp:lp,dl:(ln-lp>0?'+':ln-lp<0?'−':'±')+Math.abs(ln-lp)})+'</li>';
+ $('k_paper').innerHTML=notice(c,ln,lp,am)}
+function notice(c,ln,lp,am){var p=ym(DK.month),pr=period(DK.month);if(!p||!pr)return '';var last=new Date(Date.UTC(p[0],p[1],0)).getUTCDate(),pm=p[1]===1?12:p[1]-1;
+ var h='<h3>'+p[0]+'년 '+p[1]+'월 한국 출발 국제선 유류할증료 안내</h3><p>'+e(DK.name)+'의 '+p[0]+'년 '+p[1]+'월 1일부터 '+p[1]+'월 '+last+'일까지 발권하는 한국 출발 국제선 항공권의 유류할증료를 아래와 같이 안내해 드립니다.</p>';
+ h+='<p>· 적용 기준: 발권일 기준, 편도 1인<br>· 기준 유가: 싱가포르 항공유 평균 갤런당 '+c.p.toFixed(2)+'센트('+kd(pr[0])+' ~ '+kd(pr[1])+') — '+(ln?ln+'단계':'부과하지 않음')+'</p>';
+ h+='<div class="tw"><table><thead><tr><th>대권거리(마일)</th><th>주요 노선</th><th>'+pm+'월</th><th>'+p[1]+'월</th></tr></thead><tbody>'+DK.bands.map(function(b,i){return '<tr><td>'+e(b.d)+'</td><td style="text-align:left">'+e(b.r)+'</td><td>'+(lp?w(am[i].p)+'원':'-')+'</td><td>'+(ln?w(am[i].n)+'원':'-')+'</td></tr>'}).join('')+'</tbody></table></div>';
+ h+='<h4>유의 사항</h4><p>· 좌석을 점유하지 않는 만 2세 미만 유아는 유류할증료가 면제됩니다.<br>· 항공권 구매 후 탑승 전에 유류할증료가 오르거나 내려도 차액을 받거나 돌려드리지 않습니다.<br>· 한국 출발 금액은 미국 달러로 정한 금액을 산정 기간의 평균 환율로 원화 환산한 금액입니다.<br>· 해외 출발 여정의 유류할증료는 출발 국가의 기준에 따라 다릅니다.</p>';
+ return h}
+function krWord(){var b=$('k_paper').innerHTML.replace(/<table>/g,'<table border="1" cellspacing="0" cellpadding="4" style="border-collapse:collapse;width:100%">');var h='<html><head><meta charset="utf-8"><style>body{font-family:"Malgun Gothic","Batang",sans-serif;font-size:10.5pt;line-height:1.7}td,th{border:1px solid #000;padding:2pt 6pt}</style></head><body>'+b+'</body></html>';
+ var bl=new Blob([String.fromCharCode(65279)+h],{type:'application/msword'}),a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='유류할증료_안내.doc';document.body.appendChild(a);a.click();a.remove()}
+var host=$('krapp');
+host.addEventListener('input',onK);host.addEventListener('change',onK);
+function onK(ev){var el=ev.target,pth=el.getAttribute&&el.getAttribute('data-k');if(!pth)return;var v=el.getAttribute('data-kn')?n(el.value):el.value;spth(pth,v);saveK();if(el.getAttribute('data-kr'))krRender();else krOut()}
+host.addEventListener('click',function(ev){var b=ev.target.closest('[data-ka]');if(!b)return;var a=b.getAttribute('data-ka'),i=+b.getAttribute('data-i');
+ if(a==='prt'){window.print();return}if(a==='wrd'){krWord();return}if(a==='cp'){var tx=$('k_paper').innerText;(navigator.clipboard?navigator.clipboard.writeText(tx):Promise.reject()).then(function(){b.textContent=t('cpd')}).catch(function(){});return}
+ if(a==='ex'){if(!confirm(t('exC')))return;DK=EXK()}else if(a==='clr'){if(!confirm(t('clrC')))return;DK=EXK();DK.name='';DK.now={p:0,fx:0};DK.prev={p:0,fx:0};DK.bands=[{d:'',r:'',u:0}]}
+ else if(a==='exd'){sample()}else if(a==='add'){DK.bands.push({d:'',r:'',u:0})}else if(a==='del'){if(DK.bands.length<2)return;DK.bands.splice(i,1)}else return;saveK();krRender()});
+var jpRender=window.render;
+window.render=function(){if(ORG==='kr'){krRender()}else{show(false);jpRender();orgBar()}};
+render();
+if(window.Member)window.Member.onChange(function(u){if(!u)return;window.Member.loadDoc('fsc_kr').then(function(d){if(!d||!d.data||!d.data.bands)return;var st=d.data.t||Date.parse(d.updated_at)||0;if(st>(DK.t||0)){DK=d.data;try{localStorage.setItem(KK,JSON.stringify(DK))}catch(x){}if(ORG==='kr')krRender()}}).catch(function(){})});
+})();
 </script>
 <script src="../1_지상직여객운송입문/assets/nav.js"></script>
 </body>

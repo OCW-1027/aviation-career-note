@@ -91,7 +91,7 @@ sections:[
 {name:"Review interval (example)",x:"The review cycle depends on the airline and the fuel-price reference period (Japan-origin often every one to two months; the other origin often monthly)."},
 {name:"When the work falls (example)",x:"Work back from the review cycle and the 30-day filing deadline to agree a schedule with head office (for example, preparing the filing in the middle to end of the filing month)."},
 {name:"What competitors do",x:"Watch when and how other airlines on the route change theirs."}]},
-{t:"link",href:"燃油サーチャージ計算.html",x:"[Practice page] Japan-Origin Fuel Surcharge Calculator: set the amount from kerosene and exchange-rate averages, check the recovery ratio and draft the filing"}]},
+{t:"link",href:"燃油サーチャージ計算.html",x:"[Practice page] Fuel Surcharge Calculator: from Japan, set the amount from kerosene and exchange-rate averages, check the recovery ratio and draft the filing (you can also switch to the Korea-origin calculation)"}]},
 {h:"Who does what",blocks:[{t:"table",cols:["Task","Usually"],rows:[
 ["Setting the amounts and rules","Head office pricing and sales"],
 ["Drafting and filing in Japanese","The station, or the filing agent"],
