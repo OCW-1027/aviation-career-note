@@ -751,3 +751,14 @@ ul.xlegs li.on{background:rgba(224,75,214,.14);color:#ff9cf5}ul.xlegs li b{font-
 /* 89차: 조종석 팝업(MCP · CDU, 오른쪽 위)이 떠 있으면 위쪽 알림 띠를 왼쪽으로 — 겹치지 않게 */
 #scope:has(#ck3d:not([hidden]) #ckpop .cqp.mcp) #banner,#scope:has(#ck3d:not([hidden]) #ckpop .cqp.cdu) #banner{left:12px;max-width:calc(38% - 16px);transform:translate(0,-80px);text-align:left;font-size:13px}
 #scope:has(#ck3d:not([hidden]) #ckpop .cqp.mcp) #banner.show,#scope:has(#ck3d:not([hidden]) #ckpop .cqp.cdu) #banner.show{transform:translate(0,0)}
+/* 91차: EFIS BARO(고도계) 줄 — MCP 팝업 안 */
+#ckpop .cqefis{display:flex;align-items:center;gap:8px;margin-top:8px;padding:6px 8px;border:1px solid #2c3a46;border-radius:8px;background:#0b141b}
+#ckpop .cqefis.due{border-color:#ffd479;box-shadow:0 0 0 1px rgba(255,212,121,.35) inset}
+#ckpop .cqefis .cqet{font:600 11px/1.2 var(--mono,monospace);color:#8fa3b3;letter-spacing:.04em;white-space:nowrap}
+#ckpop .cqefis .cqlcd{flex:0 0 150px;min-width:0}
+#ckpop .cqefis .cqlcd s{opacity:.45}
+#ckpop .cqefis small{color:#9fb2c1;font-size:11px;margin-left:auto;max-width:190px;text-align:right}
+.pilotp .prow.pbaro .pval{display:inline-block;min-width:92px;text-align:center;font-family:var(--mono,monospace);color:#ffd479}
+.pilotp .prow.pbaro .pval s{opacity:.5}
+.pilotp .prow.pbaro.due,.pilotp .prow.pabrk.due{outline:1px solid #ffd479;border-radius:6px}
+.pilotp .prow.pabrk b{width:auto;min-width:0;white-space:nowrap;margin-right:4px}

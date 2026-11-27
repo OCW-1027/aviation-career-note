@@ -28,7 +28,7 @@
     this.fly = ATC.Manual ? ATC.Manual.newFly() : { mode: 'auto', on: false, k: { pitch: 0, roll: 0, thr: 0 }, t: { pitch: 0, roll: 0 } }; this.fly.used = true; this.fly.at = false; this.fly.th = this.fly.thr = 0;      /* fly.on = 지상 이동 직접 조종 중 */
     this.xpdr = { code: '2000', set: null, entry: '' };
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
-    var c = o.carry, f; this.xc = !!(o.xc || (c && c.xc));      /* 한 편 비행(하네다 → 인천, xc.js): 비행계획은 BEKLA → RKSI로 정해 둠 */
+    var c = o.carry, f; this.xc = !!(o.xc || (c && c.xc)); if (this.xc && ATC.Baro) ATC.Baro.init(this, c, true);      /* 91차: 고도계(오를 때 14,000ft에서 STD) */      /* 한 편 비행(하네다 → 인천, xc.js): 비행계획은 BEKLA → RKSI로 정해 둠 */
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
       if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.capKey = c.capKey || ''; this.sidK = c.sidK || 'A';      /* 같은 제한 지점의 VNAV 안내는 관제석이 바뀌어도 한 번만(사이트 42차 결과) */ this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
     else {
@@ -738,6 +738,7 @@
     if (ATC.AI && !this.done && (this.phase === 'del' || this.phase === 'gnd' || this.phase === 'twr' || this.phase === 'air')) ATC.AI.run(sim.mode, sim);
     if (!ac || this.done) return;
     if (this.phase === 'gnd') this.tickGnd(dt); else if (this.phase === 'twr') this.tickTwr(dt); else if (this.phase === 'air') this.tickAir(dt);
+    if (this.xc && this.baroOn && this.phase === 'air' && ATC.Baro) ATC.Baro.tick(this);
     var c = this.clr, RB_T = 14;
     if (c && c.t0 !== null && !c.late && sim.t - c.t0 > RB_T) { c.late = true; sim.inc('p_rb_late', [ac], ATC.T('{0}: 복창이 늦습니다 — 관제 지시에는 바로 복창합니다.', ac.cs)); }
     if (c && c.t0 !== null && sim.t - c.t0 > RB_T + 20 && !c.rep) { c.rep = true; c.opts = null; c.t0 = null; sim.enq({ who: 'atc', ac: ac, text: ac.csWord + ' ' + ac.num + ', I say again, ' + c.ph.atc.split(', ').slice(1).join(', '), onDone: function () { if (self.clr === c) { c.t0 = sim.t; c.opts = self.rbOpts(c.cmds, c.ph); self.bump(); } } }); this.bump(); }

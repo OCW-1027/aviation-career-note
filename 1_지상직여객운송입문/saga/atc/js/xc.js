@@ -85,7 +85,9 @@
     var src = c || j || {}, f;
     if (src.f) { f = this.f = src.f; if (!f.perf && ATC.D.types) f.perf = ATC.D.types.B789; if (ATC.D.alBy && f.al && ATC.D.alBy[f.al.code]) f.al = ATC.D.alBy[f.al.code];      /* 다른 페이지에서 넘어온 편: 성능 · 항공사 자료는 이 페이지 것으로 */
  this.fp = src.fp; this.sid = src.sid; this.sidK = src.sidK || 'A'; this.cur = src.cur || { hdg: null, alt: null, spd: null }; this.mcp = src.mcp || { hdg: 270, alt: 32000, spd: 290 }; this.nRb = src.nRb || 0; this.nRbOk = src.nRbOk || 0; this.rt = src.rt || []; this.xpdr = src.xpdr || { code: '2000', set: '2000' }; this.vs = src.vs; this.cfg = src.cfg || { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = (src.tAcc || 0) + (c && c.sim ? c.sim.t : 0); this.star = src.star || null; this.atisGot = src.atisGot || null; this.descReq = !!src.descReq; this.belt = src.belt !== false; this.turb = src.turb || null; }
-    else {      /* 「순항부터」 · 「강하부터」: 새로 만든 Vela Air 787 편 */
+    if (ATC.Baro) ATC.Baro.init(this, src.f ? src : { baro: 'STD', baroDone: 1 }, false);      /* 91차: 순항은 STD(오를 때 처리는 끝난 것으로) */
+    if (src.f) this.abrk = src.abrk || 'OFF'; else this.abrk = 'OFF';
+    if (!src.f) {      /* 「순항부터」 · 「강하부터」: 새로 만든 Vela Air 787 편 */
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep'); f.type = 'B789'; if (ATC.D.types && ATC.D.types.B789) f.perf = ATC.D.types.B789; f.wake = 'H';
       this.f = f; this.fp = { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: XC.CRZ }; this.sid = 'BEKLA 3A'; this.sidK = 'A'; this.cur = { hdg: null, alt: null, spd: null }; this.mcp = { hdg: 270, alt: 32000, spd: 290 };
       this.belt = true; this.nRb = 0; this.nRbOk = 0; this.rt = []; this.xpdr = { code: sim.squawk(), set: null }; this.xpdr.set = this.xpdr.code; this.cfg = { gear: 'up', gearT: 0, flap: 0, flapPos: 0 }; this.tAcc = 0;
@@ -315,7 +317,7 @@
   /* 이어 받을 상태(같은 페이지 · 다른 페이지 공통 — 다른 페이지는 JSON) */
   XcPilot.prototype.pack = function () {
     var ac = this.ac, ll = XC.ll(ac.x, ac.y), al = ac.al || {}, r = ac.nav && ac.nav.route ? ac.nav.route.slice(ac.nav.i || 0) : [];
-    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq, belt: this.belt, turb: this.turb, evs: this.evs, med: this.med,
+    return { f: { cs: this.f.cs, csWord: this.f.csWord, num: this.f.num, type: 'B789', wake: 'H', al: { code: al.code, cs: al.cs, name: al.name, col: al.col, col2: al.col2 } }, fp: this.fp, sid: this.sid, sidK: this.sidK, cur: this.cur, mcp: this.mcp, nRb: this.nRb, nRbOk: this.nRbOk, rt: this.rt, xpdr: this.xpdr, vs: this.vs, cfg: this.cfg, tAcc: (this.tAcc || 0) + this.sim.t, star: this.star, atisGot: this.atisGot, descReq: this.descReq, belt: this.belt, turb: this.turb, evs: this.evs, med: this.med, baro: this.baro, baroV: this.baroV, abrk: this.abrk, qnh: this.sim.krQnh || null,
       fcu: this.fcu ? this.fcu.pack() : null, ac: { lat: ll[0], lon: ll[1], alt: ac.alt, hdg: ac.hdg, ias: ac.ias, tAlt: ac.tAlt, next: r[0] || 'GUKDO' }, incs: this.sim.incs.slice(), log: this.sim.log.slice(-40), atis: this.sim.atis, utc: this.sim.utc(), seed: this.sim.seed, level: this.sim.level.id, t: Date.now() };
   };
 

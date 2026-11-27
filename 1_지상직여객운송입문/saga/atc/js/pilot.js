@@ -22,6 +22,8 @@
     this.twrGa = !!(sim.level && sim.level.id >= 2) && (sim.seed | 0) % (sim.level.id === 3 ? 2 : 3) === 0;      /* 중급 3판에 1번 · 고급 2판에 1번: 관제탑이 첫 접근에서 복행을 지시(앞 착륙기가 활주로를 비우지 못함 — 게임 설정. Vela Air는 가상 항공사) */
     var s = sim.sched.filter(function (x) { return x.kind === 'arr' && !x.warm; }).sort(function (a, b) { return a.t - b.t; })[0];
     if (s) { s.pilot = true; s.warm = true; s.wi = 1; s.t = Math.min(s.t, sim.t + 2); if (po.xcIn) { this.xcIn = po.xcIn; s.gate = 'GUKDO'; s.warm = false; s.t = sim.t + 1; } sim.sched.sort(function (a, b) { return a.t - b.t; }); }      /* 한 편 비행: 하네다에서 온 내 편이 GUKDO(STAR 시작)에서 이어짐(xc.js) */
+    if (po.xcIn && po.xcIn.qnh) sim.qnh = po.xcIn.qnh;      /* ATIS에서 들은 QNH와 같은 값 */
+    if (po.xcIn) { ATC.Baro.init(this, po.xcIn, false); this.abrk = po.xcIn.abrk || 'OFF'; }      /* 91차: 고도계 · 오토브레이크(한 편 비행) */
     if (po.xcIn) { var X = po.xcIn; this.nRb = X.nRb || 0; this.nRbOk = X.nRbOk || 0; this.rt = X.rt || []; this.tAcc = X.tAcc || 0; this.cfg = X.cfg || this.cfg; if (X.incs) sim.incs = X.incs.slice(); if (X.log) sim.log = X.log.slice(); if (X.atis) sim.atis = X.atis; }      /* 경로 가운데쯤에서 시작(첫 지시까지 오래 기다리지 않게) */
     sim.isFinished = function () { return this.pilot.done; };
     sim.sys(po.xcIn ? ATC.T('한 편 비행 — 대구 관제에서 Seoul Approach로 넘어왔습니다. 첫 호출을 하고 STAR · ILS 접근으로 인천에 내립니다.') : ATC.T('조종사 체험 — 곧 나타나는 Vela Air 도착기의 조종사입니다. 관제는 AI가 합니다. 관제 지시를 듣고 복창한 뒤 자동조종(MCP)에 설정하세요.'), 'info');
@@ -246,7 +248,9 @@
   Pilot.prototype.touchdown = function () {
     var sim = this.sim, ac = this.ac, cf = this.cfg; if (this.roll) return;
     var e = D.ends[ac.appr ? ac.appr.rwy : ac.rwy];
-    this.roll = { t0: sim.t, x: ac.x, y: ac.y, hdg: e ? e.crs : ac.hdg, v0: ac.ias, h0: Math.max(0, ac.alt - D.airport.elev) };
+    var AB = { OFF: 1.9, '1': 2.0, '2': 2.6, '3': 3.3, '4': 4.2, MAX: 6.0 };      /* 91차: 활주 감속(kt/s, 게임값 — OFF = 조종사가 늦게 수동 제동) */
+    this.roll = { t0: sim.t, x: ac.x, y: ac.y, hdg: e ? e.crs : ac.hdg, v0: ac.ias, h0: Math.max(0, ac.alt - D.airport.elev), dec: this.xcIn ? AB[this.abrk || 'OFF'] : 2.6 };
+    if (this.xcIn && cf.gear === 'down') { var ab = this.abrk || 'OFF'; if (ab === 'OFF') sim.inc('p_abrk_off', [ac], ATC.T('{0}: 오토브레이크를 OFF로 둔 채 착륙 — 감속이 늦어 활주로를 길게 썼습니다. 착륙 전 점검에서 정합니다.', ac.cs)); else if (this.abrkOk(ab)) sim.inc('p_abrk_ok', [ac], ATC.T('{0}: 오토브레이크 {1} — 활주로 상태({2})에 맞음.', ac.cs, ab, this.abrkWet() ? ATC.T('젖음') : ATC.T('마름'))); else sim.inc('p_abrk_odd', [ac], ATC.T('{0}: 오토브레이크 {1} — {2} 활주로에는 {3} 단계가 알맞습니다(게임 기준).', ac.cs, ab, this.abrkWet() ? ATC.T('젖은') : ATC.T('마른'), this.abrkWet() ? '3 · 4' : '2 · 3')); }
     if (cf.gear !== 'down') sim.inc('p_gearup', [ac], ATC.T('{0}: 기어를 내리지 않고 착륙했습니다(동체 착륙).', ac.cs));
     else if (cf.flap < 25) sim.inc('p_cfg_late', [ac], ATC.T('{0}: 착륙 플랩(25 · 30)을 내리지 않고 착륙했습니다.', ac.cs));
     if (!this.landOk) sim.inc('p_noland', [ac], ATC.T('{0}: 착륙 허가 없이 착륙했습니다.', ac.cs));
@@ -359,6 +363,7 @@
       else if (F.mode === 'last' && loc && ra < 1000) ATC.Manual.engage(this, 'last');
     }
     if (ATC.Manual && F.on) ATC.Manual.check(this);
+    if (this.xcIn) { ATC.Baro.tick(this); if (!this.abrkHint && this.abrk === 'OFF' && (loc || ra < 6000)) { this.abrkHint = true; sim.sys(ATC.T('착륙 준비 — 오토브레이크를 설정하세요(「조종 · 화면」 탭 · 오늘 활주로 {0}: {1}).', ac.appr ? ac.appr.rwy : ac.rwy, this.abrkWet() ? ATC.T('젖음 → 3 · 4') : ATC.T('마름 → 2 · 3')), 'info'); } }
     if (loc && ra < 1500 && cf.gear === 'up' && !cf.gearT && !this.foGear) { this.foGear = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 게임의 기어 전개 확인 높이(1,500ft)에 이르러 부기장이 기어를 내렸습니다.', ac.cs)); this.gear(); }
     if (loc && ra < 1000 && cf.flap < 25 && !this.foFlap) { this.foFlap = true; sim.inc('p_cfg_late', [ac], ATC.T('{0}: 1,000ft까지 착륙 플랩을 내리지 않아 게임 부기장 도움으로 플랩 30을 내렸습니다(안정 접근 준비).', ac.cs)); cf.flap = 30; this.bump(); }
     if (this.knobK && sim.t - this.knobT > 1.2) { var kk = this.knobK; this.knobK = null; if (kk === 'spd' || (kk === 'hdg' && ac.nav && ac.nav.mode === 'hdg')) this.set(kk); }      /* 속도 · 방위(HDG SEL 중)는 손잡이를 돌리면 바로 따름 */
@@ -417,5 +422,51 @@
   ATC.INC.p_ga_gear = { cat: 'S', pts: -5, t: ATC.T('상승 확인 전 기어 올림'), les: 'app' };
   /* 조종 방식 고르기(착륙 전까지 언제든) */
   Pilot.prototype.setFly = function (m) { var F = this.fly; if (!F || this.roll) return; F.mode = m; if (ATC.Manual) ATC.Manual.pref(m); if (m === 'auto' && F.on) ATC.Manual.release(this); if (m !== 'auto') F.used = false; this.bump(); };
+  /* ===== 91차: 고도계(QNH · STD)와 오토브레이크 — 한 편 비행 2단계 마지막(설계 v2)
+     전이 고도 14,000ft · 전이 고도층 FL140(한국 eAIP ENR 1.7 · 일본 AIP ENR 1.7 같은 값). 오를 때 14,000ft를 지나면 STD(1013), 내려갈 때 FL140 아래로 허가되면 ATIS의 QNH.
+     조작: BARO 노브(± hPa)로 숫자를 맞추고 STD 단추로 STD ↔ QNH. 채점은 한 편 비행에서만(출발 · 순항 · 인천 도착). ===== */
+  ATC.Baro = {
+    TA: 14000,
+    init: function (p, src, dep) { src = src || {}; p.baroOn = true; p.baro = src.baro || (dep ? 'QNH' : 'STD'); p.baroV = src.baroV || (dep ? (p.sim.qnh || 1013) : 1013); p.baroDone = src.baroDone || 0; },
+    qnh: function (p) { var s = p.sim; return s.krQnh || s.qnh || 1013; },
+    show: function (p) { return p.baro === 'STD' ? 'STD' : p.baroV + ' hPa'; },
+    climb: function (p) { return !p.xcIn && (p.dep || p.xcMode) && !(p.xcMode && p.sim.seg === 'kr'); },
+    due: function (p) { var ac = p.ac; if (!ac || !p.baroOn || p.baroDone) return false; return ATC.Baro.climb(p) ? (p.baro !== 'STD' && ac.alt > 12500 && ac.tAlt > 14000) : (ac.tAlt < 14000 && (p.baro === 'STD' || p.baroV !== ATC.Baro.qnh(p))); },
+    knob: function (p, d) { p.baroV = U.clamp((p.baroV || 1013) + d, 950, 1050); if (p.bump) p.bump(); },
+    toggle: function (p) {
+      var ac = p.ac, sim = p.sim; if (!ac) return; p.baro = p.baro === 'STD' ? 'QNH' : 'STD';
+      var climb = !p.xcIn && (p.dep || p.xcMode) && !(p.xcMode && sim.seg === 'kr');
+      if (climb && p.baro === 'STD' && !p.baroDone) { if (ac.alt >= 12000) { p.baroDone = 1; sim.inc('p_baro_ok', [ac], ATC.T('{0}: 전이 고도(14,000ft)를 지나며 고도계를 STD(1013)로 바꿈.', ac.cs)); } else sim.sys(ATC.T('아직 이릅니다 — STD는 전이 고도 14,000ft를 지날 때 바꿉니다(그 아래는 QNH).'), 'info'); }
+      if (!climb && p.baro === 'QNH' && ac.alt > 20000) sim.sys(ATC.T('아직 이릅니다 — QNH는 관제가 전이 고도층 FL140 아래로 허가했을 때(지나기 전) 맞춥니다.'), 'info');
+      if (p.bump) p.bump();
+    },
+    tick: function (p) {
+      var ac = p.ac, sim = p.sim; if (!ac || !p.baroOn) return; var q = ATC.Baro.qnh(p);
+      if (!p.xcIn && (p.dep || p.xcMode) && !(p.xcMode && sim.seg === 'kr')) {      /* 오를 때 */
+        if (!p.baroHint && ac.alt > 12500 && ac.tAlt > 14000 && p.baro !== 'STD') { p.baroHint = 1; sim.sys(ATC.T('곧 전이 고도 14,000ft — 지나면 고도계를 STD(1013)로(MCP 패널 BARO 「STD」).'), 'info'); }
+        if (!p.baroDone && ac.alt > 15500 && p.baro !== 'STD') { p.baroDone = 2; p.baro = 'STD'; sim.inc('p_baro_std', [ac], ATC.T('{0}: 전이 고도 14,000ft를 지나도 고도계를 STD로 바꾸지 않아 부기장이 바꿨습니다 — FL로 나는 고도에서는 모두 1013을 씁니다.', ac.cs)); if (p.bump) p.bump(); }
+        return;
+      }
+      if (ac.tAlt < 14000 && !p.baroHint && p.baro === 'STD') { p.baroHint = 1; sim.sys(ATC.T('FL140 아래로 허가 — 전이 고도층을 지나기 전에 고도계를 ATIS의 QNH {0}로(BARO 노브로 숫자 → 「STD」 단추를 눌러 QNH).', q), 'info'); }      /* 내려갈 때 */
+      if (!p.baroDone && ac.alt < 13000) {
+        p.baroDone = 1;
+        if (p.baro === 'STD') { p.baro = 'QNH'; p.baroV = q; sim.inc('p_baro_qnh', [ac], ATC.T('{0}: FL140 아래로 내려왔는데 고도계가 STD 그대로였습니다 — 부기장이 QNH {1}로 바꿨습니다. 낮은 고도에서는 산 · 장애물과의 높이를 QNH로 봅니다.', ac.cs, q)); }
+        else if (p.baroV !== q) { sim.inc('p_baro_wrong', [ac], ATC.T('{0}: 고도계를 {1}에 맞췄는데 ATIS QNH는 {2}입니다 — 1hPa 차이는 높이로 약 27 ~ 30ft입니다. 부기장이 고쳤습니다.', ac.cs, p.baroV, q)); p.baroV = q; }
+        else sim.inc('p_baro_ok', [ac], ATC.T('{0}: 전이 고도층(FL140) 전에 고도계를 QNH {1}로 맞춤.', ac.cs, q));
+        if (p.bump) p.bump();
+      }
+    }
+  };
+  ATC.INC.p_baro_ok = { cat: 'P', pts: 1, t: ATC.T('고도계 맞춤(STD · QNH)'), les: 'app' };
+  ATC.INC.p_baro_std = { cat: 'S', pts: -2, t: ATC.T('전이 고도에서 STD로 바꾸지 않음'), les: 'app' };
+  ATC.INC.p_baro_qnh = { cat: 'S', pts: -3, t: ATC.T('전이 고도층 아래에서 STD 그대로'), les: 'app' };
+  ATC.INC.p_baro_wrong = { cat: 'S', pts: -2, t: ATC.T('고도계 값이 ATIS QNH와 다름'), les: 'app' };
+  /* 오토브레이크(787: OFF · 1 · 2 · 3 · 4 · MAX AUTO) — 착륙 전 설정. 마른 활주로 2 · 3, 젖은 활주로 3 · 4(게임 기준 — 실제는 활주로 길이 · 출구 · 회사 규정으로 정함) */
+  Pilot.prototype.abrkWet = function () { var s = this.sim; return !!(s.rain && s.rain > 0.2) || !!(s.pwx && (s.pwx.k === 'rain' || s.pwx.k === 'lowvis')); };
+  Pilot.prototype.abrkOk = function (v) { return this.abrkWet() ? (v === '3' || v === '4') : (v === '2' || v === '3'); };
+  Pilot.prototype.setAbrk = function (v) { if (this.roll) return; this.abrk = v; this.bump(); };
+  ATC.INC.p_abrk_ok = { cat: 'P', pts: 1, t: ATC.T('오토브레이크 설정'), les: 'app' };
+  ATC.INC.p_abrk_off = { cat: 'S', pts: -2, t: ATC.T('오토브레이크 설정 안 함'), les: 'app' };
+  ATC.INC.p_abrk_odd = { cat: 'P', pts: 0, t: ATC.T('오토브레이크 단계가 활주로 상태에 맞지 않음'), les: 'app' };
   ATC.Pilot = Pilot;
 })();

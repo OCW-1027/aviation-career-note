@@ -808,7 +808,7 @@
     var v = S.vis || (S.vis = { pitch: 0, bank: 0, hdgPrev: ac.hdg, ias: ac.ias, trend: 0 });
     var x, y, alt, hdg, ias, vs, gs;
     if (ro) {      /* 착륙 뒤 활주: 접지점에서 중심선을 따라 감속 */
-      var tt = (sim.t - ro.t0), sdt = sim.t - (ro.lt === undefined ? sim.t : ro.lt); ro.lt = sim.t; ro.v = Math.max(0, ro.v0 - Math.max(0, tt - 1.5) * 2.6); ro.s = (ro.s || 0) + ro.v * 0.5144 * sdt / NM;
+      var tt = (sim.t - ro.t0), sdt = sim.t - (ro.lt === undefined ? sim.t : ro.lt); ro.lt = sim.t; ro.v = Math.max(0, ro.v0 - Math.max(0, tt - 1.5) * (ro.dec || 2.6)); ro.s = (ro.s || 0) + ro.v * 0.5144 * sdt / NM;
       x = ro.x + Math.sin(ro.hdg * D2R) * ro.s; y = ro.y + Math.cos(ro.hdg * D2R) * ro.s; hdg = ro.hdg; ias = ro.v; gs = ro.v; vs = 0;
       alt = D.airport.elev + Math.max(0, ro.h0 * (1 - tt / 3));
     } else { x = ac.x; y = ac.y; alt = AF(ac); hdg = ac.hdg; ias = ac.ias; vs = ac.vs || 0; gs = ac.gs; }
@@ -860,7 +860,7 @@
     }
     return {
       pos: { x: x, y: y }, altM: alt * FT, alt: alt, ias: ias, tas: ias * (1 + alt / 1000 * 0.0165), gs: gs, vs: ro ? 0 : vs, hdg: hdg, pitch: v.pitch, bank: v.bank, slip: 0, trend: v.trend,
-      sel: { spd: Math.round(mc.spd || ias), hdg: Math.round(mc.hdg || hdg), alt: mc.alt || Math.round(alt) }, ra: ra, mins: 200, minAlert: ra < 300 && ra > 30 && !ro && ap && ap.gs, elev: D.airport.elev, baro: sim.qnh ? (sim.qnh + ' HPA') : 'STD',
+      sel: { spd: Math.round(mc.spd || ias), hdg: Math.round(mc.hdg || hdg), alt: mc.alt || Math.round(alt) }, ra: ra, mins: 200, minAlert: ra < 300 && ra > 30 && !ro && ap && ap.gs, elev: D.airport.elev, baro: p.baroOn ? (p.baro === 'STD' ? 'STD' : p.baroV + ' HPA') : sim.qnh ? (sim.qnh + ' HPA') : 'STD',
       vmax: plc[p.cfg.flap] || 340, vmin: minS[p.cfg.flap] || 150, vref: ac.perf.vapp - 5, flapSpd: flapSpd,
       fd: !ro, fdRoll: fd ? fd.roll : 0, fdPitch: fd ? fd.pitch : 0, ap: p.dep && p.phase === 'twr' ? !!p.apOn : !F && !gnd, at: FC ? FC.at : F ? !!F.at : true, man: !!F, alpha: F ? F.alpha : 0,
       fma: { at: F && !F.at ? '' : F && ra < 25 && ap ? 'IDLE' : at, roll: F ? (fd ? fd.lat : roll) : roll, pitch: F ? (fd ? (fd.ver === 'FLARE' ? 'G/S' : fd.ver) : pitch) : pitch, rollArm: ap && !ap.loc ? 'LOC' : nav.mode === 'hdg' && p.asg.dct ? 'LNAV' : '', pitchArm: ap && !ap.gs ? 'G/S' : '', ap: ro ? '' : F || gnd || (p.dep && p.phase === 'twr' && !p.apOn) ? 'FLT DIR' : ap && ap.gs && ra < 1500 ? 'LAND 3' : 'A/P' }, fmaNew: fmaNew,
