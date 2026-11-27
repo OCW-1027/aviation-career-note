@@ -385,6 +385,8 @@
   /* 89차: 위에서 본 항공기(787 비율 — 길이 63m · 날개폭 60m) — 순항 지도용. 기수 방향 h(라디안, 0 = 위), 크기 z = 길이(px) */
   var XBASE = (function () { try { var c = document.currentScript && document.currentScript.src || ''; return c.replace(/js\/xc\.js.*$/, ''); } catch (e) { return ''; } })();
   var PIMG = {}; function pimg(k) { if (PIMG[k] !== undefined) return PIMG[k]; if (typeof Image === 'undefined') return (PIMG[k] = null); var im = new Image(); im.onload = function () { im.ok = true; }; im.src = XBASE + 'assets/img/xc_top_' + k + '.webp'; return (PIMG[k] = im); }      /* 89차: 강좌 영상에 쓰던 위에서 본 787 그림(기수 위) — 내 항공기 = Vela 도장, 다른 교통 = 회색 */
+  /* 90차: 지도 배율(1NM당 px, 0.12 ~ 10)에 맞춘 항공기 크기 — 기본 배율(약 1.6) 아래는 최솟값, 최대 확대(10)에서 최댓값(로그 비율) */
+  XC.pz = function (sc, lo, hi) { var t = Math.log(Math.max(1e-3, sc) / 1.6) / Math.log(10 / 1.6); return Math.round(lo + (hi - lo) * Math.max(0, Math.min(1, t))); };
   XC.plane = function (ctx, x, y, h, z, o) {
     o = o || {}; var im = pimg(o.img || '787');
     if (im && im.ok) { ctx.save(); ctx.translate(x, y); if (o.ring) { ctx.strokeStyle = o.ring; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, 0, z * 0.62, 0, 7); ctx.stroke(); } ctx.rotate(h); if (o.glow) { ctx.shadowColor = 'rgba(0,0,0,.7)'; ctx.shadowBlur = 6; } var wz = z * im.width / im.height; ctx.drawImage(im, -wz / 2, -z / 2, wz, z); ctx.restore(); return; }
@@ -424,7 +426,6 @@
     ctx.lineWidth = 2; ctx.strokeStyle = '#3a6f90'; ctx.beginPath(); R0.forEach(function (n, i) { var s = S(F(n)); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); }); ctx.stroke();
     if (ac && act.length) { ctx.strokeStyle = '#e04bd6'; ctx.lineWidth = 2.4; ctx.beginPath(); var s0 = S(ac); ctx.moveTo(s0[0], s0[1]); act.forEach(function (n) { var s = S(F(n)); ctx.lineTo(s[0], s[1]); }); ctx.stroke(); }      /* 지금 따라가는 경로(자홍색 — FMC 경로) */
     var pl = sim.pilot; if (pl && pl.wx) { var w0 = S(pl.wx), w1 = S({ x: pl.wx.x + 10, y: pl.wx.y }), pr = Math.max(0.3, Math.abs(w1[0] - w0[0]) / 10); [[15, 'rgba(40,200,80,.45)'], [11, 'rgba(240,210,40,.6)'], [6, 'rgba(230,40,40,.75)']].forEach(function (lv) { ctx.fillStyle = lv[1]; ctx.beginPath(); ctx.arc(w0[0], w0[1], lv[0] * pr, 0, 7); ctx.fill(); }); }      /* 87차: 뇌우(기상 레이더) */
-    if (pl && pl.tfc && !pl.tfc.gone) { var t0 = S(pl.tfc), tz = Math.max(30, Math.min(80, 0.03 * v.scale)); XC.plane(ctx, t0[0], t0[1], Math.atan2(pl.tfc.ux, pl.tfc.uy), tz, { img: 'other', body: '#d9dee4', tail: '#9aa4ae', ring: pl.tfc.ta ? '#ffb000' : null }); ctx.font = '10px monospace'; ctx.fillStyle = pl.tfc.ta ? '#ffb000' : '#c9d3dc'; var tl = 'B767 FL' + U.pad(Math.round(pl.tfc.alt / 100), 3) + (pl.tfc.vs < -100 ? '↓' : pl.tfc.vs > 100 ? '↑' : ''); put(tl, t0[0] - tz * 0.7, t0[1] + tz * 0.75, 'right') || put(tl, t0[0] + tz * 0.7, t0[1] + tz * 0.75, 'left') || put(tl, t0[0], t0[1] - tz * 0.75, 'center', true); }      /* 맞은편 교통 — 89차: 레이더 마름모 대신 위에서 본 항공기 */
     ctx.font = '10px monospace'; ctx.textAlign = 'left';
     R0.forEach(function (n) { var s = S(F(n)), on = act[0] === n; ctx.strokeStyle = on ? '#e04bd6' : '#7fb0cf'; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(s[0], s[1] - 5); ctx.lineTo(s[0] + 5, s[1]); ctx.lineTo(s[0], s[1] + 5); ctx.lineTo(s[0] - 5, s[1]); ctx.closePath(); ctx.stroke(); });
     ['RJTT', 'RKSI'].forEach(function (n) { var s = S(F(n)); ctx.strokeStyle = '#9fd0ff'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(s[0], s[1], 5, 0, 7); ctx.stroke(); ctx.fillStyle = '#9fd0ff'; put(n, s[0] + 8, s[1] + 4, 'left', true); });
@@ -435,18 +436,23 @@
     if (GX) { ctx.fillStyle = '#4a6578'; ctx.font = '11px sans-serif'; GX.labs.forEach(function (l) { put(l[0], SL(l[1], l[2])[0], SL(l[1], l[2])[1], 'center'); }); ctx.font = '10px monospace'; }      /* 도시 이름은 마지막(겹치면 생략) */
     /* 강하 시작점(TOD) */
     /* 내 항공기 */
+    var oz = XC.pz(v.scale, 54, 120);
     if (ac) {
       var h = ac.hdg * D2R, tr = sim._trail || (sim._trail = []), lt = tr[tr.length - 1];      /* 89차: 기내 에어쇼 지도처럼 — 지나온 길 · 위에서 본 787 · 정보 칸(레이더 기호 · 데이터 태그 대신) */
       if (!lt || U.dist(lt, ac) > 2) { tr.push({ x: ac.x, y: ac.y }); if (tr.length > 600) tr.shift(); }
       if (tr.length > 1) { ctx.strokeStyle = 'rgba(255,212,121,.45)'; ctx.lineWidth = 2; ctx.setLineDash([2, 4]); ctx.beginPath(); tr.forEach(function (q, i) { var s1 = S(q); if (i) ctx.lineTo(s1[0], s1[1]); else ctx.moveTo(s1[0], s1[1]); }); ctx.lineTo(sa[0], sa[1]); ctx.stroke(); ctx.setLineDash([]); }
       var nm = 2 * ac.gs / 60; var sp = S({ x: ac.x + Math.sin(h) * nm, y: ac.y + Math.cos(h) * nm }); ctx.strokeStyle = 'rgba(255,212,121,.6)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(sa[0], sa[1]); ctx.lineTo(sp[0], sp[1]); ctx.stroke();      /* 2분 뒤 위치 */
-      XC.plane(ctx, sa[0], sa[1], h, Math.max(54, Math.min(120, 0.034 * v.scale)), { body: '#f4f6f8', tail: '#1f6fd0', eng: '#1f6fd0', glow: true });
+      XC.plane(ctx, sa[0], sa[1], h, oz, { body: '#f4f6f8', tail: '#1f6fd0', eng: '#1f6fd0', glow: true });
       var tg = XC.togo(ac, 'GUKDO'), eta = sim.utc ? sim.utc() + (tg + 45) / Math.max(200, ac.gs) * 3600 : 0, eh = Math.floor(eta / 3600) % 24, em = Math.floor(eta / 60) % 60,
         L = [ac.cs + ' · B787-9', 'ALT FL' + U.pad(Math.round(ac.alt / 100), 3) + (Math.abs(ac.alt - ac.tAlt) > 150 ? (ac.tAlt > ac.alt ? ' ↑' : ' ↓') + 'FL' + U.pad(Math.round(ac.tAlt / 100), 3) : ''), 'GS ' + Math.round(ac.gs) + ' KT', (sim.seg === 'kr' || tg < 400 ? 'GUKDO ' + Math.round(tg) + ' NM · ' : '') + 'ETA ' + U.pad(eh, 2) + U.pad(em, 2) + 'Z'];
       ctx.font = 'bold 11px monospace'; var bw = Math.max.apply(null, L.map(function (t) { return ctx.measureText(t).width; })) + 14, bh = L.length * 14 + 8, bx = laL ? sa[0] - bw - 22 : sa[0] + 22, by = sa[1] - bh - 10;
       if (by < 4) by = sa[1] + 18; ctx.fillStyle = 'rgba(7,16,25,.82)'; ctx.strokeStyle = 'rgba(255,212,121,.55)'; ctx.lineWidth = 1; ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(bx, by, bw, bh, 6); else ctx.rect(bx, by, bw, bh); ctx.fill(); ctx.stroke();
       L.forEach(function (t, i) { ctx.fillStyle = i ? '#e8eef4' : '#ffd479'; ctx.font = (i ? '' : 'bold ') + '11px monospace'; ctx.fillText(t, bx + 7, by + 16 + i * 14); }); ctx.textAlign = 'left';
     }
+    /* 맞은편 교통 — 89차: 레이더 마름모 대신 위에서 본 항공기 · 90차: 내 항공기 위에 그리고, 화면에서 겹치면 조금 비켜 그림(진짜 자리엔 점 · 이음선) */
+    if (pl && pl.tfc && !pl.tfc.gone) { var t0 = S(pl.tfc), tz = XC.pz(v.scale, 30, 80), tp = t0.slice();
+      if (sa) { var ox = t0[0] - sa[0], oy = t0[1] - sa[1], od = Math.hypot(ox, oy), need = (oz + tz) * 0.55; if (od < need) { var ux0 = od > 1 ? ox / od : -Math.cos(ac.hdg * D2R), uy0 = od > 1 ? oy / od : -Math.sin(ac.hdg * D2R); tp = [sa[0] + ux0 * need, sa[1] + uy0 * need]; ctx.strokeStyle = pl.tfc.ta ? 'rgba(255,176,0,.8)' : 'rgba(201,211,220,.7)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(t0[0], t0[1]); ctx.lineTo(tp[0], tp[1]); ctx.stroke(); ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.arc(t0[0], t0[1], 2.5, 0, 7); ctx.fill(); } }
+      XC.plane(ctx, tp[0], tp[1], Math.atan2(pl.tfc.ux, pl.tfc.uy), tz, { img: 'other', body: '#d9dee4', tail: '#9aa4ae', ring: pl.tfc.ta ? '#ffb000' : null, glow: true }); ctx.font = '10px monospace'; ctx.fillStyle = pl.tfc.ta ? '#ffb000' : '#c9d3dc'; var tl = 'B767 FL' + U.pad(Math.round(pl.tfc.alt / 100), 3) + (pl.tfc.vs < -100 ? '↓' : pl.tfc.vs > 100 ? '↑' : ''); put(tl, tp[0] - tz * 0.7, tp[1] + tz * 0.75, 'right') || put(tl, tp[0] + tz * 0.7, tp[1] + tz * 0.75, 'left') || put(tl, tp[0], tp[1] - tz * 0.75, 'center', true); }
     /* 거리 눈금 */
     var nmBar = v.scale > 2 ? 20 : v.scale > 0.8 ? 50 : 100, px = nmBar * v.scale; ctx.strokeStyle = '#5d7f95'; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(14, H - 40); ctx.lineTo(14 + px, H - 40); ctx.stroke(); ctx.fillStyle = '#7f9fb4'; ctx.font = '10px monospace'; ctx.fillText(nmBar + ' NM', 14, H - 46);
     ctx.fillStyle = 'rgba(120,150,160,.55)'; ctx.font = '10px sans-serif'; ctx.textAlign = 'right'; var cr1 = 'Map: Natural Earth · ' + ATC.T('항로 · 지점: AIP(일본 ENR 3.3 · 한국 ENR 3.3)'), cr2 = ATC.T('비행정보구역 경계는 개략');

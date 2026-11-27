@@ -438,7 +438,8 @@
     ids.forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU - e.du * 14000, e.thrV - e.dv * 14000); segs.push([a, b, 10]); });      /* 최종 접근로(약 7.5NM) — 들어오는 항공기 */
     function hitN(x, y, w, h) { var n = 0; segs.forEach(function (sg) { var a = sg[0], b = sg[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]), k = Math.max(1, Math.ceil(L / 6)), r = sg[2]; for (var i = 0; i <= k; i++) { var px = a[0] + (b[0] - a[0]) * i / k, py = a[1] + (b[1] - a[1]) * i / k; if (px > x - r && px < x + w + r && py > y - r && py < y + h + r) n++; } }); return n; }
     var mpz = R.miniPos(W, H, sim), avoid = [[0, 0, W, 92]];      /* 위쪽 단추 줄 */
-    if (sim.mode === 'TWR') avoid.push([mpz.cx - mpz.r - 10, mpz.cy - mpz.r - 10, 2 * mpz.r + 20, 2 * mpz.r + 30]);      /* 오른쪽 위 작은 레이더 */
+    var hasMini = sim.mode === 'TWR' || sim.mode === 'GND';      /* 90차: 지상 화면에도 작은 레이더가 있음(전: 관제탑만 피함) */
+    if (hasMini) avoid.push([mpz.cx - mpz.r - 10, mpz.cy - mpz.r - 10, 2 * mpz.r + 20, 2 * mpz.r + 30]);      /* 오른쪽 위 작은 레이더 */
     if (R.miniBox) avoid.push([R.miniBox.x - 6, R.miniBox.y - 6, R.miniBox.w + 12, R.miniBox.h + 12]);      /* 작은 전체 지도 */
     avoid.push([0, H - 30, W, 30]);      /* 아래 출처 글 */
     var placed = [], P = {};
@@ -454,7 +455,7 @@
           if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
         });
       });
-      [[8, 98 + (sim.mode === 'TWR' && mpz.L ? 2 * mpz.r + 34 : 0)], [W - w - 8, 98 + (sim.mode === 'TWR' && !mpz.L ? 2 * mpz.r + 34 : 0)], [8, H - 38 - hh], [W - w - 8, H - 38 - hh]].forEach(function (q) {      /* 마땅한 곳이 없으면 화면 구석(88차) */
+      [[8, 98 + (hasMini && mpz.L ? 2 * mpz.r + 34 : 0)], [W - w - 8, 98 + (hasMini && !mpz.L ? 2 * mpz.r + 34 : 0)], [8, H - 38 - hh], [W - w - 8, H - 38 - hh]].forEach(function (q) {      /* 마땅한 곳이 없으면 화면 구석(88차) */
         var x = Math.max(6, Math.min(q[0], W - w - 6)), y = Math.max(6, Math.min(q[1], H - hh - 6)), av = avoid.some(function (r) { return x < r[0] + r[2] && x + w > r[0] && y < r[1] + r[3] && y + hh > r[1]; }) ? 1 : 0, ov = placed.some(function (r) { return x < r.x + r.w + 6 && x + w + 6 > r.x && y < r.y + r.h + 6 && y + hh + 6 > r.y; }) ? 1 : 0;
         var sc = hitN(x, y, w, hh) * 40 + ov * 100000 + av * 100000 + 400; if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
       });
@@ -523,9 +524,9 @@
   /* 데이터 블록 둘째 줄: 042↑ 180 = 4,200ft 상승 중 · 180kt */
   R.dblk = function (ac) { var al = Math.max(0, ac.alt || 0), vs = ac.st === 'final' && al > 30 ? -1 : ac.st === 'air' && al < (ac.maxAlt || 6000) - 10 ? 1 : 0,   /* 화살표는 실제 고도 변화로(수평 비행이면 없음 — GPT 9차 F9-02) */ kt = Math.round((ac.spd || 0) / 0.514444); return U.pad(Math.round(al / 100), 3) + (vs > 0 ? '↑' : vs < 0 ? '↓' : ' ') + ' ' + kt; };
   /* 89차: 작은 레이더 자리 — 남풍처럼 왼쪽에 둘 때는 위 단추 줄 · 확대(+ −) 단추 아래로(전: 왼쪽 위에서 단추를 덮음) */
-  R.miniPos = function (W, H, sim) { var r = Math.min(78, W * 0.11), L = sim && sim.flow && sim.flow.mini === 'L'; return L ? { r: r, cx: r + 12, cy: Math.min(98 + r, Math.max(r + 12, H - r - 40)), L: true } : { r: r, cx: W - r - 12, cy: r + 12 }; };
+  R.miniPos = function (W, H, sim) { var hd = R.hud(W, H); if (hd) return { r: hd.r, cx: W - hd.r - 8, cy: hd.r + 6, hud: true }; var r = Math.min(78, W * 0.11), L = sim && sim.flow && sim.flow.mini === 'L'; return L ? { r: r, cx: r + 12, cy: Math.min(98 + r, Math.max(r + 12, H - r - 40)), L: true } : { r: r, cx: W - r - 12, cy: r + 12 }; };
   R.miniRadar = function (ctx, W, H, app) {
-    var sim = app.sim, hd = R.hud(W, H), mpp = R.miniPos(W, H, sim), r = hd ? hd.r : mpp.r, cx = hd ? W - r - 8 : mpp.cx, cy = hd ? r + 6 : mpp.cy, sc = r / 13, i;
+    var sim = app.sim, hd = R.hud(W, H), mpp = R.miniPos(W, H, sim), r = mpp.r, cx = mpp.cx, cy = mpp.cy, sc = r / 13, i;
     ctx.fillStyle = 'rgba(4,8,12,.9)'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, 7); ctx.fill(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.stroke();
     ctx.strokeStyle = '#132030'; [5, 10].forEach(function (d) { ctx.beginPath(); ctx.arc(cx, cy, d * sc, 0, 7); ctx.stroke(); });
     ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r + 3, 0, 7); ctx.clip();
