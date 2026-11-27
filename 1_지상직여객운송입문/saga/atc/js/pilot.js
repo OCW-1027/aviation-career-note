@@ -250,7 +250,8 @@
     var e = D.ends[ac.appr ? ac.appr.rwy : ac.rwy];
     var AB = { OFF: 1.9, '1': 2.0, '2': 2.6, '3': 3.3, '4': 4.2, MAX: 6.0 };      /* 91차: 활주 감속(kt/s, 게임값 — OFF = 조종사가 늦게 수동 제동) */
     this.roll = { t0: sim.t, x: ac.x, y: ac.y, hdg: e ? e.crs : ac.hdg, v0: ac.ias, h0: Math.max(0, ac.alt - D.airport.elev), dec: this.xcIn ? AB[this.abrk || 'OFF'] : 2.6 };
-    if (this.xcIn && cf.gear === 'down') { var ab = this.abrk || 'OFF'; if (ab === 'OFF') sim.inc('p_abrk_off', [ac], ATC.T('{0}: 오토브레이크를 OFF로 둔 채 착륙 — 감속이 늦어 활주로를 길게 썼습니다. 착륙 전 점검에서 정합니다.', ac.cs)); else if (this.abrkOk(ab)) sim.inc('p_abrk_ok', [ac], ATC.T('{0}: 오토브레이크 {1} — 활주로 상태({2})에 맞음.', ac.cs, ab, this.abrkWet() ? ATC.T('젖음') : ATC.T('마름'))); else sim.inc('p_abrk_odd', [ac], ATC.T('{0}: 오토브레이크 {1} — {2} 활주로에는 {3} 단계가 알맞습니다(게임 기준).', ac.cs, ab, this.abrkWet() ? ATC.T('젖은') : ATC.T('마른'), this.abrkWet() ? '3 · 4' : '2 · 3')); }
+    if (this.xcIn && cf.gear === 'down') { var ab = this.abrk || 'OFF'; if (ab === 'OFF') sim.inc('p_abrk_off', [ac], ATC.T('{0}: 오토브레이크를 OFF로 둔 채 착륙 — 감속이 늦어 활주로를 길게 썼습니다. 착륙 전 점검에서 정합니다.', ac.cs)); else if (this.abrkOk(ab)) sim.inc('p_abrk_ok', [ac], ATC.T('{0}: 오토브레이크 {1} — 활주로 상태({2})에 맞음.', ac.cs, ab, this.abrkWet() ? ATC.T('젖음') : ATC.T('마름'))); else { var om = ATC.T('{0}: 오토브레이크 {1} — {2} 활주로에는 {3} 단계가 알맞습니다(게임 기준).', ac.cs, ab, this.abrkWet() ? ATC.T('젖은') : ATC.T('마른'), this.abrkWet() ? '3 · 4' : '2 · 3'); sim.inc('p_abrk_odd', [ac], om); sim.sys(om, 'warn'); }      /* 92차: 0점이라 결과 카드에 안 보여서 교신 기록에도 남김 */
+      this.abrkRes = { v: ab, ok: ab !== 'OFF' && this.abrkOk(ab), wet: this.abrkWet() }; }
     if (cf.gear !== 'down') sim.inc('p_gearup', [ac], ATC.T('{0}: 기어를 내리지 않고 착륙했습니다(동체 착륙).', ac.cs));
     else if (cf.flap < 25) sim.inc('p_cfg_late', [ac], ATC.T('{0}: 착륙 플랩(25 · 30)을 내리지 않고 착륙했습니다.', ac.cs));
     if (!this.landOk) sim.inc('p_noland', [ac], ATC.T('{0}: 착륙 허가 없이 착륙했습니다.', ac.cs));
@@ -427,6 +428,7 @@
      조작: BARO 노브(± hPa)로 숫자를 맞추고 STD 단추로 STD ↔ QNH. 채점은 한 편 비행에서만(출발 · 순항 · 인천 도착). ===== */
   ATC.Baro = {
     TA: 14000,
+    say: function (p, t, k) { if (p.note) p.note(t, k); else p.sim.sys(t, k); if (p.bump) p.bump(); },      /* 92차: 출발 조종사는 sim.sys를 자기 알림(note)만 통과시켜서 안내 글이 걸러졌음 */
     init: function (p, src, dep) { src = src || {}; p.baroOn = true; p.baro = src.baro || (dep ? 'QNH' : 'STD'); p.baroV = src.baroV || (dep ? (p.sim.qnh || 1013) : 1013); p.baroDone = src.baroDone || 0; },
     qnh: function (p) { var s = p.sim; return s.krQnh || s.qnh || 1013; },
     show: function (p) { return p.baro === 'STD' ? 'STD' : p.baroV + ' hPa'; },
@@ -436,18 +438,18 @@
     toggle: function (p) {
       var ac = p.ac, sim = p.sim; if (!ac) return; p.baro = p.baro === 'STD' ? 'QNH' : 'STD';
       var climb = !p.xcIn && (p.dep || p.xcMode) && !(p.xcMode && sim.seg === 'kr');
-      if (climb && p.baro === 'STD' && !p.baroDone) { if (ac.alt >= 12000) { p.baroDone = 1; sim.inc('p_baro_ok', [ac], ATC.T('{0}: 전이 고도(14,000ft)를 지나며 고도계를 STD(1013)로 바꿈.', ac.cs)); } else sim.sys(ATC.T('아직 이릅니다 — STD는 전이 고도 14,000ft를 지날 때 바꿉니다(그 아래는 QNH).'), 'info'); }
-      if (!climb && p.baro === 'QNH' && ac.alt > 20000) sim.sys(ATC.T('아직 이릅니다 — QNH는 관제가 전이 고도층 FL140 아래로 허가했을 때(지나기 전) 맞춥니다.'), 'info');
+      if (climb && p.baro === 'STD' && !p.baroDone) { if (ac.alt >= 12000) { p.baroDone = 1; sim.inc('p_baro_ok', [ac], ATC.T('{0}: 전이 고도(14,000ft)를 지나며 고도계를 STD(1013)로 바꿈.', ac.cs)); } else ATC.Baro.say(p, ATC.T('아직 이릅니다 — STD는 전이 고도 14,000ft를 지날 때 바꿉니다(그 아래는 QNH).'), 'info'); }
+      if (!climb && p.baro === 'QNH' && ac.alt > 20000) ATC.Baro.say(p, ATC.T('아직 이릅니다 — QNH는 관제가 전이 고도층 FL140 아래로 허가했을 때(지나기 전) 맞춥니다.'), 'info');
       if (p.bump) p.bump();
     },
     tick: function (p) {
       var ac = p.ac, sim = p.sim; if (!ac || !p.baroOn) return; var q = ATC.Baro.qnh(p);
       if (!p.xcIn && (p.dep || p.xcMode) && !(p.xcMode && sim.seg === 'kr')) {      /* 오를 때 */
-        if (!p.baroHint && ac.alt > 12500 && ac.tAlt > 14000 && p.baro !== 'STD') { p.baroHint = 1; sim.sys(ATC.T('곧 전이 고도 14,000ft — 지나면 고도계를 STD(1013)로(MCP 패널 BARO 「STD」).'), 'info'); }
+        if (!p.baroHint && ac.alt > 12500 && ac.tAlt > 14000 && p.baro !== 'STD') { p.baroHint = 1; ATC.Baro.say(p, ATC.T('곧 전이 고도 14,000ft — 지나면 고도계를 STD(1013)로(MCP 패널 BARO 「STD」).'), 'info'); }
         if (!p.baroDone && ac.alt > 15500 && p.baro !== 'STD') { p.baroDone = 2; p.baro = 'STD'; sim.inc('p_baro_std', [ac], ATC.T('{0}: 전이 고도 14,000ft를 지나도 고도계를 STD로 바꾸지 않아 부기장이 바꿨습니다 — FL로 나는 고도에서는 모두 1013을 씁니다.', ac.cs)); if (p.bump) p.bump(); }
         return;
       }
-      if (ac.tAlt < 14000 && !p.baroHint && p.baro === 'STD') { p.baroHint = 1; sim.sys(ATC.T('FL140 아래로 허가 — 전이 고도층을 지나기 전에 고도계를 ATIS의 QNH {0}로(BARO 노브로 숫자 → 「STD」 단추를 눌러 QNH).', q), 'info'); }      /* 내려갈 때 */
+      if (ac.tAlt < 14000 && !p.baroHint && p.baro === 'STD') { p.baroHint = 1; ATC.Baro.say(p, ATC.T('FL140 아래로 허가 — 전이 고도층을 지나기 전에 고도계를 ATIS의 QNH {0}로(BARO 노브로 숫자 → 「STD」 단추를 눌러 QNH).', q), 'info'); }      /* 내려갈 때 */
       if (!p.baroDone && ac.alt < 13000) {
         p.baroDone = 1;
         if (p.baro === 'STD') { p.baro = 'QNH'; p.baroV = q; sim.inc('p_baro_qnh', [ac], ATC.T('{0}: FL140 아래로 내려왔는데 고도계가 STD 그대로였습니다 — 부기장이 QNH {1}로 바꿨습니다. 낮은 고도에서는 산 · 장애물과의 높이를 QNH로 봅니다.', ac.cs, q)); }

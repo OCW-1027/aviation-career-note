@@ -47,6 +47,7 @@
     /* --- 항법 --- */
     if (nav.mode === 'route') {
       var fn = this.nextFix();
+      while (fn && !D.fix[fn]) { nav.i++; fn = this.nextFix(); }      /* 92차: 지도(D.fix)에 없는 지점은 건너뜀(한 편 비행 순항 일본 구간에서 가끔 — 출발에서 넘어온 다른 편 경로) */
       if (fn) {
         var f = D.fix[fn]; d = U.dist(this, f); var pass = Math.max(0.7, this.gs / 3600 * 12);
         var fo = D.flyOver && D.flyOver[fn];      /* 상공 통과(fly-over) 지점: 미리 돌지 않고 지점 위를 지난 뒤 다음 지점으로(AIP coding table의 Fly Over = Y) */
