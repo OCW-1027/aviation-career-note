@@ -21,12 +21,12 @@
     this.gaN = 0; this.gaLog = []; this.gaPh = null;      /* 복행 · 재접근 */
     this.twrGa = !!(sim.level && sim.level.id >= 2) && (sim.seed | 0) % (sim.level.id === 3 ? 2 : 3) === 0;      /* 중급 3판에 1번 · 고급 2판에 1번: 관제탑이 첫 접근에서 복행을 지시(앞 착륙기가 활주로를 비우지 못함 — 게임 설정. Vela Air는 가상 항공사) */
     var s = sim.sched.filter(function (x) { return x.kind === 'arr' && !x.warm; }).sort(function (a, b) { return a.t - b.t; })[0];
-    if (s) { s.pilot = true; s.warm = true; s.wi = 1; s.t = Math.min(s.t, sim.t + 2); if (po.xcIn) { this.xcIn = po.xcIn; s.gate = 'GUKDO'; s.warm = false; s.t = sim.t + 1; } sim.sched.sort(function (a, b) { return a.t - b.t; }); }      /* 한 편 비행: 하네다에서 온 내 편이 GUKDO(STAR 시작)에서 이어짐(xc.js) */
+    if (s) { s.pilot = true; s.warm = true; s.wi = 1; s.t = Math.min(s.t, sim.t + 2); if (po.xcIn) { this.xcIn = po.xcIn; s.gate = po.xcIn.gate && D.star && D.star[sim.arrFlow ? sim.arrFlow.id : 'N'] && D.star[sim.arrFlow ? sim.arrFlow.id : 'N'][po.xcIn.gate] ? po.xcIn.gate : (ATC.aptId === 'RJTT' ? 'XAC' : 'GUKDO'); s.warm = false; s.t = sim.t + 1; } sim.sched.sort(function (a, b) { return a.t - b.t; }); }      /* 한 편 비행: 하네다에서 온 내 편이 GUKDO(STAR 시작)에서 이어짐(xc.js) */
     if (po.xcIn && po.xcIn.qnh) sim.qnh = po.xcIn.qnh;      /* ATIS에서 들은 QNH와 같은 값 */
     if (po.xcIn) { ATC.Baro.init(this, po.xcIn, false); this.abrk = po.xcIn.abrk || 'OFF'; }      /* 91차: 고도계 · 오토브레이크(한 편 비행) */
     if (po.xcIn) { var X = po.xcIn; this.nRb = X.nRb || 0; this.nRbOk = X.nRbOk || 0; this.rt = X.rt || []; this.tAcc = X.tAcc || 0; this.cfg = X.cfg || this.cfg; if (X.incs) sim.incs = X.incs.slice(); if (X.log) sim.log = X.log.slice(); if (X.atis) sim.atis = X.atis; }      /* 경로 가운데쯤에서 시작(첫 지시까지 오래 기다리지 않게) */
     sim.isFinished = function () { return this.pilot.done; };
-    sim.sys(po.xcIn ? ATC.T('한 편 비행 — 대구 관제에서 Seoul Approach로 넘어왔습니다. 첫 호출을 하고 STAR · ILS 접근으로 인천에 내립니다.') : ATC.T('조종사 체험 — 곧 나타나는 Vela Air 도착기의 조종사입니다. 관제는 AI가 합니다. 관제 지시를 듣고 복창한 뒤 자동조종(MCP)에 설정하세요.'), 'info');
+    sim.sys(po.xcIn ? (po.xcIn.dir === 'E' ? ATC.T('한 편 비행 — 도쿄 관제에서 Tokyo Approach로 넘어왔습니다. 첫 호출을 하고 STAR · ILS 접근으로 하네다에 내립니다.') : ATC.T('한 편 비행 — 대구 관제에서 Seoul Approach로 넘어왔습니다. 첫 호출을 하고 STAR · ILS 접근으로 인천에 내립니다.')) : ATC.T('조종사 체험 — 곧 나타나는 Vela Air 도착기의 조종사입니다. 관제는 AI가 합니다. 관제 지시를 듣고 복창한 뒤 자동조종(MCP)에 설정하세요.'), 'info');
     this.dh = null; this.dh100 = false; wxSay(sim);
   }
   Pilot.prototype.bump = function () { this.ver++; };

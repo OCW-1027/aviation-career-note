@@ -73,7 +73,7 @@
       from = 1 + this.rng.int(0, route.length - 6); f0 = D.fix[route[from]]; f1 = D.fix[route[from + 1]]; hd = U.brg(f0, f1); var fq = 0.2 + 0.6 * this.rng();
       p = { x: f0.x + (f1.x - f0.x) * fq, y: f0.y + (f1.y - f0.y) * fq }; alt = Math.min(alt, 10000 + 1000 * (s.wi || 0)); from++;
     } else if (s.warm) { var fr = 0.35 + 0.3 * this.rng(); p = { x: f0.x + (f1.x - f0.x) * fr, y: f0.y + (f1.y - f0.y) * fr }; alt = 10000; }
-    if (xi && D.ll2xy) { p = D.ll2xy(xi.ac.lat, xi.ac.lon); alt = xi.ac.alt; hd = xi.ac.hdg; og = ['RJTT', 'Tokyo Haneda']; }
+    if (xi && D.ll2xy) { p = D.ll2xy(xi.ac.lat, xi.ac.lon); alt = xi.ac.alt; hd = xi.ac.hdg; og = [xi.orig || 'RJTT', xi.origName || 'Tokyo Haneda']; }      /* 93차: 인천에서 온 편도 */
     var perf = f.perf, ias = xi ? Math.round(xi.ac.ias) : perf.k === 'tp' ? 220 : 250;
     var ac = this.spawnAc({
       cs: f.cs, csWord: f.csWord, num: f.num, al: f.al, type: f.type, wake: f.wake, perf: perf,

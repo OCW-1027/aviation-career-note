@@ -28,13 +28,13 @@
     this.fly = ATC.Manual ? ATC.Manual.newFly() : { mode: 'auto', on: false, k: { pitch: 0, roll: 0, thr: 0 }, t: { pitch: 0, roll: 0 } }; this.fly.used = true; this.fly.at = false; this.fly.th = this.fly.thr = 0;      /* fly.on = 지상 이동 직접 조종 중 */
     this.xpdr = { code: '2000', set: null, entry: '' };
     this.eng = { st: 'off', t0: 0, n1: 0 }; this.pbrake = true;
-    var c = o.carry, f; this.xc = !!(o.xc || (c && c.xc)); if (this.xc && ATC.Baro) ATC.Baro.init(this, c, true);      /* 91차: 고도계(오를 때 14,000ft에서 STD) */      /* 한 편 비행(하네다 → 인천, xc.js): 비행계획은 BEKLA → RKSI로 정해 둠 */
+    var c = o.carry, f; this.xc = !!(o.xc || (c && c.xc)); this.xcDir = o.xcDir || (c && c.xcDir) || 'W'; if (this.xc && ATC.Baro) ATC.Baro.init(this, c, true);      /* 91차: 고도계(오를 때 14,000ft에서 STD) */      /* 한 편 비행(하네다 → 인천, xc.js): 비행계획은 BEKLA → RKSI로 정해 둠 */
     if (c) { f = this.f = c.f; this.fp = c.fp; this.standK = c.standK; this.xpdr = c.xpdr; this.sid = c.sid; this.cur = c.cur; this.mcp = c.mcp; this.depFq = c.depFq; this.nRb = c.nRb; this.nRbOk = c.nRbOk; this.rt = c.rt; this.sq = c.ac.squawk; this.tAcc = (c.tAcc || 0) + c.sim.t; sim.usedCs[f.cs] = 1;
       if (c.eng) this.eng = c.eng; if (c.cfg) this.cfg = c.cfg; if (c.vs) this.vs = c.vs; this.apOn = c.apOn; this.accel = !!c.accel; this.taxi = c.taxi || null; this.manUsed = c.manUsed; this.pbrake = !!c.pbrake; this.to = c.to || null; this.sidR = c.sidR || null; this.capKey = c.capKey || ''; this.sidK = c.sidK || 'A';      /* 같은 제한 지점의 VNAV 안내는 관제석이 바뀌어도 한 번만(사이트 42차 결과) */ this.sidOn = c.sidOn !== false; this.sidVia = c.sidVia !== false; this.sidPlain = c.sidPlain; this.trn = c.trn; }
     else {
       f = sim.mkFlight(function (a) { return a.code === 'VLA'; }, 'dep');
       f.type = 'B789'; if (D.types && D.types.B789) f.perf = D.types.B789; f.wake = 'H';
-      this.f = f; this.fp = this.xc ? { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: 36000 } : this.autoPlan();
+      this.f = f; this.fp = this.xc ? this.xcFp() : this.autoPlan();
     }
     if (!c) this.sidK = D.sidSet ? D.sidSet(sim) : D.sidByRwy ? sim.flow.id : 'A';      /* 이륙 시각에 따른 SID(A · B · C) — 첫 단계에서 정해 끝까지 같음 */
     sim.isFinished = function () { return this.pilot.done; };
@@ -49,7 +49,8 @@
   DepPilot.prototype.constructor = DepPilot;
 
   /* ---- 비행계획 ---- */
-  DepPilot.prototype.gates = function () { var by = this.sim.flow.depBy || {}, xc = this.xc; return Object.keys(D.gateDest).filter(function (g) { return by[g] && (!xc || g === 'BEKLA'); }); };
+  DepPilot.prototype.xcFp = function () { return this.xcDir === 'E' ? { gate: 'EGOBA', dest: 'RJTT', destName: 'Tokyo Haneda', rfl: 37000 } : { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: 36000 }; };      /* 93차: 인천 → 하네다 = EGOBA · FL370(동쪽 홀수) */
+  DepPilot.prototype.gates = function () { var by = this.sim.flow.depBy || {}, xc = this.xc, xg = this.xc ? this.xcFp().gate : null; return Object.keys(D.gateDest).filter(function (g) { return by[g] && (!xc || g === xg); }); };
   DepPilot.prototype.rwyFor = function (g) { return (this.sim.flow.depBy || {})[g] || this.sim.flow.dep; };
   DepPilot.prototype.flOpts = function () { var ceil = (this.f.perf && this.f.perf.ceil) || 43000, o = []; for (var v = 25000; v <= Math.min(41000, ceil); v += 1000) o.push(v); return o; };
   DepPilot.prototype.flFor = function (g) { var east = D.gateEast[g], o = this.flOpts().filter(function (v) { return ((v / 1000) % 2 === 1) === !!east; }); return o[Math.max(0, o.length - 4)] || o[o.length - 1]; };
@@ -58,10 +59,10 @@
     var dl = D.gateDest[g], dst = PF && PF.gate === g ? PF.ap : dl[sim.rng.int(0, dl.length - 1)];
     return { gate: g, dest: dst[0], destName: dst[1], rfl: this.flFor(g), grp: PF && PF.grp };
   };
-  DepPilot.prototype.route = function (fp) { fp = fp || this.fp; var sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate, tn = this.transName(fp), t = tn && D.sidTrans[fp.gate][tn]; return ATC.aptId + ' ' + this.rwyFor(fp.gate) + ' ' + sid + ' ' + fp.gate + (t ? ' ' + tn + ' TRANSITION ' + t.route[t.route.length - 1] : '') + (this.xc && ATC.XC ? ' ' + ATC.XC.STR.replace(/^BEKLA3A BEKLA /, '') + ' ' + fp.dest : ' … ' + fp.dest); };
+  DepPilot.prototype.route = function (fp) { fp = fp || this.fp; var sid = D.sidName ? D.sidName(fp.gate, this.sidK) : fp.gate, tn = this.transName(fp), t = tn && D.sidTrans[fp.gate][tn]; return ATC.aptId + ' ' + this.rwyFor(fp.gate) + ' ' + sid + ' ' + fp.gate + (t ? ' ' + tn + ' TRANSITION ' + t.route[t.route.length - 1] : '') + (this.xc && ATC.XC ? ' ' + (ATC.XC.DIRS ? ATC.XC.DIRS[this.xcDir === 'E' ? 'E' : 'W'].str : ATC.XC.STR).replace(/^BEKLA3A BEKLA /, '').replace(/^EGOBA /, '') + ' ' + fp.dest : ' … ' + fp.dest); };      /* 93차: 방향별 항로 */
   DepPilot.prototype.check = function (fp) {      /* 비행계획 검사: [{ok, t}] */
     fp = fp || this.fp; var o = [], east = !!D.gateEast[fp.gate], odd = (fp.rfl / 1000) % 2 === 1;
-    o.push({ ok: D.gateDest[fp.gate].some(function (d) { return d[0] === fp.dest; }), t: ATC.T('목적지 {0}은(는) 출구 지점 {1} 쪽', fp.dest, fp.gate) });
+    o.push({ ok: (this.xc && fp.dest === this.xcFp().dest) || D.gateDest[fp.gate].some(function (d) { return d[0] === fp.dest; }), t: ATC.T('목적지 {0}은(는) 출구 지점 {1} 쪽', fp.dest, fp.gate) });
     o.push({ ok: odd === east, t: east ? ATC.T('동쪽행 → 순항 고도는 홀수(FL 290 · 310 …)') : ATC.T('서쪽행 → 순항 고도는 짝수(FL 300 · 320 …)') });
     o.push({ ok: fp.rfl <= ((this.f.perf && this.f.perf.ceil) || 43000), t: ATC.T('787-9 최대 고도 이하') });
     return o;
@@ -69,7 +70,7 @@
   DepPilot.prototype.setFp = function (k, v) {
     if (this.phase !== 'fpl') return; var fp = this.fp;
     if (this.xc && (k === 'gate' || k === 'dest' || k === 'rfl')) return;      /* 한 편 비행: 출구 · 목적지 · 순항 고도는 BEKLA · 인천 · FL360으로 고정 */
-    if (this.xc && k === 'auto') { this.fp = { gate: 'BEKLA', dest: 'RKSI', destName: 'Seoul Incheon', rfl: 36000 }; this.sidR = null; this.mkAc(); this.bump(); return; }
+    if (this.xc && k === 'auto') { this.fp = this.xcFp(); this.sidR = null; this.mkAc(); this.bump(); return; }
     if (k === 'gate') { fp.gate = v; var d0 = D.gateDest[v][0]; fp.dest = d0[0]; fp.destName = d0[1]; }
     else if (k === 'dest') { var d = D.gateDest[fp.gate].filter(function (x) { return x[0] === v; })[0]; if (d) { fp.dest = d[0]; fp.destName = d[1]; } }
     else if (k === 'rfl') fp.rfl = +v;
