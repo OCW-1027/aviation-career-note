@@ -370,7 +370,7 @@
     /* 항공기 */
     app.hit = [];
     var list = sim.acs.slice().sort(function (x, y) { return (x.alt || 0) - (y.alt || 0); }), items = [], obs = R.finalLayout(app, W, H); if (obs[0] && obs[0].compact) obs = [{ x: 0, y: 0, w: W, h: R.hudTop(W, H), wt: 3 }];   /* 좁은 화면: 위쪽 띠 전체를 이름표가 피함 */
-    if (sim.mode === 'TWR' || sim.mode === 'GND') { var mr = Math.min(78, W * 0.11); obs.push({ x: (sim.flow.mini !== 'L' ? W - mr * 2 - 20 : 4), y: 4, w: mr * 2 + 16, h: mr * 2 + 16, wt: 3 }); }
+    if (sim.mode === 'TWR' || sim.mode === 'GND') { var mp0 = R.miniPos(W, H, sim); obs.push({ x: mp0.cx - mp0.r - 8, y: mp0.cy - mp0.r - 8, w: mp0.r * 2 + 16, h: mp0.r * 2 + 16, wt: 3 }); }
     list.forEach(function (ac) {
       var p = gs(v, W, H, ac.u, ac.v); if (p[0] < -60 || p[0] > W + 60 || p[1] < -60 || p[1] > H + 60) return;   /* 화면 안이면 먼 최종 접근 · 이륙 항공기도 그림(줄여 보면 10NM 밖까지) */
       var k = Math.max(s * 1.3, 21 / ac.perf.len) * (1 + Math.min(0.35, (ac.alt || 0) / 6000));
@@ -437,8 +437,8 @@
     Object.keys(D.ends).forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU + e.du * e.len, e.thrV + e.dv * e.len); segs.push([a, b, Math.max(12, 170 * mPx) + 6]); });      /* 활주로 + 옆 유도로 · 연결로(88차: 활주로 가장자리 · 유도로까지 피함) */
     ids.forEach(function (id) { var e = D.ends[id], a = gs(v, W, H, e.thrU, e.thrV), b = gs(v, W, H, e.thrU - e.du * 14000, e.thrV - e.dv * 14000); segs.push([a, b, 10]); });      /* 최종 접근로(약 7.5NM) — 들어오는 항공기 */
     function hitN(x, y, w, h) { var n = 0; segs.forEach(function (sg) { var a = sg[0], b = sg[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]), k = Math.max(1, Math.ceil(L / 6)), r = sg[2]; for (var i = 0; i <= k; i++) { var px = a[0] + (b[0] - a[0]) * i / k, py = a[1] + (b[1] - a[1]) * i / k; if (px > x - r && px < x + w + r && py > y - r && py < y + h + r) n++; } }); return n; }
-    var mr = Math.min(78, W * 0.11), mcx = sim.flow && sim.flow.mini !== 'L' ? W - mr - 12 : mr + 12, avoid = [[0, 0, W, 92]];      /* 위쪽 단추 줄 */
-    if (sim.mode === 'TWR') avoid.push([mcx - mr - 10, 0, 2 * mr + 20, 2 * mr + 30]);      /* 오른쪽 위 작은 레이더 */
+    var mpz = R.miniPos(W, H, sim), avoid = [[0, 0, W, 92]];      /* 위쪽 단추 줄 */
+    if (sim.mode === 'TWR') avoid.push([mpz.cx - mpz.r - 10, mpz.cy - mpz.r - 10, 2 * mpz.r + 20, 2 * mpz.r + 30]);      /* 오른쪽 위 작은 레이더 */
     if (R.miniBox) avoid.push([R.miniBox.x - 6, R.miniBox.y - 6, R.miniBox.w + 12, R.miniBox.h + 12]);      /* 작은 전체 지도 */
     avoid.push([0, H - 30, W, 30]);      /* 아래 출처 글 */
     var placed = [], P = {};
@@ -454,7 +454,7 @@
           if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
         });
       });
-      [[8, 98], [W - w - 8, 98 + (sim.mode === 'TWR' ? 2 * mr + 34 : 0)], [8, H - 38 - hh], [W - w - 8, H - 38 - hh]].forEach(function (q) {      /* 마땅한 곳이 없으면 화면 구석(88차) */
+      [[8, 98 + (sim.mode === 'TWR' && mpz.L ? 2 * mpz.r + 34 : 0)], [W - w - 8, 98 + (sim.mode === 'TWR' && !mpz.L ? 2 * mpz.r + 34 : 0)], [8, H - 38 - hh], [W - w - 8, H - 38 - hh]].forEach(function (q) {      /* 마땅한 곳이 없으면 화면 구석(88차) */
         var x = Math.max(6, Math.min(q[0], W - w - 6)), y = Math.max(6, Math.min(q[1], H - hh - 6)), av = avoid.some(function (r) { return x < r[0] + r[2] && x + w > r[0] && y < r[1] + r[3] && y + hh > r[1]; }) ? 1 : 0, ov = placed.some(function (r) { return x < r.x + r.w + 6 && x + w + 6 > r.x && y < r.y + r.h + 6 && y + hh + 6 > r.y; }) ? 1 : 0;
         var sc = hitN(x, y, w, hh) * 40 + ov * 100000 + av * 100000 + 400; if (!best || sc < best.sc) best = { x: x, y: y, sc: sc };
       });
@@ -522,8 +522,10 @@
   };
   /* 데이터 블록 둘째 줄: 042↑ 180 = 4,200ft 상승 중 · 180kt */
   R.dblk = function (ac) { var al = Math.max(0, ac.alt || 0), vs = ac.st === 'final' && al > 30 ? -1 : ac.st === 'air' && al < (ac.maxAlt || 6000) - 10 ? 1 : 0,   /* 화살표는 실제 고도 변화로(수평 비행이면 없음 — GPT 9차 F9-02) */ kt = Math.round((ac.spd || 0) / 0.514444); return U.pad(Math.round(al / 100), 3) + (vs > 0 ? '↑' : vs < 0 ? '↓' : ' ') + ' ' + kt; };
+  /* 89차: 작은 레이더 자리 — 남풍처럼 왼쪽에 둘 때는 위 단추 줄 · 확대(+ −) 단추 아래로(전: 왼쪽 위에서 단추를 덮음) */
+  R.miniPos = function (W, H, sim) { var r = Math.min(78, W * 0.11), L = sim && sim.flow && sim.flow.mini === 'L'; return L ? { r: r, cx: r + 12, cy: Math.min(98 + r, Math.max(r + 12, H - r - 40)), L: true } : { r: r, cx: W - r - 12, cy: r + 12 }; };
   R.miniRadar = function (ctx, W, H, app) {
-    var sim = app.sim, hd = R.hud(W, H), r = hd ? hd.r : Math.min(78, W * 0.11), cx = hd ? W - r - 8 : sim.flow.mini !== 'L' ? W - r - 12 : r + 12, cy = hd ? r + 6 : r + 12, sc = r / 13, i;
+    var sim = app.sim, hd = R.hud(W, H), mpp = R.miniPos(W, H, sim), r = hd ? hd.r : mpp.r, cx = hd ? W - r - 8 : mpp.cx, cy = hd ? r + 6 : mpp.cy, sc = r / 13, i;
     ctx.fillStyle = 'rgba(4,8,12,.9)'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, 7); ctx.fill(); ctx.strokeStyle = '#2b4a66'; ctx.lineWidth = 1; ctx.stroke();
     ctx.strokeStyle = '#132030'; [5, 10].forEach(function (d) { ctx.beginPath(); ctx.arc(cx, cy, d * sc, 0, 7); ctx.stroke(); });
     ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r + 3, 0, 7); ctx.clip();

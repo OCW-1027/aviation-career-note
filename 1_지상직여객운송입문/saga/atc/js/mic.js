@@ -18,8 +18,16 @@
   }
   function sim01(a, b) { var l = Math.max(a.length, b.length); return l ? 1 - lev(a, b) / l : 1; }
 
+  /* 89차: 일반 받아쓰기 엔진이 자주 잘못 적는 항공 낱말(사용자 — 천천히 말해도 못 알아들음) */
+  var FIX = [[/\b(?:bella|della|vella|villa|vala|viola|velo|bela|vela)\b/g, 'vela'], [/\bflight (?:levels?|label|lever|evel)\b|\bfly level\b|\bflight-level\b/g, 'flight level'], [/\bflight level(\d)/g, 'flight level $1'],
+    [/\b(?:the send|descent|decent|dissent|descending)\b/g, 'descend'], [/\b(?:climbing|clime|climate)\b/g, 'climb'], [/\b(?:maintained|maintaining|main tain|maintenance)\b/g, 'maintain'],
+    [/\b(?:squat|squak|squalk|squawking|squark)\b/g, 'squawk'], [/\b(?:run way|runaway|run-way)\b/g, 'runway'], [/\b(?:hitting|heading's|hiding)\b/g, 'heading'], [/\bnein\b|\bnina\b/g, 'niner'], [/\bfiver\b/g, 'five'],
+    [/\b(?:rodger|roger that)\b/g, 'roger'], [/\bwill co\b/g, 'wilco'], [/\b(?:cleared to lend|clear to land)\b/g, 'cleared to land'], [/\bclear (?:for )?take ?off\b/g, 'cleared for takeoff'], [/\b(?:contacts|contacting)\b/g, 'contact'],
+    [/\b(?:approved|a proved)\b/g, 'approved'], [/\bpan-pan\b|\bpan pan pan pan\b/g, 'pan pan'], [/\b(?:mayday|may day)\b/g, 'mayday'], [/(\d) point (\d)/g, '$1 decimal $2'], [/\b(?:point|dot) (zero|one|two|three|four|five|six|seven|eight|nine|niner)\b/g, 'decimal $1']];
   function norm(text) {
-    var s = String(text || '').toLowerCase()
+    var s = String(text || '').toLowerCase();
+    FIX.forEach(function (f) { s = s.replace(f[0], f[1]); });
+    s = s
       .replace(/(\d),(\d{3})/g, '$1$2').replace(/(\d)\.(\d)/g, '$1 decimal $2')
       .replace(/take[\s-]*off/g, 'takeoff').replace(/push[\s-]*back/g, 'pushback').replace(/go[\s-]+around/g, 'go around').replace(/read[\s-]*back/g, 'readback')
       .replace(/\bi\.?\s*l\.?\s*s\.?\b/g, 'ils').replace(/\bline[\s-]*up\b/g, 'line up').replace(/\bf\.?\s*l\.?\s*(\d)/g, 'fl$1').replace(/\bfower\b/g, 'four').replace(/[^a-z0-9 ]+/g, ' ');
@@ -61,7 +69,7 @@
   }
   function fixOf(words) {
     var cand = [words[0], (words[0] || '') + (words[1] || '')].filter(Boolean), best = null;
-    Object.keys(D.fix || {}).forEach(function (f) { cand.forEach(function (c, n) { var s = sim01(c, f.toLowerCase()); if (s >= 0.6 && (!best || s > best.s)) best = { f: f, s: s, n: n + 1 }; }); });
+    Object.keys(D.fix || {}).forEach(function (f) { cand.forEach(function (c, n) { var s = sim01(c, f.toLowerCase()); if (ph(c).length >= 3 && ph(c) === ph(f)) s = Math.max(s, 0.85); if (s >= 0.6 && (!best || s > best.s)) best = { f: f, s: s, n: n + 1 }; }); });      /* 89차: 소리 뼈대가 같으면(gook dough → GUKDO) */
     return best;
   }
   function sidOf(words, sim) {
@@ -184,5 +192,12 @@
     for (j = 0; j < k; j++) if (!hit[j]) miss.push(b[j]);
     return { pct: n + k ? Math.round(200 * L[n][k] / (n + k)) : 100, miss: miss };
   }
-  ATC.mic = { norm: norm, parse: parse, score: score, supported: function () { return !!(G.SpeechRecognition || G.webkitSpeechRecognition); } };
+  /* 89차: 핵심 낱말 — 숫자(호출부호 편명 · 고도 · 기수 · 활주로) · 방향 · 오르내림 · 지점 이름. 받아쓰기가 조금 틀려도 핵심이 다 맞으면 통과시키는 데 씀 */
+  var KW = { left: 1, right: 1, climb: 1, descend: 1, direct: 1, tower: 1, ground: 1, approach: 1, departure: 1, control: 1, mayday: 1, pan: 1, negative: 1, unable: 1, deviation: 1, priority: 1, medical: 1 };
+  function keys(text) { var fx = D && D.fix ? D.fix : {}, o = []; core(norm(text)).forEach(function (w) { if (/\d/.test(w) || KW[w] || (w.length === 5 && fx[w.toUpperCase()])) if (o.indexOf(w) < 0) o.push(w); }); return o; }
+  /* 지점 이름 소리 맞추기: 「gook dough」 → GUKDO (모음 · gh 빼고 자음 뼈대로) */
+  function ph(w) { return String(w).toLowerCase().replace(/gh/g, '').replace(/ph/g, 'f').replace(/ck|q/g, 'k').replace(/(?!^)[aeiouyhw]/g, '').replace(/(.)\1+/g, '$1'); }
+  function fixSaid(T, f) { var pf = ph(f), lf = f.toLowerCase(), i, n; if (pf.length < 3) return T.indexOf(lf) >= 0; for (i = 0; i < T.length; i++) for (n = 1; n <= 3 && i + n <= T.length; n++) { var c = T.slice(i, i + n); if (!c.every(function (x) { return /^[a-z]+$/.test(x); })) break; var j = c.join(''); if (j === lf || sim01(j, lf) >= 0.8 || ph(j) === pf) return true; } return false; }
+  function keyOk(spoken, std) { var T = core(norm(spoken)), a = keys(spoken), b = keys(std), fx = D && D.fix ? D.fix : {}; return b.every(function (w) { return a.indexOf(w) >= 0 || (/^[a-z]{5}$/.test(w) && fx[w.toUpperCase()] && fixSaid(T, w)); }); }
+  ATC.mic = { norm: norm, parse: parse, score: score, keys: keys, keyOk: keyOk, supported: function () { return !!(G.SpeechRecognition || G.webkitSpeechRecognition); } };
 })();

@@ -396,7 +396,8 @@
   function xcInit(sc) {
     if (S.attr && S.attr.parentNode) S.attr.parentNode.removeChild(S.attr);
     S.papi = []; S.rabbit = []; S.rwyM = []; S.landRings = []; S.bldMats = []; S.park = null; S.elev = 0; S.ap = new T.Group(); sc.add(S.ap);
-    S.city = lightPoints(xcCityLights(), 0xffc98a, 2); sc.add(S.city);      /* 88차: 밤 순항 — 항로 둘레 도시 불빛 */
+    var cl = xcCityLights(); S.city = lightPoints(cl, 0xffb050, 3.2); S.city.material.fog = false; sc.add(S.city);      /* 88차: 밤 순항 — 항로 둘레 도시 불빛 */
+    S.cityG = lightPoints(cl.filter(function (q, i) { return i % 3 === 0; }), 0xff8a2a, 11); S.cityG.material.fog = false; S.cityG.material.userData.op = 0.35; sc.add(S.cityG);      /* 89차: 높은 고도에서도 보이게 — 점을 키우고 주황 번짐 한 겹(안개에 씻기지 않게) */
     var pg = new T.BufferGeometry(); pg.setAttribute('position', new T.BufferAttribute(new Float32Array(3), 3)); pg.setAttribute('color', new T.BufferAttribute(new Float32Array(3), 3)); S.papiPts = new T.Points(pg, new T.PointsMaterial({ size: 1 })); S.papiPts.visible = false;
     S.rabbitPt = new T.Points(pg.clone(), new T.PointsMaterial({ size: 1 })); S.rabbitPt.visible = false;
     S.satSea = [0.07, 0.17, 0.27];      /* 동해 · 태평양: 위성사진의 바다빛에 맞춤 */
@@ -453,7 +454,7 @@
     S.cbG = g;
   }
   function build() {
-    var D = ATC.D, XCm = !!(S.sim && S.sim.mode === 'XC'); S.apt = ATC.aptId + (XCm ? ':XC' : ''); S.xc = XCm; S.xcG = null; S.xcCl = null; S.cbG = null; S.gsiM = [];
+    var D = ATC.D, XCm = !!(S.sim && S.sim.mode === 'XC'); S.apt = ATC.aptId + (XCm ? ':XC' : ''); S.xc = XCm; S.xcG = null; S.cityG = null; S.xcCl = null; S.cbG = null; S.gsiM = [];
     if (S.r) { if (S.r.domElement.parentNode) S.r.domElement.parentNode.removeChild(S.r.domElement); S.r.dispose(); }      /* 장면을 다시 만들 때(출발 → 순항 → 도착) 옛 화면을 떼어 냄 */
     var r = S.r = new T.WebGLRenderer({ antialias: true, powerPreference: 'high-performance', logarithmicDepthBuffer: true });
     r.setPixelRatio(Math.min(window.devicePixelRatio || 1, (window.innerWidth || 1200) < 900 ? 1.25 : 1.6)); r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
@@ -745,7 +746,7 @@
       if (S.rabbit.length) { var ph = (now / 1000 * 2) % 1, rr = S.rabbit.filter(function (x) { return x.k >= 330; }), ix = Math.floor((1 - ph) * rr.length / 2) * 2; var rp = rr[ix % rr.length].p; S.rabbitPt.geometry.attributes.position.setXYZ(0, rp.x, rp.y, rp.z); S.rabbitPt.geometry.attributes.position.needsUpdate = true; S.rabbitPt.material.opacity = 0.4 + st.night * 0.6; }
       /* 주변 항공기 */
       var seen = {};
-      sim.acs.forEach(function (a) {
+      (S.xc && p.tfc && !p.tfc.gone ? sim.acs.concat([{ id: '_xtfc', x: p.tfc.x, y: p.tfc.y, alt: p.tfc.alt, vs: p.tfc.vs, hdg: (Math.atan2(p.tfc.ux, p.tfc.uy) / D2R + 360) % 360, al: { code: 'XTF', col: '#c8382e' } }]) : sim.acs).forEach(function (a) {      /* 89차: 한 편 비행 맞은편 B767도 창밖에 보이게 */
         if (a === p.ac || a.gone || !isFinite(a.x) || !isFinite(a.y)) return; seen[a.id] = 1;      /* 위치가 없는 항공기(비행허가 화면의 대기편)는 그리지 않음 */ var o = otherAc(a), pp = P(a.x, a.y, Math.max(S.elev + (o.userData.cm ? 0 : 3), AF(a) * FT));
         o.position.copy(pp); o.rotation.set((a.vs || 0) / 6000 * 0.12, -a.hdg * D2R, 0, 'YXZ');
         if (o.userData.cm) { var agl = AF(a) * FT - S.elev, dd = pp.distanceTo(cw); ATC.CkModel.lod(o, dd); o.userData.gear.visible = dd < 5000 && (agl < 900 || !a.alt || a.agl && a.alt < 2500); ATC.CkModel.lights(o, now, st.night, agl < 3000 && (a.arr || agl < 600)); o.visible = pp.distanceTo(cw) < 90000; return; }
@@ -777,7 +778,7 @@
     else if (S.rwyM && S.rwyM.length && !S.rwyM[0].visible && day <= 0.4) S.rwyM.forEach(function (m) { m.visible = true; });
     if (S.fuji) { S.fuji.visible = day > 0.25; S.fuji.material.opacity = 0.92 * day; }
     if (S.markL) S.markL.material.opacity = 0.35 + k * 0.65;
-    S.stars.material.opacity = k; S.city.material.opacity = k; S.stars.visible = k > 0.05; S.city.visible = k > 0.05;
+    S.stars.material.opacity = k; S.city.material.opacity = k; S.stars.visible = k > 0.05; S.city.visible = k > 0.05; if (S.cityG) { S.cityG.material.opacity = k * S.cityG.material.userData.op; S.cityG.visible = k > 0.05; }
     var li = 0.05 + k * 0.95; [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = li; }); if (S.alsL) S.alsL.material.opacity = 0.3 + k * 0.7;      /* 낮에는 활주로 등이 거의 안 보임(진입등은 조금) */
     if (S.alsL && S.alsL.material.userData.s0 !== undefined) S.alsL.material.size = S.alsL.material.userData.s0;
     S.sky.visible = true;
@@ -791,7 +792,7 @@
     S.lvV = S.lvV ? S.lvV + (V - S.lvV) * 0.12 : V;
     var g = (agl > cm ? 0.66 : 0.5) * (1 - k) + 0.05; S.fog.color.setRGB(g, g * 1.02, g * 1.07); S.fog.density = 1.75 / S.lvV;
     S.skyU.top.value.copy(S.fog.color); S.skyU.hor.value.copy(S.fog.color); S.sun.intensity *= 0.35; S.sky.visible = false; S.r.setClearColor(S.fog.color, 1);
-    S.stars.visible = false; S.city.visible = false; if (S.fuji) S.fuji.visible = false; S.clouds.visible = false;
+    S.stars.visible = false; S.city.visible = false; if (S.cityG) S.cityG.visible = false; if (S.fuji) S.fuji.visible = false; S.clouds.visible = false;
     [S.edgeL, S.clL, S.tdzL, S.twyL].forEach(function (o) { if (o) o.material.opacity = 0.9; }); if (S.alsL) { var am = S.alsL.material; if (am.userData.s0 === undefined) am.userData.s0 = am.size; am.size = am.userData.s0 * 1.8; am.opacity = 1; }      /* 저시정에서는 낮에도 등화를 켜 둠 */
   }
   /* 상태값(시뮬레이션 → 계기 · 3D) */

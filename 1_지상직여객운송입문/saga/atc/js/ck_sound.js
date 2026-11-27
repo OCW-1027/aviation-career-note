@@ -21,7 +21,7 @@
   function set(p, v, t) { if (p) p.setTargetAtTime(v, A.currentTime, t || 0.25); }
 
   function build() {
-    var c = A, m = g.master = gain(c, 0, c.destination), wn = noise(c, 2.5, false), bn = noise(c, 3, true);
+    var c = A, m = g.master = gain(c, 0, g.duck = gain(c, 1, c.destination)), wn = noise(c, 2.5, false), bn = noise(c, 3, true);
     /* 엔진 */
     g.rum = gain(c, 0, m); loop(c, bn).connect(filt(c, 'lowpass', 160, 0.7, g.rum));
     g.roar = gain(c, 0, m); var rf = g.roarF = filt(c, 'bandpass', 520, 0.6, g.roar); loop(c, wn).connect(rf);
@@ -51,14 +51,14 @@
   var lastCall = null;
   /* 자동조종 해제 경고음(울림 3번) */
   K.wail = function () {
-    if (!A || !K.on || K.mute) return; var t = A.currentTime, gg = A.createGain(); gg.gain.value = 0.0001; gg.connect(A.destination);
+    if (!A || !K.on || K.mute) return; var t = A.currentTime, gg = A.createGain(); gg.gain.value = 0.0001; gg.connect(g.duck || A.destination);
     var o = A.createOscillator(); o.type = 'square'; o.connect(filt(A, 'lowpass', 2400, 0.7, gg));
     for (var i = 0; i < 6; i++) { var tt = t + i * 0.28; o.frequency.setValueAtTime(i % 2 ? 640 : 860, tt); gg.gain.setValueAtTime(0.12, tt); gg.gain.setValueAtTime(0.02, tt + 0.25); }
     gg.gain.setValueAtTime(0.0001, t + 1.7); o.start(t); o.stop(t + 1.75);
   };
   var lastSay = 0, lastG = 0;
   var curSrc = null;
-  function say(k, cut) { var b = buf[k]; if (!b || !A) return; if (cut && curSrc) { try { curSrc.stop(); } catch (e) { } } var s = A.createBufferSource(); s.buffer = b; var gg = A.createGain(); gg.gain.value = 0.9; s.connect(gg); gg.connect(A.destination); s.start(); curSrc = s; lastSay = A.currentTime + b.duration; }      /* cut: PULL UP은 낮은 순위 음성(고도 호출)을 끊고 바로 울림(GPT ATC-13차 F13-03) */
+  function say(k, cut) { var b = buf[k]; if (!b || !A) return; if (cut && curSrc) { try { curSrc.stop(); } catch (e) { } } var s = A.createBufferSource(); s.buffer = b; var gg = A.createGain(); gg.gain.value = 0.9; s.connect(gg); gg.connect(g.duck || A.destination); s.start(); curSrc = s; lastSay = A.currentTime + b.duration; }      /* cut: PULL UP은 낮은 순위 음성(고도 호출)을 끊고 바로 울림(GPT ATC-13차 F13-03) */
 
   K.start = function () {
     if (K.on) return; A = ctx(); if (!A) return;
@@ -66,6 +66,7 @@
     K.on = true; st0 = {}; set(g.master.gain, K.mute ? 0 : 0.55, 0.6);
   };
   K.stop = function () { if (!K.on) return; K.on = false; if (g.master) set(g.master.gain, 0, 0.2); };
+  K.duck = function (on) { if (A && g.duck) set(g.duck.gain, on ? 0.1 : 1, on ? 0.04 : 0.25); };      /* 89차: 마이크를 누르는 동안 조종석 소리 작게 */
   K.dbg = function () { return { clips: Object.keys(buf).length, ctx: A && A.state, on: K.on }; };
   K.toggle = function () { K.mute = !K.mute; if (g.master && K.on) set(g.master.gain, K.mute ? 0 : 0.55, 0.2); return !K.mute; };
 

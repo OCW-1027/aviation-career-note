@@ -8,6 +8,7 @@
   var FX = { strong: { lo: 430, hi: 2700, drive: 3.6, noise: 0.1, out: 0.5 }, weak: { lo: 300, hi: 3400, drive: 1.1, noise: 0.037, out: 1.1 } };
   var IMA_STEP = [7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 19, 21, 23, 25, 28, 31, 34, 37, 41, 45, 50, 55, 60, 66, 73, 80, 88, 97, 107, 118, 130, 143, 157, 173, 190, 209, 230, 253, 279, 307, 337, 371, 408, 449, 494, 544, 598, 658, 724, 796, 876, 963, 1060, 1166, 1282, 1411, 1552, 1707, 1878, 2066, 2272, 2499, 2749, 3024, 3327, 3660, 4026, 4428, 4871, 5358, 5894, 6484, 7132, 7845, 8630, 9493, 10442, 11487, 12635, 13899, 15289, 16818, 18500, 20350, 22385, 24623, 27086, 29794, 32767], IMA_IDX = [-1, -1, -1, -1, 2, 4, 6, 8];
   var MU = new Float32Array(256); (function () { for (var i = 0; i < 256; i++) { var y = i / 255 * 2 - 1; MU[i] = (y < 0 ? -1 : 1) * (Math.pow(256, Math.abs(y)) - 1) / 255; } })();
+  RD.duck = function (on) { if (!RD.ctx || !RD.out) return; var t = RD.ctx.currentTime; try { RD.out.gain.cancelScheduledValues(t); RD.out.gain.setTargetAtTime(on ? 0.08 : 0.8, t, on ? 0.04 : 0.25); } catch (e) { } };      /* 89차: 마이크를 누르는 동안 무선 음성을 작게(스피커 소리가 마이크로 들어가 인식이 틀리지 않게) */
   RD.init = function () {
     if (RD.ctx) { RD.unlock(); return RD.ctx; }
     var AC = window.AudioContext || window.webkitAudioContext; if (!AC) { RD.err = 'no-audiocontext'; return null; }

@@ -372,14 +372,16 @@
   };
   /* 마이크로 복창 · 첫 호출: 표준 문장과 80% 이상 같으면 그 보기를 고른 것으로 */
   Pilot.prototype.wantSpeech = function () { return !!(this.prompt || this.clr && this.clr.opts); };
-  Pilot.prototype.speak = function (heard) {
-    var opts = this.prompt ? this.prompt.opts : this.clr.opts, best = null, i;
-    for (i = 0; i < opts.length; i++) { var s = ATC.mic.score(heard, opts[i].t).pct; if (!best || s > best.s) best = { i: i, s: s }; }
-    var good = opts.filter(function (o) { return o.ok; })[0], sg = ATC.mic.score(heard, good.t).pct;
-    var pick = sg >= 80 ? opts.indexOf(good) : best.i, said = sg >= 80 ? good : { t: heard, ok: false, why: ATC.T('표준 문장과 {0}%만 같습니다', sg) };
-    if (this.prompt) { if (sg < 80) { this.prompt.opts.push(said); pick = this.prompt.opts.length - 1; } this.sendPrompt(pick); }
+  Pilot.prototype.speak = function (heardIn) {
+    var alts = [].concat(heardIn).filter(Boolean), opts = this.prompt ? this.prompt.opts : this.clr.opts, good = opts.filter(function (o) { return o.ok; })[0], M = ATC.mic, top = null;
+    /* 89차: 알아들은 후보(최대 5개) 가운데 바른 문장에 가장 가까운 것 · 핵심 낱말(숫자 · 방향 · 지점)이 다 맞고 틀린 보기보다 가까우면 55%부터 통과 */
+    alts.forEach(function (h) { var sg = M.score(h, good.t).pct, ko = M.keyOk(h, good.t), rival = opts.some(function (o) { return !o.ok && M.keyOk(h, o.t) && M.score(h, o.t).pct >= sg; }), pass = ko && (sg >= 80 || (sg >= 55 && !rival)), v = (pass ? 1000 : 0) + sg; if (!top || v > top.v) top = { h: h, sg: sg, pass: pass, soft: pass && sg < 80, v: v }; });
+    var heard = top.h, sg = top.sg, best = null, i;
+    for (i = 0; i < opts.length; i++) { var s = M.score(heard, opts[i].t).pct; if (!best || s > best.s) best = { i: i, s: s }; }
+    var pick = top.pass ? opts.indexOf(good) : best.i, said = top.pass ? good : { t: heard, ok: false, why: ATC.T('표준 문장과 {0}%만 같습니다', sg) };
+    if (this.prompt) { if (!top.pass) { this.prompt.opts.push(said); pick = this.prompt.opts.length - 1; } this.sendPrompt(pick); }
     else this.readback(pick, said);
-    return sg;
+    this.lastSpeak = top; return sg;
   };
   function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
   function cap(s) { return s ? s[0].toUpperCase() + s.slice(1) : s; }

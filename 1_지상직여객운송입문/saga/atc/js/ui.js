@@ -30,13 +30,17 @@
   function resumeOffer() {
     var r = app.resume0; app.resume0 = null;      /* 처음 읽을 때 받아 둔 것(로비를 그리며 지워지므로) */
     if (!r || r.apt !== ATC.aptId || Date.now() - r.t > 12 * 3600 * 1000) return;
-    var el = document.createElement('div'); el.id = 'resume';
+    var bg = document.createElement('div'), el = document.createElement('div'); bg.id = 'resumeBg'; el.id = 'resume'; el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true'); bg.appendChild(el);      /* 89차: 하나를 골라야 하는 질문 — 화면 가운데 확인 상자(뒤 어둡게) */
     el.innerHTML = '<p>' + ATC.T('새로고침으로 하던 근무가 끊겼습니다. 진행 상황은 이어 갈 수 없지만, 같은 조건(같은 교통 · 날씨)으로 처음부터 다시 시작할 수 있습니다.') + '</p><div><button class="btn pri" data-r="go">' + ATC.T('같은 조건으로 다시 시작') + '</button><button class="btn" data-r="no">' + ATC.T('닫기') + '</button></div>';
-    document.body.appendChild(el);
-    el.addEventListener('click', function (e) { var b = e.target.closest('button'); if (!b) return; el.remove(); if (b.dataset.r !== 'go') { endPlay(); return; }
+    document.body.appendChild(bg);
+    var key = function (e) { if (!document.body.contains(bg)) { document.removeEventListener('keydown', key, true); return; } if (e.key === 'Enter') { e.preventDefault(); e.stopPropagation(); pick('go'); } else if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); pick('no'); } else if (e.key === 'Tab') { var bs = el.querySelectorAll('button'), i = [].indexOf.call(bs, document.activeElement); e.preventDefault(); bs[(i + (e.shiftKey ? bs.length - 1 : 1)) % bs.length].focus(); } else e.stopPropagation(); };
+    document.addEventListener('keydown', key, true); var gb = el.querySelector('[data-r="go"]'); if (gb) gb.focus();
+    app.closeResume = function () { document.removeEventListener('keydown', key, true); if (bg.parentNode) bg.remove(); app.closeResume = null; };
+    function pick(v) { if (app.closeResume) app.closeResume(); if (v !== 'go') { endPlay(); return; }
       var x = r.xo; if (r.scn && ATC.SCN_BY[r.scn]) { var sc = ATC.SCN_BY[r.scn]; start(sc.pos, sc.seed, sc); }
       else if (x && x.pilotDep) start(x.k0 || 'DEL', r.seed, null, x);
-      else start(r.k, x && x.daily ? x.seed : r.seed, null, x); });
+      else start(r.k, x && x.daily ? x.seed : r.seed, null, x); }
+    el.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) pick(b.dataset.r); });
   }
   /* 휴대폰: 지도 · 조종석 위 자막(최근 교신 2개) · 교신 기록 크게 보기 */
   var caps = [];
@@ -250,6 +254,7 @@
     };
   }
   function start(k, seed, scn, xo) {
+    if (app.closeResume) app.closeResume();      /* 89차: 상자를 두고 로비에서 다른 근무를 시작해도 상자가 남지 않게 */
     try { window.scrollTo(0, 0); } catch (e) { }      /* 휴대폰 세로: 로비를 내린 채 들어와도 게임 화면은 맨 위에서 시작 */
     if (ATC.XC) ATC.XC.restore();      /* 한 편 비행의 순항 지점표를 공항 지점표로 되돌림(xc.js) */
     var Cls = { DEL: ATC.DelSim, GND: ATC.GndSim, TWR: ATC.TwrSim, APP: ATC.AppSim, ACC: ATC.AccSim, XC: ATC.XcSim }[k];
@@ -1132,6 +1137,7 @@
     MIC.want = true;
     if (MIC.on) { MIC.again = true; micMark(); return; }      /* 앞 말을 아직 알아듣는 중(떼고 1 ~ 2초) — 끝나는 대로 이어서 듣기(예전에는 이때 누른 키가 무시됨) */
     if (!SRC) { micFb(ATC.T('이 브라우저는 음성 인식을 지원하지 않습니다 — 크롬 · 엣지(PC)에서 써 보세요.'), 'no'); return; }
+    micDuck(true);
     var r = MIC.rec = new SRC(); r.lang = 'en-US'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = true;      /* 누르고 있는 동안은 말을 잠깐 멈춰도 끊기지 않음 */
     MIC.fin = []; MIC.err = ''; MIC.on = true; MIC.again = false; micMark();
     micFb('<span class="mh">● ' + ATC.T('준비 중') + '</span>', 'live');
@@ -1148,7 +1154,7 @@
     };
     r.onerror = function (e) { MIC.err = e.error; var m = { 'not-allowed': ATC.T('마이크 사용을 허용해 주세요(주소창의 마이크 표시).'), 'service-not-allowed': ATC.T('마이크 사용을 허용해 주세요(주소창의 마이크 표시).'), network: ATC.T('음성 인식 서버에 연결할 수 없습니다(인터넷 연결이 필요합니다).'), 'no-speech': ATC.T('말소리가 들리지 않았습니다 — 마이크를 확인하고 다시 눌러 말해 보세요.'), 'audio-capture': ATC.T('마이크를 찾을 수 없습니다.') }[e.error]; if (m) micFb(m, 'no'); };
     r.onend = function () {
-      MIC.on = false; MIC.rec = null;
+      MIC.on = false; MIC.rec = null; if (!MIC.want) micDuck(false);
       var alts = []; if (MIC.fin.length) for (var i = 0; i < 5; i++) { var t = MIC.fin.map(function (a) { return a[i] || a[0]; }).join(' ').trim(); if (t && alts.indexOf(t) < 0) alts.push(t); }
       if (alts.length) micHandle(alts);
       else if (!MIC.err || MIC.err === 'aborted') micFb(TOUCH ? ATC.T('알아들은 말이 없습니다 — 🎤를 누르고 말한 뒤, 다 말하면 떼세요.') : ATC.T('알아들은 말이 없습니다 — 🎤(M 키)를 누른 채 말하고, 다 말한 뒤 떼세요.'), 'no');
@@ -1157,9 +1163,10 @@
     };
     try { r.start(); } catch (err) { MIC.on = false; MIC.rec = null; micMark(); micFb(ATC.T('마이크를 시작하지 못했습니다 — 잠시 뒤 다시 눌러 보세요.'), 'no'); }
   }
+  function micDuck(on) { try { if (ATC.Radio && ATC.Radio.duck) ATC.Radio.duck(on); if (ATC.CkSnd && ATC.CkSnd.duck) ATC.CkSnd.duck(on); } catch (e) { } }      /* 89차: 누르는 동안 게임 소리를 작게 */
   function micStop() {
     if (!MIC.want) return;
-    MIC.want = false; micMark();
+    MIC.want = false; micMark(); micDuck(false);
     if (MIC.again) { MIC.again = false; return; }
     if (MIC.rec && MIC.on && !MIC.rec.stopped) { MIC.rec.stopped = true; micFb('<span class="mh">● ' + ATC.T('알아듣는 중') + '</span> ' + esc(MIC.fin.map(function (a) { return a[0]; }).join(' ')), 'live'); try { MIC.rec.stop(); } catch (e) { } }
   }
@@ -1171,7 +1178,7 @@
   }
   function micHandle(alts) {
     var sim = app.sim; if (!sim || app.over) return;
-    if (sim.pilot) { if (!sim.pilot.wantSpeech()) { micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(alts[0]) + '<br><span class="me">' + ATC.T('지금은 보낼 교신 · 복창이 없습니다.') + '</span>', 'no'); return; } var pc = sim.pilot.clr && sim.pilot.clr.opts ? sim.pilot.clr.opts : sim.pilot.prompt.opts, good = pc.filter(function (o) { return o.ok; })[0].t, sg = sim.pilot.speak(alts[0]); app.cmdSig = ''; micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(alts[0]) + '<br><b>' + ATC.T('표준 문구') + '</b> ' + esc(good) + '<br><span class="mp">' + ATC.T('일치 {0}%', sg) + '</span>' + (sg >= 80 ? '' : ' · <span class="me">' + ATC.T('80% 미만 — 틀린 교신으로 처리') + '</span>'), sg >= 80 ? 'ok' : 'no'); return; }
+    if (sim.pilot) { if (!sim.pilot.wantSpeech()) { micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(alts[0]) + '<br><span class="me">' + ATC.T('지금은 보낼 교신 · 복창이 없습니다.') + '</span>', 'no'); return; } var pc = sim.pilot.clr && sim.pilot.clr.opts ? sim.pilot.clr.opts : sim.pilot.prompt.opts, good = pc.filter(function (o) { return o.ok; })[0].t, sg = sim.pilot.speak(alts), ls = sim.pilot.lastSpeak || { h: alts[0], pass: sg >= 80 }; app.cmdSig = ''; micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(ls.h) + '<br><b>' + ATC.T('표준 문구') + '</b> ' + esc(good) + '<br><span class="mp">' + ATC.T('일치 {0}%', sg) + '</span>' + (ls.pass ? (ls.soft ? ' · ' + ATC.T('받아쓰기가 조금 달라도 핵심(호출부호 · 숫자 · 방향 · 지점)이 모두 맞아 통과') : '') : ' · <span class="me">' + ATC.T('핵심(숫자 · 방향 · 지점)이 다르거나 일치가 낮아 틀린 교신으로 처리') + '</span><br><span class="mp">' + ATC.T('잘 못 알아들으면: 헤드셋 · 이어폰을 쓰면 게임 소리가 마이크에 섞이지 않습니다 · 보통 속도로 한 번에 이어 말하기') + '</span>'), ls.pass ? 'ok' : 'no'); return; }
     var sel = sim.byId(app.sel), rs = alts.map(function (t) { return ATC.mic.parse(t, sim, sel); }), r = rs.filter(function (x) { return x.sp || x.cmds.length && !x.err; })[0] || rs[0];
     if (r.sp === 'sayagain') { if (!sim.sayAgain()) micFb(ATC.T('지금은 혼신이 없습니다.'), 'no'); else micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard), 'ok'); return; }
     if (r.sp === 'correct') { select(r.ac.id); sim.correct(r.ac.id); micFb('<b>' + ATC.T('들은 말') + '</b> ' + esc(r.heard) + '<br>' + ATC.T('복창 정정을 송신했습니다.'), 'ok'); return; }
